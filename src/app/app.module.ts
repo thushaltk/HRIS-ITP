@@ -6,6 +6,9 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './login/login.component';
+import { LoginEmpComponent } from './login/login-emp/login-emp.component';
+import { LoginAdminComponent } from './login/login-admin/login-admin.component';
 
 
 @NgModule({
@@ -14,6 +17,9 @@ import { FooterComponent } from './footer/footer.component';
     LandingPageComponent,
     HeaderComponent,
     FooterComponent,
+    LoginComponent,
+    LoginEmpComponent,
+    LoginAdminComponent,
 
   ],
   imports: [

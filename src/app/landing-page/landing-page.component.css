@@ -1,0 +1,30 @@
+.bgImage{
+  background-image: url('../images/officeBG.jpg');
+  background-size: 100%;
+  background-attachment: fixed;
+  height: 100%;
+}
+
+.buttonLandingPage{
+  transition: 0.3s;
+  cursor: pointer;
+  color: #397a12;
+  border-color: #397a12;
+  border-width: 5px;
+  border-radius: 12px;
+}
+
+.buttonLandingPage:hover{
+  background-color: green;
+  border-color: green;
+  color: white;
+  font-weight: 700;
+}
+
+.headingsLandingPage{
+  color: #397a12;
+  text-align: center;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif
+
+}

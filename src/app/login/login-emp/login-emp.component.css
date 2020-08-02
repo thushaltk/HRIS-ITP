@@ -1,0 +1,12 @@
+h1{
+  font-size: 90px;
+  text-align: center;
+  font-weight: 700;
+  color:#397a12;
+}
+
+.vl {
+  border-left: 6px solid green;
+  height: 500px;
+
+}

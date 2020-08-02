@@ -1,1 +1,48 @@
-<p>Works</p>
+
+<div  class="jumbotron container-fluid"
+      [ngClass]="{bgImage: true}">
+
+      <div class="container">
+        <br><br><br><br><br>
+				<h1 [ngClass]="{headingsLandingPage: true}">Welcome</h1>
+				<h2 [ngClass]="{headingsLandingPage: true}">Human Resource Information Management System</h2>
+      </div>
+      <br><br><br><br><br>
+
+      <div class="container">
+        <div style="text-align: center;">
+          <div class="row">
+            <div class="col-md-6">
+              <a style="text-decoration: none;">
+                <button class="btn btn-secondary rounded pull-center"
+                        [ngClass]="{buttonLandingPage: true}"
+                        type="button"
+                        style="font-size: 45px;"
+                        (click)="onEmpNavigate()">EMPLOYEE
+                </button>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a href="" style="text-decoration: none;">
+                <button class="btn btn-secondary rounded pull-left"
+                        style="margin-left: 20%"
+                        [ngClass]="{buttonLandingPage: true}"
+                        type="button"
+                        style="font-size: 45px;">ADMINISTRATOR
+                </button>
+              </a>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <br><br><br><br><br>
+
+
+
+
+
+
+
+</div>
