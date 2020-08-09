@@ -1,4 +1,4 @@
-h1{
+/* h1{
   font-size: 90px;
   text-align: center;
   font-weight: 700;
@@ -9,4 +9,12 @@ h1{
   border-left: 6px solid green;
   height: 500px;
 
+} */
+
+.bgImage{
+  background-image: url('../../../assets/images/officeBG2.jpg');
+  background-size: 100%;
+  background-attachment: fixed;
+  min-height: fit-content;
+  background-position: 0%;
 }

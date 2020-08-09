@@ -18,4 +18,8 @@ export class LandingPageComponent implements OnInit {
 
   }
 
+  onAdminNavigate(){
+    this.router.navigate(['login/admin']);
+  }
+
 }

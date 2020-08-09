@@ -1,1 +1,32 @@
-<p>login-admin works!</p>
+<div class="container-fluid">
+  <div [ngClass]="{bgImage: true}" class="row">
+    <div class="col-lg-6">
+      <br><br><br>
+    </div>
+    <div class="col-lg-6 pull-right" style="padding-top: 80px;">
+        <h2 style="color:azure; font-size: 40px; font-weight: 700; font-family: cursive;">WELCOME</h2>
+        <br>
+        <form class="form-horizontal" #f="ngForm">
+          <div class="form-group">
+            <label class="col-sm-2"for="username" style="color:azure;">Username</label>
+            <div class="col-sm-10">
+              <input type="text" id="username" class="form-control" ngModel name="username" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2"for="password" style="color:azure;">Password</label>
+            <div class="col-sm-10">
+              <input type="password" id="password" class="form-control" ngModel name="password" required>
+            </div>
+          </div>
+          <br>
+          <button class="btn btn-success pull-right" type="submit" [disabled]="!f.valid">LOGIN</button>
+          <br><br><br><br><br>
+        </form>
+
+      <br><br><br><br><br><br>
+    </div>
+
+  </div>
+
+</div>

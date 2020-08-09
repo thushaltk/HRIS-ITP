@@ -1,5 +1,5 @@
 .bgImage{
-  background-image: url('../images/officeBG.jpg');
+  background-image: url('../../assets/images/officeBG.jpg');
   background-size: 100%;
   background-attachment: fixed;
   height: 100%;

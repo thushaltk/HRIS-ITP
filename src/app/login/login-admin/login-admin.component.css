@@ -1,0 +1,7 @@
+.bgImage{
+  background-image: url('../../../assets/images/officeBG3.jpg');
+  background-size: 100%;
+  background-attachment: fixed;
+  min-height: fit-content;
+  background-position: 0%;
+}
