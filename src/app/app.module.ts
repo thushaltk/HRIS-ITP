@@ -10,6 +10,8 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { LoginEmpComponent } from './login/login-emp/login-emp.component';
 import { LoginAdminComponent } from './login/login-admin/login-admin.component';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { AdminDashboardComponent } from './admin-profile/admin-dashboard/admin-dashboard.component';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import { LoginAdminComponent } from './login/login-admin/login-admin.component';
     LoginComponent,
     LoginEmpComponent,
     LoginAdminComponent,
+    AdminProfileComponent,
+    AdminDashboardComponent,
 
 
   ],
