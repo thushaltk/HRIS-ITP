@@ -12,7 +12,13 @@ import { LoginEmpComponent } from './login/login-emp/login-emp.component';
 import { LoginAdminComponent } from './login/login-admin/login-admin.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { AdminDashboardComponent } from './admin-profile/admin-dashboard/admin-dashboard.component';
-
+import { AnnouncementsComponent } from './admin-profile/announcements/announcements.component';
+import { AdminAnnouncementsComponent } from './admin-profile/announcements/admin-announcements/admin-announcements.component';
+import { AnnouncementCreateComponent } from './admin-profile/announcements/announcement-create/announcement-create.component';
+import { TrainingProgramsComponent } from './admin-profile/training-programs/training-programs.component';
+import { ProjectsComponent } from './admin-profile/projects/projects.component';
+import { EquipmentsComponent } from './admin-profile/equipments/equipments.component';
+import { VehiclesComponent } from './admin-profile/vehicles/vehicles.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +31,13 @@ import { AdminDashboardComponent } from './admin-profile/admin-dashboard/admin-d
     LoginAdminComponent,
     AdminProfileComponent,
     AdminDashboardComponent,
+    AnnouncementsComponent,
+    AdminAnnouncementsComponent,
+    AnnouncementCreateComponent,
+    TrainingProgramsComponent,
+    ProjectsComponent,
+    EquipmentsComponent,
+    VehiclesComponent
 
 
   ],
