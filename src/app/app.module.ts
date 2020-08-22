@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -19,6 +19,11 @@ import { TrainingProgramsComponent } from './admin-profile/training-programs/tra
 import { ProjectsComponent } from './admin-profile/projects/projects.component';
 import { EquipmentsComponent } from './admin-profile/equipments/equipments.component';
 import { VehiclesComponent } from './admin-profile/vehicles/vehicles.component';
+import { EmployeesComponent } from './admin-profile/employees/employees.component';
+import { EmpRegComponent } from './admin-profile/employees/emp-reg/emp-reg.component';
+import { EmpRegistryComponent } from './admin-profile/employees/emp-registry/emp-registry.component';
+import { EmpSelectComponent } from './admin-profile/employees/emp-select/emp-select.component';
+import { EmpUpdateComponent } from './admin-profile/employees/emp-update/emp-update.component';
 
 @NgModule({
   declarations: [
@@ -37,14 +42,20 @@ import { VehiclesComponent } from './admin-profile/vehicles/vehicles.component';
     TrainingProgramsComponent,
     ProjectsComponent,
     EquipmentsComponent,
-    VehiclesComponent
+    VehiclesComponent,
+    EmployeesComponent,
+    EmpRegComponent,
+    EmpRegistryComponent,
+    EmpSelectComponent,
+    EmpUpdateComponent
 
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

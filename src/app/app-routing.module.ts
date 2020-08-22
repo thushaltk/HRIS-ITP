@@ -12,6 +12,8 @@ import { ProjectsComponent } from './admin-profile/projects/projects.component';
 import { EquipmentsComponent } from './admin-profile/equipments/equipments.component';
 import { TrainingProgramsComponent } from './admin-profile/training-programs/training-programs.component';
 import { VehiclesComponent } from './admin-profile/vehicles/vehicles.component';
+import { EmployeesComponent } from './admin-profile/employees/employees.component';
+import { EmpRegComponent } from './admin-profile/employees/emp-reg/emp-reg.component';
 
 
 const appRoutes: Routes = [
@@ -28,7 +30,10 @@ const appRoutes: Routes = [
     { path: 'projects', component: ProjectsComponent},
     { path: 'equipments', component: EquipmentsComponent},
     { path: 'training-programs', component: TrainingProgramsComponent},
-    { path: 'vehicles', component: VehiclesComponent}
+    { path: 'vehicles', component: VehiclesComponent},
+    { path: 'employees', component: EmployeesComponent, children: [
+      { path: 'create', component: EmpRegComponent}
+    ]}
 
   ]}
 ]

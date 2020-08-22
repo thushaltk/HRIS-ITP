@@ -1,0 +1,137 @@
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Update Employee Details</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+
+<body style="background-color: #FEFEFE; background-size: auto">
+  <div class ="container" style="background-color: #FFCC2F">
+    <br><p class="h1" style="text-align:center" >Update Employee Details</p><br>
+  </div>
+
+  <form #empup="ngForm" class ="container" style="background-color: #E0E4FB">
+    <br>
+    <p class="h4" style="text-align:center" >Personal Information</p>
+
+    <div class="form-group">
+      <label for="fullNameup">Full Name</label>
+      <input type="text" [formControl]= "fullNameup" [class.is-invalid]= "fullNameup.invalid && fullNameup.touched" class="form-control" id="fullNameup" required>
+      <small class="text-danger" [class.d-none]= "fullNameup.valid || fullNameup.untouched">Required</small>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-3 mb-1">
+        <label for="dobup">Date of birth</label>
+        <input type="date" [formControl]= "dobup" [class.is-invalid]= "dobup.invalid && dobup.touched" class="form-control" id="dobup" placeholder="DD/MM/YYYY" required>
+        <small class="text-danger" [class.d-none]= "dobup.valid || dobup.untouched">Required</small>
+      </div>
+
+      <div class="col-md-3 mb-1">
+        <label for="nicup">NIC Number</label>
+        <input type="text" [formControl]= "nicup" [class.is-invalid]= "nicup.invalid && nicup.touched" class="form-control" id="nicup" placeholder="123456789V" required>
+        <small class="text-danger" [class.d-none]= "nicup.valid || nicup.untouched">Required</small>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <p>Gender</p>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" [formControl]= "genderup" name="genderup" id="maleup" value="Male">
+          <label class="form-check-label" for="inlineRadio1">Male</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" [formControl]= "genderup" name="genderup" id="femaleup" value="Female">
+          <label class="form-check-label" for="inlineRadio2">Female</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="addressup">Address</label>
+      <input type="text" [formControl]= "addressup" [class.is-invalid]= "addressup.invalid && addressup.touched" class="form-control" id="addressup" placeholder="1234 Main St" required>
+      <small class="text-danger" [class.d-none]= "addressup.valid || addressup.untouched">Required</small>
+    </div>
+    <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="cnumberup">Contact Number</label>
+      <input type="text" [formControl]= "cnumberup" pattern="^\d{10}$" [class.is-invalid]= "cnumberup.invalid && cnumberup.touched" class="form-control" id="cnumberup" placeholder="0123456789" required>
+      <small class="text-danger" [class.d-none]= "cnumberup.valid || cnumberup.untouched">Required</small>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="emailup">Email address</label>
+      <input type="email" [formControl]= "emailup" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [class.is-invalid]= "emailup.invalid && emailup.touched" class="form-control" id="email" placeholder="name@example.com" required>
+      <small class="text-danger" [class.d-none]= "emailup.valid || emailup.untouched">Required</small>
+    </div>
+    </div>
+
+    <br>
+    <p class="h4" style="text-align:center" >Job Related Information</p>
+
+    <div class="form-group">
+      <label for="empDesup">Employee Designation</label>
+      <select [formControl]= "empDesup" [class.is-invalid]= "empDesup.invalid && empDesup.touched" class="custom-select" id="empDesup" required>
+        <option value="">Choose...</option>
+        <option>Manager</option>
+        <option>Engineer</option>
+        <option>IT Operator (Administrator)</option>
+        <option>Accountant</option>
+        <option>Supervisor</option>
+        <option>Labor</option>
+        <option>Driver</option>
+        <option>Cleaning Staff</option>
+        <option>Security Staff</option>
+      </select>
+      <small class="text-danger" [class.d-none]= "empDesup.valid || empDesup.untouched">Please select the Employee Designation</small>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-3 mb-1">
+        <label for="dojup">Date of Joining</label>
+        <input type= "date" [formControl]= "dojup" [class.is-invalid]= "dojup.invalid && dojup.touched" class="form-control" id="dojup" placeholder="DD/MM/YYYY" required>
+        <small class="text-danger" [class.d-none]= "dojup.valid || dojup.untouched">Required</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="commentup">If the employee has a special medical illness or other issue, mention it here</label>
+      <textarea [formControl]= "commentup" id="commentup" cols="30" rows="3" class="form-control"></textarea>
+    </div>
+
+    <div class="col-auto my-1" align="center">
+    <button class="btn btn-warning btn-lg btn-block">Update</button>
+    </div>
+    <br>
+  </form>
+</body>
+
