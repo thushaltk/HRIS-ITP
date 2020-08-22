@@ -1,1 +1,48 @@
-<p>announcement-create works!</p>
+<div style="overflow-y: scroll; height: 550px; width: 106rem;">
+  <div class="container-fluid" style="background-color: #FEFEFE;">
+    <div>
+      <h2 class="text-center">Create New Announcement</h2>
+    </div>
+    <br><br><br>
+    <div class="container-fluid">
+      <form #ann="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group row" style="margin-left: 200px;">
+          <label for="title" class="col-sm-3 col-form-label pull-right">Title</label>
+          <div class="col-sm-7" style="margin-left: -10%;">
+            <input
+            type="text"
+            id="title"
+            class="form-control"
+            ngModel
+            name="title"
+            required>
+          </div>
+        </div>
+        <div class="form-group row" style="margin-left: 200px;">
+          <label for="dateCreated" class="col-sm-3 col-form-label pull-right">Date Created</label>
+          <div class="col-sm-7" style="margin-left: -10%;">
+            <input
+            type="date"
+            id="dateCreated"
+            class="form-control"
+            ngModel
+            name="dateCreated"
+            required>
+          </div>
+        </div>
+        <div class="form-group row" style="margin-left: 200px;">
+          <label for="content" class="col-sm-3 col-form-label pull-right">Content</label>
+          <div class="col-sm-7" style="margin-left: -10%;">
+            <textarea
+            id="content"
+            rows=4
+            class="form-control"
+            ngModel
+            name="content"
+            required></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

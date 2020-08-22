@@ -1,39 +1,38 @@
-<body style="background-color: #FEFEFE; background-size: auto">
-    <div class ="container" style="background-color: #2BAF2B">
+<div style="overflow-y: scroll; height: 550px; width: 106rem;"  class ="container-fluid" >
+  <div class="container-fluid" style="background-color: #FEFEFE;">
+    <div style="background-color: #2BAF2B;">
       <br><p class="h1" style="text-align:center" >Employee Registration Form</p><br>
     </div>
-
-    <form #empreg="ngForm" class ="container" style="background-color: #E0E4FB">
-      <br>
-      <p class="h4" style="text-align:center" >Personal Information</p>
-
+  <div class="container-fluid" style="background-color: #E0E4FB;">
+    <p class="h4" style="text-align:center" >Personal Information</p>
+    <form (ngSubmit)="onSubmit()" #empreg="ngForm" style="background-color: #E0E4FB; padding-left: 10px;">
       <div class="form-group">
         <label for="fullName">Full Name</label>
-        <input type="text" [formControl]= "fullName" [class.is-invalid]= "fullName.invalid && fullName.touched" class="form-control" id="fullName" required>
+        <input type="text" ngModel name="fullname" [formControl]= "fullName" class="form-control" id="fullName" required>
         <small class="text-danger" [class.d-none]= "fullName.valid || fullName.untouched">Required</small>
       </div>
 
       <div class="form-row">
         <div class="col-md-3 mb-1">
           <label for="dob">Date of birth</label>
-          <input type="date" [formControl]= "dob" [class.is-invalid]= "dob.invalid && dob.touched" class="form-control" id="dob" placeholder="DD/MM/YYYY" required>
+          <input type="date" ngModel name="dob" [formControl]= "dob" class="form-control" id="dob" placeholder="DD/MM/YYYY" required>
           <small class="text-danger" [class.d-none]= "dob.valid || dob.untouched">Required</small>
         </div>
 
         <div class="col-md-3 mb-1">
           <label for="nic">NIC Number</label>
-          <input type="text" [formControl]= "nic" [class.is-invalid]= "nic.invalid && nic.touched" class="form-control" id="nic" placeholder="123456789V" required>
+          <input type="text" ngModel name="nic" [formControl]= "nic" class="form-control" id="nic" placeholder="123456789V" required>
           <small class="text-danger" [class.d-none]= "nic.valid || nic.untouched">Required</small>
         </div>
 
         <div class="col-md-6 mb-3">
           <p>Gender</p>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" [formControl]= "gender" name="gender" id="male" value="Male">
+            <input class="form-check-input" ngModel type="radio" [formControl]= "gender" name="gender" id="male" value="Male">
             <label class="form-check-label" for="inlineRadio1">Male</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" [formControl]= "gender" name="gender" id="female" value="Female">
+            <input ngModel class="form-check-input" type="radio" [formControl]= "gender" name="gender" id="female" value="Female">
             <label class="form-check-label" for="inlineRadio2">Female</label>
           </div>
         </div>
@@ -41,20 +40,20 @@
 
       <div class="form-group">
         <label for="address">Address</label>
-        <input type="text" [formControl]= "address" [class.is-invalid]= "address.invalid && address.touched" class="form-control" id="address" placeholder="1234 Main St" required>
+        <input type="text" [formControl]= "address" ngModel name="address" class="form-control" id="address" placeholder="1234 Main St" required>
         <small class="text-danger" [class.d-none]= "address.valid || address.untouched">Required</small>
       </div>
       <div class="form-row">
-      <div class="col-md-6 mb-3">
-        <label for="cnumber">Contact Number</label>
-        <input type="text" [formControl]= "cnumber" pattern="^\d{10}$" [class.is-invalid]= "cnumber.invalid && cnumber.touched" class="form-control" id="cnumber" placeholder="0123456789" required>
-        <small class="text-danger" [class.d-none]= "cnumber.valid || cnumber.untouched">Required</small>
-      </div>
-      <div class="col-md-6 mb-3">
-        <label for="email">Email address</label>
-        <input type="email" [formControl]= "email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [class.is-invalid]= "email.invalid && email.touched" class="form-control" id="email" placeholder="name@example.com" required>
-        <small class="text-danger" [class.d-none]= "email.valid || email.untouched">Required</small>
-      </div>
+        <div class="col-md-6 mb-3">
+          <label for="cnumber">Contact Number</label>
+          <input type="text" [formControl]= "cnumber" pattern="^\d{10}$" ngModel name="phone" class="form-control" id="cnumber" placeholder="0123456789" required>
+          <small class="text-danger" [class.d-none]= "cnumber.valid || cnumber.untouched">Required</small>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="email">Email address</label>
+          <input type="email" [formControl]= "email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ngModel name="email" email class="form-control" id="email" placeholder="name@example.com" required>
+          <small class="text-danger" [class.d-none]= "email.valid || email.untouched">Required</small>
+        </div>
       </div>
 
       <br>
@@ -62,17 +61,17 @@
 
       <div class="form-group">
         <label for="empDes">Employee Designation</label>
-        <select [formControl]= "empDes" [class.is-invalid]= "empDes.invalid && empDes.touched" class="custom-select" id="empDes" required>
-          <option value="">Choose...</option>
-          <option>Manager</option>
-          <option>Engineer</option>
-          <option>IT Operator (Administrator)</option>
-          <option>Accountant</option>
-          <option>Supervisor</option>
-          <option>Labor</option>
-          <option>Driver</option>
-          <option>Cleaning Staff</option>
-          <option>Security Staff</option>
+        <select [formControl]= "empDes" name="designation" [ngModel]="defaultValue" id="empDes" required>
+          <option value="choose">Choose...</option>
+          <option value="manager">Manager</option>
+          <option value="engineer">Engineer</option>
+          <option value="itoperator">IT Operator (Administrator)</option>
+          <option value="accountant">Accountant</option>
+          <option value="supervisor">Supervisor</option>
+          <option value="labor">Labor</option>
+          <option value="driver">Driver</option>
+          <option value="cleaningstaff">Cleaning Staff</option>
+          <option value="securitystaff">Security Staff</option>
         </select>
         <small class="text-danger" [class.d-none]= "empDes.valid || empDes.untouched">Please select the Employee Designation</small>
       </div>
@@ -80,19 +79,21 @@
       <div class="form-row">
         <div class="col-md-3 mb-1">
           <label for="doj">Date of Joining</label>
-          <input type= "date" [formControl]= "doj" [class.is-invalid]= "doj.invalid && doj.touched" class="form-control" id="doj" placeholder="DD/MM/YYYY" required>
+          <input type= "date" [formControl]= "doj" ngModel name="doj" class="form-control" id="doj" placeholder="DD/MM/YYYY" required>
           <small class="text-danger" [class.d-none]= "doj.valid || doj.untouched">Required</small>
         </div>
       </div>
 
       <div class="form-group">
         <label for="comment">If the employee has a special medical illness or other issue, mention it here</label>
-        <textarea [formControl]= "comment" id="comment" cols="30" rows="3" class="form-control"></textarea>
+        <textarea ngModel name="medicalIssue" [formControl]= "comment" id="comment" cols="30" rows="3" class="form-control"></textarea>
       </div>
 
       <div class="col-auto my-1" align="center">
-      <button (click)= "save()" class="btn btn-success btn-lg btn-block">Submit</button>
+      <button type="submit"  [disabled]="!fullName.valid" (click)= "save()" class="btn btn-success btn-lg ">Submit</button>
       </div>
       <br>
     </form>
-</body>
+  </div>
+</div>
+</div>

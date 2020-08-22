@@ -24,6 +24,7 @@ import { EmpRegComponent } from './admin-profile/employees/emp-reg/emp-reg.compo
 import { EmpRegistryComponent } from './admin-profile/employees/emp-registry/emp-registry.component';
 import { EmpSelectComponent } from './admin-profile/employees/emp-select/emp-select.component';
 import { EmpUpdateComponent } from './admin-profile/employees/emp-update/emp-update.component';
+import { PayrollComponent } from './admin-profile/payroll/payroll.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { EmpUpdateComponent } from './admin-profile/employees/emp-update/emp-upd
     EmpRegComponent,
     EmpRegistryComponent,
     EmpSelectComponent,
-    EmpUpdateComponent
+    EmpUpdateComponent,
+    PayrollComponent
 
 
   ],

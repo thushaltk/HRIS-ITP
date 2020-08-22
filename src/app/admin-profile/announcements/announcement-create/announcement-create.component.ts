@@ -12,4 +12,8 @@ export class AnnouncementCreateComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(){
+
+  }
+
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, AbstractControl } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, AbstractControl, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-emp-reg',
@@ -7,6 +7,8 @@ import { FormControl, AbstractControl } from '@angular/forms';
   styleUrls: ['./emp-reg.component.css']
 })
 export class EmpRegComponent implements OnInit {
+  @ViewChild('empreg', {static: false}) addEmployee: NgForm;
+  defaultValue = "choose";
 
   fullName = new FormControl();
   dob = new FormControl();
@@ -26,6 +28,10 @@ export class EmpRegComponent implements OnInit {
   save(){
     alert (this.fullName.value);
     alert (this.empDes.value);
+  }
+
+  onSubmit(){
+
   }
 
 }

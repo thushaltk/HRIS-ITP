@@ -14,6 +14,8 @@ import { TrainingProgramsComponent } from './admin-profile/training-programs/tra
 import { VehiclesComponent } from './admin-profile/vehicles/vehicles.component';
 import { EmployeesComponent } from './admin-profile/employees/employees.component';
 import { EmpRegComponent } from './admin-profile/employees/emp-reg/emp-reg.component';
+import { EmpRegistryComponent } from './admin-profile/employees/emp-registry/emp-registry.component';
+import { EmpSelectComponent } from './admin-profile/employees/emp-select/emp-select.component';
 
 
 const appRoutes: Routes = [
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
     { path: 'training-programs', component: TrainingProgramsComponent},
     { path: 'vehicles', component: VehiclesComponent},
     { path: 'employees', component: EmployeesComponent, children: [
-      { path: 'create', component: EmpRegComponent}
+      { path: 'create', component: EmpRegComponent},
+      { path: 'view', component: EmpSelectComponent}
     ]}
 
   ]}

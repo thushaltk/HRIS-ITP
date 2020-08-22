@@ -1,0 +1,17 @@
+.buttonEmpSelect{
+  transition: 0.3s;
+  cursor: pointer;
+  color: #397a12;
+  width: 150px;
+  background-color: #FFFFFF;
+  border-color: #397a12;
+  border-width: 5px;
+  border-radius: 12px;
+}
+
+.buttonEmpSelect:hover{
+  background-color: green;
+  border-color: green;
+  color: white;
+  font-weight: 700;
+}
