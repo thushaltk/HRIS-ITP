@@ -15,8 +15,10 @@
             class="form-control"
             ngModel
             name="title"
+            #title="ngModel"
             required>
           </div>
+          <span class="help-block" *ngIf="!title.valid && title.touched" style="color: red">Please enter a title.</span>
         </div>
         <div class="form-group row" style="margin-left: 200px;">
           <label for="dateCreated" class="col-sm-3 col-form-label pull-right">Date Created</label>
@@ -27,8 +29,10 @@
             class="form-control"
             ngModel
             name="dateCreated"
-            required>
+            required
+            #dateCreated="ngModel">
           </div>
+          <span class="help-block" *ngIf="!dateCreated.valid && dateCreated.touched" style="color: red">Please select a date.</span>
         </div>
         <div class="form-group row" style="margin-left: 200px;">
           <label for="content" class="col-sm-3 col-form-label pull-right">Content</label>
@@ -39,8 +43,42 @@
             class="form-control"
             ngModel
             name="content"
-            required></textarea>
+            required
+            #content="ngModel"></textarea>
           </div>
+          <span class="help-block" *ngIf="!content.valid && content.touched" style="color: red">Please add content.</span>
+        </div>
+        <div class="form-group row" style="margin-left: 200px;">
+          <label for="priority" class="col-sm-3 col-form-label pull-right">Priority</label>
+          <div class="col-sm-7" style="margin-left: -10%;">
+           <select
+            id="priority"
+            class="form-control"
+            [ngModel]="defaultValue"
+            name="priority">
+              <option value="choose" disabled>Choose Priority Level</option>
+              <option value="high" class="text-danger font-weight-bold">HIGH</option>
+              <option value="NORMAL" class="text-success font-weight-bold">NORMAL</option>
+           </select>
+          </div>
+        </div>
+        <div class="form-group row" style="margin-left: 200px;">
+          <label for="validity" class="col-sm-3 col-form-label pull-right">Validity</label>
+          <div class="col-sm-7" style="margin-left: -10%;">
+           <select
+            id="validity"
+            class="form-control"
+            [ngModel]="defaultValue2"
+            name="validity">
+              <option value="chooseValidity" disabled>Valid For...
+              <option value="oneday" class="font-weight-bold">1 day</option>
+              <option value="threedays" class="font-weight-bold">3 days</option>
+              <option value="onrweek" class="font-weight-bold">1 week</option>
+           </select>
+          </div>
+        </div>
+        <div class="text-center pt-4">
+          <button type="submit" class="btn btn-success" [disabled]="!ann.valid">PUBLISH</button>
         </div>
       </form>
     </div>

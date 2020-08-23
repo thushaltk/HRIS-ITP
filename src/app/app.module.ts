@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -25,6 +26,7 @@ import { EmpRegistryComponent } from './admin-profile/employees/emp-registry/emp
 import { EmpSelectComponent } from './admin-profile/employees/emp-select/emp-select.component';
 import { EmpUpdateComponent } from './admin-profile/employees/emp-update/emp-update.component';
 import { PayrollComponent } from './admin-profile/payroll/payroll.component';
+import { AnnouncementService } from 'service/announcements.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,7 @@ import { PayrollComponent } from './admin-profile/payroll/payroll.component';
     EmpRegistryComponent,
     EmpSelectComponent,
     EmpUpdateComponent,
-    PayrollComponent
+    PayrollComponent,
 
 
   ],
@@ -57,9 +59,10 @@ import { PayrollComponent } from './admin-profile/payroll/payroll.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AnnouncementService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

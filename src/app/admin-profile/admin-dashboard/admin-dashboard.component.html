@@ -1,56 +1,19 @@
 <div style="overflow-y: scroll; height: 550px; width: 106rem;">
   <h1>Announcements</h1>
   <div  style="overflow-y: scroll; height:400px; width: fit-content;">
-    <div class="container pull-left" style="background-color:#E6E9E5; width: 1000px; height: fit-content;">
+    <div class="container pull-left" *ngFor="let announcement of announcements" style="background-color:#E6E9E5; width: 1000px; height: fit-content;">
       <div class="card">
         <div class="card-header">
           Featured
         </div>
         <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <h5 class="card-title">{{announcement.title}}</h5>
+          <p class="card-text">{{announcement.content}}</p>
+          <p class="card-text">{{announcement.date}} {{announcement.priority}} {{announcement.validity}}</p>
         </div>
       </div>
     </div>
 
-    <div class="container" style="background-color: #E6E9E5; width: 1000px; height: fit-content;">
-      <div class="card">
-        <div class="card-header">
-          Featured
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="container" style="background-color: #E6E9E5; width: 1000px; height: fit-content;">
-      <div class="card">
-        <div class="card-header">
-          Featured
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
-    <div class="container" style="background-color: #E6E9E5; width: 1000px; height: fit-content;">
-      <div class="card">
-        <div class="card-header">
-          Featured
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
   </div>
 
   <h1>Training Programs</h1>
