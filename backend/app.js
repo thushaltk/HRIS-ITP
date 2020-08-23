@@ -7,6 +7,7 @@ const Announcement = require('./models/announcement');
 
 const app = express();
 
+//MongoDB connections
 mongoose.connect("mongodb+srv://thushaltk:Fq7N3Qpy16hdLezH@cluster0.tivsh.mongodb.net/hrisItp?retryWrites=true&w=majority")
   .then(() => {
     console.log('Connected to database');
@@ -18,6 +19,7 @@ mongoose.connect("mongodb+srv://thushaltk:Fq7N3Qpy16hdLezH@cluster0.tivsh.mongod
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 
+//CROS definitions
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -32,6 +34,7 @@ app.use((req, res, next) => {
   next();
 });
 
+//Add Announcements
 app.post("/api/announcements", (req, res, next) => {
   const announcement = new Announcement({
     title: req.body.title,
@@ -46,7 +49,7 @@ app.post("/api/announcements", (req, res, next) => {
   });
 });
 
-
+//Reteive Announcements
 app.get("/api/announcements", (req, res, next) => {
   Announcement.find()
     .then(documents => {
@@ -57,6 +60,7 @@ app.get("/api/announcements", (req, res, next) => {
     });
 });
 
+//Delete Announcemets
 app.delete("/api/announcements/:id", (req, res, next) => {
   Announcement.deleteOne({_id: req.params.id}).then(result => {
     console.log(result);
