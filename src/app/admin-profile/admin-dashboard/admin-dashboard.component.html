@@ -9,7 +9,9 @@
         <div class="card-body">
           <h5 class="card-title">{{announcement.title}}</h5>
           <p class="card-text">{{announcement.content}}</p>
-          <p class="card-text">{{announcement.date}} {{announcement.priority}} {{announcement.validity}}</p>
+          <p class="card-text">{{announcement.date}} {{announcement.validity}}</p>
+          <p class="card-text" [ngStyle]="{'color': announcement.priority == 'HIGH' ? 'red' : 'green'}">{{announcement.priority}}</p>
+          <p class="card-text">{{announcement.validity}}</p>
         </div>
       </div>
     </div>
