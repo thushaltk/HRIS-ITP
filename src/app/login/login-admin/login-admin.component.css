@@ -2,8 +2,8 @@
   background-image: url('../../../assets/images/officeBG3.jpg');
   background-attachment: fixed;
   width: 100%;
-  height: auto;
-  background-position: 0%;
+  height: 100vh;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
