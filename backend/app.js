@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 
 const Announcement = require('./models/announcement');
+const Employee = require('./models/employee')
 
 const app = express();
 
@@ -49,6 +50,26 @@ app.post("/api/announcements", (req, res, next) => {
   });
 });
 
+//Add Employees
+app.post("/api/employees", (req, res, next) => {
+  const employee = new Employee({
+    fullName: req.body.fullName,
+    dob: req.body.dob,
+    nic: req.body.nic,
+    gender: req.body.gender,
+    address: req.body.address,
+    cnumber: req.body.cnumber,
+    email: req.body.email,
+    empDes: req.body.empDes,
+    doj: req.body.doj,
+    comment: req.body.comment
+  });
+  employee.save();
+  res.status(201).json({
+    message: 'Employee added successfully'
+  });
+});
+
 //Reteive Announcements
 app.get("/api/announcements", (req, res, next) => {
   Announcement.find()
@@ -60,12 +81,34 @@ app.get("/api/announcements", (req, res, next) => {
     });
 });
 
+//Reteive Employees
+app.get("/api/employees", (req, res, next) => {
+  Employee.find()
+    .then(documents => {
+      res.status(200).json({
+        message: 'Employees fetched successfully',
+        employees: documents
+      });
+    });
+});
+
 //Delete Announcemets
 app.delete("/api/announcements/:id", (req, res, next) => {
   Announcement.deleteOne({_id: req.params.id}).then(result => {
     console.log(result);
     res.status(200).json({
       message: "Announcement Deleted"
+    });
+  });
+
+});
+
+//Delete Employees
+app.delete("/api/employees/:id", (req, res, next) => {
+  Employee.deleteOne({_id: req.params.id}).then(result => {
+    console.log(result);
+    res.status(200).json({
+      message: "Employee Deleted"
     });
   });
 
