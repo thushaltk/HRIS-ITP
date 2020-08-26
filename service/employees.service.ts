@@ -3,7 +3,6 @@ import { Subject } from 'rxjs';
 import { Employees } from '../models/employees.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import employee from '../backend/models/employee';
 
 @Injectable()
 export class EmployeeService{
@@ -14,6 +13,32 @@ export class EmployeeService{
 
   getEmployee(){
     this.http.get<{message: string, employees: any}>('http://localhost:3000/api/employees')
+      .pipe(map((employeeData) => {
+          return employeeData.employees.map(employee => {
+            return{
+              fullName: employee.fullName,
+              dob: employee.dob,
+              nic: employee.nic,
+              gender: employee.gender,
+              address: employee.address,
+              cnumber: employee.cnumber,
+              email: employee.email,
+              empDes: employee.empDes,
+              doj: employee.doj,
+              comment: employee.comment,
+              id: employee._id
+            };
+          });
+      }))
+      .subscribe((transformedEmployees) => {
+        this.employeesArr = transformedEmployees;
+        this.employeesChanged.next(this.employeesArr.slice());
+      });
+    return this.employeesArr.slice();
+  }
+
+  getEmployeeByDesignation(employeeDesignation: string){
+    this.http.get<{message: string, employees: any}>('http://localhost:3000/api/employees/' + employeeDesignation)
       .pipe(map((employeeData) => {
           return employeeData.employees.map(employee => {
             return{

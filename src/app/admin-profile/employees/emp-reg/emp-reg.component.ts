@@ -28,9 +28,9 @@ export class EmpRegComponent implements OnInit {
   };
   submitted=false;
 
-  //constructor(private router: Router,
-              //private employeeService: EmployeeService,
-              //private route: ActivatedRoute) { }
+  constructor(private router: Router,
+              private employeeService: EmployeeService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
@@ -53,9 +53,9 @@ export class EmpRegComponent implements OnInit {
 
     this.addEmployee.reset();
 
-    //this.employeeService.addEmployee(this.employees);
+    this.employeeService.addEmployee(this.employees);
 
-    //this.router.navigate(['../view'], {relativeTo: this.route});
+    this.router.navigate(['../view'], {relativeTo: this.route});
 
   }
 

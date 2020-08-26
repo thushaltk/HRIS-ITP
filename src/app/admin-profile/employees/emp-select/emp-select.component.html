@@ -1,4 +1,4 @@
-<div style="overflow-x: scroll; height: 100vh; width:1000px; max-width: 1300px;">
+<div style="overflow-y: scroll; overflow-x: scroll; height: 100vh; width:1000px; max-width: 1300px;">
   <div style="background-color: #2BAF2B">
     <br><p class="h1" style="text-align:center" >Please select the Employee Type</p><br>
   </div>
@@ -8,44 +8,44 @@
     <div class = "container-fluid" >
       <div class="row justify-content-around" align="center">
         <div class="col-4">
-          <button type="button" class="btn buttonEmpSelect btn-lg">Managers</button>
+          <a class="btn buttonEmpSelect btn-lg" [routerLink]="['../manager']">Managers</a>
         </div>
         <div class="col-4">
-          <button class="btn buttonEmpSelect btn-lg">Engineers</button>
+          <a class="btn buttonEmpSelect btn-lg" [routerLink]="['../engineer']">Engineers</a>
         </div>
         <div class="col-4">
-          <button class="btn buttonEmpSelect btn-lg">IT Operators</button>
-        </div>
-      </div>
-      <br><br><br><br>
-      <div class="row justify-content-around" align="center">
-        <div class="col-4">
-          <button class="btn buttonEmpSelect btn-lg">Accountants</button>
-        </div>
-        <div class="col-4">
-          <button class="btn buttonEmpSelect btn-lg">Supervisors</button>
-        </div>
-        <div class="col-4">
-          <button class="btn buttonEmpSelect btn-lg">Labors</button>
+          <a class="btn buttonEmpSelect btn-lg" [routerLink]="['../itoperator']">IT Operators</a>
         </div>
       </div>
       <br><br><br><br>
       <div class="row justify-content-around" align="center">
         <div class="col-4">
-          <button class="btn buttonEmpSelect btn-lg">Drivers</button>
+          <a class="btn buttonEmpSelect btn-lg" [routerLink]="['../accountant']">Accountants</a>
         </div>
         <div class="col-4">
-          <button class="btn buttonEmpSelect btn-lg">Cleaning Staff</button>
+          <a class="btn buttonEmpSelect btn-lg" [routerLink]="['../supervisor']">Supervisors</a>
         </div>
         <div class="col-4">
-          <button class="btn buttonEmpSelect btn-lg">Security Staff</button>
+          <a class="btn buttonEmpSelect btn-lg" [routerLink]="['../labor']">Labors</a>
+        </div>
+      </div>
+      <br><br><br><br>
+      <div class="row justify-content-around" align="center">
+        <div class="col-4">
+          <a class="btn buttonEmpSelect btn-lg" [routerLink]="['../driver']">Drivers</a>
+        </div>
+        <div class="col-4">
+          <a class="btn buttonEmpSelect btn-lg" [routerLink]="['../cleaningstaff']">Cleaning Staff</a>
+        </div>
+        <div class="col-4">
+          <a class="btn buttonEmpSelect btn-lg" [routerLink]="['../securitystaff']">Security Staff</a>
         </div>
       </div>
       <br><br><br><br>
       <div class="text-center">
         <button type="button" class="btn btn-success btn-lg" [routerLink]="['../create']">ADD NEW EMPLOYEE</button>
       </div>
-      <br><br>
+      <br><br><br><br><br><br><br>
     </div>
   </div>
 </div>

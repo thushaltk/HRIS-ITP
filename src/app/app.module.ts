@@ -27,6 +27,7 @@ import { EmpSelectComponent } from './admin-profile/employees/emp-select/emp-sel
 import { EmpUpdateComponent } from './admin-profile/employees/emp-update/emp-update.component';
 import { PayrollComponent } from './admin-profile/payroll/payroll.component';
 import { AnnouncementService } from 'service/announcements.service';
+import { EmployeeService } from 'service/employees.service';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,7 @@ import { AnnouncementService } from 'service/announcements.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AnnouncementService],
+  providers: [AnnouncementService, EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -92,6 +92,17 @@ app.get("/api/employees", (req, res, next) => {
     });
 });
 
+//Reteive Employees by designation
+app.get("/api/employees/:empDes", (req, res, next) => {
+  Employee.find({empDes: req.params.empDes})
+    .then(documents => {
+      res.status(200).json({
+        message: 'Employees fetched successfully by designation',
+        employees: documents
+      });
+    });
+});
+
 //Delete Announcemets
 app.delete("/api/announcements/:id", (req, res, next) => {
   Announcement.deleteOne({_id: req.params.id}).then(result => {

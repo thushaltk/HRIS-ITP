@@ -35,7 +35,9 @@ const appRoutes: Routes = [
     { path: 'vehicles', component: VehiclesComponent},
     { path: 'employees', component: EmployeesComponent, children: [
       { path: 'create', component: EmpRegComponent},
-      { path: 'view', component: EmpSelectComponent}
+      { path: 'view', component: EmpSelectComponent},
+      { path: ':designation', component: EmpRegistryComponent},
+
     ]}
 
   ]}

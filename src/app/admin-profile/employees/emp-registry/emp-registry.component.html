@@ -1,7 +1,7 @@
-<div style="overflow-y: scroll; height: 550px; width: 106rem;"  class ="container-fluid" >
+<div style="overflow-y: scroll; overflow-x: scroll; height: 100vh; width:fit-content; margin-left: -3%;">
   <body style="background-color: #FEFEFE; background-size: auto">
 
-    <div style="background-color: #007BFF">
+    <div style="background-color: #2BAF2B">
       <br><p class="h1" style="text-align:center" >Employees Registry</p><br>
     </div>
 
@@ -18,8 +18,29 @@
           <th scope="col">Email</th>
           <th scope="col">Date of Joining</th>
           <th scope="col">Special Medical illness</th>
+          <th scope="col">Action</th>
+
         </tr>
       </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees">
+          <td>{{ employee.id}}</td>
+          <td>{{ employee.fullName}}</td>
+          <td>{{ employee.nic}}</td>
+          <td>{{ employee.dob}}</td>
+          <td>{{ employee.gender}}</td>
+          <td>{{ employee.address}}</td>
+          <td>{{ employee.cnumber}}</td>
+          <td>{{ employee.email}}</td>
+          <td>{{ employee.doj}}</td>
+          <td>{{ employee.comment}}</td>
+          <td>
+            <a class="btn btn-warning pull-right" style="width:80px;">EDIT</a>
+            <a class="btn btn-danger pull-right" (click)="onDelete(employee.id)">DELETE</a>
+          </td>
+
+        </tr>
+      </tbody>
     </table>
   </body>
 </div>
