@@ -8,21 +8,21 @@
       <form (ngSubmit)="onSubmit()" #empreg="ngForm">
         <div class="form-group">
           <label for="fullName">Full Name</label>
-          <input type="text" ngModel name="fullName" #fullName="ngModel" class="form-control" id="fullName" required>
-          <small class="text-danger" [class.d-none]= "fullName.valid || fullName.untouched">Required</small>
+          <input type="text" ngModel name="fullName" #fullName="ngModel" [class.is-invalid]= "fullName.invalid && fullName.touched" class="form-control" id="fullName" required>
+          <small class="text-danger" [class.d-none]= "fullName.valid || fullName.untouched">Please enter a name</small>
         </div>
 
         <div class="form-row">
           <div class="col-md-3 mb-1">
             <label for="dob">Date of birth</label>
-            <input type="date" ngModel name="dob" #dob="ngModel" class="form-control" id="dob" placeholder="DD/MM/YYYY" required>
-            <small class="text-danger" [class.d-none]= "dob.valid || dob.untouched">Required</small>
+            <input type="date" ngModel name="dob" #dob="ngModel" [class.is-invalid]= "dob.invalid && dob.touched" class="form-control" id="dob" placeholder="DD/MM/YYYY" required>
+            <small class="text-danger" [class.d-none]= "dob.valid || dob.untouched">Please select a date</small>
           </div>
 
           <div class="col-md-3 mb-1">
             <label for="nic">NIC Number</label>
-            <input type="text" ngModel name="nic" #nic="ngModel" class="form-control" id="nic" placeholder="123456789V" required>
-            <small class="text-danger" [class.d-none]= "nic.valid || nic.untouched">Required</small>
+            <input type="text" ngModel name="nic" #nic="ngModel" [class.is-invalid]= "nic.invalid && nic.touched" class="form-control" id="nic" placeholder="123456789V" required>
+            <small class="text-danger" [class.d-none]= "nic.valid || nic.untouched">Please enter a NIC number</small>
           </div>
 
           <div class="col-md-6 mb-3">
@@ -40,19 +40,19 @@
 
         <div class="form-group">
           <label for="address">Address</label>
-          <input type="text" #address="ngModel" ngModel name="address" class="form-control" id="address" placeholder="1234 Main St" required>
-          <small class="text-danger" [class.d-none]= "address.valid || address.untouched">Required</small>
+          <input type="text" #address="ngModel" ngModel name="address" [class.is-invalid]= "address.invalid && address.touched" class="form-control" id="address" placeholder="1234 Main St" required>
+          <small class="text-danger" [class.d-none]= "address.valid || address.untouched">Please enter an address</small>
         </div>
         <div class="form-row">
           <div class="col-md-6 mb-3">
             <label for="cnumber">Contact Number</label>
-            <input type="text" #cnumber="ngModel" pattern="^\d{10}$" ngModel name="cnumber" class="form-control" id="cnumber" placeholder="0123456789" required>
-            <small class="text-danger" [class.d-none]= "cnumber.valid || cnumber.untouched">Required</small>
+            <input type="text" #cnumber="ngModel" pattern="^\d{10}$" ngModel name="cnumber" [class.is-invalid]= "cnumber.invalid && cnumber.touched" class="form-control" id="cnumber" placeholder="0123456789" required>
+            <small class="text-danger" [class.d-none]= "cnumber.valid || cnumber.untouched">Please enter a valid contact number</small>
           </div>
           <div class="col-md-6 mb-3">
             <label for="email">Email address</label>
-            <input type="email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ngModel name="email" email class="form-control" id="email" placeholder="name@example.com" required>
-            <small class="text-danger" [class.d-none]= "email.valid || email.untouched">Required</small>
+            <input type="email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ngModel name="email" [class.is-invalid]= "email.invalid && email.touched" email class="form-control" id="email" placeholder="name@example.com" required>
+            <small class="text-danger" [class.d-none]= "email.valid || email.untouched">Please enter a valid email address</small>
           </div>
         </div>
 
@@ -61,7 +61,7 @@
 
         <div class="form-group">
           <label for="empDes">Employee Designation</label>
-          <select #empDes="ngModel" name="empDes" class="form-control" [ngModel]="defaultValue" id="empDes" required>
+          <select #empDes="ngModel" name="empDes" [class.is-invalid]= "empDes.invalid && empDes.touched"  class="form-control" [ngModel]="defaultValue" id="empDes" required>
             <option value="choose" disabled>Choose...</option>
             <option value="manager">Manager</option>
             <option value="engineer">Engineer</option>
@@ -79,8 +79,8 @@
         <div class="form-row">
           <div class="col-md-3 mb-1">
             <label for="doj">Date of Joining</label>
-            <input type= "date" #doj="ngModel" ngModel name="doj" class="form-control" id="doj" placeholder="DD/MM/YYYY" required>
-            <small class="text-danger" [class.d-none]= "doj.valid || doj.untouched">Required</small>
+            <input type= "date" #doj="ngModel" ngModel name="doj" [class.is-invalid]= "doj.invalid && doj.touched" class="form-control" id="doj" placeholder="DD/MM/YYYY" required>
+            <small class="text-danger" [class.d-none]= "doj.valid || doj.untouched">Please select a date</small>
           </div>
         </div>
 
