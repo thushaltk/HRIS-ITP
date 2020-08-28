@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -28,6 +30,15 @@ import { EmpUpdateComponent } from './admin-profile/employees/emp-update/emp-upd
 import { PayrollComponent } from './admin-profile/payroll/payroll.component';
 import { AnnouncementService } from 'service/announcements.service';
 import { EmployeeService } from 'service/employees.service';
+import { EmpProfileComponent } from './emp-profile/emp-profile.component';
+import { EmpDashboardComponent } from './emp-profile/emp-dashboard/emp-dashboard.component';
+import { EmpAnnouncementsComponent } from './emp-profile/emp-announcements/emp-announcements.component';
+import { EmpEmployeesComponent } from './emp-profile/emp-employees/emp-employees.component';
+import { EmpEquipementsComponent } from './emp-profile/emp-equipements/emp-equipements.component';
+import { EmpPayrollComponent } from './emp-profile/emp-payroll/emp-payroll.component';
+import { EmpProjectsComponent } from './emp-profile/emp-projects/emp-projects.component';
+import { EmpTrainingProgramsComponent } from './emp-profile/emp-training-programs/emp-training-programs.component';
+import { EmpVehiclesComponent } from './emp-profile/emp-vehicles/emp-vehicles.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +64,15 @@ import { EmployeeService } from 'service/employees.service';
     EmpSelectComponent,
     EmpUpdateComponent,
     PayrollComponent,
+    EmpProfileComponent,
+    EmpDashboardComponent,
+    EmpAnnouncementsComponent,
+    EmpEmployeesComponent,
+    EmpEquipementsComponent,
+    EmpPayrollComponent,
+    EmpProjectsComponent,
+    EmpTrainingProgramsComponent,
+    EmpVehiclesComponent,
 
 
   ],
@@ -61,7 +81,9 @@ import { EmployeeService } from 'service/employees.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule
   ],
   providers: [AnnouncementService, EmployeeService],
   bootstrap: [AppComponent]

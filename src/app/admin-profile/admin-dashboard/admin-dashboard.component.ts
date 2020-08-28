@@ -11,14 +11,17 @@ import { Subscription } from 'rxjs';
 export class AdminDashboardComponent implements OnInit {
   announcements: Announcements[] = [];
   private subscription: Subscription;
+  isLoading = false;
 
   constructor(private announcementService: AnnouncementService) { }
 
   ngOnInit(){
+    this.isLoading = true;
     this.announcements = this.announcementService.getAnnouncement();
     this.subscription = this.announcementService.announcementsChanged.subscribe(
       (announcements: Announcements[]) => {
         this.announcements = announcements;
+        this.isLoading = false;
       }
     );
   }

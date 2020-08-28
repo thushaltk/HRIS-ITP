@@ -13,17 +13,20 @@ export class EmpRegistryComponent implements OnInit, OnDestroy {
   employees: Employees[] = [];
   private subscription: Subscription;
   designation: string;
+  isLoading = false;
 
   constructor(private router: Router, private employeeService: EmployeeService,
     private route: ActivatedRoute ) { }
 
   ngOnInit(){
+    this.isLoading=true;
     this.route.params.subscribe((params: Params) => {
       this.designation = params['designation'];
       this.employees = this.employeeService.getEmployeeByDesignation(this.designation);
       this.subscription = this.employeeService.employeesChanged.subscribe(
         (employees: Employees[]) => {
           this.employees = employees;
+          this.isLoading = false;
         }
       );
     });

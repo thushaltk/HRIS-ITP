@@ -1,5 +1,5 @@
-<div style="overflow-y: scroll; overflow-x: scroll; height: 100vh; width:fit-content; margin-left: -3%;">
-  <body style="background-color: #FEFEFE; background-size: auto">
+<div style="overflow-y: scroll; overflow-x: scroll; height: 100vh; width:fit-content; margin-left: -10%;">
+  <body style="background-color: #FEFEFE; background-size: auto;">
 
     <div style="background-color: #2BAF2B">
       <br><p class="h1" style="text-align:center" >Employees Registry</p><br>
@@ -22,7 +22,9 @@
 
         </tr>
       </thead>
-      <tbody>
+      <mat-spinner *ngIf = "isLoading"></mat-spinner>
+      <tbody *ngIf = "!isLoading">
+
         <tr *ngFor="let employee of employees">
           <td>{{ employee.id}}</td>
           <td>{{ employee.fullName}}</td>

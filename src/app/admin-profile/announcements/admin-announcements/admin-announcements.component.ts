@@ -12,14 +12,17 @@ import { Subscription } from 'rxjs';
 export class AdminAnnouncementsComponent implements OnInit, OnDestroy {
   announcements: Announcements[] = [];
   private subscription: Subscription;
+  isLoading = false;
 
   constructor(private router: Router, private announcementService: AnnouncementService) { }
 
   ngOnInit(){
+    this.isLoading = true;
     this.announcements = this.announcementService.getAnnouncement();
     this.subscription = this.announcementService.announcementsChanged.subscribe(
       (announcements: Announcements[]) => {
         this.announcements = announcements;
+        this.isLoading = false;
       }
     );
     console.log(this.announcements);

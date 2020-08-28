@@ -16,6 +16,8 @@ import { EmployeesComponent } from './admin-profile/employees/employees.componen
 import { EmpRegComponent } from './admin-profile/employees/emp-reg/emp-reg.component';
 import { EmpRegistryComponent } from './admin-profile/employees/emp-registry/emp-registry.component';
 import { EmpSelectComponent } from './admin-profile/employees/emp-select/emp-select.component';
+import { EmpProfileComponent } from './emp-profile/emp-profile.component';
+import { EmpDashboardComponent } from './emp-profile/emp-dashboard/emp-dashboard.component';
 
 
 const appRoutes: Routes = [
@@ -39,7 +41,10 @@ const appRoutes: Routes = [
       { path: ':designation', component: EmpRegistryComponent},
 
     ]}
+  ]},
 
+  { path: 'empProfile', component: EmpProfileComponent, children: [
+      {path: ':nic', component: EmpProfileComponent}
   ]}
 ]
 

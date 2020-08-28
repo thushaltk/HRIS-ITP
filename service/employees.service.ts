@@ -63,6 +63,32 @@ export class EmployeeService{
     return this.employeesArr.slice();
   }
 
+  // getEmployeeByNIC(employeeNIC: string){
+  //   this.http.get<{message: string, employees: any}>('http://localhost:3000/api/employees/' + employeeNIC)
+  //     .pipe(map((employeeData) => {
+  //         return employeeData.employees.map(employee => {
+  //           return{
+  //             fullName: employee.fullName,
+  //             dob: employee.dob,
+  //             nic: employee.nic,
+  //             gender: employee.gender,
+  //             address: employee.address,
+  //             cnumber: employee.cnumber,
+  //             email: employee.email,
+  //             empDes: employee.empDes,
+  //             doj: employee.doj,
+  //             comment: employee.comment,
+  //             id: employee._id
+  //           };
+  //         });
+  //     }))
+  //     .subscribe((transformedEmployees) => {
+  //       this.employeesArr = transformedEmployees;
+  //       this.employeesChanged.next(this.employeesArr.slice());
+  //     });
+  //     return this.employeesArr.slice();
+  // }
+
   addEmployee(employee: Employees){
     const employeeArray: Employees = {
       id: employee.id,
