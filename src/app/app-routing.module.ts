@@ -18,34 +18,49 @@ import { EmpRegistryComponent } from './admin-profile/employees/emp-registry/emp
 import { EmpSelectComponent } from './admin-profile/employees/emp-select/emp-select.component';
 import { EmpProfileComponent } from './emp-profile/emp-profile.component';
 import { EmpDashboardComponent } from './emp-profile/emp-dashboard/emp-dashboard.component';
+import { EquipmentListComponent } from './admin-profile/equipments/equipment-list/equipment-list.component';
+import { NewEquipmentComponent } from './admin-profile/equipments/new-equipment/new-equipment.component';
 
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: 'home', component: LandingPageComponent},
-  { path: 'login/emp', component: LoginEmpComponent},
-  { path: 'login/admin', component: LoginAdminComponent},
-  { path: 'admin', component: AdminProfileComponent, children: [
-    { path: 'dashboard', component: AdminDashboardComponent},
-    { path: 'announcements', component: AnnouncementsComponent, children: [
-      { path: 'view', component: AdminAnnouncementsComponent},
-      { path: 'new', component: AnnouncementCreateComponent}
-    ]},
-    { path: 'projects', component: ProjectsComponent},
-    { path: 'equipments', component: EquipmentsComponent},
-    { path: 'training-programs', component: TrainingProgramsComponent},
-    { path: 'vehicles', component: VehiclesComponent},
-    { path: 'employees', component: EmployeesComponent, children: [
-      { path: 'create', component: EmpRegComponent},
-      { path: 'view', component: EmpSelectComponent},
-      { path: ':designation', component: EmpRegistryComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: LandingPageComponent },
+  { path: 'login/emp', component: LoginEmpComponent },
+  { path: 'login/admin', component: LoginAdminComponent },
+  {
+    path: 'admin', component: AdminProfileComponent, children: [
+      { path: 'dashboard', component: AdminDashboardComponent },
+      {
+        path: 'announcements', component: AnnouncementsComponent, children: [
+          { path: 'view', component: AdminAnnouncementsComponent },
+          { path: 'new', component: AnnouncementCreateComponent }
+        ]
+      },
+      { path: 'projects', component: ProjectsComponent },
+      {
+        path: 'equipments', component: EquipmentsComponent, children: [
+          { path: 'list', component: EquipmentListComponent },
+          { path: 'new', component: NewEquipmentComponent },
+        ]
+      },
+      { path: 'training-programs', component: TrainingProgramsComponent },
+      { path: 'vehicles', component: VehiclesComponent },
+      {
+        path: 'employees', component: EmployeesComponent, children: [
+          { path: 'create', component: EmpRegComponent },
+          { path: 'view', component: EmpSelectComponent },
+          { path: ':designation', component: EmpRegistryComponent },
 
-    ]}
-  ]},
+        ]
+      }
+    ]
+  },
 
-  { path: 'empProfile', component: EmpProfileComponent, children: [
-      {path: ':nic', component: EmpProfileComponent}
-  ]}
+  {
+    path: 'empProfile', component: EmpProfileComponent, children: [
+      { path: ':nic', component: EmpProfileComponent }
+    ]
+  }
 ]
 
 

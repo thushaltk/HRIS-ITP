@@ -39,7 +39,13 @@ import { EmpPayrollComponent } from './emp-profile/emp-payroll/emp-payroll.compo
 import { EmpProjectsComponent } from './emp-profile/emp-projects/emp-projects.component';
 import { EmpTrainingProgramsComponent } from './emp-profile/emp-training-programs/emp-training-programs.component';
 import { EmpVehiclesComponent } from './emp-profile/emp-vehicles/emp-vehicles.component';
-
+import { EquipmentListComponent } from './admin-profile/equipments/equipment-list/equipment-list.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatInputModule} from '@angular/material/input';
+import { NewEquipmentComponent } from './admin-profile/equipments/new-equipment/new-equipment.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +79,9 @@ import { EmpVehiclesComponent } from './emp-profile/emp-vehicles/emp-vehicles.co
     EmpProjectsComponent,
     EmpTrainingProgramsComponent,
     EmpVehiclesComponent,
+    EquipmentListComponent,
+    NewEquipmentComponent,
+    ConfirmDialogComponent,
 
 
   ],
@@ -83,7 +92,13 @@ import { EmpVehiclesComponent } from './emp-profile/emp-vehicles/emp-vehicles.co
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatProgressSpinnerModule
+
+    //material
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatDialogModule
   ],
   providers: [AnnouncementService, EmployeeService],
   bootstrap: [AppComponent]

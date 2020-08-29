@@ -1,0 +1,14 @@
+<div style="z-index: 150000;">
+    <h1 mat-dialog-title>
+        {{data.title}}
+    </h1>
+    
+    <div mat-dialog-content>
+        <p>{{data.message}}</p>
+    </div>
+    
+    <div mat-dialog-actions class="float-right">
+        <button type="button" class="btn btn-sm btn-outline-dark float-right btn-mrg" (click)="onConfirm(false)">No</button>
+        <button type="button" class="btn btn-sm btn-outline-success float-right btn-mrg" (click)="onConfirm(true)">Yes</button>
+    </div>
+</div>

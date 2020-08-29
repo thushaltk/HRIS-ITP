@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "hris-itp"
+  "defaultProject": "hris-itp",
+  "cli": {
+    "analytics": false
+  }
 }
