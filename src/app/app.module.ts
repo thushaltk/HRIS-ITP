@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -40,12 +40,16 @@ import { EmpProjectsComponent } from './emp-profile/emp-projects/emp-projects.co
 import { EmpTrainingProgramsComponent } from './emp-profile/emp-training-programs/emp-training-programs.component';
 import { EmpVehiclesComponent } from './emp-profile/emp-vehicles/emp-vehicles.component';
 import { EquipmentListComponent } from './admin-profile/equipments/equipment-list/equipment-list.component';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatInputModule} from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
 import { NewEquipmentComponent } from './admin-profile/equipments/new-equipment/new-equipment.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ToastrModule } from 'ngx-toastr';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,8 +86,6 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     EquipmentListComponent,
     NewEquipmentComponent,
     ConfirmDialogComponent,
-
-
   ],
   imports: [
     BrowserModule,
@@ -98,9 +100,16 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     MatTableModule,
     MatPaginatorModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    MatSelectModule,
+
+    //taostModule
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [AnnouncementService, EmployeeService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
-export class AppModule { }
+export class AppModule {}

@@ -3,43 +3,97 @@
     <div class="col-md-12 title">
       Equipment Management
     </div>
-    <div class="col-md-12 pt-10">
-      <button class="btn btn-sm btn-primary" (click)="navigateToNew(false,null)"> New Equipment</button>
+    <div class="col-md-12 pt-20">
+      <button class="btn btn-sm btn-primary" (click)="openModal()"> New Equipment</button>
     </div>
-    <div class="col-md-12 pt-10 example-container " style="max-height:60vh;overflow-x: hidden;overflow-y: auto;">
+
+    <div class="col-md-12 pt-10">
+      <div class="row">
+        <div class="col-md-3">
+          <select class="form-control form-control-sm" (change)="filter($event.target.value)">
+            <option value="all"> All </option>
+            <option value="1"> Allocated Equipment </option>
+            <option value="0"> Un-Allocated Equipment </option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <input class="form-control form-control-sm" (keyup)="search($event)" [(ngModel)]="keyword" type="text"
+            placeholder="Search Equipment">
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+          <mat-form-field appearance="fill">
+            <mat-label>Column Visibility</mat-label>
+            <mat-select [formControl]="columnsFilter" multiple>
+              <mat-option *ngFor="let column of columns;let index = index"
+                [disabled]="index == 0 || index+1 == columns.length" [value]="column">{{column}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 pt-10 example-container " style="max-height:50vh;overflow-x: hidden;overflow-y: auto;">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%;">
 
-        <!--- Note that these columns can be defined in any order.
-                The actual rendered columns are set as a property on the row definition" -->
-
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef> No. </th>
-          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        <ng-container matColumnDef="eid">
+          <th mat-header-cell *matHeaderCellDef> EID </th>
+          <td mat-cell *matCellDef="let element"> {{element.eid}} </td>
         </ng-container>
 
-        <!-- Name Column -->
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Name </th>
           <td mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
-          <th mat-header-cell *matHeaderCellDef> Weight </th>
-          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef> Type </th>
+          <td mat-cell *matCellDef="let element"> {{element.type}} </td>
         </ng-container>
 
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
-          <th mat-header-cell *matHeaderCellDef> Symbol </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef> Category </th>
+          <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="project">
+          <th mat-header-cell *matHeaderCellDef> Project </th>
+          <td mat-cell *matCellDef="let element"> {{element?.project  || '-'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="startDate">
+          <th mat-header-cell *matHeaderCellDef> Start Date </th>
+          <td mat-cell *matCellDef="let element"> {{(element?.startDate | date ) || '-'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="duration">
+          <th mat-header-cell *matHeaderCellDef> Duration </th>
+          <td mat-cell *matCellDef="let element"> {{element?.duration || '-'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="person">
+          <th mat-header-cell *matHeaderCellDef> Assign Person </th>
+          <td mat-cell *matCellDef="let element"> {{element?.person || '-'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="remarks">
+          <th mat-header-cell *matHeaderCellDef> Remarks</th>
+          <td mat-cell *matCellDef="let element"> {{element?.remarks || '-'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let element">
+            <i class="fas fa-edit icon-btn  icon-warning" (click)="setUpdate(element);"></i>
+            <i class="far fa-trash-alt icon-btn  icon-danger" (click)="deleteEquipment(element)"></i>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
 
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
     </div>
   </div>
@@ -48,7 +102,8 @@
 
 <ng-template #callAPIDialog>
   <div mat-dialog-content>
-    <app-new-equipment></app-new-equipment>
+    <app-new-equipment (listComponent)="pushNewEquipment($event)" (update)="updateEquipment($event)"
+      [equipment]="equipment" #newEquipment></app-new-equipment>
   </div>
 
 </ng-template>

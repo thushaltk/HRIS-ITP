@@ -1,4 +1,12 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  TemplateRef,
+  Output,
+  EventEmitter,
+  Input,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -8,6 +16,8 @@ import {
 
 import { ConfirmService } from '../../../shared/confirm.service';
 import { EquipmentService } from '../../../_services/equipment.service';
+import { ToastrService } from 'ngx-toastr';
+import { IEquipment } from '../../../_models/equipment.model';
 
 @Component({
   selector: 'app-new-equipment',
@@ -17,18 +27,41 @@ import { EquipmentService } from '../../../_services/equipment.service';
 export class NewEquipmentComponent implements OnInit {
   form: FormGroup;
   submitted: boolean = false;
+  @Output() listComponent = new EventEmitter<any>();
+  @Output() update = new EventEmitter<any>();
+  @Input() isUpdate: boolean = false;
+  @Input() equipment: IEquipment;
   constructor(
     private fb: FormBuilder,
     private confirmService: ConfirmService,
-    private equipmentService: EquipmentService
+    private equipmentService: EquipmentService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
+      _id: '',
       eid: new FormControl('', Validators.required),
       name: new FormControl('', Validators.required),
       category: new FormControl('Tool', Validators.required),
       type: new FormControl('Out Source', Validators.required),
+      allocation: false,
+      project: new FormControl(''),
+      startDate: new FormControl(''),
+      duration: new FormControl(''),
+      person: new FormControl(''),
+      remarks: new FormControl(''),
+    });
+
+    if (this.equipment) {
+      this.form.patchValue(this.equipment);
+      this.isUpdate = true;
+    } else {
+      this.isUpdate = false;
+    }
+
+    this.form.controls.allocation.valueChanges.subscribe((value) => {
+      this.toggleAllocation(value);
     });
   }
 
@@ -39,24 +72,75 @@ export class NewEquipmentComponent implements OnInit {
   submit() {
     this.submitted = true;
     if (this.form.invalid) {
+      this.toastr.warning('Please select/provide value for every field');
       return; //if form in-valid terminate operation
     }
-    this.confirmService.confirm('Register and new equipment').then(
+    this.confirmService.confirm(`${this.isUpdate ? 'Update Equipment ? ' : 'Register a new equipment ?'}`).then(
       (confirm) => {
         let req = this.form.value;
-        this.addEquipment(req);
+        if (this.isUpdate) {
+          this.updateEquipment(req);
+        } else {
+          this.addEquipment(req);
+        }
       },
       (reject) => {}
     );
   }
 
   addEquipment(req) {
-    this.equipmentService.store(req).subscribe(res=>{
-      console.log(res);
-      
-    },err=>{
-      console.log(err);
-      
-    })
+    this.equipmentService.store(req).subscribe(
+      (res) => {
+        console.log(res);
+        this.listComponent.next(res);
+        this.resetForm();
+        this.toastr.success('Equipment Registered');
+      },
+      (err) => {
+        console.log(err);
+        this.toastr.error('Error');
+      }
+    );
+  }
+
+  updateEquipment(req) {
+    this.equipmentService.update(req).subscribe(
+      (res) => {
+        console.log(res);
+        this.resetForm();
+        this.update.next(res['equipment']);
+        this.toastr.success('Equipment Updated');
+      },
+      (err) => {
+        console.log(err);
+        this.toastr.error('Error');
+      }
+    );
+  }
+
+  toggleAllocation(allow) {
+    this.validator.project.setValidators(allow ? Validators.required : null);
+    this.validator.startDate.setValidators(allow ? Validators.required : null);
+    this.validator.duration.setValidators(allow ? Validators.required : null);
+    this.validator.person.setValidators(allow ? Validators.required : null);
+    this.validator.remarks.setValidators(allow ? Validators.required : null);
+    if (!allow) {
+      this.resetAllocations();
+    }
+  }
+
+  resetForm() {
+    this.form.reset();
+    this.submitted = false;
+  }
+
+  resetAllocations() {
+    this.form.patchValue({
+      project: '',
+      duration: '',
+      startDate: '',
+      person: '',
+      remarks: '',
+    });
   }
 }

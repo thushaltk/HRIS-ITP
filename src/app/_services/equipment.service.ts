@@ -11,4 +11,16 @@ export class EquipmentService {
   store(req) {
     return this.http.post(`${environment.apiUrl}equipment`, req);
   }
+
+  getEquipments(){
+    return this.http.get(`${environment.apiUrl}equipment`);
+  }
+
+  update(req) {
+    return this.http.patch(`${environment.apiUrl}equipment`, req);
+  }
+
+  delete(req) {
+    return this.http.delete(`${environment.apiUrl}equipment/${req._id}`, req);
+  }
 }
