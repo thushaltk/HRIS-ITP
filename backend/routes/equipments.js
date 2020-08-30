@@ -19,18 +19,47 @@ router.get("/", (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
+    delete req.body._id;
     const equipment = new Equipment({
       _id: mongoose.Types.ObjectId(),
-      eid: req.body.eid,
-      name: req.body.name,
-      category: req.body.category,
-      type: req.body.type,
+      ...req.body,
     });
     const result = await equipment.save();
     res.status(201).json(result);
   } catch (error) {
     res.status(500).json(error);
   }
+});
+
+router.delete("/:id", (req, res, next) => {
+  console.log("gg", req.body._id);
+
+  Equipment.findByIdAndRemove(req.params.id)
+    .exec()
+    .then((doc) => {
+      res.status(200).json(doc);
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err,
+      });
+    });
+});
+
+router.patch("/", (req, res, next) => {
+  Equipment.updateOne({ _id: req.body._id }, req.body)
+    .exec()
+    .then((response) => {
+      res.status(201).json({
+        equipment: req.body,
+        res: response,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: err,
+      });
+    });
 });
 
 module.exports = router;
