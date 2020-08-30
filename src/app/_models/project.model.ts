@@ -2,7 +2,7 @@ export  interface IProject {
     _id:string;
     projectId:string;
     name: string;
-    location;
+    location: string;
     startDate:Date;
     duration:string;
     supervisor: any;
