@@ -1,24 +1,27 @@
-const express = require('express');
+const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const announcementsRoutes = require("./routes/announcements");
 const employeesRoutes = require("./routes/employees");
-
+const equipmentRoutes = require("./routes/equipments");
 
 const app = express();
 
 //MongoDB connections
-mongoose.connect("mongodb+srv://thushaltk:Fq7N3Qpy16hdLezH@cluster0.tivsh.mongodb.net/hrisItp?retryWrites=true&w=majority")
+mongoose
+  .connect(
+    "mongodb+srv://thushaltk:Fq7N3Qpy16hdLezH@cluster0.tivsh.mongodb.net/hrisItp?retryWrites=true&w=majority"
+  )
   .then(() => {
-    console.log('Connected to database');
+    console.log("Connected to database");
   })
   .catch(() => {
-    console.log('Connection Failed');
-  })
+    console.log("Connection Failed");
+  });
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //CROS definitions
 app.use((req, res, next) => {
@@ -37,5 +40,6 @@ app.use((req, res, next) => {
 
 app.use("/api/announcements", announcementsRoutes);
 app.use("/api/employees", employeesRoutes);
+app.use("/api/equipment", equipmentRoutes);
 
 module.exports = app;
