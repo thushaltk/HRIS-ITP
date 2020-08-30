@@ -39,10 +39,8 @@ import { EmpPayrollComponent } from './emp-profile/emp-payroll/emp-payroll.compo
 import { EmpProjectsComponent } from './emp-profile/emp-projects/emp-projects.component';
 import { EmpTrainingProgramsComponent } from './emp-profile/emp-training-programs/emp-training-programs.component';
 import { EmpVehiclesComponent } from './emp-profile/emp-vehicles/emp-vehicles.component';
-<<<<<<< HEAD
 import { AttendanceComponent } from './admin-profile/attendance/attendance.component';
 
-=======
 import { EquipmentListComponent } from './admin-profile/equipments/equipment-list/equipment-list.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -54,7 +52,6 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ToastrModule } from 'ngx-toastr';
 import {MatSelectModule} from '@angular/material/select';
->>>>>>> equipment
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,15 +85,12 @@ import {MatSelectModule} from '@angular/material/select';
     EmpProjectsComponent,
     EmpTrainingProgramsComponent,
     EmpVehiclesComponent,
-<<<<<<< HEAD
     AttendanceComponent,
 
 
-=======
     EquipmentListComponent,
     NewEquipmentComponent,
     ConfirmDialogComponent,
->>>>>>> equipment
   ],
   imports: [
     BrowserModule,
@@ -124,3 +118,4 @@ import {MatSelectModule} from '@angular/material/select';
   
 })
 export class AppModule {}
+
