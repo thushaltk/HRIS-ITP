@@ -39,6 +39,7 @@ import { EmpPayrollComponent } from './emp-profile/emp-payroll/emp-payroll.compo
 import { EmpProjectsComponent } from './emp-profile/emp-projects/emp-projects.component';
 import { EmpTrainingProgramsComponent } from './emp-profile/emp-training-programs/emp-training-programs.component';
 import { EmpVehiclesComponent } from './emp-profile/emp-vehicles/emp-vehicles.component';
+import { AttendanceComponent } from './admin-profile/attendance/attendance.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { EmpVehiclesComponent } from './emp-profile/emp-vehicles/emp-vehicles.co
     EmpProjectsComponent,
     EmpTrainingProgramsComponent,
     EmpVehiclesComponent,
+    AttendanceComponent,
 
 
   ],
