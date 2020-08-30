@@ -18,6 +18,8 @@ import { ConfirmService } from '../../../shared/confirm.service';
 import { EquipmentService } from '../../../_services/equipment.service';
 import { ToastrService } from 'ngx-toastr';
 import { IEquipment } from '../../../_models/equipment.model';
+import { IProject } from '../../../_models/project.model';
+import { ProjectsService } from '../../../_services/projects.service';
 
 @Component({
   selector: 'app-new-equipment',
@@ -31,11 +33,13 @@ export class NewEquipmentComponent implements OnInit {
   @Output() update = new EventEmitter<any>();
   @Input() isUpdate: boolean = false;
   @Input() equipment: IEquipment;
+  projects: IProject[]=[]
   constructor(
     private fb: FormBuilder,
     private confirmService: ConfirmService,
     private equipmentService: EquipmentService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private projectService : ProjectsService
   ) {}
 
   ngOnInit(): void {
@@ -53,7 +57,9 @@ export class NewEquipmentComponent implements OnInit {
       remarks: new FormControl(''),
     });
 
+    this.getProjects();
     if (this.equipment) {
+      this.equipment.project = this.equipment.project._id
       this.form.patchValue(this.equipment);
       this.isUpdate = true;
     } else {
@@ -75,17 +81,23 @@ export class NewEquipmentComponent implements OnInit {
       this.toastr.warning('Please select/provide value for every field');
       return; //if form in-valid terminate operation
     }
-    this.confirmService.confirm(`${this.isUpdate ? 'Update Equipment ? ' : 'Register a new equipment ?'}`).then(
-      (confirm) => {
-        let req = this.form.value;
-        if (this.isUpdate) {
-          this.updateEquipment(req);
-        } else {
-          this.addEquipment(req);
-        }
-      },
-      (reject) => {}
-    );
+    this.confirmService
+      .confirm(
+        `${
+          this.isUpdate ? 'Update Equipment ? ' : 'Register a new equipment ?'
+        }`
+      )
+      .then(
+        (confirm) => {
+          let req = this.form.value;
+          if (this.isUpdate) {
+            this.updateEquipment(req);
+          } else {
+            this.addEquipment(req);
+          }
+        },
+        (reject) => {}
+      );
   }
 
   addEquipment(req) {
@@ -142,5 +154,16 @@ export class NewEquipmentComponent implements OnInit {
       person: '',
       remarks: '',
     });
+  }
+
+  getProjects() {
+    this.projectService.getProjects().subscribe(
+      (res) => {
+        this.projects = res as [];
+      },
+      (err) => {
+        this.toastr.error(`${err}`);
+      }
+    );
   }
 }

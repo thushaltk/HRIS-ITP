@@ -5,7 +5,7 @@ export class IEquipment {
   category: string;
   type: string;
   allocation: boolean
-  project: string;
+  project: any;
   startDate:Date;
   duration: string;
   person:string;

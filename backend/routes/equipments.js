@@ -6,6 +6,7 @@ const Equipment = require("../models/equipment");
 
 router.get("/", (req, res, next) => {
   Equipment.find()
+    .populate("project")
     .exec()
     .then((docs) => {
       res.status(200).json(docs);
@@ -25,7 +26,19 @@ router.post("/", async (req, res, next) => {
       ...req.body,
     });
     const result = await equipment.save();
-    res.status(201).json(result);
+
+    Equipment.findById(result._id)
+      .populate("project")
+      .exec()
+      .then((docs) => {
+        res.status(201).json(docs);
+      })
+      .catch((err) => {
+        res.status(500).json({
+          error: err,
+        });
+      });
+
   } catch (error) {
     res.status(500).json(error);
   }
@@ -50,10 +63,23 @@ router.patch("/", (req, res, next) => {
   Equipment.updateOne({ _id: req.body._id }, req.body)
     .exec()
     .then((response) => {
-      res.status(201).json({
-        equipment: req.body,
-        res: response,
+
+      Equipment.findById(req.body._id )
+      .populate("project")
+      .exec()
+      .then((docs) => {
+        res.status(201).json({
+          equipment: docs,
+          res: response,
+        });
+      })
+      .catch((err) => {
+        res.status(500).json({
+          error: err,
+        });
       });
+
+
     })
     .catch((err) => {
       res.status(500).json({

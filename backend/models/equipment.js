@@ -7,7 +7,11 @@ const equipmentSchema = mongoose.Schema(
     category: { type: String, required: true },
     type: { type: String, required: true },
     allocation: { type: Boolean, required: true, default: false },
-    project: { type: String },
+    project: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Project",
+      required: true,
+    },
     startDate: { type: Date },
     duration: { type: String },
     person: { type: String },
