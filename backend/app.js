@@ -5,9 +5,11 @@ const mongoose = require("mongoose");
 const announcementsRoutes = require("./routes/announcements");
 const employeesRoutes = require("./routes/employees");
 const equipmentRoutes = require("./routes/equipments");
+const projectRoutes = require("./routes/projects");
 
 const app = express();
 
+mongoose.set("useFindAndModify", false); //Deprecated warnings
 //MongoDB connections
 mongoose
   .connect(
@@ -41,5 +43,6 @@ app.use((req, res, next) => {
 app.use("/api/announcements", announcementsRoutes);
 app.use("/api/employees", employeesRoutes);
 app.use("/api/equipment", equipmentRoutes);
+app.use("/api/project", projectRoutes);
 
 module.exports = app;

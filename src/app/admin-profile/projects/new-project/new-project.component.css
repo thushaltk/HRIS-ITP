@@ -1,0 +1,14 @@
+.title {
+    font-size: 18px;
+    border-bottom: 1px solid #b7b7b7;
+  }
+  
+  .pt-10 {
+    padding-top: 20px;
+  }
+  
+  .form-wrapper label {
+    color: #3e3e3e;
+    font-weight: 500;
+  }
+  

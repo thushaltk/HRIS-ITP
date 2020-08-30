@@ -48,10 +48,12 @@ import { MatInputModule } from '@angular/material/input';
 import { NewEquipmentComponent } from './admin-profile/equipments/new-equipment/new-equipment.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ToastrModule } from 'ngx-toastr';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
+import { NewProjectComponent } from './admin-profile/projects/new-project/new-project.component';
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,10 +89,10 @@ import {MatSelectModule} from '@angular/material/select';
     EmpVehiclesComponent,
     AttendanceComponent,
 
-
     EquipmentListComponent,
     NewEquipmentComponent,
     ConfirmDialogComponent,
+    NewProjectComponent,
   ],
   imports: [
     BrowserModule,
@@ -113,9 +115,7 @@ import {MatSelectModule} from '@angular/material/select';
     //taostModule
     ToastrModule.forRoot(), // ToastrModule added
   ],
-  providers: [AnnouncementService, EmployeeService],
+  providers: [AnnouncementService, EmployeeService, DatePipe],
   bootstrap: [AppComponent],
-  
 })
 export class AppModule {}
-

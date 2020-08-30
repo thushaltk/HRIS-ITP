@@ -1,0 +1,110 @@
+<div>
+    <div class="row">
+        <div class="col-md-12 title">
+            {{isUpdate ? 'Update' : 'New'}} Project
+        </div>
+        <div class="col-md-12 pt-10 form-wrapper" style="min-width: 400px;">
+            <form [formGroup]="form">
+                <div class="form-group">
+                    <label>Project ID</label>
+                    <input [ngClass]="{'is-invalid': submitted && validator.projectId.errors}"
+                        formControlName="projectId" type="text" class="form-control" placeholder="Enter Project Id">
+                </div>
+
+                <div class="form-group">
+                    <label>Project Name</label>
+                    <input [ngClass]="{'is-invalid': submitted && validator.name.errors}" formControlName="name"
+                        type="text" class="form-control" placeholder="Enter Name">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Project Location</label>
+                            <input [ngClass]="{'is-invalid': submitted && validator.location.errors}"
+                                formControlName="location" type="text" class="form-control"
+                                placeholder="Enter Location">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Start Date</label>
+                            <input [ngClass]="{'is-invalid': submitted && validator.startDate.errors}"
+                                formControlName="startDate" type="date" class="form-control"
+                                placeholder="Enter start Date">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Estimated Time Duration</label>
+                            <input [ngClass]="{'is-invalid': submitted && validator.duration.errors}"
+                                formControlName="duration" type="text" class="form-control"
+                                placeholder="Enter duration">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Client Name</label>
+                    <input [ngClass]="{'is-invalid': submitted && validator.clientName.errors}"
+                        formControlName="clientName" type="text" class="form-control" placeholder="Enter Client Name">
+                </div>
+
+                <div class="form-group">
+                    <label>Client Address</label>
+                    <input [ngClass]="{'is-invalid': submitted && validator.clientAddress.errors}"
+                        formControlName="clientAddress" type="text" class="form-control"
+                        placeholder="Enter Client Address">
+                </div>
+
+
+                <div class="form-group">
+                    <label>Client Phone</label>
+                    <input [ngClass]="{'is-invalid': submitted && validator.clientPhone.errors}"
+                        formControlName="clientPhone" type="text" class="form-control" placeholder="Enter Client Phone">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>supervisor</label>
+                            <select formControlName="supervisor" class="form-control form-control-lg"
+                                [ngClass]="{'is-invalid': submitted && validator.supervisor.errors}">
+                                <option *ngFor="let employee of supervisors" [ngValue]="employee._id">
+                                    {{employee.fullName}}</option>
+                            </select>
+                            <!-- <input [ngClass]="{'is-invalid': submitted && validator.supervisor.errors}"
+                                formControlName="supervisor" type="text" class="form-control" placeholder="Enter supervisor"> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Consultant</label>
+                            <select formControlName="consultant" class="form-control form-control-lg"
+                                [ngClass]="{'is-invalid': submitted && validator.consultant.errors}">
+                                <option *ngFor="let employee of supervisors" [ngValue]="employee._id">
+                                    {{employee.fullName}}</option>
+                            </select>
+                            <!-- <input [ngClass]="{'is-invalid': submitted && validator.consultant.errors}"
+                                formControlName="consultant" type="text" class="form-control"
+                                placeholder="Enter Start Date"> -->
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <mat-form-field appearance="fill" style="width: 100%;">
+                            <mat-label>Employees</mat-label>
+                            <mat-select formControlName="employees" multiple>
+                                <mat-option *ngFor="let employee of employees;let index = index" [value]="employee._id">
+                                    {{employee.fullName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-primary" [ngClass]="{'btn-warning': isUpdate }"
+                    (click)="submit()">{{isUpdate ? 'Update' : 'Create'}}</button>
+            </form>
+        </div>
+    </div>
+</div>
