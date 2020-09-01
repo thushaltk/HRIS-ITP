@@ -52,7 +52,7 @@ export class NewEquipmentComponent implements OnInit {
       category: new FormControl('Tool', Validators.required),
       type: new FormControl('Out Source', Validators.required),
       allocation: false,
-      project: new FormControl(''),
+      project: new FormControl(null),
       startDate: new FormControl(''),
       duration: new FormControl(''),
       person: new FormControl(''),
@@ -61,7 +61,7 @@ export class NewEquipmentComponent implements OnInit {
 
     this.getProjects();
     if (this.equipment) {
-      this.equipment.project = this.equipment.project._id
+      this.equipment.project = this.equipment.project?._id
       this.form.patchValue(this.equipment);
       this.form.patchValue({
         startDate : this.datePipe.transform(this.equipment.startDate, "yyyy-MM-dd")

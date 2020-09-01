@@ -34,7 +34,7 @@ export class NewProjectComponent implements OnInit {
   submitted: boolean = false;
   employees: any[] = [];
   supervisors: any[] = [];
-
+  consultants: any[] =[]
   // @Output() listComponent = new EventEmitter<any>();
   // @Output() update = new EventEmitter<any>();
   @Input() isUpdate: boolean = false;
@@ -106,6 +106,9 @@ export class NewProjectComponent implements OnInit {
       this.supervisors = this.employees.filter(
         (element) => element.empDes == 'manager'
       ); //change this to the supervisor once data availabel
+      this.consultants = this.employees.filter(
+        (element) => element.empDes == 'manager'
+      ); //change this to the consultant once data availabel
     });
   }
 

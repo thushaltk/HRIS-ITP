@@ -28,6 +28,15 @@
         </div>
 
         <div class="col-md-12 pt-10 example-container " style="max-height:50vh;overflow-x: hidden;overflow-y: auto;">
+          
+            <div>
+                <div class="example-loading-shade" *ngIf="loading">
+                  <div class="spinner-border text-dark" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
+              </div>
+              
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%;">
 
                 <ng-container matColumnDef="projectId">

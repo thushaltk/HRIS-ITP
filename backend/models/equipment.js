@@ -10,7 +10,7 @@ const equipmentSchema = mongoose.Schema(
     project: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Project",
-      required: true,
+      required: false,
     },
     startDate: { type: Date },
     duration: { type: String },

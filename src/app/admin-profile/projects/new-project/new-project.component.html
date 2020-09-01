@@ -90,7 +90,7 @@
                             <label>Consultant</label>
                             <select formControlName="consultant" class="form-control form-control-lg"
                                 [ngClass]="{'is-invalid': submitted && validator.consultant.errors}">
-                                <option *ngFor="let employee of supervisors" [ngValue]="employee._id">
+                                <option *ngFor="let employee of consultants" [ngValue]="employee._id">
                                     {{employee.fullName}}</option>
                             </select>
                             <!-- <input [ngClass]="{'is-invalid': submitted && validator.consultant.errors}"

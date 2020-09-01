@@ -49,6 +49,7 @@ export class ProjectsComponent implements OnInit {
   projects: IProject[] = [];
   project: IProject;
   keyword: string = '';
+  loading: boolean;
   @ViewChild('callAPIDialog') callAPIDialog: TemplateRef<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   constructor(
@@ -58,7 +59,7 @@ export class ProjectsComponent implements OnInit {
     private equipmentService: EquipmentService,
     private confirmService: ConfirmService,
     private projectService: ProjectsService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getProjects();
@@ -77,16 +78,17 @@ export class ProjectsComponent implements OnInit {
   }
 
   getProjects() {
+    this.loading = true;
     this.projectService.getProjects().subscribe(
       (res) => {
-        console.log(res);
-        
         this.projects = res as [];
         this.dataSource = new MatTableDataSource<IProject>(this.projects);
         this.dataSource.paginator = this.paginator;
+        this.loading = false;
       },
       (err) => {
         this.toastr.error(`${err}`);
+        this.loading = false;
       }
     );
   }
@@ -106,8 +108,8 @@ export class ProjectsComponent implements OnInit {
   setUpdate(project) {
     // this.openModal();
     this.project = project;
-    this.router.navigate(['admin/projects/new'],{
-      queryParams:{
+    this.router.navigate(['admin/projects/new'], {
+      queryParams: {
         id: project._id
       }
     })
@@ -161,7 +163,7 @@ export class ProjectsComponent implements OnInit {
             }
           );
         },
-        (reject) => {}
+        (reject) => { }
       );
   }
 

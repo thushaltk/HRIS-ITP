@@ -15,6 +15,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { NewEquipmentComponent } from '../new-equipment/new-equipment.component';
 import { ConfirmService } from '../../../shared/confirm.service';
 import { FormControl } from '@angular/forms';
+import { timestamp } from 'rxjs/operators';
 @Component({
   selector: 'app-equipment-list',
   templateUrl: './equipment-list.component.html',
@@ -50,6 +51,7 @@ export class EquipmentListComponent implements OnInit {
   equipments: IEquipment[] = [];
   equipment: IEquipment;
   keyword: string = '';
+  loading: boolean = false;
   @ViewChild('callAPIDialog') callAPIDialog: TemplateRef<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -78,24 +80,29 @@ export class EquipmentListComponent implements OnInit {
   }
 
   getEquipments() {
+    this.loading = true;
     this.equipmentService.getEquipments().subscribe(
       (res) => {
         this.equipments = res as [];
         this.dataSource = new MatTableDataSource<IEquipment>(this.equipments);
         this.dataSource.paginator = this.paginator;
+        this.loading = false;
       },
       (err) => {
         this.toastr.error(`${err}`);
+        this.loading = false;
       }
     );
   }
 
   pushNewEquipment(event) {
     console.log(event);
+    this.loading = true;
     this.equipments.push(event);
     this.dataSource = new MatTableDataSource<IEquipment>(this.equipments);
     this.dataSource.paginator = this.paginator;
     this.closeModal();
+    this.loading = false;
   }
 
   closeModal() {
@@ -109,6 +116,7 @@ export class EquipmentListComponent implements OnInit {
 
   updateEquipment(event) {
     console.log(event);
+    this.loading = true
     this.closeModal();
     let index = this.equipments.findIndex(
       (element) => element._id == event._id
@@ -118,7 +126,9 @@ export class EquipmentListComponent implements OnInit {
       this.equipments[index] = event;
       this.dataSource = new MatTableDataSource<IEquipment>(this.equipments);
       this.dataSource.paginator = this.paginator;
+      this.loading = false;
     } else {
+      this.loading = false;
       this.toastr.error(
         'Error Occurred while trying to update the table.please refresh to see updated results'
       );
@@ -132,6 +142,7 @@ export class EquipmentListComponent implements OnInit {
       )
       .then(
         (confirm) => {
+          this.loading = true;
           this.equipmentService.delete(equipment).subscribe(
             (res) => {
               console.log(res);
@@ -146,11 +157,14 @@ export class EquipmentListComponent implements OnInit {
                 );
                 this.dataSource.paginator = this.paginator;
               } else {
+                
                 this.toastr.error('Can not find the equipment');
               }
+              this.loading = false;
             },
             (err) => {
               console.log(err);
+              this.loading = false;
               this.toastr.error(
                 'Error Ocurred while trying to delete the equipment'
               );
