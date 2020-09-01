@@ -104,8 +104,13 @@ export class ProjectsComponent implements OnInit {
   }
 
   setUpdate(project) {
-    this.openModal();
+    // this.openModal();
     this.project = project;
+    this.router.navigate(['admin/projects/new'],{
+      queryParams:{
+        id: project._id
+      }
+    })
   }
 
   updateProject(event) {

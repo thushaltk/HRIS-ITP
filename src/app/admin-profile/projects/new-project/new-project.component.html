@@ -1,23 +1,26 @@
 <div>
-    <div class="row">
+    <div class="row content-wrapper">
         <div class="col-md-12 title">
             {{isUpdate ? 'Update' : 'New'}} Project
         </div>
-        <div class="col-md-12 pt-10 form-wrapper" style="min-width: 400px;">
+        <div class="col-md-12 pt-10 form-wrapper" style="max-height:70vh;overflow-x: hidden;overflow-y: auto;">
             <form [formGroup]="form">
-                <div class="form-group">
-                    <label>Project ID</label>
-                    <input [ngClass]="{'is-invalid': submitted && validator.projectId.errors}"
-                        formControlName="projectId" type="text" class="form-control" placeholder="Enter Project Id">
-                </div>
-
-                <div class="form-group">
-                    <label>Project Name</label>
-                    <input [ngClass]="{'is-invalid': submitted && validator.name.errors}" formControlName="name"
-                        type="text" class="form-control" placeholder="Enter Name">
-                </div>
-
                 <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Project ID</label>
+                            <input [ngClass]="{'is-invalid': submitted && validator.projectId.errors}"
+                                formControlName="projectId" type="text" class="form-control"
+                                placeholder="Enter Project Id">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Project Name</label>
+                            <input [ngClass]="{'is-invalid': submitted && validator.name.errors}" formControlName="name"
+                                type="text" class="form-control" placeholder="Enter Name">
+                        </div>
+                    </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Project Location</label>
@@ -42,27 +45,32 @@
                                 placeholder="Enter duration">
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Client Name</label>
+                            <input [ngClass]="{'is-invalid': submitted && validator.clientName.errors}"
+                                formControlName="clientName" type="text" class="form-control"
+                                placeholder="Enter Client Name">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Client Phone</label>
+                            <input [ngClass]="{'is-invalid': submitted && validator.clientPhone.errors}"
+                                formControlName="clientPhone" type="text" class="form-control"
+                                placeholder="Enter Client Phone">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Client Address</label>
+                            <input [ngClass]="{'is-invalid': submitted && validator.clientAddress.errors}"
+                                formControlName="clientAddress" type="text" class="form-control"
+                                placeholder="Enter Client Address">
+                        </div>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Client Name</label>
-                    <input [ngClass]="{'is-invalid': submitted && validator.clientName.errors}"
-                        formControlName="clientName" type="text" class="form-control" placeholder="Enter Client Name">
-                </div>
-
-                <div class="form-group">
-                    <label>Client Address</label>
-                    <input [ngClass]="{'is-invalid': submitted && validator.clientAddress.errors}"
-                        formControlName="clientAddress" type="text" class="form-control"
-                        placeholder="Enter Client Address">
-                </div>
-
-
-                <div class="form-group">
-                    <label>Client Phone</label>
-                    <input [ngClass]="{'is-invalid': submitted && validator.clientPhone.errors}"
-                        formControlName="clientPhone" type="text" class="form-control" placeholder="Enter Client Phone">
-                </div>
 
                 <div class="row">
                     <div class="col-md-6">

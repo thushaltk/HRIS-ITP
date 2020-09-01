@@ -4,14 +4,14 @@
             Project Management
         </div>
         <div class="col-md-12 pt-20">
-            <button class="btn btn-sm btn-primary" (click)="openModal()"> New Project</button>
+            <button class="btn btn-sm btn-primary" [routerLink]="['/admin/projects/new']"> New Project</button>
         </div>
 
         <div class="col-md-12 pt-10">
             <div class="row">
                 <div class="col-md-6">
                     <input class="form-control form-control-sm" (keyup)="search($event)" [(ngModel)]="keyword"
-                        type="text" placeholder="Search Equipment">
+                        type="text" placeholder="Search Projects">
                 </div>
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
@@ -104,10 +104,10 @@
 </div>
 
 
-<ng-template #callAPIDialog>
+<!-- <ng-template #callAPIDialog>
     <div mat-dialog-content>
-        <app-new-project (listComponent)="pushNewProject($event)" (update)="updateProject($event)"
-            [project]="project" ></app-new-project>
+        <app-new-project (listComponent)="pushNewProject($event)" (update)="updateProject($event)" [project]="project">
+        </app-new-project>
     </div>
 
-</ng-template>
+</ng-template> -->

@@ -23,6 +23,7 @@ import { Subscription } from 'rxjs';
 import { ProjectsService } from '../../../_services/projects.service';
 import { IProject } from '../../../_models/project.model';
 import { DatePipe } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-new-project',
   templateUrl: './new-project.component.html',
@@ -34,10 +35,10 @@ export class NewProjectComponent implements OnInit {
   employees: any[] = [];
   supervisors: any[] = [];
 
-  @Output() listComponent = new EventEmitter<any>();
-  @Output() update = new EventEmitter<any>();
+  // @Output() listComponent = new EventEmitter<any>();
+  // @Output() update = new EventEmitter<any>();
   @Input() isUpdate: boolean = false;
-  @Input() project: IProject;
+  // @Input() project: IProject;
   constructor(
     private fb: FormBuilder,
     private confirmService: ConfirmService,
@@ -45,41 +46,52 @@ export class NewProjectComponent implements OnInit {
     private equipmentService: EquipmentService,
     private toastr: ToastrService,
     private projectService: ProjectsService,
-    private datePipe: DatePipe
-  ) {}
+    private datePipe: DatePipe,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
       _id: '',
-      projectId: new FormControl('aaaa', Validators.required),
-      name: new FormControl('aaaaa', Validators.required),
-      location: new FormControl('aaaaaa', Validators.required),
+      projectId: new FormControl('', Validators.required),
+      name: new FormControl('', Validators.required),
+      location: new FormControl('', Validators.required),
       startDate: new FormControl('', Validators.required),
-      duration: new FormControl('aaa', Validators.required),
-      clientName: new FormControl('aaa', Validators.required),
-      clientPhone: new FormControl('aaa', Validators.required),
-      clientAddress: new FormControl('aa', Validators.required),
+      duration: new FormControl('', Validators.required),
+      clientName: new FormControl('', Validators.required),
+      clientPhone: new FormControl('', Validators.required),
+      clientAddress: new FormControl('', Validators.required),
       supervisor: new FormControl('', Validators.required),
       consultant: new FormControl('', Validators.required),
       employees: new FormControl('', Validators.required),
     });
     this.getEmployees();
 
-    if (this.project) {
-      setTimeout(()=>{
-        this.project.employees = this.project.employees.map((el) => el._id);
-        this.project.supervisor = this.project.supervisor._id;
-        this.project.consultant = this.project.consultant._id;
-        
-        this.form.patchValue(this.project);
-        this.form.patchValue({
-          startDate: this.datePipe.transform(this.project.startDate,"yyyy-MM-dd")
+    this.route.queryParams.subscribe(params => {
+      if (params) {
+        this.projectService.getProject(params.id).subscribe(project => {
+          console.log(555, project);
+          this.setValues(project)
         })
-        this.isUpdate = true;
-      },200)
-    } else {
-      this.isUpdate = false;
-    }
+      }
+    })
+
+    // if (this.project) {
+    //   setTimeout(() => {
+    //     this.project.employees = this.project.employees.map((el) => el._id);
+    //     this.project.supervisor = this.project.supervisor._id;
+    //     this.project.consultant = this.project.consultant._id;
+
+    //     this.form.patchValue(this.project);
+    //     this.form.patchValue({
+    //       startDate: this.datePipe.transform(this.project.startDate, "yyyy-MM-dd")
+    //     })
+    //     this.isUpdate = true;
+    //   }, 200)
+    // } else {
+    //   this.isUpdate = false;
+    // }
   }
 
   get validator() {
@@ -118,7 +130,7 @@ export class NewProjectComponent implements OnInit {
             this.addProject(req);
           }
         },
-        (reject) => {}
+        (reject) => { }
       );
   }
 
@@ -126,9 +138,10 @@ export class NewProjectComponent implements OnInit {
     this.projectService.store(req).subscribe(
       (res) => {
         console.log(res);
-        this.listComponent.next(res);
-        this.resetForm();
+        // this.listComponent.next(res);
+        // this.resetForm();
         this.toastr.success('Project Registered');
+        this.router.navigate(['admin/projects'])
       },
       (err) => {
         console.log(err);
@@ -142,7 +155,8 @@ export class NewProjectComponent implements OnInit {
       (res) => {
         console.log(res);
         this.resetForm();
-        this.update.next(res['project']);
+        // this.update.next(res['project']);
+        this.router.navigate(['admin/projects'])
         this.toastr.success('Project Updated');
       },
       (err) => {
@@ -152,18 +166,19 @@ export class NewProjectComponent implements OnInit {
     );
   }
 
+  setValues(project) {
+    project.employees = project.employees.map((el) => el._id);
+    project.supervisor = project.supervisor._id;
+    project.consultant = project.consultant._id;
+    project.startDate = this.datePipe.transform(project.startDate, "yyyy-MM-dd")
+    this.form.patchValue(project);
+    this.isUpdate = true;
+  }
+
   resetForm() {
     this.form.reset();
     this.submitted = false;
   }
 
-  resetAllocations() {
-    this.form.patchValue({
-      project: '',
-      duration: '',
-      startDate: '',
-      person: '',
-      remarks: '',
-    });
-  }
+
 }

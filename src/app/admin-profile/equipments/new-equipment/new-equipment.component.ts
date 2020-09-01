@@ -20,6 +20,7 @@ import { ToastrService } from 'ngx-toastr';
 import { IEquipment } from '../../../_models/equipment.model';
 import { IProject } from '../../../_models/project.model';
 import { ProjectsService } from '../../../_services/projects.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-new-equipment',
@@ -39,7 +40,8 @@ export class NewEquipmentComponent implements OnInit {
     private confirmService: ConfirmService,
     private equipmentService: EquipmentService,
     private toastr: ToastrService,
-    private projectService : ProjectsService
+    private projectService : ProjectsService,
+    private datePipe: DatePipe,
   ) {}
 
   ngOnInit(): void {
@@ -61,6 +63,9 @@ export class NewEquipmentComponent implements OnInit {
     if (this.equipment) {
       this.equipment.project = this.equipment.project._id
       this.form.patchValue(this.equipment);
+      this.form.patchValue({
+        startDate : this.datePipe.transform(this.equipment.startDate, "yyyy-MM-dd")
+      })
       this.isUpdate = true;
     } else {
       this.isUpdate = false;

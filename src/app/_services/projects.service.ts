@@ -24,6 +24,10 @@ export class ProjectsService {
     return this.http.get(`${environment.apiUrl}project`);
   }
 
+  getProject(id) {
+    return this.http.get(`${environment.apiUrl}project/${id}`);
+  }
+
   getEmployees() {
     return this.http.get(`${environment.apiUrl}employees`);
   }

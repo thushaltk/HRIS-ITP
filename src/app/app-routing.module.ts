@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LoginEmpComponent } from './login/login-emp/login-emp.component';
@@ -20,6 +20,7 @@ import { EmpProfileComponent } from './emp-profile/emp-profile.component';
 import { EmpDashboardComponent } from './emp-profile/emp-dashboard/emp-dashboard.component';
 import { EquipmentListComponent } from './admin-profile/equipments/equipment-list/equipment-list.component';
 import { NewEquipmentComponent } from './admin-profile/equipments/new-equipment/new-equipment.component';
+import { NewProjectComponent } from './admin-profile/projects/new-project/new-project.component';
 
 
 const appRoutes: Routes = [
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
         ]
       },
       { path: 'projects', component: ProjectsComponent },
+      { path: 'projects/new', component: NewProjectComponent },
       {
         path: 'equipments', component: EquipmentsComponent, children: [
           { path: 'list', component: EquipmentListComponent },

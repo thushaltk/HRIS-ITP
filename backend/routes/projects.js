@@ -20,6 +20,22 @@ router.get("/", (req, res, next) => {
     });
 });
 
+router.get("/:id", (req, res, next) => {
+  Project.findById(req.params.id)
+    .populate("supervisor")
+    .populate("consultant")
+    .populate("employees")
+    .exec()
+    .then((docs) => {
+      res.status(200).json(docs);
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err,
+      });
+    });
+});
+
 router.post("/", async (req, res, next) => {
   try {
     delete req.body._id;
