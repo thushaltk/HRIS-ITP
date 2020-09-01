@@ -6,6 +6,8 @@ const announcementsRoutes = require("./routes/announcements");
 const employeesRoutes = require("./routes/employees");
 const equipmentRoutes = require("./routes/equipments");
 const projectRoutes = require("./routes/projects");
+const payrollRoute = require("./routes/payroll");
+const salaryRoute = require("./routes/salary");
 
 const app = express();
 
@@ -44,5 +46,7 @@ app.use("/api/announcements", announcementsRoutes);
 app.use("/api/employees", employeesRoutes);
 app.use("/api/equipment", equipmentRoutes);
 app.use("/api/project", projectRoutes);
+app.use("/api/payroll", payrollRoute);
+app.use("/api/salary", salaryRoute);
 
 module.exports = app;
