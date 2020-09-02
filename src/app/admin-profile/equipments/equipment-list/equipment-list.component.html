@@ -92,8 +92,10 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef> </th>
           <td mat-cell *matCellDef="let element">
-            <i class="fas fa-edit icon-btn  icon-warning" (click)="setUpdate(element);"></i>
-            <i class="far fa-trash-alt icon-btn  icon-danger" (click)="deleteEquipment(element)"></i>
+            <!-- <i class="fas fa-edit icon-btn  icon-warning" (click)="setUpdate(element);"></i>
+            <i class="far fa-trash-alt icon-btn  icon-danger" (click)="deleteEquipment(element)"></i> -->
+            <button class="btn btn-sm btn-warning" (click)="setUpdate(element);"> Update </button> &nbsp;
+            <button class="btn btn-sm btn-danger" (click)="deleteEquipment(element)"> Delete </button>
           </td>
         </ng-container>
 

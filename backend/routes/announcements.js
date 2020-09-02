@@ -31,7 +31,7 @@ router.get("", (req, res, next) => {
 
 //Delete Announcemets
 router.delete("/:id", (req, res, next) => {
-  Announcement.deleteOne({_id: req.params.id}).then(result => {
+  Announcement.deleteOne({ _id: req.params.id }).then(result => {
     console.log(result);
     res.status(200).json({
       message: "Announcement Deleted"
