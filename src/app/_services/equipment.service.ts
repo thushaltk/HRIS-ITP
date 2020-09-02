@@ -21,6 +21,10 @@ export class EquipmentService {
   }
 
   delete(req) {
-    return this.http.delete(`${environment.apiUrl}equipment/${req._id}`, req);
+    const options = {
+      headers: {},
+      body: req
+    }
+    return this.http.delete(`${environment.apiUrl}equipment`, options);
   }
 }
