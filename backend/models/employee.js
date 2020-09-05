@@ -9,7 +9,7 @@ const employeeSchema = mongoose.Schema({
   email: { type: String, required: true },
   empDes: { type: String, required: true },
   doj: { type: String, required: true },
-  comment: { type: String, required: true },
+  comment: { type: String },
 });
 
 module.exports = mongoose.model("Employee", employeeSchema);

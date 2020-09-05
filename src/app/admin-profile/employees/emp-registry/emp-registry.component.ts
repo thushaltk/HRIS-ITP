@@ -13,6 +13,7 @@ export class EmpRegistryComponent implements OnInit, OnDestroy {
   employees: Employees[] = [];
   private subscription: Subscription;
   designation: string;
+  title: string;
   isLoading = false;
 
   constructor(private router: Router, private employeeService: EmployeeService,
@@ -22,6 +23,25 @@ export class EmpRegistryComponent implements OnInit, OnDestroy {
     this.isLoading=true;
     this.route.params.subscribe((params: Params) => {
       this.designation = params['designation'];
+      if(this.designation == 'manager'){
+        this.title="Manager's";
+      }else if(this.designation == 'engineer'){
+        this.title="Engineer's";
+      }else if(this.designation == 'itoperator'){
+        this.title="IT Operator's";
+      }else if(this.designation == 'accountant'){
+        this.title="Accountant's";
+      }else if(this.designation == 'supervisor'){
+        this.title="Supervisor's";
+      }else if(this.designation == 'labor'){
+        this.title="Labor's";
+      }else if(this.designation == 'driver'){
+        this.title="Driver's";
+      }else if(this.designation == 'cleaningstaff'){
+        this.title="Cleaning Staff's";
+      }else if(this.designation == 'securitystaff'){
+        this.title="Security Staff's";
+      }
       this.employees = this.employeeService.getEmployeeByDesignation(this.designation);
       this.subscription = this.employeeService.employeesChanged.subscribe(
         (employees: Employees[]) => {
