@@ -21,6 +21,7 @@ import { EmpDashboardComponent } from './emp-profile/emp-dashboard/emp-dashboard
 import { EquipmentListComponent } from './admin-profile/equipments/equipment-list/equipment-list.component';
 import { NewEquipmentComponent } from './admin-profile/equipments/new-equipment/new-equipment.component';
 import { NewProjectComponent } from './admin-profile/projects/new-project/new-project.component';
+import { AttendanceComponent } from './admin-profile/attendance/attendance.component';
 
 
 const appRoutes: Routes = [
@@ -54,7 +55,8 @@ const appRoutes: Routes = [
           { path: ':designation', component: EmpRegistryComponent },
 
         ]
-      }
+      },
+      { path: 'attendance', component: AttendanceComponent}
     ]
   },
 
