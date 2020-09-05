@@ -24,23 +24,23 @@ export class EmpRegistryComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params: Params) => {
       this.designation = params['designation'];
       if(this.designation == 'manager'){
-        this.title="Manager's";
+        this.title="Managers";
       }else if(this.designation == 'engineer'){
-        this.title="Engineer's";
+        this.title="Engineers";
       }else if(this.designation == 'itoperator'){
-        this.title="IT Operator's";
+        this.title="IT Operators";
       }else if(this.designation == 'accountant'){
-        this.title="Accountant's";
+        this.title="Accountants";
       }else if(this.designation == 'supervisor'){
-        this.title="Supervisor's";
+        this.title="Supervisors";
       }else if(this.designation == 'labor'){
-        this.title="Labor's";
+        this.title="Labors";
       }else if(this.designation == 'driver'){
-        this.title="Driver's";
+        this.title="Drivers";
       }else if(this.designation == 'cleaningstaff'){
-        this.title="Cleaning Staff's";
+        this.title="Cleaning Staff";
       }else if(this.designation == 'securitystaff'){
-        this.title="Security Staff's";
+        this.title="Security Staff";
       }
       this.employees = this.employeeService.getEmployeeByDesignation(this.designation);
       this.subscription = this.employeeService.employeesChanged.subscribe(
