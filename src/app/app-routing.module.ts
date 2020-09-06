@@ -62,7 +62,9 @@ const appRoutes: Routes = [
 
   {
     path: 'empProfile', component: EmpProfileComponent, children: [
-      { path: ':nic', component: EmpProfileComponent }
+      { path: ':nic', component: EmpProfileComponent, children: [
+        {path: 'dashboard', component: EmpDashboardComponent},
+      ] }
     ]
   }
 ]
