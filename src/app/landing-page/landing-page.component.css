@@ -8,22 +8,22 @@
 .buttonLandingPage{
   transition: 0.3s;
   cursor: pointer;
-  color: #397a12;
+  color: #1A237E;
   background-color: #FFFFFF;
-  border-color: #397a12;
+  border-color: #1A237E;
   border-width: 5px;
   border-radius: 12px;
 }
 
 .buttonLandingPage:hover{
-  background-color: green;
-  border-color: green;
+  background-color: #1A237E;
+  border-color: #1A237E;
   color: white;
   font-weight: 700;
 }
 
 .headingsLandingPage{
-  color: #397a12;
+  color: #263238;
   text-align: center;
   font-weight: 700;
   font-family: Arial, Helvetica, sans-serif
