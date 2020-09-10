@@ -54,6 +54,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatSelectModule } from '@angular/material/select';
 import { NewProjectComponent } from './admin-profile/projects/new-project/new-project.component';
 import { DatePipe } from '@angular/common';
+import { EmpAttendanceLeaveComponent } from './emp-profile/emp-attendance-leave/emp-attendance-leave.component';
+import { EmpQuickLeaveComponent } from './emp-profile/emp-attendance-leave/emp-quick-leave/emp-quick-leave.component';
+import { QuickLeavesService } from '../../service/quickLeaves.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,6 +97,8 @@ import { DatePipe } from '@angular/common';
     NewEquipmentComponent,
     ConfirmDialogComponent,
     NewProjectComponent,
+    EmpAttendanceLeaveComponent,
+    EmpQuickLeaveComponent
   ],
   imports: [
     BrowserModule,
@@ -115,7 +121,7 @@ import { DatePipe } from '@angular/common';
     //taostModule
     ToastrModule.forRoot(), // ToastrModule added
   ],
-  providers: [AnnouncementService, EmployeeService, DatePipe],
+  providers: [AnnouncementService, EmployeeService, DatePipe, QuickLeavesService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

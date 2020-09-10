@@ -10,5 +10,5 @@ export class Employees{
     public email: string,
     public empDes: string,
     public doj: string,
-    public comment: string,){}
+    public comment: string){}
 }

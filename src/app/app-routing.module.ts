@@ -22,6 +22,8 @@ import { EquipmentListComponent } from './admin-profile/equipments/equipment-lis
 import { NewEquipmentComponent } from './admin-profile/equipments/new-equipment/new-equipment.component';
 import { NewProjectComponent } from './admin-profile/projects/new-project/new-project.component';
 import { AttendanceComponent } from './admin-profile/attendance/attendance.component';
+import { EmpAttendanceLeaveComponent } from './emp-profile/emp-attendance-leave/emp-attendance-leave.component';
+import { EmpQuickLeaveComponent } from './emp-profile/emp-attendance-leave/emp-quick-leave/emp-quick-leave.component';
 
 
 const appRoutes: Routes = [
@@ -64,6 +66,9 @@ const appRoutes: Routes = [
     path: 'empProfile', component: EmpProfileComponent, children: [
       { path: ':nic', component: EmpProfileComponent, children: [
         {path: 'dashboard', component: EmpDashboardComponent},
+        {path: 'attendanceLeave', component: EmpAttendanceLeaveComponent, children: [
+          {path: 'quickLeave', component: EmpQuickLeaveComponent}
+        ]}
       ] }
     ]
   }
