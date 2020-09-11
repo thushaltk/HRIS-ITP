@@ -11,8 +11,9 @@ import { EmployeeService } from 'service/employees.service';
 })
 export class EmpRegComponent implements OnInit {
   @ViewChild('empreg', {static: false}) addEmployee: NgForm;
-  defaultValue = "choose";
   empID: string;
+  nicInvalid: boolean = true;
+  nic : string;
 
   employees: Employees = {
     id: '',
@@ -35,7 +36,19 @@ export class EmpRegComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.empID = "EMP"+Math.floor((Math.random() * 1000) + 1).toString();
+    this.empID = "EMP"+Math.floor((Math.random() * 1000) + 100).toString();
+
+
+
+  }
+
+  nicValidate(nic: string){
+    if(nic.endsWith("V") && nic.length == 10){
+      this.nicInvalid = false;
+      console.log(this.nicInvalid);
+    }else{
+      this.nicInvalid = true;
+    }
 
   }
 

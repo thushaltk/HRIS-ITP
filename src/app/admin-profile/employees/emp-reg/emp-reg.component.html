@@ -21,8 +21,8 @@
 
           <div class="col-md-3 mb-1">
             <label for="nic">NIC Number</label>
-            <input type="text" ngModel name="nic" #nic="ngModel" [class.is-invalid]= "nic.invalid && nic.touched" class="form-control" id="nic" placeholder="123456789V" required>
-            <small class="text-danger" [class.d-none]= "nic.valid || nic.untouched">Please enter a NIC number</small>
+            <input type="text" ngModel name="nic" #nic="ngModel" (blur)="nicValidate(nic.value)" (change)="nicValidate(nic.value)" [class.is-invalid]= "nic.touched && nicInvalid" class="form-control" id="nic" placeholder="123456789V" required>
+            <small class="text-danger" [class.d-none]= " nic.untouched || !nicInvalid">Please enter a NIC number</small>
           </div>
 
           <div class="col-md-6 mb-3">
@@ -61,7 +61,7 @@
 
         <div class="form-group">
           <label for="empDes">Employee Designation</label>
-          <select #empDes="ngModel" name="empDes" [class.is-invalid]= "empDes.invalid && empDes.touched"  class="form-control" [ngModel]="defaultValue" id="empDes" required>
+          <select #empDes="ngModel" name="empDes" [class.is-invalid]= "empDes.invalid && empDes.touched" ngModel class="form-control" id="empDes" required>
             <option value="choose" disabled>Choose...</option>
             <option value="manager">Manager</option>
             <option value="engineer">Engineer</option>
