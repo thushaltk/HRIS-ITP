@@ -12,4 +12,10 @@ export class PayrollService {
   getPayroll() {
     return this.http.get<Payroll[]>(`${environment.apiUrl}payroll`);
   }
+
+  deletePayroll(payroll: Payroll) {
+    return this.http.delete<Payroll>(
+      `${environment.apiUrl}payroll/${payroll._id}`
+    );
+  }
 }
