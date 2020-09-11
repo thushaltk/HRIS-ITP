@@ -40,6 +40,7 @@ import { EmpProjectsComponent } from './emp-profile/emp-projects/emp-projects.co
 import { EmpTrainingProgramsComponent } from './emp-profile/emp-training-programs/emp-training-programs.component';
 import { EmpVehiclesComponent } from './emp-profile/emp-vehicles/emp-vehicles.component';
 import { AttendanceComponent } from './admin-profile/attendance/attendance.component';
+import { PayrollListComponent } from './admin-profile/payroll/payroll-list/payroll-list.component';
 
 import { EquipmentListComponent } from './admin-profile/equipments/equipment-list/equipment-list.component';
 import { MatTableModule } from '@angular/material/table';
@@ -93,6 +94,7 @@ import { AddAttendanceComponent } from './admin-profile/attendance/add-attendanc
     EmpTrainingProgramsComponent,
     EmpVehiclesComponent,
     AttendanceComponent,
+    PayrollListComponent,
 
     EquipmentListComponent,
     NewEquipmentComponent,
@@ -123,7 +125,12 @@ import { AddAttendanceComponent } from './admin-profile/attendance/add-attendanc
     //taostModule
     ToastrModule.forRoot(), // ToastrModule added
   ],
-  providers: [AnnouncementService, EmployeeService, DatePipe, QuickLeavesService],
+  providers: [
+    AnnouncementService,
+    EmployeeService,
+    DatePipe,
+    QuickLeavesService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -26,6 +26,7 @@ import { EmpAttendanceLeaveComponent } from './emp-profile/emp-attendance-leave/
 import { EmpQuickLeaveComponent } from './emp-profile/emp-attendance-leave/emp-quick-leave/emp-quick-leave.component';
 import { AddAttendanceComponent } from './admin-profile/attendance/add-attendance/add-attendance.component';
 
+import { PayrollComponent } from './admin-profile/payroll/payroll.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -33,31 +34,39 @@ const appRoutes: Routes = [
   { path: 'login/emp', component: LoginEmpComponent },
   { path: 'login/admin', component: LoginAdminComponent },
   {
-    path: 'admin', component: AdminProfileComponent, children: [
+    path: 'admin',
+    component: AdminProfileComponent,
+    children: [
       { path: 'dashboard', component: AdminDashboardComponent },
       {
-        path: 'announcements', component: AnnouncementsComponent, children: [
+        path: 'announcements',
+        component: AnnouncementsComponent,
+        children: [
           { path: 'view', component: AdminAnnouncementsComponent },
-          { path: 'new', component: AnnouncementCreateComponent }
-        ]
+          { path: 'new', component: AnnouncementCreateComponent },
+        ],
       },
       { path: 'projects', component: ProjectsComponent },
       { path: 'projects/new', component: NewProjectComponent },
+      { path: 'payroll', component: PayrollComponent },
       {
-        path: 'equipments', component: EquipmentsComponent, children: [
+        path: 'equipments',
+        component: EquipmentsComponent,
+        children: [
           { path: 'list', component: EquipmentListComponent },
           { path: 'new', component: NewEquipmentComponent },
-        ]
+        ],
       },
       { path: 'training-programs', component: TrainingProgramsComponent },
       { path: 'vehicles', component: VehiclesComponent },
       {
-        path: 'employees', component: EmployeesComponent, children: [
+        path: 'employees',
+        component: EmployeesComponent,
+        children: [
           { path: 'create', component: EmpRegComponent },
           { path: 'view', component: EmpSelectComponent },
           { path: ':designation', component: EmpRegistryComponent },
-
-        ]
+        ],
       },
 
       { path: 'attendance', component: AttendanceComponent },
@@ -68,24 +77,29 @@ const appRoutes: Routes = [
   },
 
   {
-    path: 'empProfile', component: EmpProfileComponent, children: [
-      { path: ':nic', component: EmpProfileComponent, children: [
-        {path: 'dashboard', component: EmpDashboardComponent},
-        {path: 'attendanceLeave', component: EmpAttendanceLeaveComponent, children: [
-          {path: 'quickLeave', component: EmpQuickLeaveComponent}
-        ]}
-      ] }
-    ]
-  }
-]
-
-
+    path: 'empProfile',
+    component: EmpProfileComponent,
+    children: [
+      {
+        path: ':nic',
+        component: EmpProfileComponent,
+        children: [
+          { path: 'dashboard', component: EmpDashboardComponent },
+          {
+            path: 'attendanceLeave',
+            component: EmpAttendanceLeaveComponent,
+            children: [
+              { path: 'quickLeave', component: EmpQuickLeaveComponent },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-
-export class AppRoutingModule { }
-
-
+export class AppRoutingModule {}

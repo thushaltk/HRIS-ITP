@@ -4,8 +4,13 @@ const Employee = require("../models/employee");
 
 router.get("/", async (req, res) => {
   try {
-    const payrolls = await Payroll.find({});
-    return res.status(200).send(payrolls);
+    await Payroll.find({})
+      .populate("employee")
+      .populate("paymentHistory")
+      .exec((error, payroll) => {
+        if (error) return res.status(500).send(error);
+        return res.status(200).send(payroll);
+      });
   } catch (error) {
     console.log(error);
     return res.status(500).send(error);
@@ -14,9 +19,13 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const payroll = await Payroll.findOne({ employee: req.params.id });
-    if (!payroll) return res.status(404).send("Payroll not found");
-    return res.status(200).send(payroll);
+    await Payroll.findOne({ employee: req.params.id })
+      .populate("employee")
+      .populate("paymentHistory")
+      .exec((error, payroll) => {
+        if (error) return res.status(500).send(error);
+        return res.status(200).send(payroll);
+      });
   } catch (error) {
     console.log(error);
     return res.status(500).send(error);
@@ -73,7 +82,10 @@ router.patch("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
-    const payroll = await Payroll.findOne({ employee: req.params.id });
+    let payroll = await Payroll.findOne({ employee: req.params.id });
+    if (!payroll) {
+      payroll = await Payroll.findById(req.params.id);
+    }
     await payroll.remove();
     return res.status(200).send(`Payroll ${req.params.id} was deleted`);
   } catch (error) {
