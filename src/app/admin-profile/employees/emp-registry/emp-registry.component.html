@@ -1,4 +1,4 @@
-<div style="overflow-y: scroll; overflow-x: scroll; height: 100vh; width:fit-content; margin-left: -10%;">
+<div class="content" style="overflow-y: scroll; overflow-x: scroll; height: 100vh; width:fit-content; margin-left: 5%;">
   <div style="background-color: #FEFEFE; background-size: auto;">
 
     <div style="background-color: #FFFFFF">
@@ -12,7 +12,6 @@
         </div>
       </div>
       <div class="card-body">
-
         <table class="table table-bordered">
           <thead class="thead-dark">
             <tr>
@@ -26,7 +25,7 @@
               <th scope="col">Email</th>
               <th scope="col">Date of Joining</th>
               <th scope="col">Special Medical illness</th>
-              <th scope="col"></th>
+              <th scope="col" colspan="2">Action</th>
 
             </tr>
           </thead>
@@ -44,8 +43,8 @@
               <td>{{ employee.email}}</td>
               <td>{{ employee.doj}}</td>
               <td>{{ employee.comment}}</td>
-              <td>
-                <a class="btn btn-warning pull-right" style="width:75px;">EDIT</a>
+              <td colspan="2">
+                <a class="btn btn-warning pull-right" style="width:75px; margin-bottom: 8px;">EDIT</a>
                 <a class="btn btn-danger pull-right" (click)="onDelete(employee.id)">DELETE</a>
               </td>
             </tr>

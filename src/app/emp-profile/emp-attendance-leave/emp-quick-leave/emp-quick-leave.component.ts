@@ -13,12 +13,10 @@ export class EmpQuickLeaveComponent implements OnInit {
   @ViewChild('qleave', { static: false }) addQuickLeaveForm: NgForm;
   nic : string;
   dateToday: number = Date.now();
-  nicValid: boolean = true;
   isNodata: boolean = true;
   viewTable: boolean = false;
   quickLeave: QuickLeave = {
     id: '',
-    nic: '',
     time: '',
     date: ''
   }
@@ -30,7 +28,6 @@ export class EmpQuickLeaveComponent implements OnInit {
 
   ngOnInit(): void {
     this.getquickLeave = this.quickLeavesService.getQuickLeave();
-    this.viewTable = true;
     this.subscription = this.quickLeavesService.quickLeavesChanged.subscribe(
       (quickLeaves : QuickLeave[]) => {
         this.getquickLeave = quickLeaves;
@@ -42,36 +39,32 @@ export class EmpQuickLeaveComponent implements OnInit {
           this.isNodata = false;
           console.log(this.getquickLeave);
         }
+
       }
     );
   }
 
   onSubmit() {
-    this.nic = this.addQuickLeaveForm.value.nic;
-    if(this.nic.endsWith('V') && this.nic.length == 10){
-      this.nicValid = true;
-    }else{
-      this.nicValid = false;
-    }
-    this.viewTable = true;
 
     this.quickLeave.id = null;
-    this.quickLeave.nic = this.addQuickLeaveForm.value.nic;
     this.quickLeave.time = this.addQuickLeaveForm.value.time;
     this.quickLeave.date = this.addQuickLeaveForm.value.date;
 
     this.addQuickLeaveForm.reset();
 
-    if(this.nicValid == true){
-      this.quickLeavesService.addQuickLeave(this.quickLeave);
-      this.isNodata = false;
-    }
+    this.quickLeavesService.addQuickLeave(this.quickLeave);
+    this.isNodata = false;
 
 
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  onDelete(id: string){
+    this.quickLeavesService.deleteQuickLeave(id);
+    window.location.reload();
   }
 
 }

@@ -24,6 +24,7 @@ import { NewProjectComponent } from './admin-profile/projects/new-project/new-pr
 import { AttendanceComponent } from './admin-profile/attendance/attendance.component';
 import { EmpAttendanceLeaveComponent } from './emp-profile/emp-attendance-leave/emp-attendance-leave.component';
 import { EmpQuickLeaveComponent } from './emp-profile/emp-attendance-leave/emp-quick-leave/emp-quick-leave.component';
+import { AddAttendanceComponent } from './admin-profile/attendance/add-attendance/add-attendance.component';
 
 
 const appRoutes: Routes = [
@@ -58,7 +59,11 @@ const appRoutes: Routes = [
 
         ]
       },
-      { path: 'attendance', component: AttendanceComponent}
+
+      { path: 'attendance', component: AttendanceComponent },
+
+      { path: 'attendance/add-attendance', component: AddAttendanceComponent}
+
     ]
   },
 
