@@ -6,7 +6,6 @@ const QuickLeave = require('../models/quickLeave');
 //Add Announcements
 router.post("", (req, res, next) => {
   const quickLeave = new QuickLeave({
-    nic: req.body.nic,
     time: req.body.time,
     date: req.body.date
   });

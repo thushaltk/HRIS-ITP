@@ -9,15 +9,6 @@
       <div class="card-body">
         <form #qleave="ngForm" (ngSubmit)="onSubmit()">
           <div class="form-group row">
-            <label for="nic" class="col-sm-3 col-form-label pull-right">NIC</label>
-            <div class="col-sm-7" style="margin-left: -10%;">
-              <input type="text" id="nic" class="form-control" ngModel name="nic" #nic="ngModel" required>
-            </div>
-            <span class="help-block" *ngIf="!nic.valid && nic.touched && nicValid" style="color: red">Please enter a
-              NIC.</span>
-            <span class="help-block" *ngIf="!nicValid" style="color: red">Please enter a valid NIC.</span>
-          </div>
-          <div class="form-group row">
             <label for="time" class="col-sm-3 col-form-label pull-right">Time</label>
             <div class="col-sm-7" style="margin-left: -10%;">
               <input type="text" id="time" class="form-control" [ngModel]="dateToday | date:'HH:mm:ss'" name="time" #time="ngModel" required>
@@ -45,7 +36,7 @@
     </div>
     <br><br><br>
 
-    <div class="card text-center" *ngIf="viewTable">
+    <div class="card text-center">
       <h1>View applied leaves</h1>
       <div class="card-header">
         Featured
@@ -55,17 +46,20 @@
           <thead class="thead-dark">
             <tr>
               <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+              <th scope="col" colspan="2" class="text-center">Action</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let quickLeave of getquickLeave">
               <th scope="row">1</th>
-              <td>{{quickLeave.nic}}</td>
               <td>{{quickLeave.date}}</td>
               <td>{{quickLeave.time}}</td>
+              <td>
+                <a class="btn btn-warning pull-right" style="width:75px;">EDIT</a>
+                <a class="btn btn-danger pull-right" (click)="onDelete(quickLeave.id)">DELETE</a>
+              </td>
             </tr>
 
             <tr *ngIf="isNodata" style="color:red;">

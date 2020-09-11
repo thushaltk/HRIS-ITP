@@ -16,7 +16,6 @@ export class QuickLeavesService{
       .pipe(map((quickLeavesData) => {
           return quickLeavesData.quickLeaves.map(quickLeave => {
             return{
-              nic: quickLeave.nic,
               time: quickLeave.time,
               date: quickLeave.date,
               id: quickLeave._id
@@ -33,7 +32,6 @@ export class QuickLeavesService{
   addQuickLeave(quickLeave: QuickLeave){
     const quickLeaveArray: QuickLeave = {
       id: quickLeave.id,
-      nic: quickLeave.nic,
       time: quickLeave.time,
       date: quickLeave.date
     };

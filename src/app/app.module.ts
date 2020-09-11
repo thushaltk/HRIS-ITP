@@ -58,6 +58,7 @@ import { DatePipe } from '@angular/common';
 import { EmpAttendanceLeaveComponent } from './emp-profile/emp-attendance-leave/emp-attendance-leave.component';
 import { EmpQuickLeaveComponent } from './emp-profile/emp-attendance-leave/emp-quick-leave/emp-quick-leave.component';
 import { QuickLeavesService } from '../../service/quickLeaves.service';
+import { AddAttendanceComponent } from './admin-profile/attendance/add-attendance/add-attendance.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import { QuickLeavesService } from '../../service/quickLeaves.service';
     NewProjectComponent,
     EmpAttendanceLeaveComponent,
     EmpQuickLeaveComponent,
+    AddAttendanceComponent
   ],
   imports: [
     BrowserModule,
