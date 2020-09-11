@@ -20,7 +20,7 @@
           <div class="form-group row">
             <label for="time" class="col-sm-3 col-form-label pull-right">Time</label>
             <div class="col-sm-7" style="margin-left: -10%;">
-              <input type="time" id="time" class="form-control" ngModel name="time" #time="ngModel" required>
+              <input type="text" id="time" class="form-control" [ngModel]="dateToday | date:'HH:mm:ss'" name="time" #time="ngModel" required>
             </div>
             <br>
             <span class="help-block" *ngIf="!time.valid && time.touched" style="color: red">Please select leave
@@ -29,7 +29,7 @@
           <div class="form-group row">
             <label for="date" class="col-sm-3 col-form-label pull-right">Date</label>
             <div class="col-sm-7" style="margin-left: -10%;">
-              <input type="date" id="date" class="form-control" ngModel name="date" #date="ngModel" required>
+              <input type="text" id="date" class="form-control" [ngModel]="dateToday | date" ngModel name="date" #date="ngModel" required>
             </div>
             <br>
             <span class="help-block" *ngIf="!date.valid && date.touched" style="color: red">Please select date</span>

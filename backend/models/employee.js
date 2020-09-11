@@ -3,6 +3,7 @@ const employeeSchema = mongoose.Schema({
   fullName: { type: String, required: true },
   dob: { type: String, required: true },
   nic: { type: String, required: true },
+  empID: {type: String, required: true},
   gender: { type: String, required: true },
   address: { type: String, required: true },
   cnumber: { type: String, required: true },
