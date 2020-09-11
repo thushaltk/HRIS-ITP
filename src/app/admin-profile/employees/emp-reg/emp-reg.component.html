@@ -22,17 +22,17 @@
           <div class="col-md-3 mb-1">
             <label for="nic">NIC Number</label>
             <input type="text" ngModel name="nic" #nic="ngModel" (blur)="nicValidate(nic.value)" (change)="nicValidate(nic.value)" [class.is-invalid]= "nic.touched && nicInvalid" class="form-control" id="nic" placeholder="123456789V" required>
-            <small class="text-danger" [class.d-none]= " nic.untouched || !nicInvalid">Please enter a NIC number</small>
+            <small class="text-danger" [class.d-none]= " nic.untouched || !nicInvalid">Please enter a valid NIC number</small>
           </div>
 
           <div class="col-md-6 mb-3">
             <p class="font-weight-bold">Gender</p>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" ngModel type="radio" #gender="ngModel" name="gender" id="male" value="Male">
+              <input class="form-check-input" ngModel type="radio" #gender="ngModel" name="gender" id="male" value="Male" required>
               <label class="form-check-label" for="inlineRadio1">Male</label>
             </div>
             <div class="form-check form-check-inline">
-              <input ngModel class="form-check-input" type="radio" #gender="ngModel" name="gender" id="female" value="Female">
+              <input ngModel class="form-check-input" type="radio" #gender="ngModel" name="gender" id="female" value="Female" required>
               <label class="form-check-label" for="inlineRadio2">Female</label>
             </div>
           </div>

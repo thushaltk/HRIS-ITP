@@ -36,7 +36,7 @@ export class EmpRegComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.empID = "EMP"+Math.floor((Math.random() * 1000) + 100).toString();
+    this.empID = "EMP"+Math.floor((Math.random() * 99999) + 10000).toString();
 
 
 
