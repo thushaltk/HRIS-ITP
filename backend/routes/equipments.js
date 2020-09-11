@@ -27,7 +27,6 @@ router.post("/", async (req, res, next) => {
       ...req.body,
     });
     const result = await equipment.save();
-
     Equipment.findById(result._id)
       .populate("project")
       .exec()
