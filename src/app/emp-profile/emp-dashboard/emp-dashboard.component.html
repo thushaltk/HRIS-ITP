@@ -1,1 +1,22 @@
-<p>emp-dashboard works!</p>
+<div class="container" style="overflow-y: scroll; overflow-x: scroll; height: 100vh; width:fit-content; max-width: min-content;padding-left: 130px;">
+  <h1>Announcements</h1>
+  <mat-spinner *ngIf = "isLoading"></mat-spinner>
+  <div  style="overflow-y: scroll; height:400px; width: 100%;" *ngIf = "!isLoading">
+    <div class="container pull-left" *ngFor="let announcement of announcements" style="background-color:#E6E9E5; width: 1000px; height: fit-content;">
+      <div class="card">
+        <div class="card-header">
+          Featured
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{announcement.title}}</h5>
+          <p class="card-text">{{announcement.content}}</p>
+          <p class="card-text">{{announcement.date}} {{announcement.validity}}</p>
+          <p class="card-text" [ngStyle]="{'color': announcement.priority == 'HIGH' ? 'red' : 'green'}">{{announcement.priority}}</p>
+          <p class="card-text">{{announcement.validity}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

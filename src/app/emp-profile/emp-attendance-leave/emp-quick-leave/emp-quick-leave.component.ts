@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 export class EmpQuickLeaveComponent implements OnInit {
   @ViewChild('qleave', { static: false }) addQuickLeaveForm: NgForm;
   nic : string;
+  dateToday: number = Date.now();
   nicValid: boolean = true;
   isNodata: boolean = true;
   viewTable: boolean = false;

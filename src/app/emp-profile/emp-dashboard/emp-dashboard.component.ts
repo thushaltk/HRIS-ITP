@@ -1,6 +1,9 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { EmployeeService } from 'service/employees.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Announcements } from 'models/announcements.model';
+import { Subscription } from 'rxjs';
+import { AnnouncementService } from 'service/announcements.service';
 
 
 @Component({
@@ -9,12 +12,30 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./emp-dashboard.component.css']
 })
 export class EmpDashboardComponent implements OnInit {
-  constructor(private employeeService: EmployeeService,
-              private route: ActivatedRoute) { }
+  announcements: Announcements[] = [];
+  private subscription: Subscription;
+  isLoading = false;
 
-  ngOnInit(): void {
+  constructor(private router: Router, private announcementService: AnnouncementService) { }
 
+  ngOnInit(){
+    this.isLoading = true;
+    this.announcements = this.announcementService.getAnnouncement();
+    this.subscription = this.announcementService.announcementsChanged.subscribe(
+      (announcements: Announcements[]) => {
+        this.announcements = announcements;
+        this.isLoading = false;
+      }
+    );
+    console.log(this.announcements);
+  }
 
+  onDelete(announcementID: string){
+    this.announcementService.deleteAnnouncement(announcementID);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

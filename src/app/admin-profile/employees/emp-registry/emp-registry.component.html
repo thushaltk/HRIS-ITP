@@ -34,7 +34,7 @@
           <tbody *ngIf = "!isLoading">
 
             <tr *ngFor="let employee of employees">
-              <td>{{ employee.id}}</td>
+              <td>{{ employee.empID}}</td>
               <td>{{ employee.fullName}}</td>
               <td>{{ employee.nic}}</td>
               <td>{{ employee.dob}}</td>
@@ -45,7 +45,7 @@
               <td>{{ employee.doj}}</td>
               <td>{{ employee.comment}}</td>
               <td>
-                <a class="btn btn-warning pull-right" style="width:80px;">EDIT</a>
+                <a class="btn btn-warning pull-right" style="width:75px;">EDIT</a>
                 <a class="btn btn-danger pull-right" (click)="onDelete(employee.id)">DELETE</a>
               </td>
             </tr>

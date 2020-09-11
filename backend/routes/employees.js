@@ -9,6 +9,7 @@ router.post("", (req, res, next) => {
     fullName: req.body.fullName,
     dob: req.body.dob,
     nic: req.body.nic,
+    empID: req.body.empID,
     gender: req.body.gender,
     address: req.body.address,
     cnumber: req.body.cnumber,
