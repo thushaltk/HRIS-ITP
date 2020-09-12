@@ -15,9 +15,7 @@
       <br />
     </div>
     <div class="container-fluid" style="background-color: #ffffff">
-      <p class="h4" style="text-align: center">Personal Information</p>
-      <form (ngSubmit)="onSubmit()" #empreg="ngForm">
-        <!-- <form #empreg="ngForm"> -->
+      <form (ngSubmit)="onSubmit()" #addPay="ngForm">
         <div class="col-md-3 mb-1">
           <label for="nic">NIC Number</label>
           <input
@@ -41,7 +39,7 @@
             <label for="baseSalary">Base Salary</label>
             <input
               type="number"
-              #baseSalry="ngModel"
+              #baseSalary="ngModel"
               ngModel
               name="baseSalary"
               class="form-control"
@@ -118,13 +116,7 @@
         </div>
 
         <div class="col-auto my-1" align="center">
-          <button
-            type="submit"
-            [disabled]="!empreg.valid"
-            class="btn btn-success btn-lg"
-          >
-            Submit
-          </button>
+          <button type="submit" class="btn btn-success btn-lg">Submit</button>
         </div>
       </form>
     </div>
