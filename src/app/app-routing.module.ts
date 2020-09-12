@@ -27,6 +27,7 @@ import { EmpQuickLeaveComponent } from './emp-profile/emp-attendance-leave/emp-q
 import { AddAttendanceComponent } from './admin-profile/attendance/add-attendance/add-attendance.component';
 
 import { PayrollComponent } from './admin-profile/payroll/payroll.component';
+import { AddPayrollComponent } from './admin-profile/payroll/add-payroll/add-payroll.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -49,6 +50,7 @@ const appRoutes: Routes = [
       { path: 'projects', component: ProjectsComponent },
       { path: 'projects/new', component: NewProjectComponent },
       { path: 'payroll', component: PayrollComponent },
+      { path: 'payroll/addPayroll', component: AddPayrollComponent },
       {
         path: 'equipments',
         component: EquipmentsComponent,

@@ -59,6 +59,7 @@ import { EmpAttendanceLeaveComponent } from './emp-profile/emp-attendance-leave/
 import { EmpQuickLeaveComponent } from './emp-profile/emp-attendance-leave/emp-quick-leave/emp-quick-leave.component';
 import { QuickLeavesService } from '../../service/quickLeaves.service';
 import { AddAttendanceComponent } from './admin-profile/attendance/add-attendance/add-attendance.component';
+import { AddPayrollComponent } from './admin-profile/payroll/add-payroll/add-payroll.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { AddAttendanceComponent } from './admin-profile/attendance/add-attendanc
     NewProjectComponent,
     EmpAttendanceLeaveComponent,
     EmpQuickLeaveComponent,
-    AddAttendanceComponent
+    AddAttendanceComponent,
+    AddPayrollComponent,
   ],
   imports: [
     BrowserModule,

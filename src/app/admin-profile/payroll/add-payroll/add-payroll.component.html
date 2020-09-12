@@ -1,0 +1,124 @@
+<div
+  style="
+    overflow-y: scroll;
+    overflow-x: scroll;
+    height: 100vh;
+    width: 1000px;
+    max-width: 1300px;
+  "
+  class="container-fluid"
+>
+  <div class="container-fluid" style="background-color: #fefefe">
+    <div style="background-color: #ffffff">
+      <br />
+      <p class="h1" style="text-align: center">Add Payroll for an Employee</p>
+      <br />
+    </div>
+    <div class="container-fluid" style="background-color: #ffffff">
+      <form (ngSubmit)="onSubmit()" #addPay="ngForm">
+        <div class="col-md-3 mb-1">
+          <label for="nic">NIC Number</label>
+          <input
+            type="text"
+            ngModel
+            name="nic"
+            #nic="ngModel"
+            [class.is-invalid]="nic.invalid && nic.touched"
+            class="form-control"
+            id="nic"
+            placeholder="123456789V"
+            required
+          />
+          <small class="text-danger" [class.d-none]="nic.valid || nic.untouched"
+            >Please enter a NIC number</small
+          >
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="baseSalary">Base Salary</label>
+            <input
+              type="number"
+              #baseSalary="ngModel"
+              ngModel
+              name="baseSalary"
+              class="form-control"
+              id="baseSalary"
+              placeholder="10000"
+              required
+            />
+            <!-- <small
+              class="text-danger"
+              [class.d-none]="baseSalary.valid || baseSalary.untouched"
+              >Please enter a valid salary amount</small
+            > -->
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="maxLeaves">Max Leaves</label>
+            <input
+              type="number"
+              #maxLeaves="ngModel"
+              ngModel
+              name="maxLeaves"
+              maxLeaves
+              class="form-control"
+              id="maxLeaves"
+              placeholder="4"
+              required
+            />
+            <!-- <small
+              class="text-danger"
+              [class.d-none]="email.valid || email.untouched"
+              >Please enter a valid email address</small
+            > -->
+          </div>
+          <!-- </div> -->
+          <div class="col-md-6 mb-3">
+            <label for="payForOTHour">Pay for OT Hour</label>
+            <input
+              type="number"
+              #payForOTHour="ngModel"
+              ngModel
+              name="payForOTHour"
+              payForOTHour
+              class="form-control"
+              id="payForOTHour"
+              placeholder="4"
+              required
+            />
+            <!-- <small
+              class="text-danger"
+              [class.d-none]="email.valid || email.untouched"
+              >Please enter a valid email address</small
+            > -->
+          </div>
+          <!-- </div> -->
+
+          <div class="col-md-6 mb-3">
+            <label for="penaltyForLeaves">Penalty for Leaves</label>
+            <input
+              type="number"
+              #penaltyForLeaves="ngModel"
+              ngModel
+              name="penaltyForLeaves"
+              penaltyForLeaves
+              class="form-control"
+              id="penaltyForLeaves"
+              placeholder="4"
+              required
+            />
+            <!-- <small
+              class="text-danger"
+              [class.d-none]="email.valid || email.untouched"
+              >Please enter a valid email address</small
+            > -->
+          </div>
+        </div>
+
+        <div class="col-auto my-1" align="center">
+          <button type="submit" class="btn btn-success btn-lg">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

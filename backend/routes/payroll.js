@@ -32,17 +32,16 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-//id is the employee _id
-router.post("/:id", async (req, res) => {
+router.post("/:nic", async (req, res) => {
   try {
-    const emp = await Employee.findById(req.params.id);
+    const emp = await Employee.findOne({ nic: req.params.nic });
     if (!emp) return res.status(404).send("User not found");
     const findPayroll = await Payroll.findOne({ employee: req.params.id });
     if (findPayroll) return res.status(409).send("Payroll already exists");
 
     const { baseSalary, maxLeaves, penaltyForLeaves, payForOTHour } = req.body;
     const payroll = new Payroll({
-      employee: req.params.id,
+      employee: emp._id,
       baseSalary,
       maxLeaves,
       penaltyForLeaves,

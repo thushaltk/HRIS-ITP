@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Payroll } from '../../../_models/payroll.model';
 import { PayrollService } from '../../../_services/payroll.service';
 import { ConfirmService } from '../../../shared/confirm.service';
@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./payroll-list.component.css'],
 })
 export class PayrollListComponent implements OnInit {
-  // @Output() deletePayroll: EventEmitter<Payroll> = new EventEmitter();
+  @Output() deletePayroll: EventEmitter<Payroll> = new EventEmitter();
 
   payrolls: Payroll[];
 
@@ -43,6 +43,5 @@ export class PayrollListComponent implements OnInit {
         },
         (reject) => {}
       );
-    // this.deletePayroll.emit(payroll);
   }
 }
