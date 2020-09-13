@@ -64,7 +64,8 @@
                 </div>
 
                 <div class="form-group">
-                    <mat-checkbox color="primary" class="example-margin" formControlName="allocation">Allocation</mat-checkbox>
+                    <mat-checkbox color="primary" class="example-margin" formControlName="allocation">Allocation
+                    </mat-checkbox>
                 </div>
 
                 <div class="row" *ngIf="this.form.value.allocation">
@@ -114,7 +115,7 @@
                     </div>
                 </div>
 
-                <button type="button" class="btn btn-primary" [ngClass]="{'btn-warning': isUpdate }"
+                <button type="button" class="btn btn-sm btn-success" [ngClass]="{'btn-warning': isUpdate }"
                     (click)="submit()">{{isUpdate ? 'Update' : 'Create'}}</button>
             </form>
         </div>

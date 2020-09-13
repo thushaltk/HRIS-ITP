@@ -21,7 +21,7 @@
         <hr>
         <a href="" [routerLink]="['training-programs']" style="font-size: 18px; padding-bottom: 0; padding-top: 0;" >Training Program Management</a>
         <hr>
-        <a href="" style="font-size: 18px; padding-bottom: 0; padding-top: 0;" >Attendance & Leave Management</a>
+        <a href="" [routerLink]="['attendanceLeave/quickLeave']" style="font-size: 18px; padding-bottom: 0; padding-top: 0;" >Attendance & Leave Management</a>
         <hr>
         <a href="" [routerLink]="['projects']" style="font-size: 18px; padding-bottom: 0; padding-top: 0;" >Project Management</a>
         <hr>
@@ -30,7 +30,7 @@
         <a href="" [routerLink]="['vehicles']" style="font-size: 18px; padding-bottom: 0; padding-top: 0;" >Vehicle Management</a>
         <hr>
     </div>
-    <div class="col col-lg-7" style="margin-left: 20%;">
+    <div class="col" style="width:fit-content; ">
       <router-outlet></router-outlet>
     </div>
   </div>

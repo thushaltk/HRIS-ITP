@@ -1,0 +1,43 @@
+<div>
+  <h1>
+    Payroll Details
+    <span
+      ><a
+        [routerLink]="['../payroll/addPayroll']"
+        class="btn btn-sm btn-success"
+      >
+        + Add Payroll</a
+      ></span
+    >
+  </h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Full Name</th>
+        <th scope="col">Base Salary(Rs)</th>
+        <th scope="col">Maximus Leaves</th>
+        <th scope="col">Penalty for leaves(Rs)</th>
+        <th scope="col">Pay For OT Hours(Rs)</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payroll of payrolls">
+        <td>{{ payroll?.employee?.fullName }}</td>
+        <td>{{ payroll.baseSalary }}</td>
+        <td>{{ payroll.maxLeaves }}</td>
+        <td>{{ payroll.penaltyForLeaves }}</td>
+        <td>{{ payroll.payForOTHour }}</td>
+        <td>
+          <a class="btn btn-sm btn-primary" (click)="onUpdate(payroll)">Edit</a>
+        </td>
+        <td>
+          <a class="btn btn-sm btn-danger" (click)="onDelete(payroll)"
+            >Delete</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

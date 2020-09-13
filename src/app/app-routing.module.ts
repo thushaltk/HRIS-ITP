@@ -21,12 +21,19 @@ import { EmpDashboardComponent } from './emp-profile/emp-dashboard/emp-dashboard
 import { EquipmentListComponent } from './admin-profile/equipments/equipment-list/equipment-list.component';
 import { NewEquipmentComponent } from './admin-profile/equipments/new-equipment/new-equipment.component';
 import { NewProjectComponent } from './admin-profile/projects/new-project/new-project.component';
+import { AttendanceComponent } from './admin-profile/attendance/attendance.component';
+import { EmpAttendanceLeaveComponent } from './emp-profile/emp-attendance-leave/emp-attendance-leave.component';
+import { EmpQuickLeaveComponent } from './emp-profile/emp-attendance-leave/emp-quick-leave/emp-quick-leave.component';
+import { AddAttendanceComponent } from './admin-profile/attendance/add-attendance/add-attendance.component';
 
 import { VehicleListComponent } from './admin-profile/vehicles/vehicle-list/vehicle-list.component';
 import { AllListOfVehicleComponent } from './admin-profile/vehicles/all-list-of-vehicle/all-list-of-vehicle.component';
 import { AddNewVehicleComponent } from './admin-profile/vehicles/add-new-vehicle/add-new-vehicle.component';
 import { AllocatedVehicleComponent } from './admin-profile/vehicles/allocated-vehicle/allocated-vehicle.component';
 import { UnAllocatedVehicleComponent } from './admin-profile/vehicles/un-allocated-vehicle/un-allocated-vehicle.component';
+import { PayrollComponent } from './admin-profile/payroll/payroll.component';
+import { AddPayrollComponent } from './admin-profile/payroll/add-payroll/add-payroll.component';
+import { UpdatePayrollComponent } from './admin-profile/payroll/update-payroll/update-payroll.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -48,6 +55,11 @@ const appRoutes: Routes = [
       },
       { path: 'projects', component: ProjectsComponent },
       { path: 'projects/new', component: NewProjectComponent },
+
+      { path: 'payroll', component: PayrollComponent },
+      { path: 'payroll/addPayroll', component: AddPayrollComponent },
+      { path: 'payroll/updatePayroll', component: UpdatePayrollComponent },
+
       {
         path: 'equipments',
         component: EquipmentsComponent,
@@ -77,13 +89,32 @@ const appRoutes: Routes = [
           { path: ':designation', component: EmpRegistryComponent },
         ],
       },
+
+      { path: 'attendance', component: AttendanceComponent },
+
+      { path: 'attendance/add-attendance', component: AddAttendanceComponent },
     ],
   },
 
   {
     path: 'empProfile',
     component: EmpProfileComponent,
-    children: [{ path: ':nic', component: EmpProfileComponent }],
+    children: [
+      {
+        path: ':nic',
+        component: EmpProfileComponent,
+        children: [
+          { path: 'dashboard', component: EmpDashboardComponent },
+          {
+            path: 'attendanceLeave',
+            component: EmpAttendanceLeaveComponent,
+            children: [
+              { path: 'quickLeave', component: EmpQuickLeaveComponent },
+            ],
+          },
+        ],
+      },
+    ],
   },
 ];
 

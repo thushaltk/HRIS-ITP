@@ -1,1 +1,98 @@
-<p>attendance works!</p>
+<div style="overflow-x: scroll; height: 100vh; width:1000px; max-width: 1300px;">
+  <div class="container-fluid">
+    <div>
+      <h2 class="text-center">Employee Attendance</h2>
+    <div>
+    <button class="btn btn-success" type="button" style="margin-bottom: 10px;" [routerLink]="['add-attendance']">ADD ATTENDANCE</button>
+    <div class="card">
+        <div class="card-header">
+          <div class="md-form active-pink-2 mb-3" style="width:300px;">
+            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">empID</th>
+                <th scope="col">IN time</th>
+                <th scope="col">OUT time</th>
+                <th scope="col">Late Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <br><br>
+    <div>
+      <h2 class="text-center">Manage Employee Leaves</h2>
+    <div>
+    <div class="card-header">
+         <div class="md-form active-pink-2 mb-3r" style="width:300px; ">
+            <h3 class="text-center" style="color:#A9A9A9;">Requested Leaves</h3>
+         </div>
+     </div>
+    <div class="card">
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">empID</th>
+                <th scope="col">Department</th>
+                <th scope="col">Leave Add Date</th>
+                <th scope="col">Leave Type</th>
+                <th scope="col">Leave Requested Date</th>
+                <th scope="col">Leave End Date</th>
+                <th scope="col">Leave Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>

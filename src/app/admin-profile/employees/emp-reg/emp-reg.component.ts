@@ -11,13 +11,16 @@ import { EmployeeService } from 'service/employees.service';
 })
 export class EmpRegComponent implements OnInit {
   @ViewChild('empreg', {static: false}) addEmployee: NgForm;
-  defaultValue = "choose";
+  empID: string;
+  nicInvalid: boolean = true;
+  nic : string;
 
   employees: Employees = {
     id: '',
     fullName: '',
     dob: '',
     nic: '',
+    empID: '',
     gender: '',
     address: '',
     cnumber: '',
@@ -33,13 +36,29 @@ export class EmpRegComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.empID = "EMP"+Math.floor((Math.random() * 99999) + 10000).toString();
+
+
+
   }
+
+  nicValidate(nic: string){
+    if(nic.endsWith("V") && nic.length == 10){
+      this.nicInvalid = false;
+      console.log(this.nicInvalid);
+    }else{
+      this.nicInvalid = true;
+    }
+
+  }
+
 
 
   onSubmit(){
     console.log(this.addEmployee);
     this.submitted = true;
     this.employees.id = null;
+    this.employees.empID = this.empID;
     this.employees.fullName = this.addEmployee.value.fullName;
     this.employees.dob = this.addEmployee.value.dob;
     this.employees.nic = this.addEmployee.value.nic;
@@ -56,6 +75,8 @@ export class EmpRegComponent implements OnInit {
     this.employeeService.addEmployee(this.employees);
 
     this.router.navigate(['../view'], {relativeTo: this.route});
+
+
 
   }
 

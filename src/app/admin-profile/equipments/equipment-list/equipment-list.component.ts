@@ -16,6 +16,8 @@ import { NewEquipmentComponent } from '../new-equipment/new-equipment.component'
 import { ConfirmService } from '../../../shared/confirm.service';
 import { FormControl } from '@angular/forms';
 import { timestamp } from 'rxjs/operators';
+import { SelectionModel } from '@angular/cdk/collections';
+import { IfStmt } from '@angular/compiler';
 @Component({
   selector: 'app-equipment-list',
   templateUrl: './equipment-list.component.html',
@@ -23,6 +25,7 @@ import { timestamp } from 'rxjs/operators';
 })
 export class EquipmentListComponent implements OnInit {
   displayedColumns: string[] = [
+    'select',
     'eid',
     'name',
     'category',
@@ -32,9 +35,9 @@ export class EquipmentListComponent implements OnInit {
     'duration',
     'person',
     'remarks',
-    'action',
   ];
   columns: string[] = [
+    'select',
     'eid',
     'name',
     'category',
@@ -44,7 +47,6 @@ export class EquipmentListComponent implements OnInit {
     'duration',
     'person',
     'remarks',
-    'action',
   ];
   columnsFilter = new FormControl(this.columns);
   dataSource = new MatTableDataSource<IEquipment>();
@@ -54,14 +56,14 @@ export class EquipmentListComponent implements OnInit {
   loading: boolean = false;
   @ViewChild('callAPIDialog') callAPIDialog: TemplateRef<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
+  selection = new SelectionModel<IEquipment>(true, []);
   constructor(
     private router: Router,
     private dialog: MatDialog,
     private toastr: ToastrService,
     private equipmentService: EquipmentService,
     private confirmService: ConfirmService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getEquipments();
@@ -109,9 +111,18 @@ export class EquipmentListComponent implements OnInit {
     let dialogRef = this.dialog.closeAll();
   }
 
-  setUpdate(equipment) {
-    this.openModal();
-    this.equipment = equipment;
+  setUpdate() {
+    if (this.selection.selected.length == 0) {
+      this.toastr.info('Please select a value')
+      return;
+    }
+    console.log();
+    if (this.selection.selected.length > 1) {
+      this.toastr.info("You can not update multiple data.please select only one")
+    } else {
+      this.openModal();
+      this.equipment = this.selection.selected[0];
+    }
   }
 
   updateEquipment(event) {
@@ -135,29 +146,35 @@ export class EquipmentListComponent implements OnInit {
     }
   }
 
-  deleteEquipment(equipment) {
+  deleteEquipment() {
+    if (this.selection.selected.length == 0) {
+      this.toastr.info('Please select a value')
+      return;
+    }
     this.confirmService
       .confirm(
-        `Are you sure to delete ${equipment.name} ? this cannot be undone`
+        `Are you sure to delete Equipment(s) ? this cannot be undone`
       )
       .then(
         (confirm) => {
           this.loading = true;
-          this.equipmentService.delete(equipment).subscribe(
+          let equipments = this.selection.selected.map(el => el._id);
+          this.equipmentService.delete(equipments).subscribe(
             (res) => {
               console.log(res);
 
               if (res) {
-                this.toastr.success(`Equipment, ${equipment.name} removed`);
+                this.toastr.success(`Equipment(s) removed`);
                 this.equipments = this.equipments.filter(
-                  (element) => element._id != equipment._id
+                  (element) => !equipments.includes(element._id)
                 ); //remove deleted item
+                this.selection.clear()
                 this.dataSource = new MatTableDataSource<IEquipment>(
                   this.equipments
                 );
                 this.dataSource.paginator = this.paginator;
               } else {
-                
+
                 this.toastr.error('Can not find the equipment');
               }
               this.loading = false;
@@ -171,7 +188,7 @@ export class EquipmentListComponent implements OnInit {
             }
           );
         },
-        (reject) => {}
+        (reject) => { }
       );
   }
 
@@ -192,5 +209,24 @@ export class EquipmentListComponent implements OnInit {
   search(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  checkboxLabel(row?: any): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
 }

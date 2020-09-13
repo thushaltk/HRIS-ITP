@@ -1,10 +1,15 @@
-<div style="overflow-y: scroll; overflow-x: scroll; height: 100vh; width:1000px; max-width: 1300px;">
-  <div style="background-color: #2BAF2B">
-    <br><p class="h1" style="text-align:center" >Please select the Employee Type</p><br>
+<div style="overflow-y: scroll; height: fit-content; width:1000px; max-width: 1300px;">
+  <h1>Employee Details Management</h1>
+  <div>
+    <a href="" class="btn btn-primary pull-left" [routerLink]="['../create']">ADD NEW EMPLOYEE</a>
+    <button type="button" class="btn btn-primary" style="margin-left: 10px;">GENERATE REPORT</button>
+  </div>
+  <div style="background-color: #FFFFFF;">
+    <br><br><p class="h4" >Select the Employee Designation to Manage Employee Details</p>
   </div>
 
-  <div class="container-fluid" style="background-color: #E0E4FB;">
-    <br><br><br><br><br>
+  <div class="container-fluid" style="background-color: #FFFFFF;">
+    <br>
     <div class = "container-fluid" >
       <div class="row justify-content-around" align="center">
         <div class="col-4">
@@ -41,11 +46,6 @@
           <a class="btn buttonEmpSelect btn-lg" [routerLink]="['../securitystaff']">Security Staff</a>
         </div>
       </div>
-      <br><br><br><br>
-      <div class="text-center">
-        <button type="button" class="btn btn-success btn-lg" [routerLink]="['../create']">ADD NEW EMPLOYEE</button>
-      </div>
-      <br><br><br><br><br><br><br>
     </div>
   </div>
 </div>

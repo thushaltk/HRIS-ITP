@@ -40,6 +40,7 @@ import { EmpProjectsComponent } from './emp-profile/emp-projects/emp-projects.co
 import { EmpTrainingProgramsComponent } from './emp-profile/emp-training-programs/emp-training-programs.component';
 import { EmpVehiclesComponent } from './emp-profile/emp-vehicles/emp-vehicles.component';
 import { AttendanceComponent } from './admin-profile/attendance/attendance.component';
+import { PayrollListComponent } from './admin-profile/payroll/payroll-list/payroll-list.component';
 
 import { EquipmentListComponent } from './admin-profile/equipments/equipment-list/equipment-list.component';
 import { MatTableModule } from '@angular/material/table';
@@ -59,6 +60,13 @@ import { AllListOfVehicleComponent } from './admin-profile/vehicles/all-list-of-
 import { AddNewVehicleComponent } from './admin-profile/vehicles/add-new-vehicle/add-new-vehicle.component';
 import { AllocatedVehicleComponent } from './admin-profile/vehicles/allocated-vehicle/allocated-vehicle.component';
 import { UnAllocatedVehicleComponent } from './admin-profile/vehicles/un-allocated-vehicle/un-allocated-vehicle.component';
+import { EmpAttendanceLeaveComponent } from './emp-profile/emp-attendance-leave/emp-attendance-leave.component';
+import { EmpQuickLeaveComponent } from './emp-profile/emp-attendance-leave/emp-quick-leave/emp-quick-leave.component';
+import { QuickLeavesService } from '../../service/quickLeaves.service';
+import { AddAttendanceComponent } from './admin-profile/attendance/add-attendance/add-attendance.component';
+import { AddPayrollComponent } from './admin-profile/payroll/add-payroll/add-payroll.component';
+import { UpdatePayrollComponent } from './admin-profile/payroll/update-payroll/update-payroll.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,6 +101,7 @@ import { UnAllocatedVehicleComponent } from './admin-profile/vehicles/un-allocat
     EmpTrainingProgramsComponent,
     EmpVehiclesComponent,
     AttendanceComponent,
+    PayrollListComponent,
 
     EquipmentListComponent,
     NewEquipmentComponent,
@@ -103,6 +112,11 @@ import { UnAllocatedVehicleComponent } from './admin-profile/vehicles/un-allocat
     AddNewVehicleComponent,
     AllocatedVehicleComponent,
     UnAllocatedVehicleComponent,
+    EmpAttendanceLeaveComponent,
+    EmpQuickLeaveComponent,
+    AddAttendanceComponent,
+    AddPayrollComponent,
+    UpdatePayrollComponent,
   ],
   imports: [
     BrowserModule,
@@ -125,7 +139,12 @@ import { UnAllocatedVehicleComponent } from './admin-profile/vehicles/un-allocat
     //taostModule
     ToastrModule.forRoot(), // ToastrModule added
   ],
-  providers: [AnnouncementService, EmployeeService, DatePipe],
+  providers: [
+    AnnouncementService,
+    EmployeeService,
+    DatePipe,
+    QuickLeavesService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

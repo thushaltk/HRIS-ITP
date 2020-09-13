@@ -1,35 +1,82 @@
-<div class="container">
+<div class="container example">
   <div class="row">
     <div class="col col-lg-5" class="sidenav">
-        <div style="margin-bottom: -10%;">
-          <img src="../../assets/images/admin.png" alt="admin icon" class="adminLogo pull-left">
-          <h3 class="text-center">ADMINISTRATOR</h3><br>
-        </div>
-        <hr>
-        <a href="" [routerLink]="['dashboard']" style="font-size: 18px; padding-bottom: 0; padding-top: 0;" >Dashboard</a>
-        <hr>
-        <a href="" [routerLink]="['employees/view']" style="font-size: 18px; padding-bottom: 0; padding-top: 0;" >Employee Details Management</a>
-        <hr>
-        <a href="" style="font-size: 18px; padding-bottom: 0; padding-top: 0;" >Payroll Management</a>
-        <hr>
-        <a href="" [routerLink]="['announcements/view']" style="font-size: 18px; padding-bottom: 0; padding-top: 0;" >Announcement Management</a>
-        <hr>
-        <a href="" [routerLink]="['training-programs']" style="font-size: 18px; padding-bottom: 0; padding-top: 0;" >Training Program Management</a>
-        <hr>
-        <a href="" style="font-size: 18px; padding-bottom: 0; padding-top: 0;" >Attendance & Leave Management</a>
-        <hr>
-        <a href="" [routerLink]="['projects']" style="font-size: 18px; padding-bottom: 0; padding-top: 0;" >Project Management</a>
-        <hr>
-        <a href="" [routerLink]="['equipments/list']" style="font-size: 18px; padding-bottom: 0; padding-top: 0;" >Equipment Management</a>
-        <hr>
-        <a href="" [routerLink]="['vehicles']" style="font-size: 18px; padding-bottom: 0; padding-top: 0;" >Vehicle Management</a>
-        <hr>
+      <div style="margin-bottom: -10%">
+        <img
+          src="../../assets/images/admin.png"
+          alt="admin icon"
+          class="adminLogo pull-left"
+        />
+        <h3 class="text-center">ADMINISTRATOR</h3>
+        <br />
+      </div>
+      <hr />
+      <a
+        href=""
+        [routerLink]="['dashboard']"
+        style="font-size: 18px; padding-bottom: 0; padding-top: 0"
+        >Dashboard</a
+      >
+      <hr />
+      <a
+        href=""
+        [routerLink]="['employees/view']"
+        style="font-size: 18px; padding-bottom: 0; padding-top: 0"
+        >Employee Details Management</a
+      >
+      <hr />
+      <a
+        href=""
+        [routerLink]="['payroll']"
+        style="font-size: 18px; padding-bottom: 0; padding-top: 0"
+        >Payroll Management</a
+      >
+      <hr />
+      <a
+        href=""
+        [routerLink]="['announcements/view']"
+        style="font-size: 18px; padding-bottom: 0; padding-top: 0"
+        >Announcement Management</a
+      >
+      <hr />
+      <a
+        href=""
+        [routerLink]="['training-programs']"
+        style="font-size: 18px; padding-bottom: 0; padding-top: 0"
+        >Training Program Management</a
+      >
+      <hr />
+      <a
+        href=""
+        [routerLink]="['attendance']"
+        style="font-size: 18px; padding-bottom: 0; padding-top: 0"
+        >Attendance & Leave Management</a
+      >
+      <hr />
+      <a
+        href=""
+        [routerLink]="['projects']"
+        style="font-size: 18px; padding-bottom: 0; padding-top: 0"
+        >Project Management</a
+      >
+      <hr />
+      <a
+        href=""
+        [routerLink]="['equipments/list']"
+        style="font-size: 18px; padding-bottom: 0; padding-top: 0"
+        >Equipment Management</a
+      >
+      <hr />
+      <a
+        href=""
+        [routerLink]="['vehicles']"
+        style="font-size: 18px; padding-bottom: 0; padding-top: 0"
+        >Vehicle Management</a
+      >
+      <hr />
     </div>
-    <div class="col col-lg-7" style="margin-left: 20%;">
+    <div class="col col-lg-7" style="margin-left: 20%">
       <router-outlet></router-outlet>
     </div>
   </div>
 </div>
-
-
-
