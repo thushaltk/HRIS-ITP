@@ -1,0 +1,427 @@
+<div
+  style="
+    overflow-y: scroll;
+    overflow-x: scroll;
+    height: 100vh;
+    width: 1000px;
+    max-width: 1300px;
+  "
+  class="container-fluid"
+>
+  <!-- for topic -->
+  <div class="container-fluid" style="background-color: #fefefe">
+    <div style="background-color: #ffffff">
+      <br>
+      <p class="h1" style="text-align: center">Add new Vehicle</p>
+      <br>
+      <hr size="30" />
+    </div>
+    <div class="container-fluid" style="background-color: #ffffff">
+      <p class="h4" style="text-align: center">Vehicle details</p>
+      <form #empreg="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="vehicleNumber">Vehicle Number</label>
+          <input
+            type="text"
+            ngModel
+            name="vehicleNumber"
+            #vehicleNumber="ngModel"
+            [class.is-invalid]="vehicleNumber.invalid && vehicleNumber.touched"
+            class="form-control"
+            id="vehicleNumber"
+            required
+          />
+          <small
+            class="text-danger"
+            [class.d-none]="vehicleNumber.valid || vehicleNumber.untouched"
+            >Please enter vehicle registration number</small
+          >
+        </div>
+        <!-- vehicle type -->
+        <div class="form-group">
+          <label for="empDes">Vehicle type</label>
+          <select
+            #vehicleType="ngModel"
+            name="vehicleType"
+            [class.is-invalid]="vehicleType.invalid && vehicleType.touched"
+            class="form-control"
+            [ngModel]="vehicleType"
+            id="vehicleType"
+            required
+          >
+            <option value="choose" disabled>Choose...</option>
+            <option value="manager">Car</option>
+            <option value="engineer">Bick</option>
+            <option value="itoperator">Van</option>
+            <option value="accountant">Cab</option>
+            <option value="supervisor">Double Cab</option>
+            <option value="labor">Lory</option>
+            <option value="driver">Doser</option>
+            <option value="cleaningstaff">Bhoom Truck</option>
+            <option value="securitystaff">Industrial Vehicle</option>
+          </select>
+          <small
+            class="text-danger"
+            [class.d-none]="vehicleType.valid || vehicleType.untouched"
+            >Please select the Vehicle Type</small
+          >
+        </div>
+
+        <!-- vehicle chase number -->
+        <div class="form-group">
+          <label for="vehicleChaseNumber">Enter Chase Number</label>
+          <input
+            type="text"
+            ngModel
+            name="vehicleChaseNumber"
+            #vehicleChaseNumber="ngModel"
+            [class.is-invalid]="
+              vehicleChaseNumber.invalid && vehicleChaseNumber.touched
+            "
+            class="form-control"
+            id="vehicleChaseNumber"
+            placeholder="123-456-789"
+            required
+          />
+          <small
+            class="text-danger"
+            [class.d-none]="
+              vehicleChaseNumber.valid || vehicleChaseNumber.untouched
+            "
+            >Please enter a chase number</small
+          >
+        </div>
+
+        <!-- engine number -->
+        <div class="form-group">
+          <label for="vehicleEngineNumber">Enter Engine Number</label>
+          <input
+            type="text"
+            ngModel
+            name="vehicleEngineNumber"
+            #vehicleEngineNumber="ngModel"
+            [class.is-invalid]="
+              vehicleEngineNumber.invalid && vehicleEngineNumber.touched
+            "
+            class="form-control"
+            id="vehicleEngineNumber"
+            placeholder="123-456-789"
+            required
+          />
+          <small
+            class="text-danger"
+            [class.d-none]="
+              vehicleEngineNumber.valid || vehicleEngineNumber.untouched
+            "
+            >Please enter a engine number</small
+          >
+        </div>
+        <!-- manufacture date  -->
+        <div class="form-row">
+          <div class="col-md-3 mb-1">
+            <label for="dob">Vehicle Manufacture Date</label>
+            <input
+              type="date"
+              ngModel
+              name="manufactureDate"
+              #manufactureDate="ngModel"
+              [class.is-invalid]="
+                manufactureDate.invalid && manufactureDate.touched
+              "
+              class="form-control"
+              id="manufactureDate"
+              placeholder="DD/MM/YYYY"
+              required
+            />
+            <small
+              class="text-danger"
+              [class.d-none]="
+                manufactureDate.valid || manufactureDate.untouched
+              "
+              >Please select a date</small
+            >
+          </div>
+
+          <!-- vehicle color -->
+          <div class="col-md-3 mb-1">
+            <label for="vehicleColor">Vehicle Color</label>
+            <input
+              type="text"
+              ngModel
+              name="vehicleColor"
+              #vehicleColor="ngModel"
+              [class.is-invalid]="vehicleColor.invalid && vehicleColor.touched"
+              class="form-control"
+              id="vehicleColor"
+              required
+            />
+            <small
+              class="text-danger"
+              [class.d-none]="vehicleColor.valid || vehicleColor.untouched"
+              >Please enter vehicle number</small
+            >
+          </div>
+
+          <!-- vehicle purchase date  -->
+          <div class="col-md-3 mb-1">
+            <label for="vehiclePurchaseDate">Vehicle Purchase Date</label>
+            <input
+              type="date"
+              ngModel
+              name="vehiclePurchaseDate"
+              #vehiclePurchaseDate="ngModel"
+              [class.is-invalid]="
+                vehiclePurchaseDate.invalid && vehiclePurchaseDate.touched
+              "
+              class="form-control"
+              id="vehiclePurchaseDate"
+              placeholder="DD/MM/YYYY"
+              required
+            />
+            <small
+              class="text-danger"
+              [class.d-none]="
+                vehiclePurchaseDate.valid || vehiclePurchaseDate.untouched
+              "
+              >Please select a date</small
+            >
+          </div>
+        </div>
+
+        <!-- vehicle open mileage -->
+        <div class="form-group">
+          <label for="vehicleOpenMileage">Eneter Vehicle Open Mileage</label>
+          <input
+            type="text"
+            #vehicleOpenMileage="ngModel"
+            ngModel
+            name="vehicleOpenMileage"
+            [class.is-invalid]="
+              vehicleOpenMileage.invalid && vehicleOpenMileage.touched
+            "
+            class="form-control"
+            id="vehicleOpenMileage"
+            placeholder="1234 Km"
+            required
+          />
+          <small
+            class="text-danger"
+            [class.d-none]="
+              vehicleOpenMileage.valid || vehicleOpenMileage.untouched
+            "
+            >Please enter vehicle opne mileage</small
+          >
+        </div>
+
+        <!-- document details  -->
+        <br />
+        <p class="h4" style="text-align: center">Documentary Information</p>
+
+        <!-- insurance type -->
+        <div class="form-group">
+          <label for="insuranceType">Insurance Type</label>
+          <select
+            #insuranceType="ngModel"
+            name="insuranceType"
+            [class.is-invalid]="insuranceType.invalid && insuranceType.touched"
+            class="form-control"
+            [ngModel]="insuranceType"
+            id="insuranceType"
+            required
+          >
+            <option value="choose" disabled>Choose...</option>
+            <option value="manager">Full option</option>
+            <option value="engineer">3rd party</option>
+          </select>
+          <small
+            class="text-danger"
+            [class.d-none]="insuranceType.valid || insuranceType.untouched"
+            >Please select the Insurance Type</small
+          >
+        </div>
+
+        <!-- vehicle registed district -->
+        <div class="form-group">
+          <label for="vehicleRegistedDistrict">Vehicle Registed District</label>
+          <select
+            #vehicleRegistedDistrict="ngModel"
+            name="vehicleRegistedDistrict"
+            [class.is-invalid]="
+              vehicleRegistedDistrict.invalid && vehicleRegistedDistrict.touched
+            "
+            class="form-control"
+            [ngModel]="vehicleRegistedDistrict"
+            id="vehicleRegistedDistrict"
+            required
+          >
+            <option value="choose" disabled>Choose...</option>
+            <option value="manager">Jaffna</option>
+            <option value="engineer">Kilinochchi</option>
+            <option value="manager">Mannar</option>
+            <option value="engineer">Mullaitivu</option>
+            <option value="manager">Vavuniya</option>
+            <option value="engineer">Puttalam</option>
+            <option value="manager">Kurunegala</option>
+            <option value="engineer">Gampaha</option>
+            <option value="manager">Colombo</option>
+            <option value="engineer">Kalutara</option>
+            <option value="manager">Anuradhapura</option>
+            <option value="engineer">Polonnaruwa</option>
+            <option value="manager">Matale</option>
+            <option value="engineer">Kandy</option>
+            <option value="manager">Nuwara Eliya</option>
+            <option value="engineer">Kegalle</option>
+            <option value="manager">Ratnapura</option>
+            <option value="engineer">Trincomalee</option>
+            <option value="manager">Batticaloa</option>
+            <option value="engineer">Ampara</option>
+            <option value="manager">Badulla</option>
+            <option value="engineer">Monaragala</option>
+            <option value="manager">Hambantota</option>
+            <option value="engineer">Matara</option>
+            <option value="engineer">Galle</option>
+          </select>
+          <small
+            class="text-danger"
+            [class.d-none]="
+              vehicleRegistedDistrict.valid || vehicleRegistedDistrict.untouched
+            "
+            >Please select the Vehicle Registerd District</small
+          >
+        </div>
+
+        <!-- next licence renuewal date  -->
+        <div class="form-row">
+          <div class="col-md-3 mb-1">
+            <label for="nextLicenceRenewalDate"
+              >Next Licence Renuewal Date</label
+            >
+            <input
+              type="date"
+              #nextLicenceRenewalDate="ngModel"
+              ngModel
+              name="nextLicenceRenewalDate"
+              [class.is-invalid]="
+                nextLicenceRenewalDate.invalid && nextLicenceRenewalDate.touched
+              "
+              class="form-control"
+              id="nextLicenceRenewalDate"
+              placeholder="DD/MM/YYYY"
+              required
+            />
+            <small
+              class="text-danger"
+              [class.d-none]="
+                nextLicenceRenewalDate.valid || nextLicenceRenewalDate.untouched
+              "
+              >Please select a date</small
+            >
+          </div>
+        </div>
+
+        <!-- previous owner details -->
+        <br />
+        <p class="h4" style="text-align: center">Previous Owner Details</p>
+
+        <!-- previous owner name  -->
+        <div class="form-group">
+          <label for="PreviousOwnerName">Eneter Previous owner name</label>
+          <input
+            type="text"
+            #PreviousOwnerName="ngModel"
+            ngModel
+            name="PreviousOwnerName"
+            [class.is-invalid]="
+              PreviousOwnerName.invalid && PreviousOwnerName.touched
+            "
+            class="form-control"
+            id="PreviousOwnerName"
+            placeholder=""
+            required
+          />
+          <small
+            class="text-danger"
+            [class.d-none]="
+              vehicleOpenMileage.valid || vehicleOpenMileage.untouched
+            "
+            >Please enter previous owner name</small
+          >
+        </div>
+
+        <!-- previous owner nic -->
+        <div class="form-group">
+          <label for="NIC">Eneter Previous owner NIC</label>
+          <input
+            type="text"
+            #NIC="ngModel"
+            ngModel
+            name="NIC"
+            [class.is-invalid]="NIC.invalid && NIC.touched"
+            class="form-control"
+            id="NIC"
+            placeholder="9999999999V"
+            required
+          />
+          <small class="text-danger" [class.d-none]="NIC.valid || NIC.untouched"
+            >Please enter previous owner nic</small
+          >
+        </div>
+
+        <!-- previous owner contact number -->
+        <div class="form-group">
+          <label for="contactNumber"
+            >Eneter Previous owner Contact Number</label
+          >
+          <input
+            type="text"
+            #contactNumber="ngModel"
+            ngModel
+            name="contactNumber"
+            [class.is-invalid]="contactNumber.invalid && contactNumber.touched"
+            class="form-control"
+            id="contactNumber"
+            placeholder="000-000 000 0000"
+            required
+          />
+          <small
+            class="text-danger"
+            [class.d-none]="contactNumber.valid || contactNumber.untouched"
+            >Please enter previous owner contact number</small
+          >
+        </div>
+
+        <!-- previous owner address -->
+        <div class="form-group">
+          <label for="address">Eneter Previous owner Address</label>
+          <input
+            type="text"
+            #address="ngModel"
+            ngModel
+            name="address"
+            [class.is-invalid]="address.invalid && address.touched"
+            class="form-control"
+            id="address"
+            placeholder=""
+            required
+          />
+          <small
+            class="text-danger"
+            [class.d-none]="address.valid || address.untouched"
+            >Please enter previous owner contact number</small
+          >
+        </div>
+
+        <div class="col-auto my-1" align="center">
+          <button
+            type="submit"
+            [disabled]="!empreg.valid"
+            class="btn btn-success btn-lg"
+          >
+            Submit
+          </button>
+        </div>
+        <br /><br /><br /><br /><br /><br />
+      </form>
+    </div>
+  </div>
+</div>

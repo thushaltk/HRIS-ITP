@@ -22,6 +22,11 @@ import { EquipmentListComponent } from './admin-profile/equipments/equipment-lis
 import { NewEquipmentComponent } from './admin-profile/equipments/new-equipment/new-equipment.component';
 import { NewProjectComponent } from './admin-profile/projects/new-project/new-project.component';
 
+import { VehicleListComponent } from './admin-profile/vehicles/vehicle-list/vehicle-list.component';
+import { AllListOfVehicleComponent } from './admin-profile/vehicles/all-list-of-vehicle/all-list-of-vehicle.component';
+import { AddNewVehicleComponent } from './admin-profile/vehicles/add-new-vehicle/add-new-vehicle.component';
+import { AllocatedVehicleComponent } from './admin-profile/vehicles/allocated-vehicle/allocated-vehicle.component';
+import { UnAllocatedVehicleComponent } from './admin-profile/vehicles/un-allocated-vehicle/un-allocated-vehicle.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -29,49 +34,61 @@ const appRoutes: Routes = [
   { path: 'login/emp', component: LoginEmpComponent },
   { path: 'login/admin', component: LoginAdminComponent },
   {
-    path: 'admin', component: AdminProfileComponent, children: [
+    path: 'admin',
+    component: AdminProfileComponent,
+    children: [
       { path: 'dashboard', component: AdminDashboardComponent },
       {
-        path: 'announcements', component: AnnouncementsComponent, children: [
+        path: 'announcements',
+        component: AnnouncementsComponent,
+        children: [
           { path: 'view', component: AdminAnnouncementsComponent },
-          { path: 'new', component: AnnouncementCreateComponent }
-        ]
+          { path: 'new', component: AnnouncementCreateComponent },
+        ],
       },
       { path: 'projects', component: ProjectsComponent },
       { path: 'projects/new', component: NewProjectComponent },
       {
-        path: 'equipments', component: EquipmentsComponent, children: [
+        path: 'equipments',
+        component: EquipmentsComponent,
+        children: [
           { path: 'list', component: EquipmentListComponent },
           { path: 'new', component: NewEquipmentComponent },
-        ]
+        ],
       },
       { path: 'training-programs', component: TrainingProgramsComponent },
-      { path: 'vehicles', component: VehiclesComponent },
       {
-        path: 'employees', component: EmployeesComponent, children: [
+        path: 'vehicles',
+        component: VehiclesComponent,
+        children: [
+          { path: 'list', component: VehicleListComponent },
+          { path: 'allList', component: AllListOfVehicleComponent },
+          { path: 'addNew', component: AddNewVehicleComponent },
+          { path: 'allocated', component: AllocatedVehicleComponent },
+          { path: 'unAllocated', component: UnAllocatedVehicleComponent },
+        ],
+      },
+      {
+        path: 'employees',
+        component: EmployeesComponent,
+        children: [
           { path: 'create', component: EmpRegComponent },
           { path: 'view', component: EmpSelectComponent },
           { path: ':designation', component: EmpRegistryComponent },
-
-        ]
-      }
-    ]
+        ],
+      },
+    ],
   },
 
   {
-    path: 'empProfile', component: EmpProfileComponent, children: [
-      { path: ':nic', component: EmpProfileComponent }
-    ]
-  }
-]
-
-
+    path: 'empProfile',
+    component: EmpProfileComponent,
+    children: [{ path: ':nic', component: EmpProfileComponent }],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-
-export class AppRoutingModule { }
-
-
+export class AppRoutingModule {}

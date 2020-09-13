@@ -1,0 +1,31 @@
+<div>
+  <div class="row content-wrapper">
+    <div class="col-md-12 title">Equipment Management</div>
+    <div class="col-md-12 pt-20">
+      <button class="btn btn-sm btn-primary">New Equipment</button>
+    </div>
+
+    <div class="col-md-12 pt-10">
+      <div class="row">
+        <div class="col-md-3">
+          <select class="form-control form-control-sm">
+            <!-- (change)="filter($event.target.value)" -->
+            <option value="/all-list-of-vehicle">All Vehicles</option>
+            <option value="/allocated-vehicle">Allocated Vehicles</option>
+            <option value="/un-allocated-vehicle">Un-Allocated Vehicles</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <!-- <input
+            class="form-control form-control-sm"
+            (keyup)="search($event)"
+            [(ngModel)]="keyword"
+            type="text"
+            placeholder="Search Equipment"
+          /> -->
+        </div>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

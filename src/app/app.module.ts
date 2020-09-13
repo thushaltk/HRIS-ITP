@@ -54,6 +54,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatSelectModule } from '@angular/material/select';
 import { NewProjectComponent } from './admin-profile/projects/new-project/new-project.component';
 import { DatePipe } from '@angular/common';
+import { VehicleListComponent } from './admin-profile/vehicles/vehicle-list/vehicle-list.component';
+import { AllListOfVehicleComponent } from './admin-profile/vehicles/all-list-of-vehicle/all-list-of-vehicle.component';
+import { AddNewVehicleComponent } from './admin-profile/vehicles/add-new-vehicle/add-new-vehicle.component';
+import { AllocatedVehicleComponent } from './admin-profile/vehicles/allocated-vehicle/allocated-vehicle.component';
+import { UnAllocatedVehicleComponent } from './admin-profile/vehicles/un-allocated-vehicle/un-allocated-vehicle.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,6 +98,11 @@ import { DatePipe } from '@angular/common';
     NewEquipmentComponent,
     ConfirmDialogComponent,
     NewProjectComponent,
+    VehicleListComponent,
+    AllListOfVehicleComponent,
+    AddNewVehicleComponent,
+    AllocatedVehicleComponent,
+    UnAllocatedVehicleComponent,
   ],
   imports: [
     BrowserModule,
