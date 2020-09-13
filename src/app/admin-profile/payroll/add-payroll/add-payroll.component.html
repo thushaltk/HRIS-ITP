@@ -16,7 +16,7 @@
     </div>
     <div class="container-fluid" style="background-color: #ffffff">
       <form (ngSubmit)="onSubmit()" #addPay="ngForm">
-        <div class="col-md-3 mb-1">
+        <div class="form-group">
           <label for="nic">NIC Number</label>
           <input
             type="text"
@@ -83,7 +83,7 @@
               payForOTHour
               class="form-control"
               id="payForOTHour"
-              placeholder="4"
+              placeholder="400"
               required
             />
             <!-- <small
@@ -104,7 +104,7 @@
               penaltyForLeaves
               class="form-control"
               id="penaltyForLeaves"
-              placeholder="4"
+              placeholder="250"
               required
             />
             <!-- <small

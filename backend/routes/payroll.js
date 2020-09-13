@@ -36,7 +36,7 @@ router.post("/:nic", async (req, res) => {
   try {
     const emp = await Employee.findOne({ nic: req.params.nic });
     if (!emp) return res.status(404).send("User not found");
-    const findPayroll = await Payroll.findOne({ employee: req.params.id });
+    const findPayroll = await Payroll.findOne({ employee: emp._id });
     if (findPayroll) return res.status(409).send("Payroll already exists");
 
     const { baseSalary, maxLeaves, penaltyForLeaves, payForOTHour } = req.body;

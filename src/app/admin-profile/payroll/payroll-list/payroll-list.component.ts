@@ -39,7 +39,9 @@ export class PayrollListComponent implements OnInit {
         (confirm) => {
           this.payrolls = this.payrolls.filter((pay) => pay._id != payroll._id);
           this.payrollService.deletePayroll(payroll).subscribe();
-          this.toastr.success(`Payroll, ${payroll._id} removed`);
+          this.toastr.success(
+            `Payroll for ${payroll?.employee?.fullName} removed`
+          );
         },
         (reject) => {}
       );
