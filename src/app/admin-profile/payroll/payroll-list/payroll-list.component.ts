@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Payroll } from '../../../_models/payroll.model';
 import { PayrollService } from '../../../_services/payroll.service';
 import { ConfirmService } from '../../../shared/confirm.service';
@@ -10,14 +11,15 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./payroll-list.component.css'],
 })
 export class PayrollListComponent implements OnInit {
-  // @Output() deletePayroll: EventEmitter<Payroll> = new EventEmitter();
+  @Output() deletePayroll: EventEmitter<Payroll> = new EventEmitter();
 
   payrolls: Payroll[];
 
   constructor(
     private payrollService: PayrollService,
     private toastr: ToastrService,
-    private confirmService: ConfirmService
+    private confirmService: ConfirmService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -39,10 +41,17 @@ export class PayrollListComponent implements OnInit {
         (confirm) => {
           this.payrolls = this.payrolls.filter((pay) => pay._id != payroll._id);
           this.payrollService.deletePayroll(payroll).subscribe();
-          this.toastr.success(`Payroll, ${payroll._id} removed`);
+          this.toastr.success(
+            `Payroll for ${payroll?.employee?.fullName} removed`
+          );
         },
         (reject) => {}
       );
-    // this.deletePayroll.emit(payroll);
+  }
+
+  onUpdate(payroll: Payroll) {
+    this.router.navigate(['admin/payroll/updatePayroll'], {
+      state: { pay: payroll },
+    });
   }
 }

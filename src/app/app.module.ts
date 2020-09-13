@@ -55,6 +55,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatSelectModule } from '@angular/material/select';
 import { NewProjectComponent } from './admin-profile/projects/new-project/new-project.component';
 import { DatePipe } from '@angular/common';
+import { AllocatedVehicleComponent } from './admin-profile/vehicles/allocated-vehicle/allocated-vehicle.component';
+import { UnAllocatedVehicleComponent } from './admin-profile/vehicles/un-allocated-vehicle/un-allocated-vehicle.component';
 import { EmpAttendanceLeaveComponent } from './emp-profile/emp-attendance-leave/emp-attendance-leave.component';
 import { EmpQuickLeaveComponent } from './emp-profile/emp-attendance-leave/emp-quick-leave/emp-quick-leave.component';
 import { QuickLeavesService } from '../../service/quickLeaves.service';
@@ -65,6 +67,8 @@ import { VehicleListComponent } from './admin-profile/vehicles/vehicle-list/vehi
 import { VehicleUnallocatedComponent } from './admin-profile/vehicles/vehicle-unallocated/vehicle-unallocated.component';
 import { VehicleAllocatedComponent } from './admin-profile/vehicles/vehicle-allocated/vehicle-allocated.component';
 import { VehiclesServices } from '../../service/vehicle.service';
+import { AddPayrollComponent } from './admin-profile/payroll/add-payroll/add-payroll.component';
+import { UpdatePayrollComponent } from './admin-profile/payroll/update-payroll/update-payroll.component';
 
 @NgModule({
   declarations: [
@@ -106,6 +110,9 @@ import { VehiclesServices } from '../../service/vehicle.service';
     NewEquipmentComponent,
     ConfirmDialogComponent,
     NewProjectComponent,
+    VehicleListComponent,
+    AllocatedVehicleComponent,
+    UnAllocatedVehicleComponent,
     EmpAttendanceLeaveComponent,
     EmpQuickLeaveComponent,
     AddAttendanceComponent,
@@ -113,7 +120,9 @@ import { VehiclesServices } from '../../service/vehicle.service';
     VehicleListAllComponent,
     VehicleListComponent,
     VehicleUnallocatedComponent,
-    VehicleAllocatedComponent
+    VehicleAllocatedComponent,
+    AddPayrollComponent,
+    UpdatePayrollComponent,
   ],
   imports: [
     BrowserModule,

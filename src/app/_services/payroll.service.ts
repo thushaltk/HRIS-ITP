@@ -24,4 +24,20 @@ export class PayrollService {
       `${environment.apiUrl}payroll/${payroll._id}`
     );
   }
+
+  addPayroll(payroll: Payroll, nic: string) {
+    return this.http.post<Payroll>(
+      `${environment.apiUrl}payroll/${nic}`,
+      payroll,
+      httpOptions
+    );
+  }
+
+  updatePayroll(payroll: Payroll, nic: string) {
+    return this.http.patch<Payroll>(
+      `${environment.apiUrl}payroll/${nic}`,
+      payroll,
+      httpOptions
+    );
+  }
 }
