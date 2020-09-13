@@ -27,6 +27,7 @@ import { EmpQuickLeaveComponent } from './emp-profile/emp-attendance-leave/emp-q
 import { AddAttendanceComponent } from './admin-profile/attendance/add-attendance/add-attendance.component';
 
 import { PayrollComponent } from './admin-profile/payroll/payroll.component';
+import { AddVehicleComponent } from './admin-profile/vehicles/add-vehicle/add-vehicle.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -58,7 +59,9 @@ const appRoutes: Routes = [
         ],
       },
       { path: 'training-programs', component: TrainingProgramsComponent },
-      { path: 'vehicles', component: VehiclesComponent },
+      { path: 'vehicles', component: VehiclesComponent, children:[
+        { path: 'new', component: AddVehicleComponent}
+      ]},
       {
         path: 'employees',
         component: EmployeesComponent,

@@ -1,4 +1,4 @@
-<div class="container example">
+<!-- <div class="container example">
   <div class="row">
     <div class="col col-lg-5" class="sidenav">
       <div style="margin-bottom: -10%">
@@ -69,7 +69,7 @@
       <hr />
       <a
         href=""
-        [routerLink]="['vehicles']"
+        [routerLink]="['vehicles/new']"
         style="font-size: 18px; padding-bottom: 0; padding-top: 0"
         >Vehicle Management</a
       >
@@ -78,5 +78,98 @@
     <div class="col col-lg-7" style="margin-left: 20%">
       <router-outlet></router-outlet>
     </div>
+  </div>
+</div> -->
+<div class="wrapper" >
+  <!-- Sidebar -->
+  <nav class="sidenav" id="sidebar" style="overflow-y: scroll;">
+      <div class="sidebar-header">
+        <img
+        src="../../assets/images/admin.png"
+        alt="admin icon"
+        class="adminLogo text-center"
+        style="margin-left: 60px;"
+      />
+      <h3 class="text-center">ADMINISTRATOR</h3>
+      </div>
+
+      <ul class="list-unstyled components">
+          <li>
+            <a [routerLink]="['']">Home</a>
+          </li>
+          <li>
+            <a [routerLink]="['dashboard']">Dashboard</a>
+          </li>
+          <li>
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Employee Details Management</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                  <a [routerLink]="['employees/view']">View All Employees</a>
+                </li>
+                <li>
+                  <a [routerLink]="['employees/create']">Add New Employee</a>
+                </li>
+            </ul>
+        </li>
+          <li>
+            <a [routerLink]="['payroll']">Payroll Management</a>
+          </li>
+
+          <li>
+              <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Announcement Management</a>
+              <ul class="collapse list-unstyled" id="homeSubmenu2">
+                  <li>
+                    <a [routerLink]="['announcements/new']">Add New Announcements</a>
+                  </li>
+                  <li>
+                    <a [routerLink]="['announcements/view']">View Announcements</a>
+                  </li>
+              </ul>
+          </li>
+
+          <li>
+            <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Training Program <br> Management</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu3">
+                <li>
+                  <a [routerLink]="['training-programs/new']">Add New Training Program</a>
+                </li>
+                <li>
+                  <a [routerLink]="['training-programs/view']">View All Training Programs</a>
+                </li>
+            </ul>
+        </li>
+
+          <li>
+              <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Attendance & Leave <br> Management</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu2">
+                  <li>
+                      <a [routerLink]="['attendance']">Add Attendance Record</a>
+                  </li>
+                  <li>
+                      <a [routerLink]="['attendance/view']">View Attendance Details</a>
+                  </li>
+                  <li>
+                      <a [routerLink]="['attendance/view']">View all leaves</a>
+                  </li>
+              </ul>
+          </li>
+
+
+          <li>
+              <a [routerLink]="['projects']">Project Management</a>
+          </li>
+          <li>
+              <a [routerLink]="['equipments/list']">Equipment Management</a>
+          </li>
+          <li>
+            <a [routerLink]="['vehicles/new']">Vehicle Management</a>
+        </li>
+      </ul>
+
+  </nav>
+  <!-- Page Content -->
+
+  <div class="col col-lg-7" style="margin-left: 23%;">
+    <router-outlet></router-outlet>
   </div>
 </div>

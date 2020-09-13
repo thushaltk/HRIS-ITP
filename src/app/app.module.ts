@@ -59,6 +59,12 @@ import { EmpAttendanceLeaveComponent } from './emp-profile/emp-attendance-leave/
 import { EmpQuickLeaveComponent } from './emp-profile/emp-attendance-leave/emp-quick-leave/emp-quick-leave.component';
 import { QuickLeavesService } from '../../service/quickLeaves.service';
 import { AddAttendanceComponent } from './admin-profile/attendance/add-attendance/add-attendance.component';
+import { AddVehicleComponent } from './admin-profile/vehicles/add-vehicle/add-vehicle.component';
+import { VehicleListAllComponent } from './admin-profile/vehicles/vehicle-list-all/vehicle-list-all.component';
+import { VehicleListComponent } from './admin-profile/vehicles/vehicle-list/vehicle-list.component';
+import { VehicleUnallocatedComponent } from './admin-profile/vehicles/vehicle-unallocated/vehicle-unallocated.component';
+import { VehicleAllocatedComponent } from './admin-profile/vehicles/vehicle-allocated/vehicle-allocated.component';
+import { VehiclesServices } from '../../service/vehicle.service';
 
 @NgModule({
   declarations: [
@@ -102,7 +108,12 @@ import { AddAttendanceComponent } from './admin-profile/attendance/add-attendanc
     NewProjectComponent,
     EmpAttendanceLeaveComponent,
     EmpQuickLeaveComponent,
-    AddAttendanceComponent
+    AddAttendanceComponent,
+    AddVehicleComponent,
+    VehicleListAllComponent,
+    VehicleListComponent,
+    VehicleUnallocatedComponent,
+    VehicleAllocatedComponent
   ],
   imports: [
     BrowserModule,
@@ -130,6 +141,7 @@ import { AddAttendanceComponent } from './admin-profile/attendance/add-attendanc
     EmployeeService,
     DatePipe,
     QuickLeavesService,
+    VehiclesServices
   ],
   bootstrap: [AppComponent],
 })

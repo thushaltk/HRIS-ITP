@@ -1,31 +1,41 @@
 .bgImage{
   background-image: url('../../assets/images/officeBG.jpg');
   background-size: 100%;
-  background-attachment: fixed;
+  background-attachment: scroll;
   height: 100%;
 }
 
 .buttonLandingPage{
   transition: 0.3s;
   cursor: pointer;
-  color: #397a12;
+  color: #000;
+  text-align: center;
   background-color: #FFFFFF;
-  border-color: #397a12;
-  border-width: 5px;
-  border-radius: 12px;
+  border-color: #01579b;
+  border-width: 2px;
+  border-radius: 5px 5px 5px 5px ;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .buttonLandingPage:hover{
-  background-color: green;
-  border-color: green;
+  background-color: #01579b;
+  border-color: #01579b;
   color: white;
-  font-weight: 700;
 }
 
 .headingsLandingPage{
-  color: #397a12;
+  color: #000;
   text-align: center;
   font-weight: 700;
   font-family: Arial, Helvetica, sans-serif
 
 }
+
+.cardSize h1{
+  font-size: 50px;
+}
+
+#down {
+  margin-top: 100%;
+  padding-bottom: 25%;
+ }
