@@ -67,6 +67,8 @@ import { VehicleAllocatedComponent } from './admin-profile/vehicles/vehicle-allo
 import { VehiclesServices } from '../../service/vehicle.service';
 import { AddPayrollComponent } from './admin-profile/payroll/add-payroll/add-payroll.component';
 import { UpdatePayrollComponent } from './admin-profile/payroll/update-payroll/update-payroll.component';
+import { TrainingAddComponent } from './admin-profile/training-programs/training-add/training-add.component';
+import { TrainingViewComponent } from './admin-profile/training-programs/training-view/training-view.component';
 
 @NgModule({
   declarations: [
@@ -119,6 +121,8 @@ import { UpdatePayrollComponent } from './admin-profile/payroll/update-payroll/u
     VehicleAllocatedComponent,
     AddPayrollComponent,
     UpdatePayrollComponent,
+    TrainingAddComponent,
+    TrainingViewComponent,
   ],
   imports: [
     BrowserModule,

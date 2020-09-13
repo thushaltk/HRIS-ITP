@@ -3,7 +3,7 @@
       [ngClass]="{bgImage: true}"
       >
 
-      <div class="container" style="margin: auto">
+      <div class="container" style="margin: auto" #top>
         <br><br><br><br><br><br>
 				<h1 [ngClass]="{headingsLandingPage: true}">Welcome</h1>
 				<h2 [ngClass]="{headingsLandingPage: true}">Human Resource Information Management System</h2>
@@ -81,7 +81,10 @@
     </div>
 
   </div>
+  <button type="button" class="btn btn-primary pull-right" (click)="scroll(top)">GO TO TOP</button>
   <br><br><br><br><br>
 </div>
+
 </div>
+
 <app-footer></app-footer>
