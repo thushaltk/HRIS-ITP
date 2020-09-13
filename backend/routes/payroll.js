@@ -56,9 +56,10 @@ router.post("/:nic", async (req, res) => {
   }
 });
 
-router.patch("/:id", async (req, res) => {
+router.patch("/:nic", async (req, res) => {
   try {
-    const payroll = await Payroll.findOne({ employee: req.params.id });
+    const emp = await Employee.findOne({ nic: req.params.nic });
+    const payroll = await Payroll.findOne({ employee: emp._id });
     if (!payroll) return res.status(404).send("Employee not found!");
     const { baseSalary, maxLeaves, penaltyForLeaves, payForOTHour } = req.body;
     if (baseSalary) {

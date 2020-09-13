@@ -30,7 +30,7 @@
         <td>{{ payroll.penaltyForLeaves }}</td>
         <td>{{ payroll.payForOTHour }}</td>
         <td>
-          <a class="btn btn-sm btn-primary">Edit</a>
+          <a class="btn btn-sm btn-primary" (click)="onUpdate(payroll)">Edit</a>
         </td>
         <td>
           <a class="btn btn-sm btn-danger" (click)="onDelete(payroll)"

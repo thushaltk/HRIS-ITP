@@ -28,6 +28,7 @@ import { AddAttendanceComponent } from './admin-profile/attendance/add-attendanc
 
 import { PayrollComponent } from './admin-profile/payroll/payroll.component';
 import { AddPayrollComponent } from './admin-profile/payroll/add-payroll/add-payroll.component';
+import { UpdatePayrollComponent } from './admin-profile/payroll/update-payroll/update-payroll.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -49,8 +50,11 @@ const appRoutes: Routes = [
       },
       { path: 'projects', component: ProjectsComponent },
       { path: 'projects/new', component: NewProjectComponent },
+
       { path: 'payroll', component: PayrollComponent },
       { path: 'payroll/addPayroll', component: AddPayrollComponent },
+      { path: 'payroll/updatePayroll', component: UpdatePayrollComponent },
+
       {
         path: 'equipments',
         component: EquipmentsComponent,
@@ -73,9 +77,8 @@ const appRoutes: Routes = [
 
       { path: 'attendance', component: AttendanceComponent },
 
-      { path: 'attendance/add-attendance', component: AddAttendanceComponent}
-
-    ]
+      { path: 'attendance/add-attendance', component: AddAttendanceComponent },
+    ],
   },
 
   {

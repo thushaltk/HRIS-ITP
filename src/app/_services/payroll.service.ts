@@ -32,4 +32,12 @@ export class PayrollService {
       httpOptions
     );
   }
+
+  updatePayroll(payroll: Payroll, nic: string) {
+    return this.http.patch<Payroll>(
+      `${environment.apiUrl}payroll/${nic}`,
+      payroll,
+      httpOptions
+    );
+  }
 }

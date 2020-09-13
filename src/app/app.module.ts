@@ -60,6 +60,7 @@ import { EmpQuickLeaveComponent } from './emp-profile/emp-attendance-leave/emp-q
 import { QuickLeavesService } from '../../service/quickLeaves.service';
 import { AddAttendanceComponent } from './admin-profile/attendance/add-attendance/add-attendance.component';
 import { AddPayrollComponent } from './admin-profile/payroll/add-payroll/add-payroll.component';
+import { UpdatePayrollComponent } from './admin-profile/payroll/update-payroll/update-payroll.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +106,7 @@ import { AddPayrollComponent } from './admin-profile/payroll/add-payroll/add-pay
     EmpQuickLeaveComponent,
     AddAttendanceComponent,
     AddPayrollComponent,
+    UpdatePayrollComponent,
   ],
   imports: [
     BrowserModule,

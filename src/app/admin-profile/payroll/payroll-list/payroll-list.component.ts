@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Payroll } from '../../../_models/payroll.model';
 import { PayrollService } from '../../../_services/payroll.service';
 import { ConfirmService } from '../../../shared/confirm.service';
@@ -17,7 +18,8 @@ export class PayrollListComponent implements OnInit {
   constructor(
     private payrollService: PayrollService,
     private toastr: ToastrService,
-    private confirmService: ConfirmService
+    private confirmService: ConfirmService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -45,5 +47,11 @@ export class PayrollListComponent implements OnInit {
         },
         (reject) => {}
       );
+  }
+
+  onUpdate(payroll: Payroll) {
+    this.router.navigate(['admin/payroll/updatePayroll'], {
+      state: { pay: payroll },
+    });
   }
 }
