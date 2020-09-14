@@ -65,11 +65,13 @@ import { VehicleListComponent } from './admin-profile/vehicles/vehicle-list/vehi
 import { VehicleUnallocatedComponent } from './admin-profile/vehicles/vehicle-unallocated/vehicle-unallocated.component';
 import { VehicleAllocatedComponent } from './admin-profile/vehicles/vehicle-allocated/vehicle-allocated.component';
 import { VehiclesServices } from '../../service/vehicle.service';
+import { LongLeavesService } from '../../service/longLeaves.service';
 import { AddPayrollComponent } from './admin-profile/payroll/add-payroll/add-payroll.component';
 import { UpdatePayrollComponent } from './admin-profile/payroll/update-payroll/update-payroll.component';
 import { TrainingAddComponent } from './admin-profile/training-programs/training-add/training-add.component';
 import { TrainingViewComponent } from './admin-profile/training-programs/training-view/training-view.component';
 import { EmpLongLeaveComponent } from './emp-profile/emp-attendance-leave/emp-long-leave/emp-long-leave.component';
+import { ViewLeavesComponent } from './admin-profile/attendance/view-leaves/view-leaves.component';
 
 @NgModule({
   declarations: [
@@ -125,6 +127,7 @@ import { EmpLongLeaveComponent } from './emp-profile/emp-attendance-leave/emp-lo
     TrainingAddComponent,
     TrainingViewComponent,
     EmpLongLeaveComponent,
+    ViewLeavesComponent,
   ],
   imports: [
     BrowserModule,
@@ -152,7 +155,8 @@ import { EmpLongLeaveComponent } from './emp-profile/emp-attendance-leave/emp-lo
     EmployeeService,
     DatePipe,
     QuickLeavesService,
-    VehiclesServices
+    VehiclesServices,
+    LongLeavesService
   ],
   bootstrap: [AppComponent],
 })

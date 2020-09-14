@@ -1,1 +1,112 @@
 
+<div style="width: max-content; margin-left: 60%;">
+  <div class="content container-fluid" style="overflow-y: scroll; overflow-x: hidden; height:700px; width: 700px;">
+    <br>
+    <h1>Request a Long Leave</h1>
+    <br>
+    <div class="card text-center" style="border-color: #6d7fcc; border-radius: 10px 10px 10px 10px; box-shadow: 5px 5px 5px #888888;">
+      <div class="card-header">
+        ***
+
+      </div>
+      <div class="card-body">
+        <form #lleave="ngForm" (ngSubmit)="onSubmit()">
+          <div class="form-group row">
+            <label for="empID" class="col-sm-5 col-form-label pull-right">EMP ID</label>
+            <div class="col-sm-5" style="margin-left: -10%;">
+              <input type="text" id="empID" class="form-control" [(ngModel)]="this.empID" name="empID" required>
+            </div>
+            <br>
+            <span class="help-block" *ngIf="!time.valid && time.touched" style="color: red">Please select leave
+              time.</span>
+          </div>
+          <div class="form-group row">
+            <label for="time" class="col-sm-5 col-form-label pull-right">Time</label>
+            <div class="col-sm-5" style="margin-left: -10%;">
+              <input type="time" id="time" class="form-control" [ngModel]="dateToday | date:'HH:mm:ss'"  name="time" #time="ngModel" required>
+            </div>
+            <br>
+            <span class="help-block" *ngIf="!time.valid && time.touched" style="color: red">Please select leave
+              time.</span>
+          </div>
+          <div class="form-group row">
+            <label for="startdate" class="col-sm-5 col-form-label pull-right">Leave Start Date</label>
+            <div class="col-sm-5" style="margin-left: -10%;">
+              <input type="date" id="startdate" class="form-control" ngModel name="startdate" #startdate="ngModel" required>
+            </div>
+            <br>
+            <span class="help-block" *ngIf="!startdate.valid && startdate.touched" style="color: red">Please select start date</span>
+          </div>
+          <div class="form-group row">
+            <label for="enddate" class="col-sm-5 col-form-label pull-right">Leave End Date</label>
+            <div class="col-sm-5" style="margin-left: -10%;">
+              <input type="date" id="enddate" class="form-control" ngModel name="enddate" #enddate="ngModel" required>
+            </div>
+            <br>
+            <span class="help-block" *ngIf="!enddate.valid && enddate.touched" style="color: red">Please select end date</span>
+          </div>
+          <div class="form-group row">
+            <label for="reason" class="col-sm-5 col-form-label pull-right">Reason</label>
+            <div class="col-sm-5" style="margin-left: -10%;">
+              <input type="text" id="reason" class="form-control" ngModel name="reason" #reason="ngModel" required>
+            </div>
+            <br>
+            <span class="help-block" *ngIf="!reason.valid && reason.touched" style="color: red">Please enter a reason.</span>
+          </div>
+          <div class="text-center pt-4">
+            <button type="submit" class="btn btn-success" [disabled]="!lleave.valid">SUBMIT</button>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer text-muted">
+        ***
+      </div>
+    </div>
+    <br><br><br>
+
+    <div class="card text-center" style="border-color: #6d7fcc; border-radius: 10px 10px 10px 10px; box-shadow: 5px 5px 5px #888888;">
+      <h1>View applied leaves</h1>
+      <div class="card-header">
+        Featured
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" class="text-center">#</th>
+              <th scope="col" class="text-center">Time</th>
+              <th scope="col" class="text-center">Start Date</th>
+              <th scope="col" class="text-center">End Date</th>
+              <th scope="col" class="text-center">Reason</th>
+              <th scope="col" class="text-center">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let longLeave of getlongLeave">
+              <th scope="row">1</th>
+              <td>{{longLeave.empID}}</td>
+              <td>{{longLeave.time}}</td>
+              <td>{{longLeave.startDate}}</td>
+              <td>{{longLeave.endDate}}</td>
+              <td>{{longLeave.reason}}</td>
+              <td style="color: grey;">{{longLeave.status}}</td>
+              <td>
+                <a class="btn btn-danger pull-right" (click)="onDelete(longLeave.id)">DELETE</a>
+              </td>
+            </tr>
+
+            <tr *ngIf="isNodata" style="color:red;">
+              <td colspan="5">No data!.</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer text-muted">
+        2 days ago
+      </div>
+    </div>
+    <br><br><br><br><br><br><br><br>
+  </div>
+
+</div>

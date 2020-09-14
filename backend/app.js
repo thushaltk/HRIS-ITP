@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const announcementsRoutes = require("./routes/announcements");
 const employeesRoutes = require("./routes/employees");
 const quickLeavesRoutes = require("./routes/quickLeave");
+const longLeavesRoutes = require("./routes/longLeave");
 const equipmentRoutes = require("./routes/equipments");
 const projectRoutes = require("./routes/projects");
 const payrollRoute = require("./routes/payroll");
@@ -50,5 +51,5 @@ app.use("/api/project", projectRoutes);
 app.use("/api/payroll", payrollRoute);
 app.use("/api/salary", salaryRoute);
 app.use("/api/quickLeaves", quickLeavesRoutes);
-
+app.use("/api/longLeaves", longLeavesRoutes);
 module.exports = app;

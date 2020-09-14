@@ -1,0 +1,46 @@
+<div class="card text-center" style="border-color: #6d7fcc; border-radius: 10px 10px 10px 10px; box-shadow: 5px 5px 5px #888888;">
+  <h1>View applied leaves</h1>
+  <div class="card-header">
+    Featured
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" class="text-center">#</th>
+          <th scope="col" class="text-center">Time</th>
+          <th scope="col" class="text-center">Start Date</th>
+          <th scope="col" class="text-center">End Date</th>
+          <th scope="col" class="text-center">Reason</th>
+          <th scope="col" class="text-center">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let longLeave of getlongLeave">
+          <th scope="row">1</th>
+          <td>{{longLeave.time}}</td>
+          <td>{{longLeave.startDate}}</td>
+          <td>{{longLeave.endDate}}</td>
+          <td>{{longLeave.reason}}</td>
+          <td style="color: grey;">{{longLeave.status}}</td>
+          <td>
+            <a class="btn btn-success pull-right" (click)="approve(longLeave.id)">APPROVE</a>
+            <a class="btn btn-danger pull-right" (click)="reject(longLeave.id)">REJECT</a>
+
+          </td>
+        </tr>
+
+        <tr *ngIf="isNodata" style="color:red;">
+          <td colspan="5">No data!.</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer text-muted">
+    2 days ago
+  </div>
+</div>
+<br><br><br><br><br><br><br><br>
+
+

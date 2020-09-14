@@ -32,6 +32,7 @@ import { AddPayrollComponent } from './admin-profile/payroll/add-payroll/add-pay
 import { UpdatePayrollComponent } from './admin-profile/payroll/update-payroll/update-payroll.component';
 import { TrainingAddComponent } from './admin-profile/training-programs/training-add/training-add.component';
 import { EmpLongLeaveComponent } from './emp-profile/emp-attendance-leave/emp-long-leave/emp-long-leave.component';
+import { ViewLeavesComponent } from './admin-profile/attendance/view-leaves/view-leaves.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -86,6 +87,8 @@ const appRoutes: Routes = [
       { path: 'attendance', component: AttendanceComponent },
 
       { path: 'attendance/add-attendance', component: AddAttendanceComponent },
+
+      { path: 'attendance/view-leaves', component: ViewLeavesComponent },
     ],
   },
 
@@ -102,8 +105,8 @@ const appRoutes: Routes = [
             path: 'attendanceLeave',
             component: EmpAttendanceLeaveComponent,
             children: [
-              { path: 'quickLeave', component: EmpQuickLeaveComponent },
-              { path: 'longLeave', component: EmpLongLeaveComponent },
+              { path: 'quickLeave/:nic', component: EmpQuickLeaveComponent },
+              { path: 'longLeave/:nic', component: EmpLongLeaveComponent },
             ],
           },
         ],
