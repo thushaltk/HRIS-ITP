@@ -30,6 +30,8 @@ import { PayrollComponent } from './admin-profile/payroll/payroll.component';
 import { AddVehicleComponent } from './admin-profile/vehicles/add-vehicle/add-vehicle.component';
 import { AddPayrollComponent } from './admin-profile/payroll/add-payroll/add-payroll.component';
 import { UpdatePayrollComponent } from './admin-profile/payroll/update-payroll/update-payroll.component';
+import { TrainingAddComponent } from './admin-profile/training-programs/training-add/training-add.component';
+import { EmpLongLeaveComponent } from './emp-profile/emp-attendance-leave/emp-long-leave/emp-long-leave.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -49,6 +51,9 @@ const appRoutes: Routes = [
           { path: 'new', component: AnnouncementCreateComponent },
         ],
       },
+      { path: 'trainingPrograms', component: TrainingProgramsComponent, children: [
+        { path: 'add', component: TrainingAddComponent}
+      ]},
       { path: 'projects', component: ProjectsComponent },
       { path: 'projects/new', component: NewProjectComponent },
 
@@ -98,6 +103,7 @@ const appRoutes: Routes = [
             component: EmpAttendanceLeaveComponent,
             children: [
               { path: 'quickLeave', component: EmpQuickLeaveComponent },
+              { path: 'longLeave', component: EmpLongLeaveComponent },
             ],
           },
         ],

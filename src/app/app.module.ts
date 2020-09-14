@@ -69,6 +69,7 @@ import { AddPayrollComponent } from './admin-profile/payroll/add-payroll/add-pay
 import { UpdatePayrollComponent } from './admin-profile/payroll/update-payroll/update-payroll.component';
 import { TrainingAddComponent } from './admin-profile/training-programs/training-add/training-add.component';
 import { TrainingViewComponent } from './admin-profile/training-programs/training-view/training-view.component';
+import { EmpLongLeaveComponent } from './emp-profile/emp-attendance-leave/emp-long-leave/emp-long-leave.component';
 
 @NgModule({
   declarations: [
@@ -123,6 +124,7 @@ import { TrainingViewComponent } from './admin-profile/training-programs/trainin
     UpdatePayrollComponent,
     TrainingAddComponent,
     TrainingViewComponent,
+    EmpLongLeaveComponent,
   ],
   imports: [
     BrowserModule,

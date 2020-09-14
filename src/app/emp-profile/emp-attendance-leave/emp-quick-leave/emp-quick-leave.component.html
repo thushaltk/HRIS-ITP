@@ -1,10 +1,12 @@
-<div style="background-color: #ccff90;width: 700px;">
+<div style="width: max-content; margin-left: 60%;">
   <div class="content container-fluid" style="overflow-y: scroll; overflow-x: hidden; height:700px; width: 700px;">
     <br>
-    <h1>Apply a Quick Leave</h1><br><br>
-    <div class="card text-center">
+    <h1>Apply a Quick Leave</h1>
+    <button type="button" class="btn btn-primary" [routerLink]="['../longLeave']">REQUEST A LONG TERM LEAVE</button><br><br>
+    <div class="card text-center" style="border-color: #6d7fcc; border-radius: 10px 10px 10px 10px; box-shadow: 5px 5px 5px #888888;">
       <div class="card-header">
-        Featured
+        APPLY QUICK LEAVE
+
       </div>
       <div class="card-body">
         <form #qleave="ngForm" (ngSubmit)="onSubmit()">
@@ -25,6 +27,14 @@
             <br>
             <span class="help-block" *ngIf="!date.valid && date.touched" style="color: red">Please select date</span>
           </div>
+          <div class="form-group row">
+            <label for="reason" class="col-sm-3 col-form-label pull-right">Reason</label>
+            <div class="col-sm-7" style="margin-left: -10%;">
+              <input type="text" id="reason" class="form-control" ngModel name="reason" #reason="ngModel" required>
+            </div>
+            <br>
+            <span class="help-block" *ngIf="!reason.valid && reason.touched" style="color: red">Please enter a reason.</span>
+          </div>
           <div class="text-center pt-4">
             <button type="submit" class="btn btn-success" [disabled]="!qleave.valid">SUBMIT</button>
           </div>
@@ -36,7 +46,7 @@
     </div>
     <br><br><br>
 
-    <div class="card text-center">
+    <div class="card text-center" style="border-color: #6d7fcc; border-radius: 10px 10px 10px 10px; box-shadow: 5px 5px 5px #888888;">
       <h1>View applied leaves</h1>
       <div class="card-header">
         Featured
@@ -45,10 +55,11 @@
         <table class="table">
           <thead class="thead-dark">
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Date</th>
-              <th scope="col">Time</th>
-              <th scope="col" colspan="2" class="text-center">Action</th>
+              <th scope="col" class="text-center">#</th>
+              <th scope="col" class="text-center">Date</th>
+              <th scope="col" class="text-center">Time</th>
+              <th scope="col" class="text-center">Reason</th>
+              <th scope="col" class="text-center">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -56,14 +67,14 @@
               <th scope="row">1</th>
               <td>{{quickLeave.date}}</td>
               <td>{{quickLeave.time}}</td>
+              <td>{{quickLeave.reason}}</td>
               <td>
-                <a class="btn btn-warning pull-right" style="width:75px;">EDIT</a>
                 <a class="btn btn-danger pull-right" (click)="onDelete(quickLeave.id)">DELETE</a>
               </td>
             </tr>
 
             <tr *ngIf="isNodata" style="color:red;">
-              <td colspan="4">No data!.</td>
+              <td colspan="5">No data!.</td>
             </tr>
 
           </tbody>

@@ -12,4 +12,7 @@ export class TrainingAddComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(){
+
+  }
 }

@@ -18,7 +18,8 @@ export class QuickLeavesService{
             return{
               time: quickLeave.time,
               date: quickLeave.date,
-              id: quickLeave._id
+              id: quickLeave._id,
+              reason: quickLeave.reason
             };
           });
       }))
@@ -33,7 +34,8 @@ export class QuickLeavesService{
     const quickLeaveArray: QuickLeave = {
       id: quickLeave.id,
       time: quickLeave.time,
-      date: quickLeave.date
+      date: quickLeave.date,
+      reason: quickLeave.reason
     };
     this.http.post<{message: string}>('http://localhost:3000/api/quickLeaves', quickLeaveArray)
       .subscribe((responseData) => {

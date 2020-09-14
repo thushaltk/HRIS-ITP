@@ -18,7 +18,8 @@ export class EmpQuickLeaveComponent implements OnInit {
   quickLeave: QuickLeave = {
     id: '',
     time: '',
-    date: ''
+    date: '',
+    reason: ''
   }
 
   getquickLeave: QuickLeave[] = [];
@@ -49,6 +50,7 @@ export class EmpQuickLeaveComponent implements OnInit {
     this.quickLeave.id = null;
     this.quickLeave.time = this.addQuickLeaveForm.value.time;
     this.quickLeave.date = this.addQuickLeaveForm.value.date;
+    this.quickLeave.reason = this.addQuickLeaveForm.value.reason;
 
     this.addQuickLeaveForm.reset();
 

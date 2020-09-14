@@ -3,11 +3,12 @@ const router = express.Router();
 
 const QuickLeave = require('../models/quickLeave');
 
-//Add Announcements
+//Add Quick Leave
 router.post("", (req, res, next) => {
   const quickLeave = new QuickLeave({
     time: req.body.time,
-    date: req.body.date
+    date: req.body.date,
+    reason: req.body.reason
   });
   quickLeave.save();
   res.status(201).json({
@@ -15,7 +16,7 @@ router.post("", (req, res, next) => {
   });
 });
 
-//Reteive Announcements
+//Reteive Quick Leave
 router.get("", (req, res, next) => {
   QuickLeave.find()
     .then(documents => {
