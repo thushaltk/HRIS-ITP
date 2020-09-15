@@ -22,12 +22,13 @@ export class ProjectsComponent implements OnInit {
     'location',
     'startDate',
     'duration',
-    'clientName',
-    'clientPhone',
-    'clientAddress',
+    'client',
+    // 'clientName',
+    // 'clientPhone',
+    // 'clientAddress',
     'supervisor',
     'consultant',
-    'employees',
+    // 'employees',
     'action',
   ];
   columns: string[] = [

@@ -34,7 +34,7 @@ export class NewProjectComponent implements OnInit {
   submitted: boolean = false;
   employees: any[] = [];
   supervisors: any[] = [];
-  consultants: any[] =[]
+  consultants: any[] = []
   // @Output() listComponent = new EventEmitter<any>();
   // @Output() update = new EventEmitter<any>();
   @Input() isUpdate: boolean = false;
@@ -170,9 +170,11 @@ export class NewProjectComponent implements OnInit {
   }
 
   setValues(project) {
+    console.log(project);
+
     project.employees = project.employees.map((el) => el._id);
-    project.supervisor = project.supervisor._id;
-    project.consultant = project.consultant._id;
+    project.supervisor = project.supervisor?._id;
+    project.consultant = project.consultant?._id;
     project.startDate = this.datePipe.transform(project.startDate, "yyyy-MM-dd")
     this.form.patchValue(project);
     this.isUpdate = true;

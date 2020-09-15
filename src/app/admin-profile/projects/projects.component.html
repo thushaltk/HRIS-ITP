@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="col-md-12 pt-10 example-container " style="max-height:50vh;overflow-x: hidden;overflow-y: auto;">
+        <div class="col-md-12 pt-10 example-container " style="max-height:50vh;overflow-x: auto;overflow-y: auto;">
           
             <div>
                 <div class="example-loading-shade" *ngIf="loading">
@@ -54,9 +54,21 @@
                     <td mat-cell *matCellDef="let element"> {{element?.duration}} </td>
                 </ng-container>
 
+                <ng-container matColumnDef="client">
+                    <th mat-header-cell *matHeaderCellDef> Client </th>
+                    <td mat-cell *matCellDef="let element"  style="max-width: 150px;">
+                         {{element?.clientName}} <br>
+                         {{element?.clientAddress}} <br>
+                         {{element?.clientPhone}}
+                        </td>
+                </ng-container>
+
                 <ng-container matColumnDef="clientName">
                     <th mat-header-cell *matHeaderCellDef> Client Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element?.clientName}} </td>
+                    <td mat-cell *matCellDef="let element"> 
+                        {{element?.clientName}}
+                 
+                     </td>
                 </ng-container>
 
                 <ng-container matColumnDef="clientPhone">
@@ -84,7 +96,7 @@
                     <td mat-cell *matCellDef="let element"> {{element?.employees.length}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="action">
+                <ng-container matColumnDef="action" >
                     <th mat-header-cell *matHeaderCellDef> </th>
                     <td mat-cell *matCellDef="let element">
                         <button class="btn btn-sm btn-warning" (click)="setUpdate(element);"> Update</button> &nbsp;
