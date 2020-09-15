@@ -22,4 +22,9 @@ export class LandingPageComponent implements OnInit {
     this.router.navigate(['login/admin']);
   }
 
+  scroll(el: HTMLElement){
+    el.scrollIntoView({behavior: 'smooth'});
+
+  }
+
 }

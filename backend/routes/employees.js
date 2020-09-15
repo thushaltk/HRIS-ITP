@@ -50,7 +50,14 @@ router.get("/:empDes", (req, res, next) => {
 
 // //Retrieve Employees by NIC
 // router.get("/:nic", (req, res, next) => {
-//   Employee.find({nic: req.params.nic})
+//   Employee.findOne({nic: req.params.nic}, function(err, result) {
+//     if (err){
+//       console.log(err)
+//     }
+//     else{
+//         console.log("Result : ", docs);
+//     }
+//   })
 //     .then(documents => {
 //       console.log(documents);
 //       res.status(200).json({

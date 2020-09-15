@@ -1,9 +1,9 @@
-<div [ngClass]="{bgImage: true}" style="background-color: #fffdd0;">
-  <div [ngClass]="{bgImage: true}" class="row" style="height: 100vh;">
+<div [ngClass]="{bgImage: true}"  class="container-fluid"  style="position: fixed;">
+  <div class="row">
     <div class="col col-lg-6">
-      <br><br>
+      <img src="../../../assets/images/dp.png" class="pull-right" style="width:200px; height:200px; margin-top: 30%; margin-right: 25%;" alt="Employee Login">
     </div>
-    <div class="col col-lg-6 pull-right pr-5" style="margin-top: 10%;">
+    <div class="col col-lg-6" style="margin-top: 14%; margin-left: -10%;">
         <h2 style="color:azure; font-size: 40px; font-weight: 700; font-family: cursive;">WELCOME</h2>
         <br>
         <form class="form-horizontal" #f="ngForm">
@@ -21,12 +21,10 @@
           </div>
           <br>
           <button class="btn btn-success pull-right" type="submit" [disabled]="!f.valid" (click)="showAdminProfile()">LOGIN</button>
-          <br><br><br><br><br>
         </form>
-
-      <br><br><br><br><br><br><br><br>
     </div>
 
   </div>
 
 </div>
+<app-footer></app-footer>

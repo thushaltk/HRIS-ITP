@@ -1,5 +1,15 @@
 <div>
-  <h1>Payroll Details</h1>
+  <h1>
+    Payroll Details
+    <span
+      ><a
+        [routerLink]="['addPayroll']"
+        class="btn btn-sm btn-success"
+      >
+        + Add Payroll</a
+      ></span
+    >
+  </h1>
   <table class="table">
     <thead>
       <tr>
@@ -20,10 +30,12 @@
         <td>{{ payroll.penaltyForLeaves }}</td>
         <td>{{ payroll.payForOTHour }}</td>
         <td>
-          <a class="btn btn-sm btn-primary">Edit</a>
+          <a class="btn btn-sm btn-primary" (click)="onUpdate(payroll)">Edit</a>
         </td>
         <td>
-          <a class="btn btn-sm btn-danger">Delete</a>
+          <a class="btn btn-sm btn-danger" (click)="onDelete(payroll)"
+            >Delete</a
+          >
         </td>
       </tr>
     </tbody>

@@ -27,6 +27,12 @@ import { EmpQuickLeaveComponent } from './emp-profile/emp-attendance-leave/emp-q
 import { AddAttendanceComponent } from './admin-profile/attendance/add-attendance/add-attendance.component';
 
 import { PayrollComponent } from './admin-profile/payroll/payroll.component';
+import { AddVehicleComponent } from './admin-profile/vehicles/add-vehicle/add-vehicle.component';
+import { AddPayrollComponent } from './admin-profile/payroll/add-payroll/add-payroll.component';
+import { UpdatePayrollComponent } from './admin-profile/payroll/update-payroll/update-payroll.component';
+import { TrainingAddComponent } from './admin-profile/training-programs/training-add/training-add.component';
+import { EmpLongLeaveComponent } from './emp-profile/emp-attendance-leave/emp-long-leave/emp-long-leave.component';
+import { ViewLeavesComponent } from './admin-profile/attendance/view-leaves/view-leaves.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -46,9 +52,16 @@ const appRoutes: Routes = [
           { path: 'new', component: AnnouncementCreateComponent },
         ],
       },
+      { path: 'trainingPrograms', component: TrainingProgramsComponent, children: [
+        { path: 'add', component: TrainingAddComponent}
+      ]},
       { path: 'projects', component: ProjectsComponent },
       { path: 'projects/new', component: NewProjectComponent },
+
       { path: 'payroll', component: PayrollComponent },
+      { path: 'payroll/addPayroll', component: AddPayrollComponent },
+      { path: 'payroll/updatePayroll', component: UpdatePayrollComponent },
+
       {
         path: 'equipments',
         component: EquipmentsComponent,
@@ -58,7 +71,9 @@ const appRoutes: Routes = [
         ],
       },
       { path: 'training-programs', component: TrainingProgramsComponent },
-      { path: 'vehicles', component: VehiclesComponent },
+      { path: 'vehicles', component: VehiclesComponent, children:[
+        { path: 'new', component: AddVehicleComponent}
+      ]},
       {
         path: 'employees',
         component: EmployeesComponent,
@@ -71,9 +86,10 @@ const appRoutes: Routes = [
 
       { path: 'attendance', component: AttendanceComponent },
 
-      { path: 'attendance/add-attendance', component: AddAttendanceComponent}
+      { path: 'attendance/add-attendance', component: AddAttendanceComponent },
 
-    ]
+      { path: 'attendance/view-leaves', component: ViewLeavesComponent },
+    ],
   },
 
   {
@@ -89,7 +105,8 @@ const appRoutes: Routes = [
             path: 'attendanceLeave',
             component: EmpAttendanceLeaveComponent,
             children: [
-              { path: 'quickLeave', component: EmpQuickLeaveComponent },
+              { path: 'quickLeave/:nic', component: EmpQuickLeaveComponent },
+              { path: 'longLeave/:nic', component: EmpLongLeaveComponent },
             ],
           },
         ],

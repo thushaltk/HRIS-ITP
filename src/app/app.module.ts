@@ -59,6 +59,19 @@ import { EmpAttendanceLeaveComponent } from './emp-profile/emp-attendance-leave/
 import { EmpQuickLeaveComponent } from './emp-profile/emp-attendance-leave/emp-quick-leave/emp-quick-leave.component';
 import { QuickLeavesService } from '../../service/quickLeaves.service';
 import { AddAttendanceComponent } from './admin-profile/attendance/add-attendance/add-attendance.component';
+import { AddVehicleComponent } from './admin-profile/vehicles/add-vehicle/add-vehicle.component';
+import { VehicleListAllComponent } from './admin-profile/vehicles/vehicle-list-all/vehicle-list-all.component';
+import { VehicleListComponent } from './admin-profile/vehicles/vehicle-list/vehicle-list.component';
+import { VehicleUnallocatedComponent } from './admin-profile/vehicles/vehicle-unallocated/vehicle-unallocated.component';
+import { VehicleAllocatedComponent } from './admin-profile/vehicles/vehicle-allocated/vehicle-allocated.component';
+import { VehiclesServices } from '../../service/vehicle.service';
+import { LongLeavesService } from '../../service/longLeaves.service';
+import { AddPayrollComponent } from './admin-profile/payroll/add-payroll/add-payroll.component';
+import { UpdatePayrollComponent } from './admin-profile/payroll/update-payroll/update-payroll.component';
+import { TrainingAddComponent } from './admin-profile/training-programs/training-add/training-add.component';
+import { TrainingViewComponent } from './admin-profile/training-programs/training-view/training-view.component';
+import { EmpLongLeaveComponent } from './emp-profile/emp-attendance-leave/emp-long-leave/emp-long-leave.component';
+import { ViewLeavesComponent } from './admin-profile/attendance/view-leaves/view-leaves.component';
 
 @NgModule({
   declarations: [
@@ -100,9 +113,21 @@ import { AddAttendanceComponent } from './admin-profile/attendance/add-attendanc
     NewEquipmentComponent,
     ConfirmDialogComponent,
     NewProjectComponent,
+    VehicleListComponent,
     EmpAttendanceLeaveComponent,
     EmpQuickLeaveComponent,
-    AddAttendanceComponent
+    AddAttendanceComponent,
+    AddVehicleComponent,
+    VehicleListAllComponent,
+    VehicleListComponent,
+    VehicleUnallocatedComponent,
+    VehicleAllocatedComponent,
+    AddPayrollComponent,
+    UpdatePayrollComponent,
+    TrainingAddComponent,
+    TrainingViewComponent,
+    EmpLongLeaveComponent,
+    ViewLeavesComponent,
   ],
   imports: [
     BrowserModule,
@@ -130,6 +155,8 @@ import { AddAttendanceComponent } from './admin-profile/attendance/add-attendanc
     EmployeeService,
     DatePipe,
     QuickLeavesService,
+    VehiclesServices,
+    LongLeavesService
   ],
   bootstrap: [AppComponent],
 })

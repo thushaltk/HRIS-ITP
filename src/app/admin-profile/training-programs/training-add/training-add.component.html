@@ -1,0 +1,100 @@
+<div style="overflow-y: scroll; overflow-x: scroll; height: 100vh; width:1000px; max-width: 1300px;"  class ="container-fluid" >
+  <div class="container-fluid" style="background-color: #FEFEFE;">
+    <div style="background-color: #2BAF2B;">
+      <br><p class="h1" style="text-align:center" >Create New Training Program</p><br>
+    </div>
+    <div class="container-fluid" style="background-color: #E0E4FB;">
+      <form (ngSubmit)="onSubmit()" #empreg="ngForm">
+
+        <div class="form-row">
+          <label for="programTitle">Program Title</label>
+          <input type="text" ngModel name="programTitle" #programTitle="ngModel" id="programTitle" placeholder="Enter Title" required>
+        </div>
+
+        <div class="form-row"><p> </p></div>
+
+        <div class="form-row">
+          <label for="programDescription">Program Description</label>
+          <input type="text" ngModel name="programDescription" #programDescription="ngModel" id="programDescription" placeholder="Enter Description" required>
+        </div>
+
+        <div class="form-row"><p> </p></div>
+
+        <div class="form-row">
+          <label for="programLocation">Program Location</label>
+          <input type="text" ngModel name="programLocation" #programLocation="ngModel" id="programLocation" placeholder="Enter Location" required>
+        </div>
+
+        <div class="form-row"><p> </p></div>
+
+        <div class="form-row">
+           <label for="availability">Availability</label>
+        </div>
+
+
+        <div class="form-row">
+
+         <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="trCheckboxMng" value="manager">
+          <label class="form-check-label" for="inlineCheckbox1">Manager</label>
+         </div>
+
+         <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="trCheckboxEng" value="engineer">
+          <label class="form-check-label" for="inlineCheckbox1">Engineer</label>
+         </div>
+
+         <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="trCheckboxAccnt" value="accountant">
+          <label class="form-check-label" for="inlineCheckbox1">Accountant</label>
+         </div>
+
+         <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="trCheckboxSupv" value="supervisor">
+          <label class="form-check-label" for="inlineCheckbox1">Supervisor</label>
+         </div>
+
+         <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="trCheckboxLab" value="labor">
+          <label class="form-check-label" for="inlineCheckbox1">Labor</label>
+         </div>
+        </div>
+
+        <div class="form-row">
+         <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="trCheckboxDriv" value="driver">
+          <label class="form-check-label" for="inlineCheckbox1">Driver</label>
+         </div>
+
+         <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="trCheckboxClnStf" value="cleaningstaff">
+          <label class="form-check-label" for="inlineCheckbox1">Cleaning Staff</label>
+         </div>
+
+         <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="trCheckboxSecuStf" value="securitystaff">
+          <label class="form-check-label" for="inlineCheckbox1">Security Staff</label>
+         </div>
+
+
+
+        </div>
+
+        <div class="form-row"><p> </p></div>
+
+        <div class="form-row">
+          <label for="programEmail">Trainer Email</label>
+          <input type="text" ngModel name="programEmail" #programEmail="ngModel" id="programEmail" placeholder="Enter Email" required>
+        </div>
+
+        <div class="form-row"><p> </p></div>
+
+        <div class="form-row">
+            <button type="submit"  [disabled]="!empreg.valid" class="btn btn-success btn-lg ">Submit</button>
+        </div>
+
+      </form>
+</div>
+</div>
+</div>
+

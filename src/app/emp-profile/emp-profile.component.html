@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col col-lg-5" class="sidenav">
         <div style="margin-bottom: -10%;">
@@ -33,6 +33,50 @@
     <div class="col" style="width:fit-content; ">
       <router-outlet></router-outlet>
     </div>
+  </div>
+</div> -->
+<div class="wrapper" >
+  <!-- Sidebar -->
+  <nav class="sidenav" id="sidebar" style="overflow-y: scroll;">
+      <div class="sidebar-header">
+        <img
+        src="../../assets/images/admin.png"
+        alt="admin icon"
+        class="adminLogo text-center"
+        style="margin-left: 60px;"
+      />
+        <div >
+          <h3>{{ name }}</h3>
+          <h3 style="margin-top: -5%; font-variant: small-caps;" class="pull-left"> {{ designation }}</h3>
+          <br>
+          <br>
+        </div>
+      </div>
+
+      <ul class="list-unstyled components">
+          <li>
+            <a [routerLink]="['']">Home</a>
+          </li>
+          <li>
+            <a [routerLink]="['dashboard']">Dashboard</a>
+          </li>
+          <li>
+            <a [routerLink]="['payroll']">Your Details</a>
+          </li>
+          <li>
+            <a [routerLink]="['payroll']">Payroll Information</a>
+          </li>
+
+          <li>
+            <a [routerLink]="['attendanceLeave/quickLeave/', this.nic]">Apply Leave</a>
+          </li>
+      </ul>
+
+  </nav>
+  <!-- Page Content -->
+
+  <div class="col col-lg-7" style="margin-left: 7%;">
+    <router-outlet></router-outlet>
   </div>
 </div>
 

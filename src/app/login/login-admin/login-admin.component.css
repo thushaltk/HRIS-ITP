@@ -1,9 +1,9 @@
 .bgImage{
-  background-image: url('../../../assets/images/officeBG3.jpg');
+  background-image: url('../../../assets/images/bg6.jpg');
   background-attachment: fixed;
   width: 100%;
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-color: contain;
 }
