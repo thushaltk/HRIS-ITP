@@ -31,6 +31,7 @@ export class EmpLongLeaveComponent implements OnInit, OnDestroy {
   }
   getEmployee: Employees[] = [];
   getlongLeave: LongLeave[] = [];
+  getlongLeave2: LongLeave[] = [];
   private subscription: Subscription;
   dateToday: number = Date.now();
 
@@ -53,7 +54,7 @@ export class EmpLongLeaveComponent implements OnInit, OnDestroy {
       );
     });
 
-    this.getlongLeave = this.longLeaveService.getLongLeaveByID(this.empID);
+    this.getlongLeave = this.longLeaveService.getLongLeave();
     this.subscription = this.longLeaveService.longLeavesChanged.subscribe(
       (longLeaves : LongLeave[]) => {
         this.getlongLeave = longLeaves;
@@ -62,9 +63,17 @@ export class EmpLongLeaveComponent implements OnInit, OnDestroy {
           this.isNodata = true;
           console.log(this.getlongLeave);
           console.log(this.nic);
+
         }else{
           this.isNodata = false;
-          console.log(this.getlongLeave);
+          for(let longLeave of this.getlongLeave){
+            if(longLeave.empID === this.empID){
+              this.getlongLeave2.push(longLeave);
+              console.log(this.getlongLeave2)
+            }else{
+              continue;
+            }
+          }
         }
 
       }
@@ -83,6 +92,7 @@ export class EmpLongLeaveComponent implements OnInit, OnDestroy {
     this.longLeave.status = "PENDING";
 
     this.longLeaveService.addLongLeave(this.longLeave);
+    window.location.reload();
 
   }
 
@@ -91,6 +101,8 @@ export class EmpLongLeaveComponent implements OnInit, OnDestroy {
   }
 
   onDelete(id: string){
+    this.longLeaveService.deleteLongLeave(id);
+    window.location.reload();
 
   }
 

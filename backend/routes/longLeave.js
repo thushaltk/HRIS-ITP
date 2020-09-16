@@ -34,7 +34,7 @@ router.get("", (req, res, next) => {
 
 //Retrieve Long Leave by empID
 router.get("/:id", (req, res, next) => {
-  LongLeave.find({empID: req.params.id})
+  LongLeave.find({_id: req.params.id})
     .then(documents => {
       res.status(200).json({
         message: 'Long Leave fetched successfully',
@@ -46,6 +46,7 @@ router.get("/:id", (req, res, next) => {
 //Update long leave status
 router.put("/:id", (req, res, next) => {
   const longLeave = new LongLeave({
+    _id: req.body.id,
     empID: req.body.empID,
     time: req.body.time,
     startDate: req.body.startDate,

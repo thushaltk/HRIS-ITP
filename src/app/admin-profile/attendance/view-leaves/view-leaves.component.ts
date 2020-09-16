@@ -10,6 +10,7 @@ import { LongLeavesService } from 'service/longLeaves.service';
 })
 export class ViewLeavesComponent implements OnInit {
   getlongLeave: LongLeave[] = [];
+  getlongLeave2: LongLeave[] = [];
   isNodata: boolean = true;
   private subscription: Subscription;
 
@@ -39,10 +40,27 @@ export class ViewLeavesComponent implements OnInit {
 
 
   approve(id :string){
+    this.getlongLeave2 = this.longLeaveService.getLongLeaveByID(id);
+    for(let longLeave2 of this.getlongLeave2){
+      if(longLeave2.id === id){
+        longLeave2.status = "APPROVED";
+        this.longLeaveService.updateLongLeaveStatus(id, longLeave2);
+        window.location.reload();
+      }
+    }
 
   }
 
   reject(id: string){
+    this.getlongLeave2 = this.longLeaveService.getLongLeaveByID(id);
+    for(let longLeave2 of this.getlongLeave2){
+      if(longLeave2.id === id){
+        longLeave2.status = "REJECTED";
+        this.longLeaveService.updateLongLeaveStatus(id, longLeave2);
+        window.location.reload();
+      }
+    }
+
 
   }
 
