@@ -10,6 +10,7 @@ const equipmentRoutes = require("./routes/equipments");
 const projectRoutes = require("./routes/projects");
 const payrollRoute = require("./routes/payroll");
 const salaryRoute = require("./routes/salary");
+const trainingProgramsRoute = require("./routes/trainingPrograms");
 
 const app = express();
 
@@ -52,4 +53,5 @@ app.use("/api/payroll", payrollRoute);
 app.use("/api/salary", salaryRoute);
 app.use("/api/quickLeaves", quickLeavesRoutes);
 app.use("/api/longLeaves", longLeavesRoutes);
+app.use("/api/trainingPrograms", trainingProgramsRoute);
 module.exports = app;

@@ -72,6 +72,7 @@ import { TrainingAddComponent } from './admin-profile/training-programs/training
 import { TrainingViewComponent } from './admin-profile/training-programs/training-view/training-view.component';
 import { EmpLongLeaveComponent } from './emp-profile/emp-attendance-leave/emp-long-leave/emp-long-leave.component';
 import { ViewLeavesComponent } from './admin-profile/attendance/view-leaves/view-leaves.component';
+import { TrainingProgramsService } from '../../service/trainingPrograms.service';
 
 @NgModule({
   declarations: [
@@ -156,7 +157,8 @@ import { ViewLeavesComponent } from './admin-profile/attendance/view-leaves/view
     DatePipe,
     QuickLeavesService,
     VehiclesServices,
-    LongLeavesService
+    LongLeavesService,
+    TrainingProgramsService
   ],
   bootstrap: [AppComponent],
 })

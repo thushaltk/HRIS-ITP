@@ -1,100 +1,74 @@
-<div style="overflow-y: scroll; overflow-x: scroll; height: 100vh; width:1000px; max-width: 1300px;"  class ="container-fluid" >
+<div style="overflow-y: scroll; overflow-x: scroll; height: 100vh; width:1000px; max-width: 1300px;"
+  class="container-fluid">
   <div class="container-fluid" style="background-color: #FEFEFE;">
-    <div style="background-color: #2BAF2B;">
-      <br><p class="h1" style="text-align:center" >Create New Training Program</p><br>
+    <br><br><br>
+    <div>
+      <h2 class="text-center">Create New Training Program</h2>
     </div>
-    <div class="container-fluid" style="background-color: #E0E4FB;">
-      <form (ngSubmit)="onSubmit()" #empreg="ngForm">
-
-        <div class="form-row">
-          <label for="programTitle">Program Title</label>
-          <input type="text" ngModel name="programTitle" #programTitle="ngModel" id="programTitle" placeholder="Enter Title" required>
+    <br><br><br>
+    <div class="container-fluid">
+      <form (ngSubmit)="onSubmit()" #trpro="ngForm" style="margin-left: -15%;">
+        <div class="form-group row" style="margin-left: 200px;">
+          <label for="programTitle" class="col-sm-3 col-form-label pull-right">Program Title</label>
+          <div class="col-sm-5" >
+            <input class="form-control" type="text" ngModel name="programTitle" #programTitle="ngModel" id="programTitle"
+              placeholder="Enter Title" required>
+          </div>
+          <div class="col-sm-3">
+          <span class="help-block" *ngIf="!programTitle.valid && programTitle.touched" style="color: red">Please enter a title.</span>
+          </div>
         </div>
 
-        <div class="form-row"><p> </p></div>
-
-        <div class="form-row">
-          <label for="programDescription">Program Description</label>
-          <input type="text" ngModel name="programDescription" #programDescription="ngModel" id="programDescription" placeholder="Enter Description" required>
+        <div class="form-group row" style="margin-left: 200px;">
+          <label for="programDescription" class="col-sm-3 col-form-label pull-right">Program Description</label>
+          <div class="col-sm-5">
+            <input class="form-control" type="text" ngModel name="programDescription" #programDescription="ngModel" id="programDescription"
+              placeholder="Enter Description" required>
+          </div>
+          <div class="col-sm-3">
+          <span class="help-block" *ngIf="!programDescription.valid && programDescription.touched" style="color: red">Please enter a Description.</span>
+          </div>
         </div>
 
-        <div class="form-row"><p> </p></div>
-
-        <div class="form-row">
-          <label for="programLocation">Program Location</label>
-          <input type="text" ngModel name="programLocation" #programLocation="ngModel" id="programLocation" placeholder="Enter Location" required>
+        <div class="form-group row" style="margin-left: 200px;">
+          <label for="programLocation" class="col-sm-3 col-form-label pull-right">Program Location</label>
+          <div class="col-sm-5">
+            <input class="form-control" type="text" ngModel name="programLocation" #programLocation="ngModel" id="programLocation"
+              placeholder="Enter Location" required>
+          </div>
+          <div class="col-sm-3">
+          <span class="help-block" *ngIf="!programLocation.valid && programLocation.touched" style="color: red">Please enter a Location.</span>
+            </div>
         </div>
 
-        <div class="form-row"><p> </p></div>
-
-        <div class="form-row">
-           <label for="availability">Availability</label>
+        <div class="form-group row" style="margin-left: 200px;">
+          <label for="availability" class="col-sm-3 col-form-label pull-right">Availability</label>
+          <div class="col-sm-5">
+            <ul class="checkbox-items">
+              <li *ngFor="let item of checkboxesDataList">
+                <input type="checkbox" [(ngModel)]="item.isChecked" name="item.label" (change)="changeSelection()">
+                <label style="padding-left: 3px;">{{item.label}}</label>
+              </li>
+            </ul>
+          </div>
         </div>
 
-
-        <div class="form-row">
-
-         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="trCheckboxMng" value="manager">
-          <label class="form-check-label" for="inlineCheckbox1">Manager</label>
-         </div>
-
-         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="trCheckboxEng" value="engineer">
-          <label class="form-check-label" for="inlineCheckbox1">Engineer</label>
-         </div>
-
-         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="trCheckboxAccnt" value="accountant">
-          <label class="form-check-label" for="inlineCheckbox1">Accountant</label>
-         </div>
-
-         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="trCheckboxSupv" value="supervisor">
-          <label class="form-check-label" for="inlineCheckbox1">Supervisor</label>
-         </div>
-
-         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="trCheckboxLab" value="labor">
-          <label class="form-check-label" for="inlineCheckbox1">Labor</label>
-         </div>
+        <div class="form-group row" style="margin-left: 200px;">
+          <label for="programEmail" class="col-sm-3 col-form-label pull-right">Trainer Email</label>
+          <div class="col-sm-5">
+            <input class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="text" ngModel name="programEmail" #programEmail="ngModel" id="programEmail"
+              placeholder="Enter Email" required>
+          </div>
+          <div class="col-sm-3">
+          <span class="help-block" *ngIf="!programEmail.valid && programEmail.touched" style="color: red">Please enter a valid Email.</span>
+            </div>
         </div>
 
-        <div class="form-row">
-         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="trCheckboxDriv" value="driver">
-          <label class="form-check-label" for="inlineCheckbox1">Driver</label>
-         </div>
-
-         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="trCheckboxClnStf" value="cleaningstaff">
-          <label class="form-check-label" for="inlineCheckbox1">Cleaning Staff</label>
-         </div>
-
-         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="trCheckboxSecuStf" value="securitystaff">
-          <label class="form-check-label" for="inlineCheckbox1">Security Staff</label>
-         </div>
-
-
-
+        <div class="text-center pt-4">
+          <button type="submit" class="btn btn-success" [disabled]="!trpro.valid">SUBMIT</button>
         </div>
-
-        <div class="form-row"><p> </p></div>
-
-        <div class="form-row">
-          <label for="programEmail">Trainer Email</label>
-          <input type="text" ngModel name="programEmail" #programEmail="ngModel" id="programEmail" placeholder="Enter Email" required>
-        </div>
-
-        <div class="form-row"><p> </p></div>
-
-        <div class="form-row">
-            <button type="submit"  [disabled]="!empreg.valid" class="btn btn-success btn-lg ">Submit</button>
-        </div>
-
+        <br><br><br><br><br>
       </form>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-
