@@ -1,1 +1,42 @@
-<p>vehicle-list-all works!</p>
+<div class="card-body">
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Vehicle Number</th>
+        <th scope="col">Vehicle Chase Number</th>
+        <th scope="col">Vehicle Engine Number</th>
+        <th scope="col">Vehicle Open Mileage</th>
+        <th scope="col">Vehicle Previous Owner</th>
+        <th scope="col">Vehicle Purchase Date</th>
+        <th scope="col">Vehicle Registered Date</th>
+        <th scope="col">Vehicle Type</th>
+        <th scope="col">Insurance Type</th>
+        <th scope="col">Previous Owner NIC</th>
+        <th scope="col">Vehicle Color</th>
+        <th scope="col" colspan="2">Action</th>
+
+      </tr>
+    </thead>
+    <!-- <mat-spinner *ngIf = "isLoading"></mat-spinner> -->
+    <tbody>
+
+      <tr *ngFor="let vehicle of this.vehicles">
+        <td>{{vehicle.vehicleNumber}}</td>
+        <td>{{vehicle.vehicleChaseNumber}}</td>
+        <td>{{vehicle.vehicleEngineNumber}}</td>
+        <td>{{vehicle.vehicleOpenMileage}}</td>
+        <td>{{vehicle.vehiclePreviousOwner}}</td>
+        <td>{{vehicle.vehiclePurchaseDate}}</td>
+        <td>{{vehicle.vehicleRegisteredDistrict}}</td>
+        <td>{{vehicle.vehicleType}}</td>
+        <td>{{vehicle.insuranceType}}</td>
+        <td>{{vehicle.NIC}}</td>
+        <td>{{vehicle.vehicleColor}}</td>
+        <td colspan="2">
+          <a class="btn btn-warning pull-right" style="width:75px; margin-bottom: 8px;">EDIT</a>
+          <a class="btn btn-danger pull-right" (click)="onDelete(vehicle.id)">DELETE</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -12,4 +12,7 @@ export class VehicleUnallocatedComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onDelete(){
+
+  }
 }

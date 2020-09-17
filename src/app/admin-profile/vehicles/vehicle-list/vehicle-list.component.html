@@ -1,1 +1,23 @@
-<p>vehicle-list works!</p>
+<div style="overflow-y: scroll; overflow-x: scroll; height: 100vh; width:fit-content; max-width: min-content;">
+  <h1>View Vehicles</h1>
+  <div>
+    <select class="form-control" [(ngModel)]="selectValue" name="vehicleRegisteredDistrict" (click)="navigate($event)">
+      <option value="All Vehicles">All Vehicles</option>
+      <option value="Allocated Vehicles" >Allocated Vehicles</option>
+      <option value="Unallocated Vehicles">Unallocated Vehicles</option>
+    </select>
+  </div>
+  <br>
+    <div  style="overflow-y: scroll; height:400px; width: fit-content;">
+    <div class="container pull-left" style="background-color: #fffdd0; width: 1000px; height: fit-content;">
+      <div class="card" style="width: fit-content">
+        <div class="card-header">
+          {{selectValue}}
+        </div>
+          <router-outlet></router-outlet>
+      </div>
+    </div>
+
+  </div>
+</div>
+

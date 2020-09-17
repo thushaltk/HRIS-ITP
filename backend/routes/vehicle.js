@@ -1,18 +1,29 @@
 const router = require("express").Router();
 const Vehicle = require("../models/vehicle");
 
+
+// router.get("", async (req, res) => {
+//   try {
+//     await Vehicle.find({}, (error, result) => {
+//       if (error) return res.status(500).send(error);
+//       if (!result) return res.status(404).send("No results");
+//       return res.status(200).send(result);
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(500).send(error);
+//   }
+// });
+
 //Get all the vehicle details
-router.get("/", async (req, res) => {
-  try {
-    await Vehicle.find({}, (error, result) => {
-      if (error) return res.status(500).send(error);
-      if (!result) return res.status(404).send("No results");
-      return res.status(200).send(result);
+router.get("", (req, res, next) => {
+  Vehicle.find()
+    .then(documents => {
+      res.status(200).json({
+        message: 'Vehicles fetched successfully',
+        vehicles: documents
+      });
     });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).send(error);
-  }
 });
 
 //Search and get vehicle details
@@ -42,8 +53,8 @@ router.post("/", async (req, res) => {
       vehiclePurchaseDate,
       vehicleOpenMileage,
       insuranceType,
-      vehicleRegistedDistrict,
-      nextLicenceRenewalDate,
+      vehicleRegisteredDistrict,
+      nextLicenseRenewalDate,
       vehiclePreviousOwner,
       NIC,
       contactNumber,
@@ -60,18 +71,16 @@ router.post("/", async (req, res) => {
       vehiclePurchaseDate,
       vehicleOpenMileage,
       insuranceType,
-      vehicleRegistedDistrict,
-      nextLicenceRenewalDate,
+      vehicleRegisteredDistrict,
+      nextLicenseRenewalDate,
       vehiclePreviousOwner,
       NIC,
       contactNumber,
       address,
     });
 
-    await vehicle.save((error, savedVehicle) => {
-      if (error) return res.status(500).send(error);
-      return res.status(201).send(savedVehicle);
-    });
+    await vehicle.save();
+    return res.status(201).send(vehicle);
   } catch (error) {
     console.log(error);
     return res.status(500).send(error);
@@ -134,21 +143,32 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
+
+// router.delete("/:id", async (req, res) => {
+//   try {
+//     await Vehicle.findById({ _id: req.params.id }, async (error, vehicle) => {
+//       if (error) return res.status(500).send(error);
+//       if (!vehicle) return res.status(404).send("User not found!");
+//       await vehicle.remove((error, removedVehicle) => {
+//         if (error) return res.status(500).send(error);
+//         return res.status(200).send(removedVehicle);
+//       });
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(500).send(error);
+//   }
+// });
+
 //Delete vehicle
-router.delete("/:id", async (req, res) => {
-  try {
-    await Vehicle.findById({ _id: req.params.id }, async (error, vehicle) => {
-      if (error) return res.status(500).send(error);
-      if (!vehicle) return res.status(404).send("User not found!");
-      await vehicle.remove((error, removedVehicle) => {
-        if (error) return res.status(500).send(error);
-        return res.status(200).send(removedVehicle);
-      });
+router.delete("/:id", (req, res, next) => {
+  Vehicle.deleteOne({ _id: req.params.id }).then(result => {
+    console.log(result);
+    res.status(200).json({
+      message: "Vehicle Deleted"
     });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).send(error);
-  }
+  });
+
 });
 
 module.exports = router;

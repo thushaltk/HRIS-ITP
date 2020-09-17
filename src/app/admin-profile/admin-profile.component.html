@@ -162,7 +162,16 @@
               <a [routerLink]="['equipments/list']">Equipment Management</a>
           </li>
           <li>
-            <a [routerLink]="['vehicles/new']">Vehicle Management</a>
+            <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Vehicle Management</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu3">
+              <li>
+                <a [routerLink]="['vehicles/new']" >Add New Vehicle</a>
+              </li>
+              <li>
+                <a [routerLink]="['vehicles/view/all']" >View All Vehicle Details</a>
+              </li>
+          </ul>
+          <br><br><br><br>
         </li>
       </ul>
 

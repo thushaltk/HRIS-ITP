@@ -20,7 +20,7 @@ const VehicleSchema = new Schema({
     required: true,
   },
   manufactureDate: {
-    type: Date,
+    type: String,
     required: true,
   },
   vehicleColor: {
@@ -28,23 +28,23 @@ const VehicleSchema = new Schema({
     required: true,
   },
   vehiclePurchaseDate: {
-    type: Date,
+    type: String,
     required: true,
   },
   vehicleOpenMileage: {
-    type: Number,
+    type: String,
     required: true,
   },
   insuranceType: {
     type: String,
     required: true,
   },
-  vehicleRegistedDistrict: {
+  vehicleRegisteredDistrict: {
     type: String,
     required: true,
   },
-  nextLicenceRenewalDate: {
-    type: Date,
+  nextLicenseRenewalDate: {
+    type: String,
     required: true,
   },
   vehiclePreviousOwner: {
@@ -66,4 +66,4 @@ const VehicleSchema = new Schema({
   },
 });
 
-module.exports = Vehicle = mongoose.model("Vehicle", VehicleSchema);
+module.exports = mongoose.model("Vehicle", VehicleSchema);

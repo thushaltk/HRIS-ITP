@@ -18,7 +18,7 @@
     </div>
     <div class="container-fluid" style="background-color: #ffffff">
       <p class="h4" style="text-align: center">Vehicle details</p>
-      <form #empreg="ngForm" (ngSubmit)="onSubmit()">
+      <form #vehiForm="ngForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="vehicleNumber">Vehicle Number</label>
           <input
@@ -50,15 +50,15 @@
             required
           >
             <option value="choose" disabled>Choose...</option>
-            <option value="manager">Car</option>
-            <option value="engineer">Bick</option>
-            <option value="itoperator">Van</option>
-            <option value="accountant">Cab</option>
-            <option value="supervisor">Double Cab</option>
-            <option value="labor">Lory</option>
-            <option value="driver">Doser</option>
-            <option value="cleaningstaff">Bhoom Truck</option>
-            <option value="securitystaff">Industrial Vehicle</option>
+            <option value="Car">Car</option>
+            <option value="Motorcycle">Motorcycle</option>
+            <option value="Van">Van</option>
+            <option value="Cab">Cab</option>
+            <option value="Double Cab">Double Cab</option>
+            <option value="Lory">Lory</option>
+            <option value="Doser">Doser</option>
+            <option value="Bhoom Truck">Bhoom Truck</option>
+            <option value="Industrial Vehicle">Industrial Vehicle</option>
           </select>
           <small
             class="text-danger"
@@ -209,7 +209,7 @@
             [class.d-none]="
               vehicleOpenMileage.valid || vehicleOpenMileage.untouched
             "
-            >Please enter vehicle opne mileage</small
+            >Please enter vehicle open mileage</small
           >
         </div>
 
@@ -230,8 +230,8 @@
             required
           >
             <option value="choose" disabled>Choose...</option>
-            <option value="manager">Full option</option>
-            <option value="engineer">3rd party</option>
+            <option value="Full option">Full option</option>
+            <option value="3rd party">3rd party</option>
           </select>
           <small
             class="text-danger"
@@ -242,49 +242,49 @@
 
         <!-- vehicle registed district -->
         <div class="form-group">
-          <label for="vehicleRegistedDistrict">Vehicle Registed District</label>
+          <label for="vehicleRegisteredDistrict">Vehicle Registed District</label>
           <select
-            #vehicleRegistedDistrict="ngModel"
-            name="vehicleRegistedDistrict"
+            #vehicleRegisteredDistrict="ngModel"
+            name="vehicleRegisteredDistrict"
             [class.is-invalid]="
-              vehicleRegistedDistrict.invalid && vehicleRegistedDistrict.touched
+            vehicleRegisteredDistrict.invalid && vehicleRegisteredDistrict.touched
             "
             class="form-control"
-            [ngModel]="vehicleRegistedDistrict"
-            id="vehicleRegistedDistrict"
+            [ngModel]="vehicleRegisteredDistrict"
+            id="vehicleRegisteredDistrict"
             required
           >
             <option value="choose" disabled>Choose...</option>
-            <option value="manager">Jaffna</option>
-            <option value="engineer">Kilinochchi</option>
-            <option value="manager">Mannar</option>
-            <option value="engineer">Mullaitivu</option>
-            <option value="manager">Vavuniya</option>
-            <option value="engineer">Puttalam</option>
-            <option value="manager">Kurunegala</option>
-            <option value="engineer">Gampaha</option>
-            <option value="manager">Colombo</option>
-            <option value="engineer">Kalutara</option>
-            <option value="manager">Anuradhapura</option>
-            <option value="engineer">Polonnaruwa</option>
-            <option value="manager">Matale</option>
-            <option value="engineer">Kandy</option>
-            <option value="manager">Nuwara Eliya</option>
-            <option value="engineer">Kegalle</option>
-            <option value="manager">Ratnapura</option>
-            <option value="engineer">Trincomalee</option>
-            <option value="manager">Batticaloa</option>
-            <option value="engineer">Ampara</option>
-            <option value="manager">Badulla</option>
-            <option value="engineer">Monaragala</option>
-            <option value="manager">Hambantota</option>
-            <option value="engineer">Matara</option>
-            <option value="engineer">Galle</option>
+            <option value="Jaffna">Jaffna</option>
+            <option value="Kilinochchi">Kilinochchi</option>
+            <option value="Mannar">Mannar</option>
+            <option value="Mullaitivu">Mullaitivu</option>
+            <option value="Vavuniya">Vavuniya</option>
+            <option value="Puttalam">Puttalam</option>
+            <option value="Kurunegala">Kurunegala</option>
+            <option value="Gampaha">Gampaha</option>
+            <option value="Colombo">Colombo</option>
+            <option value="Kalutara">Kalutara</option>
+            <option value="Anuradhapura">Anuradhapura</option>
+            <option value="Polonnaruwa">Polonnaruwa</option>
+            <option value="Matale">Matale</option>
+            <option value="Kandy">Kandy</option>
+            <option value="Nuwara Eliya">Nuwara Eliya</option>
+            <option value="Kegalle">Kegalle</option>
+            <option value="Ratnapura">Ratnapura</option>
+            <option value="Trincomalee">Trincomalee</option>
+            <option value="Batticaloa">Batticaloa</option>
+            <option value="Ampara">Ampara</option>
+            <option value="Badulla">Badulla</option>
+            <option value="Monaragala">Monaragala</option>
+            <option value="Hambantota">Hambantota</option>
+            <option value="Matara">Matara</option>
+            <option value="Galle">Galle</option>
           </select>
           <small
             class="text-danger"
             [class.d-none]="
-              vehicleRegistedDistrict.valid || vehicleRegistedDistrict.untouched
+            vehicleRegisteredDistrict.valid || vehicleRegisteredDistrict.untouched
             "
             >Please select the Vehicle Registerd District</small
           >
@@ -293,26 +293,26 @@
         <!-- next licence renuewal date  -->
         <div class="form-row">
           <div class="col-md-3 mb-1">
-            <label for="nextLicenceRenewalDate"
+            <label for="nextLicenseRenewalDate"
               >Next Licence Renuewal Date</label
             >
             <input
               type="date"
-              #nextLicenceRenewalDate="ngModel"
+              #nextLicenseRenewalDate="ngModel"
               ngModel
-              name="nextLicenceRenewalDate"
+              name="nextLicenseRenewalDate"
               [class.is-invalid]="
-                nextLicenceRenewalDate.invalid && nextLicenceRenewalDate.touched
+              nextLicenseRenewalDate.invalid && nextLicenseRenewalDate.touched
               "
               class="form-control"
-              id="nextLicenceRenewalDate"
+              id="nextLicenseRenewalDate"
               placeholder="DD/MM/YYYY"
               required
             />
             <small
               class="text-danger"
               [class.d-none]="
-                nextLicenceRenewalDate.valid || nextLicenceRenewalDate.untouched
+              nextLicenseRenewalDate.valid || nextLicenseRenewalDate.untouched
               "
               >Please select a date</small
             >
@@ -325,17 +325,17 @@
 
         <!-- previous owner name  -->
         <div class="form-group">
-          <label for="PreviousOwnerName">Eneter Previous owner name</label>
+          <label for="vehiclePreviousOwner">Eneter Previous owner name</label>
           <input
             type="text"
-            #PreviousOwnerName="ngModel"
+            #vehiclePreviousOwner="ngModel"
             ngModel
-            name="PreviousOwnerName"
+            name="vehiclePreviousOwner"
             [class.is-invalid]="
-              PreviousOwnerName.invalid && PreviousOwnerName.touched
+            vehiclePreviousOwner.invalid && vehiclePreviousOwner.touched
             "
             class="form-control"
-            id="PreviousOwnerName"
+            id="vehiclePreviousOwner"
             placeholder=""
             required
           />
@@ -356,13 +356,14 @@
             #NIC="ngModel"
             ngModel
             name="NIC"
-            [class.is-invalid]="NIC.invalid && NIC.touched"
+            [class.is-invalid] = "nicInvalid && NIC.touched"
             class="form-control"
             id="NIC"
             placeholder="9999999999V"
+            (change)="nicValidate(NIC.value)"
             required
           />
-          <small class="text-danger" [class.d-none]="NIC.valid || NIC.untouched"
+          <small class="text-danger" [class.d-none]= " NIC.untouched || !nicInvalid"
             >Please enter previous owner nic</small
           >
         </div>
@@ -414,7 +415,7 @@
         <div class="col-auto my-1" align="center">
           <button
             type="submit"
-            [disabled]="!empreg.valid"
+            [disabled]="!vehiForm.valid"
             class="btn btn-success btn-lg"
           >
             Submit

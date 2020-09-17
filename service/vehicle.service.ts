@@ -16,17 +16,17 @@ export class VehiclesServices {
       .pipe(map((vehicleData) => {
         return vehicleData.vehicles.map(vehicles => {
           return {
-            vehicleNo: vehicles.vehicleNo,
+            vehicleNumber: vehicles.vehicleNumber,
             vehicleType: vehicles.vehicleType,
-            vehicleChaseNo: vehicles.vehicleChaseNo,
-            vehicleEngineNo: vehicles.vehicleEngineNo,
-            vehicleManufactureNo: vehicles.vehicleManufactureNo,
+            vehicleChaseNumber: vehicles.vehicleChaseNumber,
+            vehicleEngineNumber: vehicles.vehicleEngineNumber,
+            manufactureDate: vehicles.manufactureDate,
             vehicleColor: vehicles.vehicleColor,
             vehiclePurchaseDate: vehicles.vehiclePurchaseDate,
             vehicleOpenMileage: vehicles.vehicleOpenMileage,
             insuranceType: vehicles.insuranceType,
-            vehicleRegistedDistrict: vehicles.vehicleRegistedDistrict,
-            nextLicenceRenewalDate: vehicles.nextLicenceRenewalDate,
+            vehicleRegisteredDistrict: vehicles.vehicleRegisteredDistrict,
+            nextLicenseRenewalDate: vehicles.nextLicenseRenewalDate,
             vehiclePreviousOwner: vehicles.vehiclePreviousOwner,
             NIC: vehicles.NIC,
             contactNumber: vehicles.contactNumber,
@@ -45,21 +45,21 @@ export class VehiclesServices {
   addVehicle(vehicles: Vehicles) {
     const vehiclesArray: Vehicles = {
       id: vehicles.id,
-      vehicleNo: vehicles.vehicleNo,
+      vehicleNumber: vehicles.vehicleNumber,
       vehicleType: vehicles.vehicleType,
-      vehicleChaseNo: vehicles.vehicleChaseNo,
-      vehicleEngineNo: vehicles.vehicleEngineNo,
-      vehicleManufactureNo: vehicles.vehicleManufactureNo,
+      vehicleChaseNumber: vehicles.vehicleChaseNumber,
+      vehicleEngineNumber: vehicles.vehicleEngineNumber,
+      manufactureDate: vehicles.manufactureDate,
       vehicleColor: vehicles.vehicleColor,
       vehiclePurchaseDate: vehicles.vehiclePurchaseDate,
       vehicleOpenMileage: vehicles.vehicleOpenMileage,
       insuranceType: vehicles.insuranceType,
-      vehicleRegistedDistrict: vehicles.vehicleRegistedDistrict,
-      nextLicenceRenewalDate: vehicles.nextLicenceRenewalDate,
+      vehicleRegisteredDistrict: vehicles.vehicleRegisteredDistrict,
+      nextLicenseRenewalDate: vehicles.nextLicenseRenewalDate,
       vehiclePreviousOwner: vehicles.vehiclePreviousOwner,
       NIC: vehicles.NIC,
       contactNumber: vehicles.contactNumber,
-      address: vehicles.address,
+      address: vehicles.address
     };
     this.http.post<{ message: string }>('http://localhost:3000/api/vehicles', vehiclesArray)
       .subscribe((responseData) => {

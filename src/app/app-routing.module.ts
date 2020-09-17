@@ -33,6 +33,10 @@ import { UpdatePayrollComponent } from './admin-profile/payroll/update-payroll/u
 import { TrainingAddComponent } from './admin-profile/training-programs/training-add/training-add.component';
 import { EmpLongLeaveComponent } from './emp-profile/emp-attendance-leave/emp-long-leave/emp-long-leave.component';
 import { ViewLeavesComponent } from './admin-profile/attendance/view-leaves/view-leaves.component';
+import { VehicleListComponent } from './admin-profile/vehicles/vehicle-list/vehicle-list.component';
+import { VehicleListAllComponent } from './admin-profile/vehicles/vehicle-list-all/vehicle-list-all.component';
+import { VehicleAllocatedComponent } from './admin-profile/vehicles/vehicle-allocated/vehicle-allocated.component';
+import { VehicleUnallocatedComponent } from './admin-profile/vehicles/vehicle-unallocated/vehicle-unallocated.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -72,7 +76,12 @@ const appRoutes: Routes = [
       },
       { path: 'training-programs', component: TrainingProgramsComponent },
       { path: 'vehicles', component: VehiclesComponent, children:[
-        { path: 'new', component: AddVehicleComponent}
+        { path: 'new', component: AddVehicleComponent},
+        { path: 'view', component: VehicleListComponent, children:[
+          { path: 'all', component: VehicleListAllComponent},
+          { path: 'allocated', component: VehicleAllocatedComponent},
+          { path: 'unallocated', component: VehicleUnallocatedComponent},
+        ]}
       ]},
       {
         path: 'employees',
