@@ -12,3 +12,7 @@ mat-spinner{
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+input{
+  border-color: #01579b;
+}

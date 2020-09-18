@@ -49,8 +49,8 @@ export class TrainingProgramsService{
 
   }
 
-  deleteQuickLeave(quickLeaveID: string){
-    this.http.delete("http://localhost:3000/api/quickLeaves/" + quickLeaveID)
+  deleteTrainingProgram(trainingID: string){
+    this.http.delete("http://localhost:3000/api/quickLeaves/" + trainingID)
       .subscribe(() => {
         console.log('Deleted');
       })

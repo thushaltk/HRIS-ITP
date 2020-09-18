@@ -1,9 +1,10 @@
 <div style="overflow-y: scroll; overflow-x: scroll; height: 100vh; width:1000px; max-width: 1300px;"  class ="container-fluid" >
-  <div class="container-fluid">
+  <div class="container-fluid" >
     <div>
-      <p class="h1" style="text-align:center" >Employee Registration Form</p><br>
+      <p class="h1" style="text-align:center" >Add New Employee</p><br>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid" style="border:1px Solid;border-color: #6d7fcc; border-radius: 10px 10px 10px 10px">
+      <br>
       <p class="h4" style="text-align:center" >Personal Information</p>
       <form (ngSubmit)="onSubmit()" #empreg="ngForm">
         <div class="form-group">
@@ -21,7 +22,7 @@
 
           <div class="col-md-3 mb-1">
             <label for="nic">NIC Number</label>
-            <input type="text" ngModel name="nic" #nic="ngModel" (blur)="nicValidate(nic.value)" (change)="nicValidate(nic.value)" [class.is-invalid]= "nic.touched && nicInvalid" class="form-control" id="nic" placeholder="123456789V" required>
+            <input type="text" ngModel name="nic" #nic="ngModel" (change)="nicValidate(nic.value)" [class.is-invalid]= "nic.touched && nicInvalid" class="form-control" id="nic" placeholder="123456789V" required>
             <small class="text-danger" [class.d-none]= " nic.untouched || !nicInvalid">Please enter a valid NIC number</small>
           </div>
 
@@ -92,8 +93,9 @@
         <div class="col-auto my-1" align="center">
         <button type="submit"  [disabled]="!empreg.valid" class="btn btn-success btn-lg ">Submit</button>
         </div>
-        <br><br><br><br><br><br>
+        <br><br>
       </form>
     </div>
+    <br><br><br><br><br>
   </div>
 </div>
