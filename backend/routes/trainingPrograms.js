@@ -7,6 +7,7 @@ const TrainingProgram = require('../models/trainingPrograms');
 router.post("", (req, res, next) => {
   const trainingProgram = new TrainingProgram({
     title: req.body.title,
+    date: req.body.date,
     description: req.body.description,
     availability: req.body.availability,
     location: req.body.location,
@@ -18,23 +19,23 @@ router.post("", (req, res, next) => {
   });
 });
 
-//Reteive Quick Leave
+//Reteive Training Programs
 router.get("", (req, res, next) => {
-  QuickLeave.find()
+  TrainingProgram.find()
     .then(documents => {
       res.status(200).json({
-        message: 'Quick Leave fetched successfully',
-        quickLeaves: documents
+        message: 'Training Programs fetched successfully',
+        trainingPrograms: documents
       });
     });
 });
 
-//Delete Announcemets
+//Delete Training Program
 router.delete("/:id", (req, res, next) => {
-  QuickLeave.deleteOne({ _id: req.params.id }).then(result => {
+  TrainingProgram.deleteOne({ _id: req.params.id }).then(result => {
     console.log(result);
     res.status(200).json({
-      message: "Quick Leave Deleted"
+      message: "Training Program Deleted"
     });
   });
 

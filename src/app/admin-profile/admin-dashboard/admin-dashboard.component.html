@@ -5,14 +5,14 @@
     <div class="container pull-left" *ngFor="let announcement of announcements" style="background-color:#E6E9E5; width: 1000px; height: fit-content;">
       <div class="card">
         <div class="card-header">
-          Featured
+         ***
         </div>
         <div class="card-body">
-          <h5 class="card-title">{{announcement.title}}</h5>
+          <h4 class="card-title">{{announcement.title}}</h4>
           <p class="card-text">{{announcement.content}}</p>
-          <p class="card-text">{{announcement.date}} {{announcement.validity}}</p>
-          <p class="card-text" [ngStyle]="{'color': announcement.priority == 'HIGH' ? 'red' : 'green'}">{{announcement.priority}}</p>
-          <p class="card-text">{{announcement.validity}}</p>
+          <p class="card-text">{{announcement.date}}</p>
+          <p class="card-text" [ngStyle]="{'color': announcement.priority == 'HIGH' ? 'red' : 'green'}">{{announcement.priority}} priority</p>
+          <p class="card-text">Validity: {{announcement.validity}}</p>
         </div>
       </div>
     </div>
@@ -21,55 +21,25 @@
 
   <h1>Training Programs</h1>
   <div  style="overflow-y: scroll; height:400px; width: fit-content;">
-    <div class="container" style="background-color: #E6E9E5; width: 1000px; height: fit-content;">
-      <div class="card">
-        <div class="card-header">
-          Featured
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
 
-    <div class="container" style="background-color: #E6E9E5; width: 1000px; height: fit-content;">
+    <div class="container" *ngFor="let trainingProgram of trainingPrograms" style="background-color: #E6E9E5; width: 1000px; height: fit-content;">
       <div class="card">
         <div class="card-header">
-          Featured
+          ***
         </div>
         <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <h4 class="card-title">{{trainingProgram.title}} ({{trainingProgram.date}}) </h4>
+          <p>--------------------------------------------------------------------------------------</p>
+          <p class="card-text">{{trainingProgram.description}}</p>
+          <p class="card-text">Available for
+            <span style="font-weight: 500; text-transform: uppercase;" *ngFor="let ele of trainingProgram.availability.values()">
+              {{ele.label}},
+            </span>
+          </p>
+          <p class="card-text">Located at <span style="font-weight: 500; text-transform: uppercase;">{{trainingProgram.location}}</span></p>
         </div>
       </div>
     </div>
-
-    <div class="container" style="background-color: #E6E9E5; width: 1000px; height: fit-content;">
-      <div class="card">
-        <div class="card-header">
-          Featured
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
-    <div class="container" style="background-color: #E6E9E5; width: 1000px; height: fit-content;">
-      <div class="card">
-        <div class="card-header">
-          Featured
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
+    <br><br><br><br>
   </div>
 </div>

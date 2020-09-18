@@ -15,6 +15,7 @@ export class TrainingAddComponent implements OnInit {
   trainingPrograms: TrainingPrograms = {
     id: '',
     title: '',
+    date:'',
     description: '',
     availability: [],
     location: '',
@@ -76,6 +77,7 @@ export class TrainingAddComponent implements OnInit {
   onSubmit(){
     this.trainingPrograms.id = null;
     this.trainingPrograms.title = this.addTrainingProgramsForm.value.programTitle;
+    this.trainingPrograms.date = this.addTrainingProgramsForm.value.programDate;
     this.trainingPrograms.description = this.addTrainingProgramsForm.value.programDescription,
     this.trainingPrograms.location = this.addTrainingProgramsForm.value.programLocation,
     this.trainingPrograms.availability = this.selectedList;

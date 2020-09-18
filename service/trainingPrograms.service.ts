@@ -17,10 +17,12 @@ export class TrainingProgramsService{
           return trainingProgramsData.trainingPrograms.map(trainingProgram => {
             return{
               title: trainingProgram.title,
+              date: trainingProgram.date,
               description: trainingProgram.description,
               availability: trainingProgram.availability,
               location: trainingProgram.location,
-              email: trainingProgram.email
+              email: trainingProgram.email,
+              id: trainingProgram._id
             };
           });
       }))
@@ -35,6 +37,7 @@ export class TrainingProgramsService{
     const trainingProgramsArray: TrainingPrograms = {
       id: trainingProgram.id,
       title: trainingProgram.title,
+      date: trainingProgram.date,
       description: trainingProgram.description,
       availability: trainingProgram.availability,
       location: trainingProgram.location,
@@ -50,7 +53,7 @@ export class TrainingProgramsService{
   }
 
   deleteTrainingProgram(trainingID: string){
-    this.http.delete("http://localhost:3000/api/quickLeaves/" + trainingID)
+    this.http.delete("http://localhost:3000/api/trainingPrograms/" + trainingID)
       .subscribe(() => {
         console.log('Deleted');
       })

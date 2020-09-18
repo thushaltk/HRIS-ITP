@@ -37,6 +37,7 @@ import { VehicleListComponent } from './admin-profile/vehicles/vehicle-list/vehi
 import { VehicleListAllComponent } from './admin-profile/vehicles/vehicle-list-all/vehicle-list-all.component';
 import { VehicleAllocatedComponent } from './admin-profile/vehicles/vehicle-allocated/vehicle-allocated.component';
 import { VehicleUnallocatedComponent } from './admin-profile/vehicles/vehicle-unallocated/vehicle-unallocated.component';
+import { TrainingViewComponent } from './admin-profile/training-programs/training-view/training-view.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -57,7 +58,8 @@ const appRoutes: Routes = [
         ],
       },
       { path: 'trainingPrograms', component: TrainingProgramsComponent, children: [
-        { path: 'add', component: TrainingAddComponent}
+        { path: 'add', component: TrainingAddComponent},
+        { path: 'view', component: TrainingViewComponent}
       ]},
       { path: 'projects', component: ProjectsComponent },
       { path: 'projects/new', component: NewProjectComponent },
@@ -74,7 +76,6 @@ const appRoutes: Routes = [
           { path: 'new', component: NewEquipmentComponent },
         ],
       },
-      { path: 'training-programs', component: TrainingProgramsComponent },
       { path: 'vehicles', component: VehiclesComponent, children:[
         { path: 'new', component: AddVehicleComponent},
         { path: 'view', component: VehicleListComponent, children:[

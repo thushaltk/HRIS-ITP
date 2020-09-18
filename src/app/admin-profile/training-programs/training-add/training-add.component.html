@@ -20,10 +20,26 @@
         </div>
 
         <div class="form-group row" style="margin-left: 200px;">
+          <label for="programDate" class="col-sm-3 col-form-label pull-right">Date</label>
+          <div class="col-sm-5" >
+            <input class="form-control" type="date" ngModel name="programDate" #programDate="ngModel" id="programDate" required>
+          </div>
+          <div class="col-sm-3">
+          <span class="help-block" *ngIf="!programDate.valid && programDate.touched" style="color: red">Please select a date.</span>
+          </div>
+        </div>
+
+        <div class="form-group row" style="margin-left: 200px;">
           <label for="programDescription" class="col-sm-3 col-form-label pull-right">Program Description</label>
           <div class="col-sm-5">
-            <input class="form-control" type="text" ngModel name="programDescription" #programDescription="ngModel" id="programDescription"
-              placeholder="Enter Description" required>
+              <textarea
+            id="programDescription"
+            rows=4
+            class="form-control"
+            ngModel
+            name="programDescription"
+            required
+            #programDescription="ngModel"></textarea>
           </div>
           <div class="col-sm-3">
           <span class="help-block" *ngIf="!programDescription.valid && programDescription.touched" style="color: red">Please enter a Description.</span>
