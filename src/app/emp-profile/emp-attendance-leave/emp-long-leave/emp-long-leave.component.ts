@@ -102,7 +102,6 @@ export class EmpLongLeaveComponent implements OnInit, OnDestroy {
 
   onDelete(id: string){
     this.longLeaveService.deleteLongLeave(id);
-    window.location.reload();
 
   }
 

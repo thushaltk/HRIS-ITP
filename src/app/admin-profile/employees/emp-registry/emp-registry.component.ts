@@ -54,7 +54,6 @@ export class EmpRegistryComponent implements OnInit, OnDestroy {
 
   onDelete(id: string){
     this.employeeService.deleteEmployee(id);
-    window.location.reload();
   }
 
   ngOnDestroy(){

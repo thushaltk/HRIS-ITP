@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Announcements } from '../../../../../models/announcements.model';
 import { AnnouncementService } from 'service/announcements.service';
-import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -49,5 +48,4 @@ export class AnnouncementCreateComponent implements OnInit {
     this.router.navigate(['../view'], {relativeTo: this.route});
 
   }
-
 }

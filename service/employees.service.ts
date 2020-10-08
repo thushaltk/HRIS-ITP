@@ -118,7 +118,9 @@ export class EmployeeService{
   deleteEmployee(employeeID: string){
     this.http.delete("http://localhost:3000/api/employees/" + employeeID)
       .subscribe(() => {
-        console.log('Deleted');
+        const updatedEmployee = this.employeesArr.filter(employees => employees.id !== employeeID);
+        this.employeesArr = updatedEmployee;
+        this.employeesChanged.next(this.employeesArr.slice());
       })
   }
 }

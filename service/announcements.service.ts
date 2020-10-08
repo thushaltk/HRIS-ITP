@@ -53,7 +53,9 @@ export class AnnouncementService{
   deleteAnnouncement(announcementID: string){
     this.http.delete("http://localhost:3000/api/announcements/" + announcementID)
       .subscribe(() => {
-        console.log('Deleted');
-      })
+        const updatedPosts = this.announcementsArr.filter(announcements => announcements.id !== announcementID);
+        this.announcementsArr = updatedPosts;
+        this.announcementsChanged.next(this.announcementsArr.slice());
+      });
   }
 }

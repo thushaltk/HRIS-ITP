@@ -77,7 +77,9 @@ export class LongLeavesService{
   deleteLongLeave(longLeaveID: string){
     this.http.delete("http://localhost:3000/api/longLeaves/" + longLeaveID)
       .subscribe(() => {
-        console.log('Deleted');
+        const updatedLongLeave = this.longLeavesArr.filter(longLeaves => longLeaves.id !== longLeaveID);
+        this.longLeavesArr = updatedLongLeave;
+        this.longLeavesChanged.next(this.longLeavesArr.slice());
       })
   }
 
