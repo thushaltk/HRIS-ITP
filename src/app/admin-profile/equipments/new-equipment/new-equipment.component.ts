@@ -34,15 +34,15 @@ export class NewEquipmentComponent implements OnInit {
   @Output() update = new EventEmitter<any>();
   @Input() isUpdate: boolean = false;
   @Input() equipment: IEquipment;
-  projects: IProject[]=[]
+  projects: IProject[] = []
   constructor(
     private fb: FormBuilder,
     private confirmService: ConfirmService,
     private equipmentService: EquipmentService,
     private toastr: ToastrService,
-    private projectService : ProjectsService,
+    private projectService: ProjectsService,
     private datePipe: DatePipe,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -64,7 +64,7 @@ export class NewEquipmentComponent implements OnInit {
       this.equipment.project = this.equipment.project?._id
       this.form.patchValue(this.equipment);
       this.form.patchValue({
-        startDate : this.datePipe.transform(this.equipment.startDate, "yyyy-MM-dd")
+        startDate: this.datePipe.transform(this.equipment.startDate, "yyyy-MM-dd")
       })
       this.isUpdate = true;
     } else {
@@ -88,8 +88,7 @@ export class NewEquipmentComponent implements OnInit {
     }
     this.confirmService
       .confirm(
-        `${
-          this.isUpdate ? 'Update Equipment ? ' : 'Register a new equipment ?'
+        `${this.isUpdate ? 'Update Equipment ? ' : 'Register a new equipment ?'
         }`
       )
       .then(
@@ -101,7 +100,7 @@ export class NewEquipmentComponent implements OnInit {
             this.addEquipment(req);
           }
         },
-        (reject) => {}
+        (reject) => { }
       );
   }
 
@@ -170,5 +169,25 @@ export class NewEquipmentComponent implements OnInit {
         this.toastr.error(`${err}`);
       }
     );
+  }
+
+  demo() {
+    function randomValue(array) {
+      return array[Math.floor(Math.random() * array.length)]
+    }
+    const eqName = ['Drill', 'Cement Mixer', 'Electric Socket', 'Glue Gun']
+    const today = new  Date();
+    this.form.patchValue({
+      eid: `EQ0000${Math.floor(Math.random() * 200) + 1}`,
+      name: randomValue(eqName) + '-' + Math.floor(Math.random() * 20) + 1,
+      category: randomValue(['Tool', 'Vehicle']),
+      type: randomValue(['Inside', 'Out Source']),
+      allocation: true,
+      project: randomValue(this.projects)._id,
+      startDate: `${today.getFullYear()}/${today.getMonth()}/${today.getDate()}`,
+      duration: "2 Years",
+      person: 'Mr.Bruce Wayne',
+      remarks: "No Refund ",
+    })
   }
 }
