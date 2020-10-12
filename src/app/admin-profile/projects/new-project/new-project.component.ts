@@ -65,6 +65,7 @@ export class NewProjectComponent implements OnInit {
       supervisor: new FormControl('', Validators.required),
       consultant: new FormControl('', Validators.required),
       employees: new FormControl('', Validators.required),
+      progress: new FormControl('Hold', Validators.required),
     });
     this.getEmployees();
 
@@ -103,12 +104,14 @@ export class NewProjectComponent implements OnInit {
       console.log(employees);
 
       this.employees = employees['employees'] as [];
-      this.supervisors = this.employees.filter(
-        (element) => element.empDes == 'manager'
-      ); //change this to the supervisor once data availabel
-      this.consultants = this.employees.filter(
-        (element) => element.empDes == 'manager'
-      ); //change this to the consultant once data availabel
+      this.supervisors = employees['employees'] as [];
+      this.consultants = employees['employees'] as [];
+      // this.supervisors = this.employees.filter(
+      //   (element) => element.empDes == 'manager'
+      // ); //change this to the supervisor once data available
+      // this.consultants = this.employees.filter(
+      //   (element) => element.empDes == 'manager'
+      // ); //change this to the consultant once data available
     });
   }
 
@@ -183,6 +186,27 @@ export class NewProjectComponent implements OnInit {
   resetForm() {
     this.form.reset();
     this.submitted = false;
+  }
+
+  demo() {
+    function randomValue(array) {
+      return array[Math.floor(Math.random() * array.length)]
+    }
+    const today = new Date();
+
+    this.form.patchValue({
+      projectId: `PROJ-${Math.floor(Math.random() * 200) + 1}`,
+      name: `Secret Project - ${Math.floor(Math.random() * 200) + 1}`,
+      location: randomValue(['Malmbe', 'Kandy', 'Galle']),
+      startDate: `${today.getFullYear()}/${today.getMonth()}/${today.getDate()}`,
+      duration: '2+ Years',
+      clientName: "RDA Builders",
+      clientPhone: "0112112245",
+      clientAddress: '182/6 Kandy rd, Kadawatha',
+      consultant: randomValue(this.consultants)._id,
+      supervisor: randomValue(this.supervisors)._id,
+      progress: randomValue(['Hold', 'Completed', 'In Progress']),
+    });
   }
 
 

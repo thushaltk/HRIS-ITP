@@ -10,6 +10,7 @@ const projectSchema = mongoose.Schema(
     clientName: { type: String, required: true },
     clientPhone: { type: String, required: true },
     clientAddress: { type: String, required: true },
+    progress: { type: String, required: true },
     supervisor: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Employee",

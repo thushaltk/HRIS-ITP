@@ -54,6 +54,7 @@ router.post("/", async (req, res, next) => {
       consultant: req.body.supervisor,
       supervisor: req.body.consultant,
       employees: req.body.employees,
+      progress: req.body.progress,
     });
     const result = await project.save();
     Project.findById(result._id)

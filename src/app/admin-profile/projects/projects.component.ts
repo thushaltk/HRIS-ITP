@@ -29,7 +29,9 @@ export class ProjectsComponent implements OnInit {
     'supervisor',
     'consultant',
     // 'employees',
+    'progress',
     'action',
+
   ];
   columns: string[] = [
     'projectId',
@@ -44,6 +46,7 @@ export class ProjectsComponent implements OnInit {
     'consultant',
     'employees',
     'action',
+    'progress'
   ];
   columnsFilter = new FormControl(this.columns);
   dataSource = new MatTableDataSource<IProject>();

@@ -2,11 +2,12 @@
     <div class="row content-wrapper">
         <div class="col-md-12 title">
             {{isUpdate ? 'Update' : 'New'}} Project
+            <a *ngIf="!isUpdate" class="btn btn-sm btn-outline-danger float-right" (click)="demo()"> Demo</a>
         </div>
         <div class="col-md-12 pt-10 form-wrapper" style="max-height:70vh;overflow-x: hidden;overflow-y: auto;">
             <form [formGroup]="form">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Project ID</label>
                             <input [ngClass]="{'is-invalid': submitted && validator.projectId.errors}"
@@ -17,8 +18,23 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Project Name</label>
-                            <input [ngClass]="{'is-invalid': submitted && validator.name.errors}" formControlName="name"
+                            <input placeholder="Select Progression"
+                                [ngClass]="{'is-invalid': submitted && validator.name.errors}" formControlName="name"
                                 type="text" class="form-control" placeholder="Enter Name">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Progress</label>
+                            <select formControlName="progress" class="form-control form-control-lg"
+                                [ngClass]="{'is-invalid': submitted && validator.progress.errors}">
+                                <option value="Hold"> Hold </option>
+                                <option value="In Progress"> In Progress </option>
+                                <option value="Completed"> Completed </option>
+                            </select>
+                            <!-- <input [ngClass]="{'is-invalid': submitted && validator.consultant.errors}"
+                                formControlName="consultant" type="text" class="form-control"
+                                placeholder="Enter Start Date"> -->
                         </div>
                     </div>
                     <div class="col-md-4">
