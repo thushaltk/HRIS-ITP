@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Announcements } from '../../../../../models/announcements.model';
 import { AnnouncementService } from 'service/announcements.service';
 import { NgForm } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-announcement-create',
@@ -13,6 +13,9 @@ export class AnnouncementCreateComponent implements OnInit {
   @ViewChild('ann', {static: false}) addAnnouncementForm: NgForm;
   defaultValue = "choose";
   defaultValue2 = "chooseValidity";
+  private mode = 'create';
+  private announcementID: string;
+  private announcementsDetails: Announcements;
   announcements: Announcements = {
     id: '',
     title: '',
@@ -22,13 +25,24 @@ export class AnnouncementCreateComponent implements OnInit {
     validity: ''
   };
   submitted=false;
-  //private subscription: Subscription;
 
   constructor(private router: Router,
               private announcementService: AnnouncementService,
               private route: ActivatedRoute) { }
 
   ngOnInit(){
+    this.route.paramMap.subscribe(((paramMap: ParamMap) => {
+      if(paramMap.has('annID')){
+        this.mode = 'edit';
+        this.announcementID = paramMap.get('annID');
+        this.announcementsDetails = this.announcementService.getAnnouncementByID(this.announcementID);
+      }else{
+        this.mode = 'create';
+        this.announcementID = null;
+      }
+
+    }))
+
   }
 
   onSubmit(){

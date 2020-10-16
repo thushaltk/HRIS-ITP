@@ -73,6 +73,7 @@ import { TrainingViewComponent } from './admin-profile/training-programs/trainin
 import { EmpLongLeaveComponent } from './emp-profile/emp-attendance-leave/emp-long-leave/emp-long-leave.component';
 import { ViewLeavesComponent } from './admin-profile/attendance/view-leaves/view-leaves.component';
 import { TrainingProgramsService } from '../../service/trainingPrograms.service';
+import { RegisterEmpComponent } from './login/login-emp/register-emp/register-emp.component';
 
 @NgModule({
   declarations: [
@@ -129,6 +130,7 @@ import { TrainingProgramsService } from '../../service/trainingPrograms.service'
     TrainingViewComponent,
     EmpLongLeaveComponent,
     ViewLeavesComponent,
+    RegisterEmpComponent,
   ],
   imports: [
     BrowserModule,

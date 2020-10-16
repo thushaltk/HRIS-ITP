@@ -38,12 +38,14 @@ import { VehicleListAllComponent } from './admin-profile/vehicles/vehicle-list-a
 import { VehicleAllocatedComponent } from './admin-profile/vehicles/vehicle-allocated/vehicle-allocated.component';
 import { VehicleUnallocatedComponent } from './admin-profile/vehicles/vehicle-unallocated/vehicle-unallocated.component';
 import { TrainingViewComponent } from './admin-profile/training-programs/training-view/training-view.component';
+import { RegisterEmpComponent } from './login/login-emp/register-emp/register-emp.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: LandingPageComponent },
   { path: 'login/emp', component: LoginEmpComponent },
   { path: 'login/admin', component: LoginAdminComponent },
+  { path: 'login/registerLogin', component: RegisterEmpComponent},
   {
     path: 'admin',
     component: AdminProfileComponent,
@@ -55,6 +57,7 @@ const appRoutes: Routes = [
         children: [
           { path: 'view', component: AdminAnnouncementsComponent },
           { path: 'new', component: AnnouncementCreateComponent },
+          {path: 'edit/:annID', component: AnnouncementCreateComponent},
         ],
       },
       { path: 'trainingPrograms', component: TrainingProgramsComponent, children: [

@@ -19,13 +19,13 @@ export class ViewLeavesComponent implements OnInit {
   ngOnInit(): void {
     this.getlongLeave = this.longLeaveService.getLongLeave();
     this.subscription = this.longLeaveService.longLeavesChanged.subscribe(
-      (longLeaves : LongLeave[]) => {
+      (longLeaves: LongLeave[]) => {
         this.getlongLeave = longLeaves;
         console.log(this.getlongLeave.length);
-        if(this.getlongLeave.length === 0){
+        if (this.getlongLeave.length === 0) {
           this.isNodata = true;
           console.log(this.getlongLeave);
-        }else{
+        } else {
           this.isNodata = false;
           console.log(this.getlongLeave);
         }
@@ -39,29 +39,31 @@ export class ViewLeavesComponent implements OnInit {
   }
 
 
-  approve(id :string){
+  approve(id: string) {
     this.getlongLeave2 = this.longLeaveService.getLongLeaveByID(id);
-    for(let longLeave2 of this.getlongLeave2){
-      if(longLeave2.id === id){
+    for (let longLeave2 of this.getlongLeave2) {
+      if (longLeave2.id === id) {
         longLeave2.status = "APPROVED";
         this.longLeaveService.updateLongLeaveStatus(id, longLeave2);
-        window.location.reload();
       }
     }
-
+    setTimeout(function () {
+      window.location.reload();
+    }, 1000);
   }
 
-  reject(id: string){
+  reject(id: string) {
     this.getlongLeave2 = this.longLeaveService.getLongLeaveByID(id);
-    for(let longLeave2 of this.getlongLeave2){
-      if(longLeave2.id === id){
+    for (let longLeave2 of this.getlongLeave2) {
+      if (longLeave2.id === id) {
         longLeave2.status = "REJECTED";
         this.longLeaveService.updateLongLeaveStatus(id, longLeave2);
-        window.location.reload();
+
       }
     }
-
-
+    setTimeout(function () {
+      window.location.reload();
+    }, 1000);
   }
 
 }
