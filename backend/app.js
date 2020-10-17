@@ -12,6 +12,7 @@ const payrollRoute = require("./routes/payroll");
 const salaryRoute = require("./routes/salary");
 const trainingProgramsRoute = require("./routes/trainingPrograms");
 const vehicleRoute = require("./routes/vehicle");
+const attendanceRoutes = require("./routes/attendance");
 
 const app = express();
 
@@ -56,4 +57,5 @@ app.use("/api/quickLeaves", quickLeavesRoutes);
 app.use("/api/longLeaves", longLeavesRoutes);
 app.use("/api/trainingPrograms", trainingProgramsRoute);
 app.use("/api/vehicles", vehicleRoute);
+app.use("/api/attendance", attendanceRoutes);
 module.exports = app;

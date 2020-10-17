@@ -88,7 +88,8 @@ export class EmployeeService{
   //       this.employeesArr = transformedEmployees;
   //       this.employeesChanged.next(this.employeesArr.slice());
   //     });
-  //     return this.employeesArr.slice();
+  //   console.log(this.employeesArr.length);
+  //   return this.employeesArr.slice();
   // }
 
   addEmployee(employee: Employees){

@@ -13,32 +13,32 @@
         <div class="card-body">
           <table class="table">
             <thead class="thead-dark">
-              <tr>
-                <th scope="col">empID</th>
-                <th scope="col">IN time</th>
-                <th scope="col">OUT time</th>
-                <th scope="col">Late Status</th>
+              <tr >
+                <th scope="col">EMP ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">NIC</th>
+                <th scope="col">Date</th>
+                <th scope="col">Designation</th>
+                <th scope="col">Arrival Time</th>
+                <th scope="col">Leave Time</th>
+                <th scope="col" style="text-align: center;">Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+              <tr *ngFor="let atd of attendanceDetails">
+                <th scope="row">{{atd.empID}}</th>
+                <td>{{atd.fullName}}</td>
+                <td>{{atd.nic}}</td>
+                <td>{{atd.date}}</td>
+                <td>{{atd.designation}}</td>
+                <td>{{atd.arriveTime}}</td>
+                <td>{{atd.leaveTime}}</td>
+                <td>
+                  <a class="btn btn-danger pull-right" (click)="onDelete(atd.id)">DELETE</a>
+                  <a href="" class="btn btn-warning pull-right" style="margin-right: 10px;">EDIT</a>
+                </td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
+
             </tbody>
           </table>
         </div>
@@ -58,34 +58,24 @@
           <table class="table">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">empID</th>
-                <th scope="col">Department</th>
-                <th scope="col">Leave Add Date</th>
-                <th scope="col">Leave Type</th>
-                <th scope="col">Leave Requested Date</th>
+                <th scope="col">EMP ID</th>
+                <th scope="col">Time</th>
+                <th scope="col">Leave Start Date</th>
                 <th scope="col">Leave End Date</th>
-                <th scope="col">Leave Status</th>
+                <th scope="col">Reason</th>
+                <th scope="col">Status</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+              <tr *ngFor="let lleave of longLeaveDetails">
+                <th scope="row">{{lleave.empID}}</th>
+                <td>{{lleave.time}}</td>
+                <td>{{lleave.startDate}}</td>
+                <td>{{lleave.endDate}}</td>
+                <td>{{lleave.reason}}</td>
+                <td [ngStyle]="{color: lleave.status === 'APPROVED' ? 'green' : 'red'}">{{lleave.status}}</td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
+              <br>
             </tbody>
           </table>
         </div>
