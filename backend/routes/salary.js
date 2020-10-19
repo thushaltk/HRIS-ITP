@@ -54,12 +54,14 @@ router.post("/:nic", async (req, res) => {
     });
     if (!attendance) return res.status(404).send("Attendance not found");
 
-    console.log(attendance);
-    // let noOfDays = 0;
-    // attendance.map((days) => {
-    //   console.log(days);
-    //   noOfDays++;
-    // });
+    // console.log(attendance);
+    let noOfDays = 0;
+    attendance.map((days) => {
+      console.log(days);
+      noOfDays++;
+      console.log(noOfDays);
+      console.log(days.leaveTime > "17:00");
+    });
     return res.status(404).send(attendance);
     // const { month, amountOfLeaves, otHours } = req.body;
     // let penaltyForLeaves = 0,
