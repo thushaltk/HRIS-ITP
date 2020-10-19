@@ -32,15 +32,16 @@ router.post("/:nic", async (req, res) => {
     if (!emp) return res.status(404).send("User not found");
     const payroll = await Payroll.findOne({ employee: emp._id });
     if (!payroll) return res.status(404).send("Payroll not found");
-    const findSalary = await Salary.findOne({
-      employee: req.params.id,
-      month: req.body.month,
-    });
-    if (findSalary) return res.status(409).send("Salary already paid");
 
     const { otStart, date } = req.body;
 
     let thisMonth = new Date(date);
+
+    const findSalary = await Salary.findOne({
+      employee: req.params.id,
+      month: thisMonth.getMonth() + 1,
+    });
+    if (findSalary) return res.status(409).send("Salary already paid");
 
     prevMonth = new Date(
       thisMonth.getFullYear(),
@@ -50,48 +51,54 @@ router.post("/:nic", async (req, res) => {
 
     const attendance = await Attendance.find({
       nic: req.params.nic,
-      date: { $lte: thisMonth.toISOString(), $gte: prevMonth.toISOString() },
+      arriveTime: {
+        $lte: thisMonth.toISOString(),
+        $gte: prevMonth.toISOString(),
+      },
     });
     if (!attendance) return res.status(404).send("Attendance not found");
 
-    // console.log(attendance);
     let noOfDays = 0;
+    let workhours = 0;
+    let otHours = 0;
+    let needDays = 20;
     attendance.map((days) => {
       console.log(days);
       noOfDays++;
-      console.log(noOfDays);
-      console.log(days.leaveTime > "17:00");
+      workhours = days.leaveTime.getHours() - days.arriveTime.getHours();
+      console.log(workhours);
+      if (workhours > otStart) {
+        otHours += workhours - otStart;
+      }
     });
-    return res.status(404).send(attendance);
-    // const { month, amountOfLeaves, otHours } = req.body;
-    // let penaltyForLeaves = 0,
-    //   otPay = 0,
-    //   amount = 0;
 
-    // if (amountOfLeaves > payroll.maxLeaves) {
-    //   penaltyForLeaves =
-    //     payroll.penaltyForLeaves * (amountOfLeaves - payroll.maxLeaves);
-    // }
+    amountOfLeaves = needDays - noOfDays;
+    console.log(amountOfLeaves);
 
-    // if (otHours > 0) {
-    //   otPay = otHours * payroll.payForOTHour;
-    // }
+    if (amountOfLeaves > payroll.maxLeaves) {
+      penaltyForLeaves =
+        payroll.penaltyForLeaves * (amountOfLeaves - payroll.maxLeaves);
+    }
 
-    // amount = payroll.baseSalary + otPay - penaltyForLeaves;
+    if (otHours > 0) {
+      otPay = otHours * payroll.payForOTHour;
+    }
 
-    // const salary = new Salary({
-    //   amount,
-    //   month,
-    //   employee: emp,
-    //   amountOfLeaves,
-    //   otHours,
-    //   otPay,
-    //   penaltyForLeaves,
-    // });
-    // await salary.save();
-    // payroll.paymentHistory.push(salary);
-    // await payroll.save();
-    // return res.status(201).send(salary);
+    amount = payroll.baseSalary + otPay - penaltyForLeaves;
+
+    const salary = new Salary({
+      amount,
+      month: thisMonth.getMonth() + 1,
+      employee: emp,
+      amountOfLeaves,
+      otHours,
+      otPay,
+      penaltyForLeaves,
+    });
+    await salary.save();
+    payroll.paymentHistory.push(salary);
+    await payroll.save();
+    return res.status(201).send(salary);
   } catch (error) {
     console.log(error);
     return res.status(500).send(error);
@@ -99,34 +106,34 @@ router.post("/:nic", async (req, res) => {
 });
 
 //id is the salary id
-router.patch("/:id", async (req, res) => {
-  try {
-    const salary = await Salary.findById(req.params.id);
-    if (!salary) return res.status(404).send("Salary not found");
-    const payroll = await Payroll.findOne({ employee: salary.employee });
-    if (!payroll) return res.status(404).send("Payroll not found");
-    const { month, otHours } = req.body;
-    if (month) salary.month = month;
+// router.patch("/:id", async (req, res) => {
+//   try {
+//     const salary = await Salary.findById(req.params.id);
+//     if (!salary) return res.status(404).send("Salary not found");
+//     const payroll = await Payroll.findOne({ employee: salary.employee });
+//     if (!payroll) return res.status(404).send("Payroll not found");
+//     const { month, otHours } = req.body;
+//     if (month) salary.month = month;
 
-    if (otHours) {
-      salary.amount -= salary.otPay;
-      salary.otHours = otHours;
-      if (otHours > 0) {
-        salary.otPay = otHours * payroll.payForOTHour;
-        salary.amount += salary.otPay;
-      }
-    }
+//     if (otHours) {
+//       salary.amount -= salary.otPay;
+//       salary.otHours = otHours;
+//       if (otHours > 0) {
+//         salary.otPay = otHours * payroll.payForOTHour;
+//         salary.amount += salary.otPay;
+//       }
+//     }
 
-    await salary.save();
-    return res.status(200).json({
-      message: "Salary updated",
-      salary,
-    });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).send(error);
-  }
-});
+//     await salary.save();
+//     return res.status(200).json({
+//       message: "Salary updated",
+//       salary,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(500).send(error);
+//   }
+// });
 
 //id is the slary id
 router.delete("/:id", async (req, res) => {
