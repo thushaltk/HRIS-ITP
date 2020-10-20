@@ -38,7 +38,7 @@ router.post("/:nic", async (req, res) => {
     let thisMonth = new Date(date);
 
     const findSalary = await Salary.findOne({
-      employee: req.params.id,
+      employee: emp._id,
       month: thisMonth.getMonth() + 1,
     });
     if (findSalary) return res.status(409).send("Salary already paid");
@@ -82,6 +82,8 @@ router.post("/:nic", async (req, res) => {
 
     if (otHours > 0) {
       otPay = otHours * payroll.payForOTHour;
+    } else {
+      otPay = 0;
     }
 
     amount = payroll.baseSalary + otPay - penaltyForLeaves;

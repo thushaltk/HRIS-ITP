@@ -15,7 +15,7 @@
       <br />
     </div>
     <div class="container-fluid" style="background-color: #ffffff">
-      <form (ngSubmit)="onSubmit()" #addPay="ngForm">
+      <form (ngSubmit)="onSubmit()" #addSal="ngForm">
         <div class="form-group">
           <label for="nic">NIC Number</label>
           <input
@@ -131,6 +131,7 @@
             <input
               type="date"
               name="date"
+              [(ngModel)]="salary.date"
               date
               class="form-control"
               id="payDate"
@@ -149,6 +150,7 @@
             <input
               type="number"
               name="otStart"
+              [(ngModel)]="salary.otStart"
               otStart
               class="form-control"
               id="minOtStart"

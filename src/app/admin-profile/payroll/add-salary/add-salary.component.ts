@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Payroll } from '../../../_models/payroll.model';
 import { Salary } from '../../../_models/salary.model';
+import { SalaryService } from '../../../_services/salary.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-salary',
@@ -10,31 +12,39 @@ import { Salary } from '../../../_models/salary.model';
   styleUrls: ['./add-salary.component.css']
 })
 export class AddSalaryComponent implements OnInit {
-  @ViewChild('addPay', { static: false }) updatePayroll: NgForm;
-  payroll: Payroll = {
-    _id: '',
-    employee: '',
-    baseSalary: null,
-    maxLeaves: null,
-    payForOTHour: null,
-    penaltyForLeaves: null,
-    paymentHistory: null,
-  };
+  @ViewChild('addSal', { static: false }) addSalary: NgForm;
+  
+  payroll : Payroll;
 
-  // payroll: Payroll;
-  salaries : Salary[];
+  // salary: Salary = {
+  //   _id: '',
+  //   amount: null,
+  //   date: null,
+  //   month: null,
+  //   employee: '',
+  //   amountOfLeaves: null,
+  //   otHours: null,
+  //   otPay: null,
+  //   penaltyForLeaves: null,
+  // }
+
+  salary : any ={
+    date: null,
+    otStart: null,
+  }
+
+  nic:string;
 
   constructor(
-    // private payrollService: PayrollService,
+    private salaryService: SalaryService,
     private router: Router,
-    // private toastr: ToastrService
+    private toastr: ToastrService
   ) 
   {
     if (!this.router.getCurrentNavigation().extras.state) {
       this.router.navigate(['../admin/payroll']);
     } else {
       this.payroll = this.router.getCurrentNavigation().extras.state.pay;
-      this.salaries = this.payroll.paymentHistory;
     }
   }
 
@@ -42,6 +52,22 @@ export class AddSalaryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(){}
+  onSubmit(){
+    this.nic = this.addSalary.value.nic;
+    this.salary.date = this.addSalary.value.date;
+    this.salary.otStart = this.addSalary.value.otStart;
+    
+    this.salaryService.addSalary(this.salary, this.nic).subscribe(
+      (res) =>{
+        console.log(res);
+        this.toastr.success(`Salary Added for ${this.nic}`);
+        this.router.navigate(['admin/payroll']);
+      },
+      (err) => {
+        console.log(err);
+        this.toastr.error(`${err.error}`);
+      }
+    )
+  }
 
 }

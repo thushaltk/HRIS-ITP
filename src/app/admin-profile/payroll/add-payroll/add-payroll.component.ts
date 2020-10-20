@@ -22,7 +22,7 @@ export class AddPayrollComponent implements OnInit {
     penaltyForLeaves: null,
     paymentHistory: null,
   };
-
+  // payroll : Payroll;
   nic: string;
   constructor(
     private payrollService: PayrollService,
