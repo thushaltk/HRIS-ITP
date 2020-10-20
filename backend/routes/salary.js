@@ -26,6 +26,18 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.get("/user/:nic", async (req, res) => {
+  try {
+    const emp = await Employee.findOne({ nic: req.params.nic });
+    if (!emp) return res.status(404).send("User not found");
+
+    const salaries = await Salary.find({ employee: emp._id });
+    return res.status(200).send(salaries);
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+});
+
 router.post("/:nic", async (req, res) => {
   try {
     const emp = await Employee.findOne({ nic: req.params.nic });

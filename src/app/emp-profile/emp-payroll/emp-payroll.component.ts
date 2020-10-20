@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Salary } from '../../_models/salary.model';
+import { ConfirmService } from '../../shared/confirm.service';
+import { ToastrService } from 'ngx-toastr';
+import { SalaryService } from '../../_services/salary.service';
+
 
 @Component({
   selector: 'app-emp-payroll',
@@ -7,9 +13,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmpPayrollComponent implements OnInit {
 
-  constructor() { }
+  salaries : Salary[];
+  nic:string;
+
+  constructor(
+    private router: Router,
+    private salaryService: SalaryService,
+    private confirmService: ConfirmService,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
+    this.getSalary();
+  }
+
+  getSalary(){
+    this.nic = '971361913V';
+    this.salaryService.getSalary(this.nic).subscribe((salaries) => {
+      this.salaries = salaries;
+    });
   }
 
 }

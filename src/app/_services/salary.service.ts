@@ -16,9 +16,9 @@ export class SalaryService {
 
   constructor(private http: HttpClient) { }
 
-  // getSalary(){
-  //   return this.http.get<Salary[]>(`${environment.apiUrl}salary`);
-  // }
+  getSalary(nic:string){
+    return this.http.get<Salary[]>(`${environment.apiUrl}salary/user/${nic}`);
+  }
 
   addSalary(salary: any, nic: string) {
     return this.http.post<any>(

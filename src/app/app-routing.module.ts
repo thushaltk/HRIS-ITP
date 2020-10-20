@@ -120,6 +120,7 @@ const appRoutes: Routes = [
         component: EmpProfileComponent,
         children: [
           { path: 'dashboard', component: EmpDashboardComponent },
+          { path: 'payroll', component:EmpPayrollComponent},
           {
             path: 'attendanceLeave',
             component: EmpAttendanceLeaveComponent,
@@ -128,7 +129,6 @@ const appRoutes: Routes = [
               { path: 'longLeave/:nic', component: EmpLongLeaveComponent },
             ],
           },
-          { path: 'payroll', component:EmpPayrollComponent}
         ],
       },
     ],

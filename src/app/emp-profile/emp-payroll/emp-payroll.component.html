@@ -1,1 +1,28 @@
-<p>emp-payroll works!</p>
+<div class="container ml-5">
+    <h1 class="ml-5">Salary History</h1>
+    <table class="table ml-5">
+        <thead>
+            <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Amount of Leaves</th>
+            <th scope="col">Penalty for leaves(Rs)</th>
+            <th scope="col">OT Hours</th>
+            <th scope="col">OT Pay(Rs)</th>
+            <th scope="col">Month</th>
+            <th scope="col">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let salary of salaries">
+                <!-- <td>{{ payroll?.employee?.fullName }}</td> -->
+                <td>{{ salary.date }}</td>
+                <td>{{ salary.amountOfLeaves }}</td>
+                <td>{{ salary.penaltyForLeaves }}</td>
+                <td>{{ salary.otHours }}</td>
+                <td>{{ salary.otPay }}</td>
+                <td>{{ salary.month }}</td>
+                <td>{{ salary.amount }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
