@@ -28,4 +28,10 @@ export class SalaryService {
     );
   }
 
+  deleteSalary(salary: Salary) {
+    return this.http.delete<Salary>(
+      `${environment.apiUrl}salary/${salary._id}`
+    );
+  }
+
 }

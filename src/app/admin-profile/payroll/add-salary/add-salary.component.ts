@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Payroll } from '../../../_models/payroll.model';
-import { Salary } from '../../../_models/salary.model';
 import { SalaryService } from '../../../_services/salary.service';
 import { ToastrService } from 'ngx-toastr';
 
