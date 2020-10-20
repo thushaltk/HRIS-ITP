@@ -1,0 +1,59 @@
+<!-- {{payroll?.employee?.nic }} -->
+<h1>Salary History of {{ payroll?.employee?.fullName }}</h1>
+<br>
+<table class="table table-dark">
+    <thead>
+        <tr>
+          <th scope="col">Base Salary(Rs)</th>
+          <th scope="col">Maximus Leaves</th>
+          <th scope="col">Penalty for leaves(Rs)</th>
+          <th scope="col">Pay For OT Hours(Rs)</th>
+        </tr>
+        <tr>
+        <td>{{ payroll.baseSalary }}</td>
+        <td>{{ payroll.maxLeaves }}</td>
+        <td>{{ payroll.penaltyForLeaves }}</td>
+        <td>{{ payroll.payForOTHour }}</td>
+        </tr>
+      </thead>
+
+</table>
+
+<h1>
+    <span
+      ><a
+        [routerLink]="['addPayroll']"
+        class="btn btn-sm btn-success"
+      >
+        + Add Salary</a
+      ></span
+    >
+  </h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Amount of Leaves</th>
+          <th scope="col">Penalty for leaves(Rs)</th>
+          <th scope="col">OT Hours</th>
+          <th scope="col">OT Pay(Rs)</th>
+          <th scope="col">Month</th>
+          <th scope="col">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let salary of salaries">
+            <!-- <td>{{ payroll?.employee?.fullName }}</td> -->
+            <td>{{ salary.date }}</td>
+            <td>{{ salary.amountOfLeaves }}</td>
+            <td>{{ salary.penaltyForLeaves }}</td>
+            <td>{{ salary.otHours }}</td>
+            <td>{{ salary.otPay }}</td>
+            <td>{{ salary.month }}</td>
+            <td>{{ salary.amount }}</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>

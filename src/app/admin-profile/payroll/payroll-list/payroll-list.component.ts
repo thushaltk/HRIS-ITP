@@ -54,4 +54,10 @@ export class PayrollListComponent implements OnInit {
       state: { pay: payroll },
     });
   }
+
+  onViewSalary(payroll: Payroll){
+    this.router.navigate(['admin/salaryList'], {
+      state: { pay: payroll },
+    });
+  }
 }

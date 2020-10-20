@@ -75,6 +75,8 @@ import { ViewLeavesComponent } from './admin-profile/attendance/view-leaves/view
 import { TrainingProgramsService } from '../../service/trainingPrograms.service';
 import {AttendanceService} from '../../service/attendance.service';
 import { RegisterEmpComponent } from './login/login-emp/register-emp/register-emp.component';
+import { SalaryListComponent } from './admin-profile/payroll/salary-list/salary-list.component';
+import { AddSalaryComponent } from './admin-profile/payroll/add-salary/add-salary.component';
 
 @NgModule({
   declarations: [
@@ -132,6 +134,8 @@ import { RegisterEmpComponent } from './login/login-emp/register-emp/register-em
     EmpLongLeaveComponent,
     ViewLeavesComponent,
     RegisterEmpComponent,
+    SalaryListComponent,
+    AddSalaryComponent,
   ],
   imports: [
     BrowserModule,
