@@ -62,11 +62,12 @@ router.post("/:nic", async (req, res) => {
     let workhours = 0;
     let otHours = 0;
     let needDays = 20;
+
     attendance.map((days) => {
       console.log(days);
       noOfDays++;
-      workhours = days.leaveTime.getHours() - days.arriveTime.getHours();
-      console.log(workhours);
+      workhours = days.arriveTime.getHours() - days.leaveTime.getHours();
+      console.log(`work hours${workhours}`);
       if (workhours > otStart) {
         otHours += workhours - otStart;
       }
@@ -91,6 +92,7 @@ router.post("/:nic", async (req, res) => {
     const salary = new Salary({
       amount,
       month: thisMonth.getMonth() + 1,
+      date: thisMonth,
       employee: emp,
       amountOfLeaves,
       otHours,

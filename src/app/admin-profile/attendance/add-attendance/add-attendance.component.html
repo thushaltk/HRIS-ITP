@@ -36,7 +36,7 @@
           <div class="form-group row" style="margin-left: 200px;">
             <label for="dateAtnd" class="col-sm-3 col-form-label pull-right">Date</label>
             <div class="col-sm-7" style="margin-left: -10%;">
-              <input type="text" id="dateAtnd" class="form-control" [ngModel]="dateToday | date" name="dateAtnd" required
+              <input type="date" id="dateAtnd" class="form-control" [ngModel]="dateToday | date" name="dateAtnd" required
                 #dateAtnd="ngModel">
             </div>
             <span class="help-block" *ngIf="!dateAtnd.valid && dateAtnd.touched" style="color: red">Please select date.</span>

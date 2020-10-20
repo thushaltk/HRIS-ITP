@@ -41,6 +41,7 @@ import { TrainingViewComponent } from './admin-profile/training-programs/trainin
 import { RegisterEmpComponent } from './login/login-emp/register-emp/register-emp.component';
 import { SalaryListComponent} from './admin-profile/payroll/salary-list/salary-list.component';
 import { AddSalaryComponent } from './admin-profile/payroll/add-salary/add-salary.component';
+import { EmpPayrollComponent } from './emp-profile/emp-payroll/emp-payroll.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -127,6 +128,7 @@ const appRoutes: Routes = [
               { path: 'longLeave/:nic', component: EmpLongLeaveComponent },
             ],
           },
+          { path: 'payroll', component:EmpPayrollComponent}
         ],
       },
     ],
