@@ -30,4 +30,10 @@ export class SalaryListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addSalary(payroll:Payroll){
+    this.router.navigate(['admin/salaryList/addSalary'], {
+      state: { pay: payroll },
+    });
+  }
+
 }
