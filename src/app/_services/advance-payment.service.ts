@@ -20,6 +20,18 @@ export class AdvancePaymentService {
     return this.http.get<AdvancePayment[]>(`${environment.apiUrl}advancePayment/${nic}`);
   }
 
+  getAll(){
+    return this.http.get<AdvancePayment[]>(`${environment.apiUrl}advancePayment`);
+  }
+
+  updateAdPay(advancePayment: AdvancePayment){
+    return this.http.patch<AdvancePayment>(
+      `${environment.apiUrl}advancePayment/${advancePayment._id}`,
+      advancePayment,
+      httpOptions
+    );
+  }
+
   deleteAdPay(adPay: AdvancePayment) {
     return this.http.delete<AdvancePayment>(
       `${environment.apiUrl}advancePayment/${adPay._id}`

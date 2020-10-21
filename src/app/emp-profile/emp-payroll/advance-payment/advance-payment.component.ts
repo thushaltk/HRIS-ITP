@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmService } from '../../../shared/confirm.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
 import { AdvancePayment } from '../../../_models/advancePayment.model';
 import { AdvancePaymentService } from "../../../_services/advance-payment.service";
 
@@ -20,7 +19,6 @@ export class AdvancePaymentComponent implements OnInit {
     private advancePaymentService: AdvancePaymentService,
     private toastr: ToastrService,
     private confirmService: ConfirmService,
-    private router: Router
   ) { }
 
   ngOnInit(): void {

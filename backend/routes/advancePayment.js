@@ -40,7 +40,7 @@ router.post("/:nic", async (req, res) => {
     const emp = await Employee.findOne({ nic: req.params.nic });
     if (!emp) return res.status(404).send("Employee not found!");
 
-    const { requestingDate, amount, reason, pending } = req.body;
+    const { requestingDate, amount, reason } = req.body;
 
     const oldDate = new Date(requestingDate);
     oldDate.setMonth(oldDate.getMonth() - 1);
@@ -60,7 +60,6 @@ router.post("/:nic", async (req, res) => {
       date,
       amount,
       reason,
-      pending,
     });
 
     await advancePayment.save();
@@ -79,7 +78,7 @@ router.patch("/:id", async (req, res) => {
     if (!advancePayment)
       return res.status(404).send("AdvancePayment not found");
 
-    const { date, amount, reason, approved, pending } = req.body;
+    const { date, amount, reason, status } = req.body;
 
     // if (date) {
     //   const oldDate = new Date(req.body.date);
@@ -97,16 +96,7 @@ router.patch("/:id", async (req, res) => {
 
     if (amount) advancePayment.amount = amount;
     if (reason) advancePayment.reason = reason;
-    if (pending) advancePayment.pending = pending;
-    if (approved) advancePayment.approved = approved;
-    if (advancePayment.pending === true) {
-      advancePayment.status = "Pending";
-    } else if (advancePayment.approved === false) {
-      advancePayment.status = "Not Approved";
-    } else {
-      advancePayment.status = "Approved";
-    }
-
+    if (status) advancePayment.status = status;
     await advancePayment.save();
 
     return res.status(200).json({

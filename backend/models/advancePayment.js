@@ -19,16 +19,6 @@ const advancePaymentSchema = new Schema({
     type: String,
     required: true,
   },
-  approved: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
-  pending: {
-    type: Boolean,
-    required: true,
-    default: true,
-  },
   status: {
     type: String,
     required: true,

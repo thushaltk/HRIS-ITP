@@ -1,0 +1,35 @@
+<div class="container ml-5">
+    <h1 class="ml-5 text-center">Advance Payment Request History</h1>
+    <!-- <a [routerLink]="['add']" class="btn btn-sm btn-success ml-5">+ Request Advance Payment</a> -->
+    <table class="table ml-5">
+        <thead>
+            <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Reason </th>
+            <th scope="col">Approved</th>
+            <th scope="col">Amount(Rs)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <div>
+                <div class="example-loading-shade" *ngIf="loading">
+                  <div class="spinner-border text-dark" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
+            </div>
+            <tr *ngFor="let adPay of adPayments">
+                <!-- <td>{{ payroll?.employee?.fullName }}</td> -->
+                <td> {{ adPay.date | date: 'mediumDate' }}</td>
+                <td>{{ adPay.reason }}</td>
+                <!-- <td>{{ adPay.approved === false ? 'Not Approved' : "Approved" }}</td> -->
+                <td>{{ adPay.status }}</td>
+                <td>{{ adPay.amount }}</td>
+                <td>
+                    <a class="btn btn-sm btn-success mr-2" (click)="onApprove(adPay)">Approve</a>
+                    <a class="btn btn-sm btn-primary ml-2" (click)="onReject(adPay)">Reject</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
