@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmService } from '../../../shared/confirm.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
 import { AdvancePayment } from '../../../_models/advancePayment.model';
 import { AdvancePaymentService } from "../../../_services/advance-payment.service";
 
@@ -13,14 +12,13 @@ import { AdvancePaymentService } from "../../../_services/advance-payment.servic
 export class AdvancePaymentComponent implements OnInit {
 
   adPayments : AdvancePayment[];
-
+  loading:boolean;
   nic:string;
 
   constructor(
     private advancePaymentService: AdvancePaymentService,
     private toastr: ToastrService,
     private confirmService: ConfirmService,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -28,9 +26,11 @@ export class AdvancePaymentComponent implements OnInit {
   }
 
   getAdPays() {
+    this.loading = true;
     this.nic = "971361913V";
     this.advancePaymentService.getAdPays(this.nic).subscribe((addPay) => {
       this.adPayments = addPay;
+      this.loading = false;
     });
   }
 

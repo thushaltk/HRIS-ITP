@@ -15,6 +15,7 @@ export class EmpPayrollComponent implements OnInit {
 
   salaries : Salary[];
   nic:string;
+  loading:boolean;
 
   constructor(
     private router: Router,
@@ -28,9 +29,11 @@ export class EmpPayrollComponent implements OnInit {
   }
 
   getSalary(){
+    this.loading = true;
     this.nic = '971361913V';
     this.salaryService.getSalary(this.nic).subscribe((salaries) => {
       this.salaries = salaries;
+      this.loading = false;
     });
   }
 

@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="container-fluid" style="background-color: #fefefe">
+    <div style="background-color: #ffffff">
+      <br />
+      <p class="h1" style="text-align: center">Request Advance Payment</p>
+      <br />
+    </div>
+    <div class="container-fluid  ml-5" style="background-color: #ffffff">
+      <form (ngSubmit)="onSubmit()" #addAddPay="ngForm">
+        <div class="form-group col-md-6">
+          <label for="date">Date</label>
+          <input
+            type="date"
+            name="requestingDate"
+            #requestingDate="ngModel"
+            [(ngModel)]="advancePayment.requestingDate"
+            class="form-control"
+          />
+      
+        </div>
+        <div class="form-group col-md-6">
+          <label for="fullName">Amount</label>
+          <input
+            type="number"
+            name="amount"
+            [(ngModel)]="advancePayment.amount"
+            #amount="ngModel"
+            class="form-control"
+          />
+      
+        </div>
+
+          <div class="form-group">
+            <label for="baseSalary">Reason</label>
+            <textarea
+              rows="4"
+              name="reason"
+              #reason="ngModel"
+              [(ngModel)]="advancePayment.reason"
+              class="form-control"
+            ></textarea>
+          </div>
+        
+
+        <div class="col-auto my-1" align="center">
+          <button type="submit" class="btn btn-success btn-lg">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

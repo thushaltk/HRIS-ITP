@@ -1,9 +1,9 @@
 export class AdvancePayment {
     _id: string;
     employee: any;
-    date: Date;
+    requestingDate: Date;
     amount: number;
     reason: string;
-    approved: boolean;
+    status: string;
   }
   

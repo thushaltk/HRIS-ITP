@@ -24,16 +24,16 @@ router.get("/", async (req, res) => {
 //   }
 // });
 
-router.get("/:nic", async(req, res)=>{
+router.get("/:nic", async (req, res) => {
   try {
-    const emp = await Employee.findOne({nic: req.params.nic});
-    if(!emp) return res.status(404).send("User not found");
-    const advancePayments = await AdvancePayment.find({employee: emp._id});
+    const emp = await Employee.findOne({ nic: req.params.nic });
+    if (!emp) return res.status(404).send("User not found");
+    const advancePayments = await AdvancePayment.find({ employee: emp._id });
     return res.status(200).send(advancePayments);
   } catch (error) {
     return res.status(500).send(error);
   }
-})
+});
 
 router.post("/:nic", async (req, res) => {
   try {
@@ -50,7 +50,7 @@ router.post("/:nic", async (req, res) => {
 
     const findAdvancePayment = await AdvancePayment.findOne({
       employee: emp._id,
-      date: { $gte: oldDate },
+      date: { $gte: oldDate, $lte: date },
     });
     if (findAdvancePayment)
       return res.status(404).send("AdvancePayment already requested!");
@@ -78,7 +78,7 @@ router.patch("/:id", async (req, res) => {
     if (!advancePayment)
       return res.status(404).send("AdvancePayment not found");
 
-    const { date, amount, reason, approved } = req.body;
+    const { date, amount, reason, status } = req.body;
 
     // if (date) {
     //   const oldDate = new Date(req.body.date);
@@ -96,8 +96,7 @@ router.patch("/:id", async (req, res) => {
 
     if (amount) advancePayment.amount = amount;
     if (reason) advancePayment.reason = reason;
-    if (approved) advancePayment.approved = approved;
-
+    if (status) advancePayment.status = status;
     await advancePayment.save();
 
     return res.status(200).json({

@@ -15,6 +15,7 @@ export class SalaryListComponent implements OnInit {
 
   payroll: Payroll;
   salaries : Salary[];
+  loading:boolean;
 
   constructor(
     private router: Router,
@@ -26,8 +27,10 @@ export class SalaryListComponent implements OnInit {
     if (!this.router.getCurrentNavigation().extras.state) {
       this.router.navigate(['../admin/payroll']);
     } else {
+      this.loading = true;
       this.payroll = this.router.getCurrentNavigation().extras.state.pay;
       this.salaries = this.payroll.paymentHistory;
+      this.loading = false;
     }
   }
 
