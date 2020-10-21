@@ -7,7 +7,7 @@
             <th scope="col">Date</th>
             <th scope="col">Reason </th>
             <th scope="col">Approved</th>
-            <th scope="col">Amount()</th>
+            <th scope="col">Amount(Rs)</th>
             </tr>
         </thead>
         <tbody>
@@ -22,7 +22,8 @@
                 <!-- <td>{{ payroll?.employee?.fullName }}</td> -->
                 <td> {{ adPay.date | date: 'mediumDate' }}</td>
                 <td>{{ adPay.reason }}</td>
-                <td>{{ adPay.approved === false ? 'Not Approved' : "Approved" }}</td>
+                <!-- <td>{{ adPay.approved === false ? 'Not Approved' : "Approved" }}</td> -->
+                <td>{{ adPay.status }}</td>
                 <td>{{ adPay.amount }}</td>
                 <td>
                     <a class="btn btn-sm btn-danger" (click)="onDelete(adPay)"

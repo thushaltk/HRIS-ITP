@@ -4,6 +4,6 @@ export class AdvancePayment {
     requestingDate: Date;
     amount: number;
     reason: string;
-    approved: boolean;
+    status: string;
   }
   

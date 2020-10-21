@@ -19,7 +19,7 @@ export class AddAdvancePaymentComponent implements OnInit {
     requestingDate: null,
     amount: null,
     reason: null,
-    approved: false
+    status: null,
   }
   nic: string;
 

@@ -24,6 +24,16 @@ const advancePaymentSchema = new Schema({
     required: true,
     default: false,
   },
+  pending: {
+    type: Boolean,
+    required: true,
+    default: true,
+  },
+  status: {
+    type: String,
+    required: true,
+    default: "Pending",
+  },
 });
 
 module.exports = AdvancePayment = mongoose.model(
