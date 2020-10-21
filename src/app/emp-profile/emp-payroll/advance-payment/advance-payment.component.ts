@@ -13,7 +13,7 @@ import { AdvancePaymentService } from "../../../_services/advance-payment.servic
 export class AdvancePaymentComponent implements OnInit {
 
   adPayments : AdvancePayment[];
-
+  loading:boolean;
   nic:string;
 
   constructor(
@@ -28,9 +28,11 @@ export class AdvancePaymentComponent implements OnInit {
   }
 
   getAdPays() {
+    this.loading = true;
     this.nic = "971361913V";
     this.advancePaymentService.getAdPays(this.nic).subscribe((addPay) => {
       this.adPayments = addPay;
+      this.loading = false;
     });
   }
 

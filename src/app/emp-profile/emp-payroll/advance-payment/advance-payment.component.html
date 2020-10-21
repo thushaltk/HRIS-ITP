@@ -1,5 +1,5 @@
 <div class="container ml-5">
-    <h1 class="ml-5">Advance Payment Request History</h1>
+    <h1 class="ml-5 text-center">Advance Payment Request History</h1>
     <a [routerLink]="['add']" class="btn btn-sm btn-success ml-5">+ Request Advance Payment</a>
     <table class="table ml-5">
         <thead>
@@ -11,6 +11,13 @@
             </tr>
         </thead>
         <tbody>
+            <div>
+                <div class="example-loading-shade" *ngIf="loading">
+                  <div class="spinner-border text-dark" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
+            </div>
             <tr *ngFor="let adPay of adPayments">
                 <!-- <td>{{ payroll?.employee?.fullName }}</td> -->
                 <td> {{ adPay.date | date: 'mediumDate' }}</td>

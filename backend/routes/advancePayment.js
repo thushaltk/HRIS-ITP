@@ -50,7 +50,7 @@ router.post("/:nic", async (req, res) => {
 
     const findAdvancePayment = await AdvancePayment.findOne({
       employee: emp._id,
-      date: { $gte: oldDate },
+      date: { $gte: oldDate, $lte: date },
     });
     if (findAdvancePayment)
       return res.status(404).send("AdvancePayment already requested!");

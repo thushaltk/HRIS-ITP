@@ -14,6 +14,7 @@ export class PayrollListComponent implements OnInit {
   @Output() deletePayroll: EventEmitter<Payroll> = new EventEmitter();
 
   payrolls: Payroll[];
+  loading:boolean;
 
   constructor(
     private payrollService: PayrollService,
@@ -27,8 +28,10 @@ export class PayrollListComponent implements OnInit {
   }
 
   getPayroll() {
+    this.loading = true;
     this.payrollService.getPayroll().subscribe((payrolls) => {
       this.payrolls = payrolls;
+      this.loading = false;
     });
   }
 

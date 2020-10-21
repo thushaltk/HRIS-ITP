@@ -23,6 +23,13 @@
       </tr>
     </thead>
     <tbody>
+      <div>
+        <div class="example-loading-shade" *ngIf="loading">
+          <div class="spinner-border text-dark" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+    </div>
       <tr *ngFor="let payroll of payrolls">
         <td>{{ payroll?.employee?.fullName }}</td>
         <td>{{ payroll.baseSalary }}</td>
