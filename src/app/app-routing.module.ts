@@ -38,12 +38,18 @@ import { VehicleListAllComponent } from './admin-profile/vehicles/vehicle-list-a
 import { VehicleAllocatedComponent } from './admin-profile/vehicles/vehicle-allocated/vehicle-allocated.component';
 import { VehicleUnallocatedComponent } from './admin-profile/vehicles/vehicle-unallocated/vehicle-unallocated.component';
 import { TrainingViewComponent } from './admin-profile/training-programs/training-view/training-view.component';
+import { RegisterEmpComponent } from './login/login-emp/register-emp/register-emp.component';
+import { SalaryListComponent} from './admin-profile/payroll/salary-list/salary-list.component';
+import { AddSalaryComponent } from './admin-profile/payroll/add-salary/add-salary.component';
+import { EmpPayrollComponent } from './emp-profile/emp-payroll/emp-payroll.component';
+import { AdvancePaymentComponent } from "./emp-profile/emp-payroll/advance-payment/advance-payment.component";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: LandingPageComponent },
   { path: 'login/emp', component: LoginEmpComponent },
   { path: 'login/admin', component: LoginAdminComponent },
+  { path: 'login/registerLogin', component: RegisterEmpComponent},
   {
     path: 'admin',
     component: AdminProfileComponent,
@@ -55,6 +61,7 @@ const appRoutes: Routes = [
         children: [
           { path: 'view', component: AdminAnnouncementsComponent },
           { path: 'new', component: AnnouncementCreateComponent },
+          {path: 'edit/:annID', component: AnnouncementCreateComponent},
         ],
       },
       { path: 'trainingPrograms', component: TrainingProgramsComponent, children: [
@@ -67,6 +74,9 @@ const appRoutes: Routes = [
       { path: 'payroll', component: PayrollComponent },
       { path: 'payroll/addPayroll', component: AddPayrollComponent },
       { path: 'payroll/updatePayroll', component: UpdatePayrollComponent },
+      
+      { path: 'salaryList', component:SalaryListComponent},
+      { path: 'salaryList/addSalary', component: AddSalaryComponent},
 
       {
         path: 'equipments',
@@ -111,6 +121,8 @@ const appRoutes: Routes = [
         component: EmpProfileComponent,
         children: [
           { path: 'dashboard', component: EmpDashboardComponent },
+          { path: 'payroll', component:EmpPayrollComponent},
+          { path: 'advancePayment', component: AdvancePaymentComponent},
           {
             path: 'attendanceLeave',
             component: EmpAttendanceLeaveComponent,

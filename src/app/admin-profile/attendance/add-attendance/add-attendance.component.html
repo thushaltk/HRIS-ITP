@@ -1,1 +1,80 @@
-<P>WRWRBWRBsdV </P>
+<div style="overflow-x: scroll; height: 100vh; width:1000px; max-width: 1300px;">
+  <div class="container-fluid" style="background-color: #FEFEFE;">
+      <div>
+        <h2 class="text-center">Add New Attendance</h2>
+      </div>
+      <br><br><br>
+      <div class="container-fluid">
+        <form #atdnce="ngForm" (ngSubmit)="onSubmit()">
+          <div class="form-group row" style="margin-left: 200px;">
+            <label for="nic" class="col-sm-3 col-form-label pull-right">NIC</label>
+            <div class="col-sm-7" style="margin-left: -10%;">
+              <input type="text" id="nic" class="form-control" ngModel name="nic" #nic="ngModel" required>
+            </div>
+            <div class="col-sm-3">
+              <button class="btn btn-primary" type="button" (click)="getEmpDetails(nic.value)">GET DETAILS</button>
+            </div>
+            <span class="help-block" *ngIf="!nic.valid && nic.touched" style="color: red">Please enter
+              NIC</span>
+          </div>
+          <div class="form-group row" style="margin-left: 200px;">
+            <label for="empName" class="col-sm-3 col-form-label pull-right">Employee Name</label>
+            <div class="col-sm-7" style="margin-left: -10%;">
+              <input type="text" id="empName" class="form-control" [ngModel]="employeeName" name="empName" #empName="ngModel" required>
+            </div>
+            <span class="help-block" *ngIf="!empName.valid && empName.touched" style="color: red">Please enter
+              Employee Name</span>
+          </div>
+          <div class="form-group row" style="margin-left: 200px;">
+            <label for="empID" class="col-sm-3 col-form-label pull-right">Employee ID</label>
+            <div class="col-sm-7" style="margin-left: -10%;">
+              <input type="text" id="empID" class="form-control" [ngModel]="employeeID" name="empID" #empID="ngModel" required>
+            </div>
+            <span class="help-block" *ngIf="!empID.valid && empID.touched" style="color: red">Please enter
+              Employee ID</span>
+          </div>
+          <div class="form-group row" style="margin-left: 200px;">
+            <label for="dateAtnd" class="col-sm-3 col-form-label pull-right">Date</label>
+            <div class="col-sm-7" style="margin-left: -10%;">
+              <input type="date" id="dateAtnd" class="form-control" [ngModel]="dateToday | date" name="dateAtnd" required
+                #dateAtnd="ngModel">
+            </div>
+            <span class="help-block" *ngIf="!dateAtnd.valid && dateAtnd.touched" style="color: red">Please select date.</span>
+          </div>
+          <div class="form-group row" style="margin-left: 200px;">
+            <label for="empDes" class="col-sm-3 col-form-label pull-right">Designation</label>
+            <div class="col-sm-7" style="margin-left: -10%;">
+              <select #empDes="ngModel" name="empDes" [class.is-invalid]= "empDes.invalid && empDes.touched" [ngModel]="empDesignation" class="form-control" id="empDes" required>
+                <option value="choose" disabled>Choose...</option>
+                <option value="manager">Manager</option>
+                <option value="engineer">Engineer</option>
+                <option value="itoperator">IT Operator (Administrator)</option>
+                <option value="accountant">Accountant</option>
+                <option value="supervisor">Supervisor</option>
+                <option value="labor">Labor</option>
+                <option value="driver">Driver</option>
+                <option value="cleaningstaff">Cleaning Staff</option>
+                <option value="securitystaff">Security Staff</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row" style="margin-left: 200px;">
+            <label for="arriveTime" class="col-sm-3 col-form-label pull-right">Arrival time</label>
+            <div class="col-sm-7" style="margin-left: -10%;">
+              <input type="time" id="arriveTime" class="form-control" ngModel name="arriveTime" #arriveTime="ngModel" required>
+            </div>
+          </div>
+          <div class="form-group row" style="margin-left: 200px;">
+            <label for="leaveTime" class="col-sm-3 col-form-label pull-right">Leave time</label>
+            <div class="col-sm-7" style="margin-left: -10%;">
+              <input type="time" id="leaveTime" class="form-control" ngModel name="leaveTime" #leaveTime="ngModel" required>
+            </div>
+          </div>
+          <div class="text-center pt-4">
+            <button type="submit" class="btn btn-success" [disabled]="!atdnce.valid">ADD</button>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+

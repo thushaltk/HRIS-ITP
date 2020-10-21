@@ -39,7 +39,7 @@ router.get("", (req, res, next) => {
 
 //Reteive Employees by designation
 router.get("/:empDes", (req, res, next) => {
-  Employee.find({empDes: req.params.empDes})
+  Employee.find({ empDes: req.params.empDes })
     .then(documents => {
       res.status(200).json({
         message: 'Employees fetched successfully by designation',
@@ -48,30 +48,20 @@ router.get("/:empDes", (req, res, next) => {
     });
 });
 
-// //Retrieve Employees by NIC
+//Retrieve Employees by NIC
 // router.get("/:nic", (req, res, next) => {
-//   Employee.findOne({nic: req.params.nic}, function(err, result) {
-//     if (err){
-//       console.log(err)
-//     }
-//     else{
-//         console.log("Result : ", docs);
-//     }
-//   })
+//   Employee.find({ nic: req.params.nic })
 //     .then(documents => {
-//       console.log(documents);
 //       res.status(200).json({
-//         message: 'Employees fetched successfully by NIC',
+//         message: 'Employees fetched successfully by nic',
 //         employees: documents
 //       });
 //     });
-
 // });
-
 
 //Delete Employees
 router.delete("/:id", (req, res, next) => {
-  Employee.deleteOne({_id: req.params.id}).then(result => {
+  Employee.deleteOne({ _id: req.params.id }).then(result => {
     console.log(result);
     res.status(200).json({
       message: "Employee Deleted"

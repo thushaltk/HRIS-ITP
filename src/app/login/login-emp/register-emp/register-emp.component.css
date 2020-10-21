@@ -1,0 +1,9 @@
+.bgImage{
+  background-image: url('../../../../assets/images/officeBG2.jpg');
+  background-attachment: fixed;
+  width: 100%;
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}

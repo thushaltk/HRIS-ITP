@@ -9,6 +9,7 @@ export class AnnouncementService{
   announcementsChanged = new Subject<Announcements[]>();
   private announcementsArr: Announcements[] = [];
 
+
   constructor(private http: HttpClient){}
 
   getAnnouncement(){
@@ -30,6 +31,10 @@ export class AnnouncementService{
         this.announcementsChanged.next(this.announcementsArr.slice());
       });
     return this.announcementsArr.slice();
+  }
+
+  getAnnouncementByID(id: string){
+    return {...this.announcementsArr.find(a => a.id === id)};
   }
 
   addAnnouncement(announcement: Announcements){

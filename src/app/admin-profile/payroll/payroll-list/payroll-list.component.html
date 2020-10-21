@@ -30,6 +30,9 @@
         <td>{{ payroll.penaltyForLeaves }}</td>
         <td>{{ payroll.payForOTHour }}</td>
         <td>
+          <a class="btn btn-sm btn-success" (click)="onViewSalary(payroll)">View Salary</a>
+        </td>
+        <td>
           <a class="btn btn-sm btn-primary" (click)="onUpdate(payroll)">Edit</a>
         </td>
         <td>

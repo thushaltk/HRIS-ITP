@@ -73,6 +73,11 @@ import { TrainingViewComponent } from './admin-profile/training-programs/trainin
 import { EmpLongLeaveComponent } from './emp-profile/emp-attendance-leave/emp-long-leave/emp-long-leave.component';
 import { ViewLeavesComponent } from './admin-profile/attendance/view-leaves/view-leaves.component';
 import { TrainingProgramsService } from '../../service/trainingPrograms.service';
+import {AttendanceService} from '../../service/attendance.service';
+import { RegisterEmpComponent } from './login/login-emp/register-emp/register-emp.component';
+import { SalaryListComponent } from './admin-profile/payroll/salary-list/salary-list.component';
+import { AddSalaryComponent } from './admin-profile/payroll/add-salary/add-salary.component';
+import { AdvancePaymentComponent } from './emp-profile/emp-payroll/advance-payment/advance-payment.component';
 
 @NgModule({
   declarations: [
@@ -129,6 +134,10 @@ import { TrainingProgramsService } from '../../service/trainingPrograms.service'
     TrainingViewComponent,
     EmpLongLeaveComponent,
     ViewLeavesComponent,
+    RegisterEmpComponent,
+    SalaryListComponent,
+    AddSalaryComponent,
+    AdvancePaymentComponent,
   ],
   imports: [
     BrowserModule,
@@ -158,7 +167,8 @@ import { TrainingProgramsService } from '../../service/trainingPrograms.service'
     QuickLeavesService,
     VehiclesServices,
     LongLeavesService,
-    TrainingProgramsService
+    TrainingProgramsService,
+    AttendanceService
   ],
   bootstrap: [AppComponent],
 })
