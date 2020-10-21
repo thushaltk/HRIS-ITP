@@ -27,4 +27,8 @@ export class EquipmentService {
     }
     return this.http.delete(`${environment.apiUrl}equipment`, options);
   }
+
+  report() {
+    return this.http.get(`${environment.apiUrl}equipment/report`);
+  }
 }

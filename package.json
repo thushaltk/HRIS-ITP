@@ -26,6 +26,8 @@
     "body-parser": "^1.19.0",
     "bootstrap": "^3.4.1",
     "express": "^4.17.1",
+    "jspdf": "^2.1.1",
+    "jspdf-autotable": "^3.5.13",
     "mongoose": "^5.10.2",
     "ngx-toastr": "^13.0.0",
     "rxjs": "~6.5.5",

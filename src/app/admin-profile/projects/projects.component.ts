@@ -9,6 +9,9 @@ import { ToastrService } from 'ngx-toastr';
 import { EquipmentService } from '../../_services/equipment.service';
 import { ConfirmService } from '../../shared/confirm.service';
 import { ProjectsService } from '../../_services/projects.service';
+import { jsPDF } from "jspdf";
+import autoTable from 'jspdf-autotable'
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-projects',
@@ -62,7 +65,8 @@ export class ProjectsComponent implements OnInit {
     private toastr: ToastrService,
     private equipmentService: EquipmentService,
     private confirmService: ConfirmService,
-    private projectService: ProjectsService
+    private projectService: ProjectsService,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -174,5 +178,37 @@ export class ProjectsComponent implements OnInit {
   search(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  report() {
+    console.log(this.projects);
+    
+    //preparing object to pass to the autotable object
+    let data = this.projects.map(el => {
+      return [
+        el.projectId,
+        el.name,
+        el.location,
+        this.datePipe.transform(el.startDate, "yyyy-MM-dd") || '-',
+        `${el.clientName}\n${el.clientAddress}\n${el.clientPhone}`,
+        el.supervisor ? el.supervisor.name : '-' ,
+        el.consultant ? el.consultant.name : '-' ,
+        el.progress || '-',
+        el.employees.map(emp=> emp.fullName + '\n' ).toString()
+      ]
+
+    })
+    const doc = new jsPDF('l'); //new jspdf document
+    doc.text("UK Engineering Services (PVT) Ltd", 10, 10);
+    doc.text(`Projects Report - ${this.datePipe.transform(new Date(), "yyyy-MM-dd HH:mm")}`, 10, 20);
+    autoTable(doc,
+      {
+        head: [['ProjectId', 'Name', 'Location', 'Start Date', 'Client', 'Supervisor', 'Consultant', 'Progress', 'employees']],
+        body: data,
+        margin: { top: 40 },
+      })
+
+    //saving the report with renamed with date and time
+    doc.save(`Projects report - ${this.datePipe.transform(new Date(), "yyyy-MM-dd HH:mm")}`)
   }
 }

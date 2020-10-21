@@ -17,7 +17,11 @@ import { ConfirmService } from '../../../shared/confirm.service';
 import { FormControl } from '@angular/forms';
 import { timestamp } from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
-import { IfStmt } from '@angular/compiler';
+import { jsPDF } from "jspdf";
+import autoTable from 'jspdf-autotable'
+import { DatePipe } from '@angular/common';
+
+
 @Component({
   selector: 'app-equipment-list',
   templateUrl: './equipment-list.component.html',
@@ -62,7 +66,8 @@ export class EquipmentListComponent implements OnInit {
     private dialog: MatDialog,
     private toastr: ToastrService,
     private equipmentService: EquipmentService,
-    private confirmService: ConfirmService
+    private datePipe: DatePipe,
+    private confirmService: ConfirmService,
   ) { }
 
   ngOnInit(): void {
@@ -229,4 +234,36 @@ export class EquipmentListComponent implements OnInit {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
+
+  report() {
+    //preparing object to pass to the autotable object
+    let data = this.equipments.map(el => {
+      el.project = el.project ? el.project.name : '-'
+      return [
+        el.eid,
+        el.name,
+        el.category,
+        el.type,
+        el.project,
+        this.datePipe.transform(el.startDate, "yyyy-MM-dd") || '-',
+        el.duration || '-',
+        el.person || "-",
+        el.remarks || '-'
+      ]
+
+    })
+    const doc = new jsPDF('l'); //new jspdf document
+    doc.text("UK Engineering Services (PVT) Ltd", 10, 10);
+    doc.text(`Equipments Report - ${this.datePipe.transform(new Date(), "yyyy-MM-dd HH:mm")}`, 10, 20);
+    autoTable(doc,
+      {
+        head: [['EID', 'Name', 'Category', 'Type', 'Project', 'Start Date', 'Duration', 'Assign Person', 'Remarks']],
+        body: data,
+        margin: { top: 40 },
+      })
+
+    //saving the report with renamed with date and time
+    doc.save(`equipment report - ${this.datePipe.transform(new Date(), "yyyy-MM-dd HH:mm")}`)
+  }
+
 }

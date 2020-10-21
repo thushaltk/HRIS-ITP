@@ -1,10 +1,10 @@
-export  interface IProject {
-    _id:string;
-    projectId:string;
+export interface IProject {
+    _id: string;
+    projectId: string;
     name: string;
     location: string;
-    startDate:Date;
-    duration:string;
+    startDate: Date;
+    duration: string;
     supervisor: any;
     consultant: any;
     employees: any;
@@ -12,4 +12,6 @@ export  interface IProject {
     clientName: string;
     clientPhone: string;
     clientAddress: string;
+
+    progress: string
 }

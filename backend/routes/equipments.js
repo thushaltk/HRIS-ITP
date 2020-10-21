@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 
 const Equipment = require("../models/equipment");
-const { response } = require("express");
+const { jsPDF } = require("jspdf");
 
 router.get("/", (req, res, next) => {
   Equipment.find()
@@ -95,6 +95,23 @@ router.patch("/", (req, res, next) => {
     .catch((err) => {
       res.status(500).json({
         message: err,
+      });
+    });
+});
+
+
+router.get("/report", (req, res, next) => {
+  Equipment.find()
+    .populate("project")
+    .exec()
+    .then((docs) => {
+      const doc = new jsPDF();
+      doc.text("Hello world!", 10, 10);
+      res.send(doc.output())
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err,
       });
     });
 });
