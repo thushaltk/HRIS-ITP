@@ -26,4 +26,12 @@ export class AdvancePaymentService {
     );
   }
 
+  addAdPay(advancePayment: AdvancePayment, nic: string) {
+    return this.http.post<any>(
+      `${environment.apiUrl}advancePayment/${nic}`,
+      advancePayment,
+      httpOptions
+    );
+  }
+
 }

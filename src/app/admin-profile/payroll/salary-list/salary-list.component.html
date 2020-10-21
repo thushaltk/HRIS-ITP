@@ -39,7 +39,7 @@
       <tbody>
         <tr *ngFor="let salary of salaries">
             <!-- <td>{{ payroll?.employee?.fullName }}</td> -->
-            <td>{{ salary.date }}</td>
+            <td>{{ salary.date | date: 'mediumDate' }}</td>
             <td>{{ salary.amountOfLeaves }}</td>
             <td>{{ salary.penaltyForLeaves }}</td>
             <td>{{ salary.otHours }}</td>

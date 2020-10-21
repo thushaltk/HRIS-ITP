@@ -1,6 +1,6 @@
 <div class="container ml-5">
     <h1 class="ml-5">Advance Payment Request History</h1>
-    <a [routerLink]="['addPayroll']" class="btn btn-sm btn-success">+ Request Advance Payment</a>
+    <a [routerLink]="['add']" class="btn btn-sm btn-success ml-5">+ Request Advance Payment</a>
     <table class="table ml-5">
         <thead>
             <tr>
@@ -13,9 +13,9 @@
         <tbody>
             <tr *ngFor="let adPay of adPayments">
                 <!-- <td>{{ payroll?.employee?.fullName }}</td> -->
-                <td>{{ adPay.date }}</td>
+                <td> {{ adPay.date | date: 'mediumDate' }}</td>
                 <td>{{ adPay.reason }}</td>
-                <td>{{ adPay.approved }}</td>
+                <td>{{ adPay.approved === false ? 'Not Approved' : "Approved" }}</td>
                 <td>{{ adPay.amount }}</td>
                 <td>
                     <a class="btn btn-sm btn-danger" (click)="onDelete(adPay)"
