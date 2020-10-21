@@ -4,25 +4,36 @@ const AdvancePayment = require("../models/advancePayment");
 
 router.get("/", async (req, res) => {
   try {
-    const advancePayment = await AdvancePayment.find({});
-    return res.status(200).send(advancePayment);
+    const advancePayments = await AdvancePayment.find({});
+    return res.status(200).send(advancePayments);
   } catch (error) {
     console.log(error);
-    return res.status(500).send(advancePayment);
+    return res.status(500).send(error);
   }
 });
 
-router.get("/:id", async (req, res) => {
+// router.get("/:id", async (req, res) => {
+//   try {
+//     const advancePayment = await AdvancePayment.findById(req.params.id);
+//     if (!advancePayment)
+//       return res.status(404).send("AdvancePayment not found");
+//     return res.status(200).send(advancePayment);
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(500).send(error);
+//   }
+// });
+
+router.get("/:nic", async(req, res)=>{
   try {
-    const advancePayment = await AdvancePayment.findById(req.params.id);
-    if (!advancePayment)
-      return res.status(404).send("AdvancePayment not found");
-    return res.status(200).send(advancePayment);
+    const emp = await Employee.findOne({nic: req.params.nic});
+    if(!emp) return res.status(404).send("User not found");
+    const advancePayments = await AdvancePayment.find({employee: emp._id});
+    return res.status(200).send(advancePayments);
   } catch (error) {
-    console.log(error);
-    return res.status(500).send(advancePayment);
+    return res.status(500).send(error);
   }
-});
+})
 
 router.post("/:nic", async (req, res) => {
   try {

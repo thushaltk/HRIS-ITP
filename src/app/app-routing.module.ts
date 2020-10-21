@@ -42,6 +42,7 @@ import { RegisterEmpComponent } from './login/login-emp/register-emp/register-em
 import { SalaryListComponent} from './admin-profile/payroll/salary-list/salary-list.component';
 import { AddSalaryComponent } from './admin-profile/payroll/add-salary/add-salary.component';
 import { EmpPayrollComponent } from './emp-profile/emp-payroll/emp-payroll.component';
+import { AdvancePaymentComponent } from "./emp-profile/emp-payroll/advance-payment/advance-payment.component";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -121,6 +122,7 @@ const appRoutes: Routes = [
         children: [
           { path: 'dashboard', component: EmpDashboardComponent },
           { path: 'payroll', component:EmpPayrollComponent},
+          { path: 'advancePayment', component: AdvancePaymentComponent},
           {
             path: 'attendanceLeave',
             component: EmpAttendanceLeaveComponent,
