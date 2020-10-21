@@ -8,12 +8,12 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-add-salary',
   templateUrl: './add-salary.component.html',
-  styleUrls: ['./add-salary.component.css']
+  styleUrls: ['./add-salary.component.css'],
 })
 export class AddSalaryComponent implements OnInit {
   @ViewChild('addSal', { static: false }) addSalary: NgForm;
-  
-  payroll : Payroll;
+
+  payroll: Payroll;
 
   // salary: Salary = {
   //   _id: '',
@@ -27,19 +27,18 @@ export class AddSalaryComponent implements OnInit {
   //   penaltyForLeaves: null,
   // }
 
-  salary : any ={
+  salary: any = {
     date: null,
     otStart: null,
-  }
+  };
 
-  nic:string;
+  nic: string;
 
   constructor(
     private salaryService: SalaryService,
     private router: Router,
     private toastr: ToastrService
-  ) 
-  {
+  ) {
     if (!this.router.getCurrentNavigation().extras.state) {
       this.router.navigate(['../admin/payroll']);
     } else {
@@ -47,17 +46,17 @@ export class AddSalaryComponent implements OnInit {
     }
   }
 
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  onSubmit(){
+  onSubmit() {
     this.nic = this.addSalary.value.nic;
     this.salary.date = this.addSalary.value.date;
     this.salary.otStart = this.addSalary.value.otStart;
-    
+
+    console.log(this.salary.employee);
+
     this.salaryService.addSalary(this.salary, this.nic).subscribe(
-      (res) =>{
+      (res) => {
         console.log(res);
         this.toastr.success(`Salary Added for ${this.nic}`);
         this.router.navigate(['admin/payroll']);
@@ -66,7 +65,6 @@ export class AddSalaryComponent implements OnInit {
         console.log(err);
         this.toastr.error(`${err.error}`);
       }
-    )
+    );
   }
-
 }

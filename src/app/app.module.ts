@@ -80,6 +80,7 @@ import { AddSalaryComponent } from './admin-profile/payroll/add-salary/add-salar
 import { AdvancePaymentComponent } from './emp-profile/emp-payroll/advance-payment/advance-payment.component';
 import { AddAdvancePaymentComponent } from './emp-profile/emp-payroll/add-advance-payment/add-advance-payment.component';
 import { AdminAdvancePaymentComponent } from './admin-profile/payroll/admin-advance-payment/admin-advance-payment.component';
+import { SalaryReportComponent } from './admin-profile/payroll/salary-report/salary-report.component';
 
 @NgModule({
   declarations: [
@@ -142,6 +143,7 @@ import { AdminAdvancePaymentComponent } from './admin-profile/payroll/admin-adva
     AdvancePaymentComponent,
     AddAdvancePaymentComponent,
     AdminAdvancePaymentComponent,
+    SalaryReportComponent,
   ],
   imports: [
     BrowserModule,

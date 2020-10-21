@@ -18,6 +18,7 @@ const SalarySchema = new Schema({
   employee: {
     type: Schema.Types.ObjectId,
     required: true,
+    ref: "Employee",
   },
   amountOfLeaves: {
     type: Number,
