@@ -10,6 +10,13 @@
       ></span
     >
   </h1>
+  
+  <div class="container">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder=" Search">
+    <br>
+  </div>
+
+
   <table class="table">
     <thead>
       <tr>
@@ -30,7 +37,7 @@
           </div>
         </div>
     </div>
-      <tr *ngFor="let payroll of payrolls">
+      <tr *ngFor="let payroll of payrolls | filter:searchText">
         <td>{{ payroll?.employee?.fullName }}</td>
         <td>{{ payroll.baseSalary }}</td>
         <td>{{ payroll.maxLeaves }}</td>

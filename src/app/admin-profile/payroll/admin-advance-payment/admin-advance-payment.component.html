@@ -1,9 +1,15 @@
 <div class="container ml-5">
     <h1 class="ml-5 text-center">Advance Payment Request History</h1>
     <!-- <a [routerLink]="['add']" class="btn btn-sm btn-success ml-5">+ Request Advance Payment</a> -->
+    <div class="container">
+        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder=" Search">
+        <br>
+      </div>
+    
     <table class="table ml-5">
         <thead>
             <tr>
+            <th scope="col">Name</th>
             <th scope="col">Date</th>
             <th scope="col">Reason </th>
             <th scope="col">Approved</th>
@@ -18,8 +24,8 @@
                   </div>
                 </div>
             </div>
-            <tr *ngFor="let adPay of adPayments">
-                <!-- <td>{{ payroll?.employee?.fullName }}</td> -->
+            <tr *ngFor="let adPay of adPayments | filter:searchText">
+                <td>{{ adPay?.employee?.fullName }}</td>
                 <td> {{ adPay.date | date: 'mediumDate' }}</td>
                 <td>{{ adPay.reason }}</td>
                 <!-- <td>{{ adPay.approved === false ? 'Not Approved' : "Approved" }}</td> -->

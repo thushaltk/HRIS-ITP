@@ -1,12 +1,21 @@
 <h1 class="text-center">Salary Report</h1>
 
+<div class="container">
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder=" Search">
+  <br>
+</div>
+
+
 <form (ngSubmit)="onSubmit()" #getMonth="ngForm">
 
   <label for="month">Select a month: </label>
   <input type="month" id="salaryMonth" name="salaryMonth" class="ml-2" [(ngModel)]="month">
+  <!-- <label for="month">Name: </label>
+  <input type="text" name="userName" class="ml-2" [(ngModel)]="name"> -->
   <input type="submit" class="ml-2">
-
+<br>
 </form>
+
 
 <a class="btn btn-sm btn-success" (click)="report()">Report</a>
 
@@ -32,7 +41,7 @@
             </div>
           </div>
       </div>
-        <tr *ngFor="let salary of salaries">
+        <tr *ngFor="let salary of salaries | filter:searchText">
             <td>{{ salary?.employee?.fullName }}</td>
             <td>{{ salary.date | date: 'mediumDate' }}</td>
             <td>{{ salary.amountOfLeaves }}</td>

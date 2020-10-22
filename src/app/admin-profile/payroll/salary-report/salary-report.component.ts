@@ -6,8 +6,6 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SalaryService } from '../../../_services/salary.service';
 import jsPDF from 'jspdf';
-// import jsPDF from 'jspdf';
-// import 'jspdf-autotable';
 import autoTable from 'jspdf-autotable';
 import { DatePipe } from '@angular/common';
 
@@ -23,6 +21,7 @@ export class SalaryReportComponent implements OnInit {
   filterSalaries: Salary[];
   loading: boolean;
   month: Date;
+  searchText: string;
 
   constructor(
     private router: Router,
@@ -67,19 +66,19 @@ export class SalaryReportComponent implements OnInit {
       ];
     });
     const doc = new jsPDF();
-    doc.text('UK Engineering Services (PVT) Ltd', 10, 10);
+    doc.text('UK Engineering Services (PVT) Ltd', 35, 10);
     doc.text(
       `Salary Report ${this.datePipe.transform(
         new Date(),
         'yyyy-MM-dd HH:mm'
       )}`,
-      10,
+      35,
       20
     );
 
     let img = new Image();
     img.src = 'assets/images/logo.png';
-    doc.addImage(img, 150, 0, 20, 20);
+    doc.addImage(img, 10, 5, 20, 20);
 
     autoTable(doc, {
       head: [
