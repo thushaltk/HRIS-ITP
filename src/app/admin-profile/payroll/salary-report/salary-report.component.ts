@@ -6,6 +6,8 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SalaryService } from '../../../_services/salary.service';
 import jsPDF from 'jspdf';
+// import jsPDF from 'jspdf';
+// import 'jspdf-autotable';
 import autoTable from 'jspdf-autotable';
 import { DatePipe } from '@angular/common';
 
@@ -50,7 +52,9 @@ export class SalaryReportComponent implements OnInit {
   }
 
   report() {
+    let netAmount = 0;
     let data = this.salaries.map((item) => {
+      netAmount += item.amount;
       return [
         item.employee?.fullName,
         this.datePipe.transform(item.date, 'yyyy-MM-dd') || '-',
@@ -59,11 +63,24 @@ export class SalaryReportComponent implements OnInit {
         item.otHours,
         item.otPay,
         item.amount,
+        netAmount,
       ];
     });
-    const doc = new jsPDF('l');
+    const doc = new jsPDF();
     doc.text('UK Engineering Services (PVT) Ltd', 10, 10);
-    doc.text('Salary Report', 10, 20);
+    doc.text(
+      `Salary Report ${this.datePipe.transform(
+        new Date(),
+        'yyyy-MM-dd HH:mm'
+      )}`,
+      10,
+      20
+    );
+
+    let img = new Image();
+    img.src = 'assets/images/logo.png';
+    doc.addImage(img, 150, 0, 20, 20);
+
     autoTable(doc, {
       head: [
         [
@@ -80,6 +97,15 @@ export class SalaryReportComponent implements OnInit {
       margin: { top: 40 },
     });
 
-    doc.save('Salary Report');
+    let finalY = doc.lastAutoTable.finalY;
+    doc.setFontSize(12);
+    doc.text(`Net Amount Paid Rs: ${netAmount}/=`, 10, finalY + 10);
+
+    doc.save(
+      `Salary Report - ${this.datePipe.transform(
+        new Date(),
+        'yyyy-MM-dd HH:mm'
+      )}`
+    );
   }
 }
