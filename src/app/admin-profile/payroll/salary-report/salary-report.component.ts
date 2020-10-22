@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Payroll } from '../../../_models/payroll.model';
 import { Salary } from '../../../_models/salary.model';
 import { ConfirmService } from '../../../shared/confirm.service';
+import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SalaryService } from '../../../_services/salary.service';
 
@@ -12,8 +12,12 @@ import { SalaryService } from '../../../_services/salary.service';
   styleUrls: ['./salary-report.component.css'],
 })
 export class SalaryReportComponent implements OnInit {
+  @ViewChild('getMonth', { static: false }) salMonth: NgForm;
+
   salaries: Salary[];
+  filterSalaries: Salary[];
   loading: boolean;
+  month: Date;
 
   constructor(
     private router: Router,
@@ -30,7 +34,14 @@ export class SalaryReportComponent implements OnInit {
     this.loading = true;
     this.salaryService.getAllSalary().subscribe((salaries) => {
       this.salaries = salaries;
+      this.filterSalaries = salaries;
       this.loading = false;
     });
+  }
+
+  onSubmit() {
+    this.salaries = this.filterSalaries.filter(
+      (salary) => salary.month == this.salMonth.value.salaryMonth.split('-')[1]
+    );
   }
 }

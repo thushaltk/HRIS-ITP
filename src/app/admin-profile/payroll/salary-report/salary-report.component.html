@@ -1,3 +1,14 @@
+<h1 class="text-center">Salary Report</h1>
+
+<form (ngSubmit)="onSubmit()" #getMonth="ngForm">
+
+  <label for="month">Select a month: </label>
+  <input type="month" id="salaryMonth" name="salaryMonth" class="ml-2" [(ngModel)]="month">
+  <input type="submit" class="ml-2">
+
+</form>
+
+
 <table class="table">
     <thead>
         <tr>
