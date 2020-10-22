@@ -5,30 +5,29 @@ import { ConfirmService } from '../../shared/confirm.service';
 import { ToastrService } from 'ngx-toastr';
 import { SalaryService } from '../../_services/salary.service';
 
-
 @Component({
   selector: 'app-emp-payroll',
   templateUrl: './emp-payroll.component.html',
-  styleUrls: ['./emp-payroll.component.css']
+  styleUrls: ['./emp-payroll.component.css'],
 })
 export class EmpPayrollComponent implements OnInit {
-
-  salaries : Salary[];
-  nic:string;
-  loading:boolean;
+  salaries: Salary[];
+  nic: string;
+  loading: boolean;
+  searchText: string;
 
   constructor(
     private router: Router,
     private salaryService: SalaryService,
     private confirmService: ConfirmService,
     private toastr: ToastrService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getSalary();
   }
 
-  getSalary(){
+  getSalary() {
     this.loading = true;
     this.nic = '971361913V';
     this.salaryService.getSalary(this.nic).subscribe((salaries) => {
@@ -36,5 +35,4 @@ export class EmpPayrollComponent implements OnInit {
       this.loading = false;
     });
   }
-
 }
