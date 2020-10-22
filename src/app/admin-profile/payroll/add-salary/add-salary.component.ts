@@ -15,18 +15,6 @@ export class AddSalaryComponent implements OnInit {
 
   payroll: Payroll;
 
-  // salary: Salary = {
-  //   _id: '',
-  //   amount: null,
-  //   date: null,
-  //   month: null,
-  //   employee: '',
-  //   amountOfLeaves: null,
-  //   otHours: null,
-  //   otPay: null,
-  //   penaltyForLeaves: null,
-  // }
-
   salary: any = {
     date: null,
     otStart: null,
