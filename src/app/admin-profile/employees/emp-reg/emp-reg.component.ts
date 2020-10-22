@@ -37,9 +37,6 @@ export class EmpRegComponent implements OnInit {
 
   ngOnInit(): void {
     this.empID = "EMP"+Math.floor((Math.random() * 99999) + 10000).toString();
-
-
-
   }
 
   nicValidate(nic: string){

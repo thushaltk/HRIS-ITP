@@ -5,26 +5,27 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 @Injectable()
-export class AnnouncementService{
+export class AnnouncementService {
   announcementsChanged = new Subject<Announcements[]>();
   private announcementsArr: Announcements[] = [];
+  private announcementUpdated = new Subject<Announcements[]>();
 
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) { }
 
-  getAnnouncement(){
-    this.http.get<{message: string, announcements: any}>('http://localhost:3000/api/announcements')
+  getAnnouncement() {
+    this.http.get<{ message: string, announcements: any }>('http://localhost:3000/api/announcements')
       .pipe(map((announcementData) => {
-          return announcementData.announcements.map(announcement => {
-            return{
-              title: announcement.title,
-              date: announcement.date,
-              content: announcement.content,
-              priority: announcement.priority,
-              validity: announcement.validity,
-              id: announcement._id
-            };
-          });
+        return announcementData.announcements.map(announcement => {
+          return {
+            title: announcement.title,
+            date: announcement.date,
+            content: announcement.content,
+            priority: announcement.priority,
+            validity: announcement.validity,
+            id: announcement._id
+          };
+        });
       }))
       .subscribe((transformedAnnouncements) => {
         this.announcementsArr = transformedAnnouncements;
@@ -33,11 +34,29 @@ export class AnnouncementService{
     return this.announcementsArr.slice();
   }
 
-  getAnnouncementByID(id: string){
-    return {...this.announcementsArr.find(a => a.id === id)};
+  getAnnouncementByID(id: string) {
+    return {...this.announcementsArr.find(annID => annID.id === id)};
+    // this.http.get<{ message: string, announcements: any }>("http://localhost:3000/api/announcements/" + id)
+    //   .pipe(map((announcementData) => {
+    //     return announcementData.announcements.map(announcement => {
+    //       return {
+    //         title: announcement.title,
+    //         date: announcement.date,
+    //         content: announcement.content,
+    //         priority: announcement.priority,
+    //         validity: announcement.validity,
+    //         id: announcement._id
+    //       };
+    //     });
+    //   }))
+    //   .subscribe((transformedAnnouncements) => {
+    //     this.announcementsArr = transformedAnnouncements;
+    //     this.announcementsChanged.next(this.announcementsArr.slice());
+    //   });
+    // return this.announcementsArr.slice();;
   }
 
-  addAnnouncement(announcement: Announcements){
+  updateAnnouncement(announcement: Announcements) {
     const announcementArray: Announcements = {
       id: announcement.id,
       title: announcement.title,
@@ -46,7 +65,28 @@ export class AnnouncementService{
       priority: announcement.priority,
       validity: announcement.validity
     };
-    this.http.post<{message: string}>('http://localhost:3000/api/announcements', announcementArray)
+    this.http.put("http://localhost:3000/api/announcements/" + announcement.id, announcementArray)
+      .subscribe(response => {
+        const updatedAnnouncements = [...this.announcementsArr];
+        const oldAnnouncementIndex = updatedAnnouncements.findIndex(ann => ann.id === announcementArray.id);
+        updatedAnnouncements[oldAnnouncementIndex] = announcementArray;
+        this.announcementsArr = updatedAnnouncements;
+        this.announcementsChanged.next([...this.announcementsArr]);
+      });
+  }
+
+
+
+  addAnnouncement(announcement: Announcements) {
+    const announcementArray: Announcements = {
+      id: announcement.id,
+      title: announcement.title,
+      date: announcement.date,
+      content: announcement.content,
+      priority: announcement.priority,
+      validity: announcement.validity
+    };
+    this.http.post<{ message: string }>('http://localhost:3000/api/announcements', announcementArray)
       .subscribe((responseData) => {
         console.log(responseData.message);
         this.announcementsArr.push(announcementArray);
@@ -55,7 +95,7 @@ export class AnnouncementService{
 
   }
 
-  deleteAnnouncement(announcementID: string){
+  deleteAnnouncement(announcementID: string) {
     this.http.delete("http://localhost:3000/api/announcements/" + announcementID)
       .subscribe(() => {
         const updatedPosts = this.announcementsArr.filter(announcements => announcements.id !== announcementID);

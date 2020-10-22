@@ -1,4 +1,30 @@
 <div class="container" style="overflow-y: scroll; overflow-x: scroll; height: 100vh; width:fit-content; max-width: min-content;padding-left: 130px;">
+  <div class="row" style="margin-top: 30px;">
+    <div class="col-sm-4">
+      <div class="card" style="background-color: #FED338; border-radius: 10px 10px 10px 10px; box-shadow: 5px 5px 5px #888888;">
+        <div class="card-body">
+          <h5 class="card-title">Total Days Attended</h5>
+          <p class="card-text text-center" style="font-size: 40px;">{{count}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card" style="background-color: #9B9B9B; border-radius: 10px 10px 10px 10px; box-shadow: 5px 5px 5px #888888;">
+        <div class="card-body">
+          <h5 class="card-title">Base Salary</h5>
+          <p class="card-text text-center" style="font-size: 40px;">LKR {{baseSal}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card" style="background-color: #73CDA6; border-radius: 10px 10px 10px 10px; box-shadow: 5px 5px 5px #888888;">
+        <div class="card-body">
+          <h5 class="card-title">Employee ID</h5>
+          <p class="card-text text-center" style="font-size: 40px;">{{empID}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
   <h1>Announcements</h1>
   <mat-spinner *ngIf = "isLoading"></mat-spinner>
   <div  style="overflow-y: scroll; height:400px; width: 100%;" *ngIf = "!isLoading">

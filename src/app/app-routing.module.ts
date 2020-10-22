@@ -45,6 +45,7 @@ import { EmpPayrollComponent } from './emp-profile/emp-payroll/emp-payroll.compo
 import { AdvancePaymentComponent } from "./emp-profile/emp-payroll/advance-payment/advance-payment.component";
 import { AddAdvancePaymentComponent } from "./emp-profile/emp-payroll/add-advance-payment/add-advance-payment.component";
 import { AdminAdvancePaymentComponent } from "./admin-profile/payroll/admin-advance-payment/admin-advance-payment.component";
+import { AnnouncementReportComponent } from './admin-profile/announcements/announcement-report/announcement-report.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -63,7 +64,8 @@ const appRoutes: Routes = [
         children: [
           { path: 'view', component: AdminAnnouncementsComponent },
           { path: 'new', component: AnnouncementCreateComponent },
-          {path: 'edit/:annID', component: AnnouncementCreateComponent},
+          { path: 'edit/:annID', component: AnnouncementCreateComponent},
+          { path: 'report', component: AnnouncementReportComponent}
         ],
       },
       { path: 'trainingPrograms', component: TrainingProgramsComponent, children: [
@@ -78,7 +80,7 @@ const appRoutes: Routes = [
       { path: 'payroll/updatePayroll', component: UpdatePayrollComponent },
 
       { path: 'payroll/advancePayment', component:AdminAdvancePaymentComponent},
-      
+
       { path: 'salaryList', component:SalaryListComponent},
       { path: 'salaryList/addSalary', component: AddSalaryComponent},
 
@@ -128,6 +130,7 @@ const appRoutes: Routes = [
           { path: 'payroll', component:EmpPayrollComponent},
           { path: 'advancePayment', component: AdvancePaymentComponent},
           {path: 'advancePayment/add', component: AddAdvancePaymentComponent},
+          { path: 'dashboard/:nic', component: EmpDashboardComponent },
           {
             path: 'attendanceLeave',
             component: EmpAttendanceLeaveComponent,

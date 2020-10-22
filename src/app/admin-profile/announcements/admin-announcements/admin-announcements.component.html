@@ -2,25 +2,27 @@
   <h1>Announcements Management</h1>
   <div>
     <a href="" class="btn btn-success pull-left" [routerLink]="['../new']">CREATE</a>
-    <button type="button" class="btn btn-success" style="margin-left: 10px;">GENERATE REPORT</button>
+    <button type="button" [routerLink]="['../report']" class="btn btn-success" style="margin-left: 10px;">GENERATE REPORT</button>
   </div>
   <br>
   <mat-spinner *ngIf = "isLoading"></mat-spinner>
-  <div  style="overflow-y: scroll; height:400px; width: fit-content;" *ngIf = "!isLoading">
+  <div  id="dataSet" style="overflow-y: scroll; height:400px; width: fit-content;" *ngIf = "!isLoading">
     <div class="container pull-left" style="background-color: #fffdd0; width: 1000px; height: fit-content;" *ngFor="let announcement of announcements">
       <div class="card">
         <div class="card-header">
-          Announcement 01
+          Announcement
         </div>
         <div class="card-body">
           <h5 class="card-title">{{announcement.title}}</h5>
           <p class="card-text">{{announcement.content}}</p>
           <p class="card-text">{{announcement.date}} {{announcement.priority}} {{announcement.validity}}</p>
           <a class="btn btn-danger pull-right" (click)="onDelete(announcement.id)">DELETE</a>
-          <a href="" class="btn btn-warning pull-right" style="margin-right: 10px;">EDIT</a>
+          <a [routerLink]="['../edit', announcement.id]" class="btn btn-warning pull-right" style="margin-right: 10px;">EDIT</a>
         </div>
       </div>
     </div>
-
+    <br><br><br>
   </div>
+  <br><br><br><br><br><br>
+
 </div>

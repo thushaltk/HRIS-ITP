@@ -13,8 +13,8 @@ import { EmployeeService } from 'service/employees.service';
 })
 export class AddAttendanceComponent implements OnInit {
   @ViewChild('atdnce', { static: false }) addAttendanceForm: NgForm;
-  dateToday: number = Date.now();
   employeeName: string;
+  dateToday: string;
   employeeID : string;
   empDesignation: string;
   private subscription: Subscription;
@@ -37,6 +37,11 @@ export class AddAttendanceComponent implements OnInit {
   ngOnInit(): void {
     //get all employee names -> from employee collection
     //get all designations -> from employee collection
+    let day = new Date().getDate();
+    let month = new Date().getMonth();
+    let year = new Date().getFullYear();
+    this.dateToday = year+"-"+(month+1)+"-"+day;
+    console.log(this.dateToday);
   }
 
   onSubmit(){

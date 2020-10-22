@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AnnouncementService } from 'service/announcements.service';
 import { Announcements } from 'models/announcements.model';
 import { Subscription } from 'rxjs';
+import * as jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-admin-announcements',
@@ -11,6 +13,7 @@ import { Subscription } from 'rxjs';
 })
 export class AdminAnnouncementsComponent implements OnInit, OnDestroy {
   announcements: Announcements[] = [];
+  disable: boolean = true;
   private subscription: Subscription;
   isLoading = false;
 
@@ -35,7 +38,5 @@ export class AdminAnnouncementsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
-
 
 }
