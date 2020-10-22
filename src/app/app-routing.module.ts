@@ -46,6 +46,7 @@ import { AdvancePaymentComponent } from "./emp-profile/emp-payroll/advance-payme
 import { AddAdvancePaymentComponent } from "./emp-profile/emp-payroll/add-advance-payment/add-advance-payment.component";
 import { AdminAdvancePaymentComponent } from "./admin-profile/payroll/admin-advance-payment/admin-advance-payment.component";
 import { AnnouncementReportComponent } from './admin-profile/announcements/announcement-report/announcement-report.component';
+import { TrainingProgramReportComponent } from './admin-profile/training-programs/training-program-report/training-program-report.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -70,7 +71,9 @@ const appRoutes: Routes = [
       },
       { path: 'trainingPrograms', component: TrainingProgramsComponent, children: [
         { path: 'add', component: TrainingAddComponent},
-        { path: 'view', component: TrainingViewComponent}
+        { path: 'view', component: TrainingViewComponent},
+        { path: 'edit/:trpID', component: TrainingAddComponent},
+        { path: 'report', component: TrainingProgramReportComponent}
       ]},
       { path: 'projects', component: ProjectsComponent },
       { path: 'projects/new', component: NewProjectComponent },

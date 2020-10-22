@@ -81,6 +81,7 @@ import { AdvancePaymentComponent } from './emp-profile/emp-payroll/advance-payme
 import { AddAdvancePaymentComponent } from './emp-profile/emp-payroll/add-advance-payment/add-advance-payment.component';
 import { AdminAdvancePaymentComponent } from './admin-profile/payroll/admin-advance-payment/admin-advance-payment.component';
 import { AnnouncementReportComponent } from './admin-profile/announcements/announcement-report/announcement-report.component';
+import { TrainingProgramReportComponent } from './admin-profile/training-programs/training-program-report/training-program-report.component';
 
 @NgModule({
   declarations: [
@@ -144,6 +145,7 @@ import { AnnouncementReportComponent } from './admin-profile/announcements/annou
     AddAdvancePaymentComponent,
     AdminAdvancePaymentComponent,
     AnnouncementReportComponent,
+    TrainingProgramReportComponent,
   ],
   imports: [
     BrowserModule,

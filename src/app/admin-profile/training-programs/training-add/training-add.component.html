@@ -11,7 +11,7 @@
         <div class="form-group row" style="margin-left: 200px;">
           <label for="programTitle" class="col-sm-3 col-form-label pull-right">Program Title</label>
           <div class="col-sm-5" >
-            <input class="form-control" type="text" ngModel name="programTitle" #programTitle="ngModel" id="programTitle"
+            <input class="form-control" type="text" [ngModel]="demoBtnClicked ? trainingPrograms.title : tpDetails?.title" name="programTitle" #programTitle="ngModel" id="programTitle"
               placeholder="Enter Title" required>
           </div>
           <div class="col-sm-3">
@@ -22,7 +22,7 @@
         <div class="form-group row" style="margin-left: 200px;">
           <label for="programDate" class="col-sm-3 col-form-label pull-right">Date</label>
           <div class="col-sm-5" >
-            <input class="form-control" type="date" ngModel name="programDate" #programDate="ngModel" id="programDate" required>
+            <input class="form-control" min={{dateToday}} type="date" [ngModel]="tpDetails?.date" name="programDate" #programDate="ngModel" id="programDate" required>
           </div>
           <div class="col-sm-3">
           <span class="help-block" *ngIf="!programDate.valid && programDate.touched" style="color: red">Please select a date.</span>
@@ -36,7 +36,7 @@
             id="programDescription"
             rows=4
             class="form-control"
-            ngModel
+            [ngModel]="demoBtnClicked ? trainingPrograms.description : tpDetails?.description"
             name="programDescription"
             required
             #programDescription="ngModel"></textarea>
@@ -49,7 +49,7 @@
         <div class="form-group row" style="margin-left: 200px;">
           <label for="programLocation" class="col-sm-3 col-form-label pull-right">Program Location</label>
           <div class="col-sm-5">
-            <input class="form-control" type="text" ngModel name="programLocation" #programLocation="ngModel" id="programLocation"
+            <input class="form-control" type="text" [ngModel]="demoBtnClicked ? trainingPrograms.location : tpDetails?.location" name="programLocation" #programLocation="ngModel" id="programLocation"
               placeholder="Enter Location" required>
           </div>
           <div class="col-sm-3">
@@ -72,7 +72,7 @@
         <div class="form-group row" style="margin-left: 200px;">
           <label for="programEmail" class="col-sm-3 col-form-label pull-right">Trainer Email</label>
           <div class="col-sm-5">
-            <input class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="text" ngModel name="programEmail" #programEmail="ngModel" id="programEmail"
+            <input class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="text" [ngModel]="demoBtnClicked ? trainingPrograms.email : tpDetails?.email" name="programEmail" #programEmail="ngModel" id="programEmail"
               placeholder="Enter Email" required>
           </div>
           <div class="col-sm-3">
@@ -81,7 +81,8 @@
         </div>
 
         <div class="text-center pt-4">
-          <button type="submit" class="btn btn-success" [disabled]="!trpro.valid">SUBMIT</button>
+          <button type="submit" style="margin-right: 10px;" class="btn btn-success" [disabled]="!trpro.valid">SUBMIT</button>
+          <button type="button" (click)="fillData()" class="btn btn-primary" >DEMO</button>
         </div>
         <br><br><br><br><br>
       </form>

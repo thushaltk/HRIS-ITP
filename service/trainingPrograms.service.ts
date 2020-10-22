@@ -33,6 +33,10 @@ export class TrainingProgramsService{
     return this.trainingProgramsArr.slice();
   }
 
+  getTrainingProgramByID(id: string) {
+    return {...this.trainingProgramsArr.find(trpID => trpID.id === id)};
+  }
+
   addTrainingProgram(trainingProgram: TrainingPrograms){
     const trainingProgramsArray: TrainingPrograms = {
       id: trainingProgram.id,
@@ -50,6 +54,26 @@ export class TrainingProgramsService{
         this.trainingProgamsChanged.next(this.trainingProgramsArr.slice());
       });
 
+  }
+
+  updateTrainingProgram(trainingProgram: TrainingPrograms) {
+    const tpArray: TrainingPrograms = {
+      id: trainingProgram.id,
+      title: trainingProgram.title,
+      date: trainingProgram.date,
+      description: trainingProgram.description,
+      availability: trainingProgram.availability,
+      location: trainingProgram.location,
+      email: trainingProgram.email
+    };
+    this.http.put("http://localhost:3000/api/trainingPrograms/" + trainingProgram.id, tpArray)
+      .subscribe(response => {
+        const updatedTP = [...this.trainingProgramsArr];
+        const oldTPIndex = updatedTP.findIndex(tp => tp.id === tpArray.id);
+        updatedTP[oldTPIndex] = tpArray;
+        this.trainingProgramsArr = updatedTP;
+        this.trainingProgamsChanged.next([...this.trainingProgramsArr]);
+      });
   }
 
   deleteTrainingProgram(trainingID: string){
