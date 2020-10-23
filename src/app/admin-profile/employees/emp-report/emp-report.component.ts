@@ -97,7 +97,7 @@ export class EmpReportComponent implements OnInit, OnDestroy {
         var text = desig + " Report";
         doc.text(text, 15, 15);
         doc.addImage(img, 0, 20, 210, imgHeight);
-        doc.save('testCanvas.pdf');
+        doc.save('EmployeesReport.pdf');
       });
     }, 1500)
   }
