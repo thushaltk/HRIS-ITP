@@ -3,7 +3,11 @@ import { Salary } from '../../../_models/salary.model';
 import { NgForm } from '@angular/forms';
 import { SalaryService } from '../../../_services/salary.service';
 import { DatePipe } from '@angular/common';
-declare let jsPDF;
+// declare let jsPDF;
+// import * as jsPDF from 'jspdf';
+// import * as autoTable from 'jspdf-autotable';
+import { jsPDF } from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-salary-report',
@@ -58,7 +62,7 @@ export class SalaryReportComponent implements OnInit {
         netAmount,
       ];
     });
-    const doc = new jsPDF();
+    let doc = new jsPDF('l', 'mm', [305, 250]);
     doc.text('UK Engineering Services (PVT) Ltd', 35, 10);
     doc.text(
       `Salary Report ${this.datePipe.transform(
@@ -73,7 +77,7 @@ export class SalaryReportComponent implements OnInit {
     img.src = 'assets/images/logo.png';
     doc.addImage(img, 10, 5, 20, 20);
 
-    doc.autoTable({
+    autoTable(doc, {
       head: [
         [
           'Name',
@@ -89,9 +93,9 @@ export class SalaryReportComponent implements OnInit {
       margin: { top: 40 },
     });
 
-    let finalY = doc.lastAutoTable.finalY;
-    doc.setFontSize(12);
-    doc.text(`Net Amount Paid Rs: ${netAmount}/=`, 10, finalY + 10);
+    // let finalY = doc.lastAutoTable.finalY;
+    // doc.setFontSize(12);
+    // doc.text(`Net Amount Paid Rs: ${netAmount}/=`, 10, finalY + 10);
 
     doc.save(
       `Salary Report - ${this.datePipe.transform(
