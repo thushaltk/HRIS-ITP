@@ -1,7 +1,8 @@
-<div class="card-body">
-  <button [routerLink]="['../../report']" type="button" class="btn btn-primary">GENERATE REPORT</button>
-  <table class="table table-bordered">
-    <thead class="thead-dark">
+<div style="overflow-y: scroll; width: fit-content;  height: 100vh">
+  <button type="button" class="btn btn-primary" (click)="generateReport()">Download Report</button>
+  <br><br><br><br>
+  <table class="table" id="tbl" width="100%">
+    <thead>
       <tr>
         <th scope="col">Vehicle Number</th>
         <th scope="col">Vehicle Chase Number</th>
@@ -14,14 +15,10 @@
         <th scope="col">Insurance Type</th>
         <th scope="col">Previous Owner NIC</th>
         <th scope="col">Vehicle Color</th>
-        <th scope="col" colspan="2">Action</th>
-
       </tr>
     </thead>
-    <!-- <mat-spinner *ngIf = "isLoading"></mat-spinner> -->
     <tbody>
-
-      <tr *ngFor="let vehicle of this.vehicles">
+      <tr *ngFor="let vehicle of vehicleDetails">
         <td>{{vehicle.vehicleNumber}}</td>
         <td>{{vehicle.vehicleChaseNumber}}</td>
         <td>{{vehicle.vehicleEngineNumber}}</td>
@@ -33,11 +30,10 @@
         <td>{{vehicle.insuranceType}}</td>
         <td>{{vehicle.NIC}}</td>
         <td>{{vehicle.vehicleColor}}</td>
-        <td colspan="2">
-          <a [routerLink]="['../../edit', vehicle.id]" class="btn btn-warning pull-right" style="width:75px; margin-bottom: 8px;">EDIT</a>
-          <a class="btn btn-danger pull-right" (click)="onDelete(vehicle.id)">DELETE</a>
-        </td>
       </tr>
+
     </tbody>
   </table>
+
 </div>
+

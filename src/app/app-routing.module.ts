@@ -50,6 +50,7 @@ import { SalaryReportComponent } from './admin-profile/payroll/salary-report/sal
 import { TrainingProgramReportComponent } from './admin-profile/training-programs/training-program-report/training-program-report.component';
 import { EmpReportComponent } from './admin-profile/employees/emp-report/emp-report.component';
 import { AttendanceReportComponent } from './admin-profile/attendance/attendance-report/attendance-report.component';
+import { VehicleReportComponent } from './admin-profile/vehicles/vehicle-report/vehicle-report.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -120,6 +121,9 @@ const appRoutes: Routes = [
               { path: 'unallocated', component: VehicleUnallocatedComponent },
             ],
           },
+          { path: 'edit/:vehicleid', component: AddVehicleComponent},
+          { path: 'report', component: VehicleReportComponent}
+
         ],
       },
       {

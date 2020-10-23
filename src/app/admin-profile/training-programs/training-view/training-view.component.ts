@@ -12,6 +12,7 @@ import { TrainingProgramsService } from 'service/trainingPrograms.service';
 export class TrainingViewComponent implements OnInit, OnDestroy {
   trainingPrograms: TrainingPrograms[] = [];
   private subscription: Subscription;
+  term: string;
 
   constructor(private router: Router, private trainingProgramService: TrainingProgramsService,
     private route: ActivatedRoute ) { }

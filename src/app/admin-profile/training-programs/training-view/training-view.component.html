@@ -8,7 +8,7 @@
     <div class ="card">
       <div class="card-header">
         <div class="md-form active-pink-2 mb-3 pull-left" style="width:300px; margin-right: 10px;">
-          <input class="form-control" type="text" placeholder="Search Employee" aria-label="Search">
+          <input class="form-control" [(ngModel)]="term" type="text" placeholder="Search" aria-label="Search">
         </div>
         <div class="pull-left">
           <button [routerLink]="['../report']" class="btn btn-success">GENERATE REPORT</button>
@@ -32,7 +32,7 @@
           <!-- <mat-spinner></mat-spinner> -->
           <tbody>
 
-            <tr *ngFor="let trainingProgram of trainingPrograms">
+            <tr *ngFor="let trainingProgram of trainingPrograms | filter:term">
               <td>{{ trainingProgram.title}}</td>
               <td>{{ trainingProgram.date}}</td>
               <td>{{ trainingProgram.description}}</td>

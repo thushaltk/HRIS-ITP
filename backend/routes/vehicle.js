@@ -87,61 +87,88 @@ router.post("/", async (req, res) => {
   }
 });
 
-//update vehicle details
-router.patch("/:id", async (req, res) => {
-  try {
-    await Vehicle.findById({ _id: req.params.id }, async (error, vehicle) => {
-      if (error) return res.status(500).send(error);
-      if (!vehicle) return res.status(404).send("User not found");
-
-      const {
-        vehicleNumber,
-        vehicleType,
-        vehicleChaseNumber,
-        vehicleEngineNumber,
-        manufactureDate,
-        vehicleColor,
-        vehiclePurchaseDate,
-        vehicleOpenMileage,
-        insuranceType,
-        vehicleRegistedDistrict,
-        nextLicenceRenewalDate,
-        vehiclePreviousOwner,
-        NIC,
-        contactNumber,
-        address,
-      } = req.body;
-      if (vehicleNumber) vehicle.vehicleNumber = vehicleNumber;
-      if (vehicleType) vehicle.vehicleType = vehicleType;
-      if (vehicleChaseNumber) vehicle.vehicleChaseNumber = vehicleChaseNumber;
-      if (vehicleEngineNumber)
-        vehicle.vehicleEngineNumber = vehicleEngineNumber;
-      if (manufactureDate) vehicle.manufactureDate = manufactureDate;
-      if (vehicleColor) vehicle.vehicleColor = vehicleColor;
-      if (vehiclePurchaseDate)
-        vehicle.vehiclePurchaseDate = vehiclePurchaseDate;
-      if (vehicleOpenMileage) vehicle.vehicleOpenMileage = vehicleOpenMileage;
-      if (insuranceType) vehicle.insuranceType = insuranceType;
-      if (vehicleRegistedDistrict)
-        vehicle.vehicleRegistedDistrict = vehicleRegistedDistrict;
-      if (nextLicenceRenewalDate)
-        vehicle.nextLicenceRenewalDate = nextLicenceRenewalDate;
-      if (vehiclePreviousOwner)
-        vehicle.vehiclePreviousOwner = vehiclePreviousOwner;
-      if (NIC) vehicle.NIC = NIC;
-      if (contactNumber) vehicle.contactNumber = contactNumber;
-      if (address) vehicle.address = address;
-
-      await vehicle.save((error, savedVehicle) => {
-        if (error) return res.status(500).send(error);
-        return res.status(201).send(savedVehicle);
-      });
-    });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).send(error);
-  }
+//Update Announcements
+router.put("/:id", (req, res, next) => {
+  const vehicle = new Vehicle({
+      _id: req.body.id,
+      vehicleNumber: req.body.vehicleNumber,
+      vehicleType: req.body.vehicleType,
+      vehicleChaseNumber: req.body.vehicleChaseNumber,
+      vehicleEngineNumber: req.body.vehicleEngineNumber,
+      manufactureDate: req.body.manufactureDate,
+      vehicleColor: req.body.vehicleColor,
+      vehiclePurchaseDate: req.body.vehiclePurchaseDate,
+      vehicleOpenMileage: req.body.vehicleOpenMileage,
+      insuranceType: req.body.insuranceType,
+      vehicleRegisteredDistrict: req.body.vehicleRegisteredDistrict,
+      nextLicenseRenewalDate: req.body.nextLicenseRenewalDate,
+      vehiclePreviousOwner: req.body.vehiclePreviousOwner,
+      NIC: req.body.NIC,
+      contactNumber: req.body.contactNumber,
+      address: req.body.address
+  });
+  Vehicle.updateOne({_id: req.params.id}, vehicle).then(result => {
+    console.log(result);
+    res.status(200).json({message: "Update successful"})
+  })
 });
+
+
+//update vehicle details
+// router.put("/:id", async (req, res) => {
+//   try {
+//     await Vehicle.findById({ _id: req.params.id }, async (error, vehicle) => {
+//       if (error) return res.status(500).send(error);
+//       if (!vehicle) return res.status(404).send("User not found");
+
+//       const {
+//         vehicleNumber,
+//         vehicleType,
+//         vehicleChaseNumber,
+//         vehicleEngineNumber,
+//         manufactureDate,
+//         vehicleColor,
+//         vehiclePurchaseDate,
+//         vehicleOpenMileage,
+//         insuranceType,
+//         vehicleRegistedDistrict,
+//         nextLicenceRenewalDate,
+//         vehiclePreviousOwner,
+//         NIC,
+//         contactNumber,
+//         address,
+//       } = req.body;
+//       if (vehicleNumber) vehicle.vehicleNumber = vehicleNumber;
+//       if (vehicleType) vehicle.vehicleType = vehicleType;
+//       if (vehicleChaseNumber) vehicle.vehicleChaseNumber = vehicleChaseNumber;
+//       if (vehicleEngineNumber)
+//         vehicle.vehicleEngineNumber = vehicleEngineNumber;
+//       if (manufactureDate) vehicle.manufactureDate = manufactureDate;
+//       if (vehicleColor) vehicle.vehicleColor = vehicleColor;
+//       if (vehiclePurchaseDate)
+//         vehicle.vehiclePurchaseDate = vehiclePurchaseDate;
+//       if (vehicleOpenMileage) vehicle.vehicleOpenMileage = vehicleOpenMileage;
+//       if (insuranceType) vehicle.insuranceType = insuranceType;
+//       if (vehicleRegistedDistrict)
+//         vehicle.vehicleRegistedDistrict = vehicleRegistedDistrict;
+//       if (nextLicenceRenewalDate)
+//         vehicle.nextLicenceRenewalDate = nextLicenceRenewalDate;
+//       if (vehiclePreviousOwner)
+//         vehicle.vehiclePreviousOwner = vehiclePreviousOwner;
+//       if (NIC) vehicle.NIC = NIC;
+//       if (contactNumber) vehicle.contactNumber = contactNumber;
+//       if (address) vehicle.address = address;
+
+//       await vehicle.save((error, savedVehicle) => {
+//         if (error) return res.status(500).send(error);
+//         return res.status(201).send(savedVehicle);
+//       });
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(500).send(error);
+//   }
+// });
 
 
 // router.delete("/:id", async (req, res) => {

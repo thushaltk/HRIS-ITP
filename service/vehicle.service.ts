@@ -42,6 +42,11 @@ export class VehiclesServices {
     return this.vehiclesArr.slice();
   }
 
+  getVehicleID(id: string){
+    return {...this.vehiclesArr.find(vehicleAtt => vehicleAtt.id === id)};
+
+  }
+
   addVehicle(vehicles: Vehicles) {
     const vehiclesArray: Vehicles = {
       id: vehicles.id,
@@ -68,6 +73,35 @@ export class VehiclesServices {
         this.vehicleChanged.next(this.vehiclesArr.slice());
       });
 
+  }
+
+  updateVehicle(vehicles: Vehicles) {
+    const vehiclesArray: Vehicles = {
+      id: vehicles.id,
+      vehicleNumber: vehicles.vehicleNumber,
+      vehicleType: vehicles.vehicleType,
+      vehicleChaseNumber: vehicles.vehicleChaseNumber,
+      vehicleEngineNumber: vehicles.vehicleEngineNumber,
+      manufactureDate: vehicles.manufactureDate,
+      vehicleColor: vehicles.vehicleColor,
+      vehiclePurchaseDate: vehicles.vehiclePurchaseDate,
+      vehicleOpenMileage: vehicles.vehicleOpenMileage,
+      insuranceType: vehicles.insuranceType,
+      vehicleRegisteredDistrict: vehicles.vehicleRegisteredDistrict,
+      nextLicenseRenewalDate: vehicles.nextLicenseRenewalDate,
+      vehiclePreviousOwner: vehicles.vehiclePreviousOwner,
+      NIC: vehicles.NIC,
+      contactNumber: vehicles.contactNumber,
+      address: vehicles.address
+    };
+    this.http.put("http://localhost:3000/api/vehicles/" + vehicles.id, vehiclesArray)
+      .subscribe(response => {
+        const updatedVehicles = [...this.vehiclesArr];
+        const oldVehiclesIndex = updatedVehicles.findIndex(veh => veh.id === vehiclesArray.id);
+        updatedVehicles[oldVehiclesIndex] = vehiclesArray;
+        this.vehiclesArr = updatedVehicles;
+        this.vehicleChanged.next([...this.vehiclesArr]);
+      });
   }
 
   deleteVehicle(vehicleID: string) {

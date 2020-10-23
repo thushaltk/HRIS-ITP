@@ -87,6 +87,7 @@ import { SalaryReportComponent } from './admin-profile/payroll/salary-report/sal
 import { SortDirective } from './directive/sort.directive';
 import { EmpReportComponent } from './admin-profile/employees/emp-report/emp-report.component';
 import { AttendanceReportComponent } from './admin-profile/attendance/attendance-report/attendance-report.component';
+import { VehicleReportComponent } from './admin-profile/vehicles/vehicle-report/vehicle-report.component';
 
 @NgModule({
   declarations: [
@@ -155,6 +156,7 @@ import { AttendanceReportComponent } from './admin-profile/attendance/attendance
     SortDirective,
     EmpReportComponent,
     AttendanceReportComponent,
+    VehicleReportComponent,
   ],
   imports: [
     BrowserModule,

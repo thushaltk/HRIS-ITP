@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Vehicles } from 'models/vehicles.model';
 import { VehiclesServices } from 'service/vehicle.service';
 
@@ -12,7 +12,10 @@ import { VehiclesServices } from 'service/vehicle.service';
 export class AddVehicleComponent implements OnInit {
   @ViewChild('vehiForm', {static: false}) addVehicleForm: NgForm;
   nicInvalid: boolean = true;
+  mode: string = "create";
   nic : string;
+  vehicleID: string;
+  vehicleDetails: Vehicles;
   vehicles: Vehicles = {
     id:'',
     vehicleNumber:'',
@@ -35,10 +38,21 @@ export class AddVehicleComponent implements OnInit {
   constructor(private router: Router, private vehicleService: VehiclesServices, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(((paramMap: ParamMap) => {
+      if (paramMap.has("vehicleid")) {
+        this.mode = "edit";
+        this.vehicleID = paramMap.get("vehicleid");
+        this.vehicleDetails = this.vehicleService.getVehicleID(this.vehicleID);
+      } else {
+        this.mode = "create";
+        this.vehicleID = null;
+      }
+
+    }))
   }
 
   onSubmit(){
-    this.vehicles.id = null;
+    this.vehicles.id = this.vehicleID;
     this.vehicles.vehicleNumber = this.addVehicleForm.value.vehicleNumber;
     this.vehicles.vehicleType = this.addVehicleForm.value.vehicleType;
     this.vehicles.vehicleChaseNumber = this.addVehicleForm.value.vehicleChaseNumber;
@@ -55,11 +69,13 @@ export class AddVehicleComponent implements OnInit {
     this.vehicles.contactNumber = this.addVehicleForm.value.contactNumber;
     this.vehicles.address = this.addVehicleForm.value.address;
 
-    this.addVehicleForm.reset();
-
-    this.vehicleService.addVehicle(this.vehicles);
-
-    this.router.navigate(['../view/all'], {relativeTo: this.route});
+    if (this.mode === "create") {
+      this.vehicleService.addVehicle(this.vehicles);
+      this.router.navigate(['../view/all'], { relativeTo: this.route });
+    } else {
+      this.vehicleService.updateVehicle(this.vehicles);
+      this.router.navigate(['../../view/all'], { relativeTo: this.route });
+    }
 
 
   }

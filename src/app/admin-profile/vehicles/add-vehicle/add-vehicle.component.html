@@ -23,7 +23,7 @@
           <label for="vehicleNumber">Vehicle Number</label>
           <input
             type="text"
-            ngModel
+            [ngModel]="vehicleDetails?.vehicleNumber"
             name="vehicleNumber"
             #vehicleNumber="ngModel"
             [class.is-invalid]="vehicleNumber.invalid && vehicleNumber.touched"
@@ -45,7 +45,7 @@
             name="vehicleType"
             [class.is-invalid]="vehicleType.invalid && vehicleType.touched"
             class="form-control"
-            [ngModel]="vehicleType"
+            [ngModel]="vehicleDetails?.vehicleType"
             id="vehicleType"
             required
           >
@@ -72,7 +72,7 @@
           <label for="vehicleChaseNumber">Enter Chase Number</label>
           <input
             type="text"
-            ngModel
+            [ngModel]="vehicleDetails?.vehicleChaseNumber"
             name="vehicleChaseNumber"
             #vehicleChaseNumber="ngModel"
             [class.is-invalid]="
@@ -97,7 +97,7 @@
           <label for="vehicleEngineNumber">Enter Engine Number</label>
           <input
             type="text"
-            ngModel
+            [ngModel]="vehicleDetails?.vehicleEngineNumber"
             name="vehicleEngineNumber"
             #vehicleEngineNumber="ngModel"
             [class.is-invalid]="
@@ -122,7 +122,7 @@
             <label for="dob">Vehicle Manufacture Date</label>
             <input
               type="date"
-              ngModel
+              [ngModel]="vehicleDetails?.manufactureDate"
               name="manufactureDate"
               #manufactureDate="ngModel"
               [class.is-invalid]="
@@ -147,7 +147,7 @@
             <label for="vehicleColor">Vehicle Color</label>
             <input
               type="text"
-              ngModel
+              [ngModel]="vehicleDetails?.vehicleColor"
               name="vehicleColor"
               #vehicleColor="ngModel"
               [class.is-invalid]="vehicleColor.invalid && vehicleColor.touched"
@@ -167,7 +167,7 @@
             <label for="vehiclePurchaseDate">Vehicle Purchase Date</label>
             <input
               type="date"
-              ngModel
+              [ngModel]="vehicleDetails?.vehiclePurchaseDate"
               name="vehiclePurchaseDate"
               #vehiclePurchaseDate="ngModel"
               [class.is-invalid]="
@@ -194,7 +194,7 @@
           <input
             type="text"
             #vehicleOpenMileage="ngModel"
-            ngModel
+            [ngModel]="vehicleDetails?.vehicleOpenMileage"
             name="vehicleOpenMileage"
             [class.is-invalid]="
               vehicleOpenMileage.invalid && vehicleOpenMileage.touched
@@ -225,7 +225,7 @@
             name="insuranceType"
             [class.is-invalid]="insuranceType.invalid && insuranceType.touched"
             class="form-control"
-            [ngModel]="insuranceType"
+            [ngModel]="vehicleDetails?.insuranceType"
             id="insuranceType"
             required
           >
@@ -250,7 +250,7 @@
             vehicleRegisteredDistrict.invalid && vehicleRegisteredDistrict.touched
             "
             class="form-control"
-            [ngModel]="vehicleRegisteredDistrict"
+            [ngModel]="vehicleDetails?.vehicleRegisteredDistrict"
             id="vehicleRegisteredDistrict"
             required
           >
@@ -299,7 +299,7 @@
             <input
               type="date"
               #nextLicenseRenewalDate="ngModel"
-              ngModel
+              [ngModel]="vehicleDetails?.nextLicenseRenewalDate"
               name="nextLicenseRenewalDate"
               [class.is-invalid]="
               nextLicenseRenewalDate.invalid && nextLicenseRenewalDate.touched
@@ -329,7 +329,7 @@
           <input
             type="text"
             #vehiclePreviousOwner="ngModel"
-            ngModel
+            [ngModel]="vehicleDetails?.vehiclePreviousOwner"
             name="vehiclePreviousOwner"
             [class.is-invalid]="
             vehiclePreviousOwner.invalid && vehiclePreviousOwner.touched
@@ -354,7 +354,7 @@
           <input
             type="text"
             #NIC="ngModel"
-            ngModel
+            [ngModel]="vehicleDetails?.NIC"
             name="NIC"
             [class.is-invalid] = "nicInvalid && NIC.touched"
             class="form-control"
@@ -376,7 +376,7 @@
           <input
             type="text"
             #contactNumber="ngModel"
-            ngModel
+            [ngModel]="vehicleDetails?.contactNumber"
             name="contactNumber"
             [class.is-invalid]="contactNumber.invalid && contactNumber.touched"
             class="form-control"
@@ -397,7 +397,7 @@
           <input
             type="text"
             #address="ngModel"
-            ngModel
+            [ngModel]="vehicleDetails?.address"
             name="address"
             [class.is-invalid]="address.invalid && address.touched"
             class="form-control"
