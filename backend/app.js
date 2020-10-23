@@ -14,6 +14,7 @@ const trainingProgramsRoute = require("./routes/trainingPrograms");
 const vehicleRoute = require("./routes/vehicle");
 const attendanceRoutes = require("./routes/attendance");
 const advancePayment = require("./routes/advancePayment");
+const empLoginRoute = require("./routes/empLogin");
 
 const app = express();
 
@@ -60,4 +61,5 @@ app.use("/api/trainingPrograms", trainingProgramsRoute);
 app.use("/api/vehicles", vehicleRoute);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/advancePayment", advancePayment);
+app.use("/api/empLogin", empLoginRoute);
 module.exports = app;

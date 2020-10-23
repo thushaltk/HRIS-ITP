@@ -88,6 +88,7 @@ import { SortDirective } from './directive/sort.directive';
 import { EmpReportComponent } from './admin-profile/employees/emp-report/emp-report.component';
 import { AttendanceReportComponent } from './admin-profile/attendance/attendance-report/attendance-report.component';
 import { VehicleReportComponent } from './admin-profile/vehicles/vehicle-report/vehicle-report.component';
+import { EmpLoginService } from '../../service/empLogin.service';
 
 @NgModule({
   declarations: [
@@ -189,6 +190,7 @@ import { VehicleReportComponent } from './admin-profile/vehicles/vehicle-report/
     LongLeavesService,
     TrainingProgramsService,
     AttendanceService,
+    EmpLoginService
   ],
   bootstrap: [AppComponent],
 })

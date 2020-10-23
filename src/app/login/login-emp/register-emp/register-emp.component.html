@@ -6,7 +6,7 @@
     <div class="col-lg-6 pull-right" style="margin-top: 10%;">
         <h2 style="color:azure; font-size: 40px; font-weight: 700; font-family: cursive;">ADD NEW LOGIN</h2>
         <br>
-        <form class="form-horizontal" #newLogin="ngForm">
+        <form class="form-horizontal" #newLogin="ngForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label class="col-sm-2"for="nic" style="color:azure;">NIC</label>
             <div class="col-sm-10">
@@ -22,7 +22,7 @@
           <div class="form-group">
             <label class="col-sm-2"for="password" style="color:azure;">Confirm Password</label>
             <div class="col-sm-10">
-              <input type="confpassword" id="confpassword" class="form-control" ngModel name="confpassword" required>
+              <input type="password" id="confpassword" class="form-control" ngModel name="confpassword" required>
             </div>
           </div>
           <br>
