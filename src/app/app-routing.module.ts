@@ -48,6 +48,7 @@ import { AdminAdvancePaymentComponent } from './admin-profile/payroll/admin-adva
 import { AnnouncementReportComponent } from './admin-profile/announcements/announcement-report/announcement-report.component';
 import { SalaryReportComponent } from './admin-profile/payroll/salary-report/salary-report.component';
 import { TrainingProgramReportComponent } from './admin-profile/training-programs/training-program-report/training-program-report.component';
+import { EmpReportComponent } from './admin-profile/employees/emp-report/emp-report.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -126,7 +127,10 @@ const appRoutes: Routes = [
         children: [
           { path: 'create', component: EmpRegComponent },
           { path: 'view', component: EmpSelectComponent },
+          { path: 'reportAll', component: EmpReportComponent},
           { path: ':designation', component: EmpRegistryComponent },
+          { path: 'edit/:id', component: EmpRegComponent},
+          { path: 'report/:designation', component: EmpReportComponent}
         ],
       },
 

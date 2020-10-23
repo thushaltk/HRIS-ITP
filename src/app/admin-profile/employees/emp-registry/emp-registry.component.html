@@ -8,8 +8,11 @@
     <div class="container-fluid" style="width: 980px;overflow-y: scroll;">
       <div class ="card text-center"  style="border-color: #6d7fcc; border-radius: 10px 10px 10px 10px; width: fit-content;">
         <div class="card-header">
-          <div class="md-form active-pink-2 mb-3" style="width:300px;">
-            <input class="form-control" type="text" placeholder="Search Employee" aria-label="Search" >
+          <div class="md-form active-pink-2 mb-3 pull-left" style="width:300px; margin-right: 10px;">
+            <input class="form-control" [(ngModel)]="term" type="text" placeholder="Search Employee" aria-label="Search" >
+          </div>
+          <div class="pull-left">
+            <button [routerLink]="['../report', designation]" class="btn btn-success">GENERATE REPORT</button>
           </div>
         </div>
         <div class="card-body">
@@ -33,7 +36,7 @@
             <mat-spinner *ngIf = "isLoading"></mat-spinner>
             <tbody *ngIf = "!isLoading">
 
-              <tr *ngFor="let employee of employees">
+              <tr *ngFor="let employee of employees  | filter:term">
                 <td>{{ employee.empID}}</td>
                 <td>{{ employee.fullName}}</td>
                 <td>{{ employee.nic}}</td>
@@ -45,7 +48,7 @@
                 <td>{{ employee.doj}}</td>
                 <td>{{ employee.comment}}</td>
                 <td colspan="2">
-                  <a class="btn btn-warning pull-right" style="width:75px; margin-bottom: 8px;">EDIT</a>
+                  <a [routerLink]="['../edit', employee.id]" class="btn btn-warning pull-right" style="width:75px; margin-bottom: 8px;">EDIT</a>
                   <a class="btn btn-danger pull-right" (click)="onDelete(employee.id)">DELETE</a>
                 </td>
               </tr>

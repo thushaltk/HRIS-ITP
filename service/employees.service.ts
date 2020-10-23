@@ -116,6 +116,31 @@ export class EmployeeService{
 
   }
 
+  updateEmployees(employee: Employees) {
+    const employeeArray: Employees = {
+      id: employee.id,
+      fullName: employee.fullName,
+      dob: employee.dob,
+      nic: employee.nic,
+      empID: employee.empID,
+      gender: employee.gender,
+      address: employee.address,
+      cnumber: employee.cnumber,
+      email: employee.email,
+      empDes: employee.empDes,
+      doj: employee.doj,
+      comment: employee.comment
+    };
+    this.http.put("http://localhost:3000/api/employees/" + employee.id, employeeArray)
+      .subscribe(response => {
+        const updatedEmployees = [...this.employeesArr];
+        const oldEmpIndex = updatedEmployees.findIndex(emp => emp.id === employeeArray.id);
+        updatedEmployees[oldEmpIndex] = employeeArray;
+        this.employeesArr = updatedEmployees;
+        this.employeesChanged.next([...this.employeesArr]);
+      });
+  }
+
   deleteEmployee(employeeID: string){
     this.http.delete("http://localhost:3000/api/employees/" + employeeID)
       .subscribe(() => {

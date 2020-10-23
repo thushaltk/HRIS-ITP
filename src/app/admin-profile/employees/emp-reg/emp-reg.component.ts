@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, AbstractControl, NgForm } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Employees } from '../../../../../models/employees.model';
 import { EmployeeService } from 'service/employees.service';
 
@@ -12,8 +12,12 @@ import { EmployeeService } from 'service/employees.service';
 export class EmpRegComponent implements OnInit {
   @ViewChild('empreg', {static: false}) addEmployee: NgForm;
   empID: string;
+  private mode : string = "create";
+  employeeID: string;
   nicInvalid: boolean = true;
   nic : string;
+  employeeDetails: Employees[] = [];
+  empDetails: Employees;
 
   employees: Employees = {
     id: '',
@@ -36,7 +40,29 @@ export class EmpRegComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.empID = "EMP"+Math.floor((Math.random() * 99999) + 10000).toString();
+    this.route.paramMap.subscribe(((paramMap: ParamMap) => {
+      if (paramMap.has("id")) {
+        this.mode = "edit";
+        this.employeeID = paramMap.get("id");
+        this.employeeDetails = this.employeeService.getEmployee();
+        for(let emp of this.employeeDetails){
+          if(emp.id === this.employeeID){
+            this.empDetails = emp;
+            this.empID = emp.empID;
+          }else{
+            continue;
+          }
+
+        }
+      } else {
+        this.mode = "create";
+        this.employeeID = null;
+        this.empID = "EMP"+Math.floor((Math.random() * 99999) + 10000).toString();
+      }
+
+    }))
+
+
   }
 
   nicValidate(nic: string){
@@ -54,7 +80,7 @@ export class EmpRegComponent implements OnInit {
   onSubmit(){
     console.log(this.addEmployee);
     this.submitted = true;
-    this.employees.id = null;
+    this.employees.id = this.employeeID;
     this.employees.empID = this.empID;
     this.employees.fullName = this.addEmployee.value.fullName;
     this.employees.dob = this.addEmployee.value.dob;
@@ -67,13 +93,13 @@ export class EmpRegComponent implements OnInit {
     this.employees.doj = this.addEmployee.value.doj;
     this.employees.comment = this.addEmployee.value.comment;
 
-    this.addEmployee.reset();
-
-    this.employeeService.addEmployee(this.employees);
-
-    this.router.navigate(['../view'], {relativeTo: this.route});
-
-
+    if (this.mode === "create") {
+      this.employeeService.addEmployee(this.employees);
+      this.router.navigate(['../view'], {relativeTo: this.route});
+    } else {
+      this.employeeService.updateEmployees(this.employees);
+      this.router.navigate(['../../view'], {relativeTo: this.route});
+    }
 
   }
 

@@ -3,6 +3,7 @@ import { Employees } from 'models/employees.model';
 import { Subscription } from 'rxjs';
 import { EmployeeService } from 'service/employees.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @Component({
   selector: 'app-emp-registry',
@@ -14,6 +15,7 @@ export class EmpRegistryComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   designation: string;
   title: string;
+  term: string;
   isLoading = false;
 
   constructor(private router: Router, private employeeService: EmployeeService,

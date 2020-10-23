@@ -24,6 +24,27 @@ router.post("", (req, res, next) => {
   });
 });
 
+//Update Employees
+router.put("/:id", (req, res, next) => {
+  const employee = new Employee({
+    _id: req.body.id,
+    fullName: req.body.fullName,
+    dob: req.body.dob,
+    nic: req.body.nic,
+    empID: req.body.empID,
+    gender: req.body.gender,
+    address: req.body.address,
+    cnumber: req.body.cnumber,
+    email: req.body.email,
+    empDes: req.body.empDes,
+    doj: req.body.doj,
+    comment: req.body.comment
+  });
+  Employee.updateOne({ _id: req.params.id }, employee).then(result => {
+    console.log(result);
+    res.status(200).json({ message: "Update successful" })
+  })
+});
 
 
 //Reteive Employees
