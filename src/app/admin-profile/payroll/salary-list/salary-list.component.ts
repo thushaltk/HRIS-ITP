@@ -9,21 +9,20 @@ import { SalaryService } from '../../../_services/salary.service';
 @Component({
   selector: 'app-salary-list',
   templateUrl: './salary-list.component.html',
-  styleUrls: ['./salary-list.component.css']
+  styleUrls: ['./salary-list.component.css'],
 })
 export class SalaryListComponent implements OnInit {
-
   payroll: Payroll;
-  salaries : Salary[];
-  loading:boolean;
+  salaries: Salary[];
+  loading: boolean;
+  searchText: string;
 
   constructor(
     private router: Router,
     private salaryService: SalaryService,
     private confirmService: ConfirmService,
     private toastr: ToastrService
-  ) 
-  {
+  ) {
     if (!this.router.getCurrentNavigation().extras.state) {
       this.router.navigate(['../admin/payroll']);
     } else {
@@ -34,16 +33,15 @@ export class SalaryListComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  addSalary(payroll:Payroll){
+  addSalary(payroll: Payroll) {
     this.router.navigate(['admin/salaryList/addSalary'], {
       state: { pay: payroll },
     });
   }
 
-  onDelete(salary: Salary){
+  onDelete(salary: Salary) {
     this.confirmService
       .confirm(
         `Are you sure to delete this ${salary._id}? this cannot be undone`
@@ -52,12 +50,9 @@ export class SalaryListComponent implements OnInit {
         (confirm) => {
           this.salaries = this.salaries.filter((sal) => sal._id != salary._id);
           this.salaryService.deleteSalary(salary).subscribe();
-          this.toastr.success(
-            `Salary for ${salary.date} was removed`
-          );
+          this.toastr.success(`Salary for ${salary.date} was removed`);
         },
         (reject) => {}
       );
   }
-
 }

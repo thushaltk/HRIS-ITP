@@ -19,11 +19,9 @@
                 </div>
             </div>
             <tr *ngFor="let adPay of adPayments">
-                <!-- <td>{{ payroll?.employee?.fullName }}</td> -->
                 <td> {{ adPay.date | date: 'mediumDate' }}</td>
                 <td>{{ adPay.reason }}</td>
-                <!-- <td>{{ adPay.approved === false ? 'Not Approved' : "Approved" }}</td> -->
-                <td>{{ adPay.status }}</td>
+                <td [ngStyle]="{'color':adPay.status === 'Approved' ? 'green' : 'red' }" >{{ adPay.status }}</td>
                 <td>{{ adPay.amount }}</td>
                 <td>
                     <a class="btn btn-sm btn-danger" (click)="onDelete(adPay)"

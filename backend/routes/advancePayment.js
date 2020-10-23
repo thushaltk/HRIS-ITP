@@ -4,8 +4,14 @@ const AdvancePayment = require("../models/advancePayment");
 
 router.get("/", async (req, res) => {
   try {
-    const advancePayments = await AdvancePayment.find({});
-    return res.status(200).send(advancePayments);
+    // const advancePayments = await AdvancePayment.find({});
+    // return res.status(200).send(advancePayments);
+    await AdvancePayment.find({})
+      .populate("employee")
+      .exec((error, advancePayments) => {
+        if (error) return res.status(500).send(error);
+        return res.status(200).send(advancePayments);
+      });
   } catch (error) {
     console.log(error);
     return res.status(500).send(error);

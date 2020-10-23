@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -73,7 +74,7 @@ import { TrainingViewComponent } from './admin-profile/training-programs/trainin
 import { EmpLongLeaveComponent } from './emp-profile/emp-attendance-leave/emp-long-leave/emp-long-leave.component';
 import { ViewLeavesComponent } from './admin-profile/attendance/view-leaves/view-leaves.component';
 import { TrainingProgramsService } from '../../service/trainingPrograms.service';
-import {AttendanceService} from '../../service/attendance.service';
+import { AttendanceService } from '../../service/attendance.service';
 import { RegisterEmpComponent } from './login/login-emp/register-emp/register-emp.component';
 import { SalaryListComponent } from './admin-profile/payroll/salary-list/salary-list.component';
 import { AddSalaryComponent } from './admin-profile/payroll/add-salary/add-salary.component';
@@ -82,6 +83,8 @@ import { AddAdvancePaymentComponent } from './emp-profile/emp-payroll/add-advanc
 import { AdminAdvancePaymentComponent } from './admin-profile/payroll/admin-advance-payment/admin-advance-payment.component';
 import { AnnouncementReportComponent } from './admin-profile/announcements/announcement-report/announcement-report.component';
 import { TrainingProgramReportComponent } from './admin-profile/training-programs/training-program-report/training-program-report.component';
+import { SalaryReportComponent } from './admin-profile/payroll/salary-report/salary-report.component';
+import { SortDirective } from './directive/sort.directive';
 
 @NgModule({
   declarations: [
@@ -146,6 +149,8 @@ import { TrainingProgramReportComponent } from './admin-profile/training-program
     AdminAdvancePaymentComponent,
     AnnouncementReportComponent,
     TrainingProgramReportComponent,
+    SalaryReportComponent,
+    SortDirective,
   ],
   imports: [
     BrowserModule,
@@ -154,6 +159,7 @@ import { TrainingProgramReportComponent } from './admin-profile/training-program
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    Ng2SearchPipeModule,
 
     //material
     MatProgressSpinnerModule,
@@ -176,7 +182,7 @@ import { TrainingProgramReportComponent } from './admin-profile/training-program
     VehiclesServices,
     LongLeavesService,
     TrainingProgramsService,
-    AttendanceService
+    AttendanceService,
   ],
   bootstrap: [AppComponent],
 })

@@ -14,7 +14,8 @@ export class PayrollListComponent implements OnInit {
   @Output() deletePayroll: EventEmitter<Payroll> = new EventEmitter();
 
   payrolls: Payroll[];
-  loading:boolean;
+  loading: boolean;
+  searchText: string;
 
   constructor(
     private payrollService: PayrollService,
@@ -58,7 +59,7 @@ export class PayrollListComponent implements OnInit {
     });
   }
 
-  onViewSalary(payroll: Payroll){
+  onViewSalary(payroll: Payroll) {
     this.router.navigate(['admin/salaryList'], {
       state: { pay: payroll },
     });

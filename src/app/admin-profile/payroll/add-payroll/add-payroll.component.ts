@@ -22,7 +22,7 @@ export class AddPayrollComponent implements OnInit {
     penaltyForLeaves: null,
     paymentHistory: null,
   };
-  // payroll : Payroll;
+
   nic: string;
   constructor(
     private payrollService: PayrollService,
@@ -34,8 +34,6 @@ export class AddPayrollComponent implements OnInit {
 
   onSubmit() {
     this.nic = this.addPayroll.value.nic;
-    console.log(`Hello${this.addPayroll.value.baseSalary}`);
-
     this.payroll.baseSalary = this.addPayroll.value.baseSalary;
     this.payroll.maxLeaves = this.addPayroll.value.maxLeaves;
     this.payroll.payForOTHour = this.addPayroll.value.payForOTHour;

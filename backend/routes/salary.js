@@ -6,8 +6,14 @@ const Attendance = require("../models/attendance");
 
 router.get("/", async (req, res) => {
   try {
-    const salary = await Salary.find({});
-    return res.status(200).send(salary);
+    // const salary = await Salary.find({});
+    // return res.status(200).send(salary);
+    await Salary.find({})
+      .populate("employee")
+      .exec((error, salary) => {
+        if (error) return res.status(500).send(error);
+        return res.status(200).send(salary);
+      });
   } catch (error) {
     console.log(error);
     return res.status(500).send(error);

@@ -1,40 +1,31 @@
-<!-- {{payroll?.employee?.nic }} -->
-<h1>Salary History of {{ payroll?.employee?.fullName }}</h1>
-<br>
+<h1 class="text-center">Salary Report</h1>
 
 <div class="container">
   <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder=" Search">
   <br>
 </div>
 
-<table class="table table-dark">
-    <thead>
-        <tr>
-          <th scope="col">Base Salary(Rs)</th>
-          <th scope="col">Maximus Leaves</th>
-          <th scope="col">Penalty for leaves(Rs)</th>
-          <th scope="col">Pay For OT Hours(Rs)</th>
-        </tr>
-        <tr>
-        <td>{{ payroll.baseSalary }}</td>
-        <td>{{ payroll.maxLeaves }}</td>
-        <td>{{ payroll.penaltyForLeaves }}</td>
-        <td>{{ payroll.payForOTHour }}</td>
-        </tr>
-      </thead>
 
-</table>
+<form (ngSubmit)="onSubmit()" #getMonth="ngForm">
 
-<h1>
-    <span><a class="btn btn-sm btn-success" (click)="addSalary(payroll)" >+ Add Salary</a></span>
-  </h1>
+  <label for="month">Select a month: </label>
+  <input type="month" id="salaryMonth" name="salaryMonth" class="ml-2" [(ngModel)]="month">
+  <!-- <label for="month">Name: </label>
+  <input type="text" name="userName" class="ml-2" [(ngModel)]="name"> -->
+  <input type="submit" class="ml-2">
+<br>
+</form>
+
+
+<a class="btn btn-sm btn-success" (click)="report()">Report</a>
 
 
 <table class="table">
     <thead>
         <tr>
+            <th scope="col">Employee</th>  
           <th scope="col" [appSort]="salaries" data-order="desc" data-name="date" data-type="date">Date</th>
-          <th scope="col">Amount of Leaves</th>
+          <th scope="col" [appSort]="salaries" data-order="desc" data-name="amountOfLeaves">Amount of Leaves</th>
           <th scope="col">Penalty for leaves(Rs)</th>
           <th scope="col">OT Hours</th>
           <th scope="col">OT Pay(Rs)</th>
@@ -51,6 +42,7 @@
           </div>
       </div>
         <tr *ngFor="let salary of salaries | filter:searchText">
+            <td>{{ salary?.employee?.fullName }}</td>
             <td>{{ salary.date | date: 'mediumDate' }}</td>
             <td>{{ salary.amountOfLeaves }}</td>
             <td>{{ salary.penaltyForLeaves }}</td>
@@ -58,7 +50,6 @@
             <td>{{ salary.otPay }}</td>
             <td>{{ salary.month }}</td>
             <td>{{ salary.amount }}</td>
-            <td><a class="btn btn-sm btn-danger" (click)="onDelete(salary)">Delete</a></td>
         </tr>
     </tbody>
 </table>

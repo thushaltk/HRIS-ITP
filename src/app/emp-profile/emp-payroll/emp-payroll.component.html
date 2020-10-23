@@ -1,5 +1,10 @@
 <div class="container ml-5">
     <h1 class="ml-5 text-center">Salary History</h1>
+
+    <div class="container">
+        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder=" Search">
+        <br>
+      </div>
     
     <table class="table ml-5">
         <thead>
@@ -21,7 +26,7 @@
                   </div>
                 </div>
             </div>            
-            <tr *ngFor="let salary of salaries">
+            <tr *ngFor="let salary of salaries | filter:searchText">
                 <td>{{ salary.date | date: 'mediumDate' }}</td>
                 <td>{{ salary.amountOfLeaves }}</td>
                 <td>{{ salary.penaltyForLeaves }}</td>
