@@ -1,0 +1,30 @@
+<div style="overflow-y: scroll; width: 1000px;  height: 100vh">
+  <button type="button" class="btn btn-primary" (click)="generateReport()">Download Report</button>
+  <table class="table" id="tbl" width="100%">
+    <thead>
+      <tr>
+        <th scope="col">EMP ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">NIC</th>
+        <th scope="col">Date</th>
+        <th scope="col">Designation</th>
+        <th scope="col">Arrival Time</th>
+        <th scope="col">Leave Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let atd of attendanceDetails">
+        <th scope="row">{{atd.empID}}</th>
+        <td>{{atd.fullName}}</td>
+        <td>{{atd.nic}}</td>
+        <td>{{atd.date}}</td>
+        <td>{{atd.designation}}</td>
+        <td>{{atd.arriveTime}}</td>
+        <td>{{atd.leaveTime}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>
+

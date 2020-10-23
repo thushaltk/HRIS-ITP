@@ -86,6 +86,7 @@ import { TrainingProgramReportComponent } from './admin-profile/training-program
 import { SalaryReportComponent } from './admin-profile/payroll/salary-report/salary-report.component';
 import { SortDirective } from './directive/sort.directive';
 import { EmpReportComponent } from './admin-profile/employees/emp-report/emp-report.component';
+import { AttendanceReportComponent } from './admin-profile/attendance/attendance-report/attendance-report.component';
 
 @NgModule({
   declarations: [
@@ -153,6 +154,7 @@ import { EmpReportComponent } from './admin-profile/employees/emp-report/emp-rep
     SalaryReportComponent,
     SortDirective,
     EmpReportComponent,
+    AttendanceReportComponent,
   ],
   imports: [
     BrowserModule,

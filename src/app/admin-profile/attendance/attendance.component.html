@@ -3,11 +3,14 @@
     <div>
       <h2 class="text-center">Employee Attendance</h2>
     <div>
-    <button class="btn btn-success" type="button" style="margin-bottom: 10px;" [routerLink]="['add-attendance']">ADD ATTENDANCE</button>
+    <button class="btn btn-primary" type="button" style="margin-bottom: 10px;" [routerLink]="['add-attendance']">ADD ATTENDANCE</button>
     <div class="card">
         <div class="card-header">
-          <div class="md-form active-pink-2 mb-3" style="width:300px;">
-            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+          <div class="md-form active-pink-2 mb-3 pull-left" style="width:300px; margin-right: 10px;">
+            <input class="form-control" [(ngModel)]="search" type="text" placeholder="Search" aria-label="Search">
+          </div>
+          <div class="pull-left">
+            <button [routerLink]="['report']" class="btn btn-success">GENERATE REPORT</button>
           </div>
         </div>
         <div class="card-body">
@@ -25,7 +28,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let atd of attendanceDetails">
+              <tr *ngFor="let atd of attendanceDetails | filter:search">
                 <th scope="row">{{atd.empID}}</th>
                 <td>{{atd.fullName}}</td>
                 <td>{{atd.nic}}</td>
@@ -35,7 +38,7 @@
                 <td>{{atd.leaveTime}}</td>
                 <td>
                   <a class="btn btn-danger pull-right" (click)="onDelete(atd.id)">DELETE</a>
-                  <a href="" class="btn btn-warning pull-right" style="margin-right: 10px;">EDIT</a>
+                  <a [routerLink]="['edit', atd.id]" class="btn btn-warning pull-right" style="margin-right: 10px;">EDIT</a>
                 </td>
               </tr>
 

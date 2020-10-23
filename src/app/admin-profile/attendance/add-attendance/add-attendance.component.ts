@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Attendance } from 'models/attendance.model';
 import { Employees } from 'models/employees.model';
 import { Subscription } from 'rxjs';
@@ -16,9 +17,13 @@ export class AddAttendanceComponent implements OnInit {
   employeeName: string;
   dateToday: string;
   employeeID : string;
+  attendanceID: string;
   empDesignation: string;
+  getDetailsBtnClicked: boolean = false;
+  mode: string = "create";
   private subscription: Subscription;
   employeeDetails : Employees[] = [];
+  attendanceDetails: Attendance;
   attendances: Attendance = {
     id: '',
     fullName: '',
@@ -31,8 +36,10 @@ export class AddAttendanceComponent implements OnInit {
   }
 
 
-  constructor(private employeeDetailsService: EmployeeService,
-              private attendanceService: AttendanceService) { }
+  constructor(private router: Router,
+              private employeeDetailsService: EmployeeService,
+              private attendanceService: AttendanceService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     //get all employee names -> from employee collection
@@ -42,10 +49,21 @@ export class AddAttendanceComponent implements OnInit {
     let year = new Date().getFullYear();
     this.dateToday = year+"-"+(month+1)+"-"+day;
     console.log(this.dateToday);
+    this.route.paramMap.subscribe(((paramMap: ParamMap) => {
+      if (paramMap.has("attid")) {
+        this.mode = "edit";
+        this.attendanceID = paramMap.get("attid");
+        this.attendanceDetails = this.attendanceService.getAttendanceByID(this.attendanceID);
+      } else {
+        this.mode = "create";
+        this.attendanceID = null;
+      }
+
+    }))
   }
 
   onSubmit(){
-    this.attendances.id = null;
+    this.attendances.id = this.attendanceID;
     this.attendances.fullName = this.addAttendanceForm.value.empName;
     this.attendances.empID = this.addAttendanceForm.value.empID;
     this.attendances.date = this.addAttendanceForm.value.dateAtnd;
@@ -54,14 +72,18 @@ export class AddAttendanceComponent implements OnInit {
     this.attendances.leaveTime = this.addAttendanceForm.value.leaveTime;
     this.attendances.nic = this.addAttendanceForm.value.nic;
 
-    this.addAttendanceForm.reset();
-
-    this.attendanceService.addAttendance(this.attendances);
-
+    if (this.mode === "create") {
+      this.attendanceService.addAttendance(this.attendances);
+      this.router.navigate(['../../attendance'], { relativeTo: this.route });
+    } else {
+      this.attendanceService.updateAttendance(this.attendances);
+      this.router.navigate(['../../../attendance'], { relativeTo: this.route });
+    }
 
   }
 
   getEmpDetails(nic: string){
+    this.getDetailsBtnClicked = true;
     this.employeeDetails = this.employeeDetailsService.getEmployee();
     this.subscription = this.employeeDetailsService.employeesChanged.subscribe(
       (employees: Employees[]) => {

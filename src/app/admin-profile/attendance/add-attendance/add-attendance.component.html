@@ -9,9 +9,9 @@
           <div class="form-group row" style="margin-left: 200px;">
             <label for="nic" class="col-sm-3 col-form-label pull-right">NIC</label>
             <div class="col-sm-7" style="margin-left: -10%;">
-              <input type="text" id="nic" class="form-control" ngModel name="nic" #nic="ngModel" required>
+              <input type="text" id="nic" class="form-control" [ngModel]="attendanceDetails?.nic" name="nic" #nic="ngModel" required>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3" *ngIf="mode === 'create' ? true : false">
               <button class="btn btn-primary" type="button" (click)="getEmpDetails(nic.value)">GET DETAILS</button>
             </div>
             <span class="help-block" *ngIf="!nic.valid && nic.touched" style="color: red">Please enter
@@ -20,7 +20,7 @@
           <div class="form-group row" style="margin-left: 200px;">
             <label for="empName" class="col-sm-3 col-form-label pull-right">Employee Name</label>
             <div class="col-sm-7" style="margin-left: -10%;">
-              <input type="text" id="empName" class="form-control" [ngModel]="employeeName" name="empName" #empName="ngModel" required>
+              <input type="text" id="empName" class="form-control" [ngModel]="getDetailsBtnClicked ? employeeName : attendanceDetails?.fullName" name="empName" #empName="ngModel" required>
             </div>
             <span class="help-block" *ngIf="!empName.valid && empName.touched" style="color: red">Please enter
               Employee Name</span>
@@ -28,7 +28,7 @@
           <div class="form-group row" style="margin-left: 200px;">
             <label for="empID" class="col-sm-3 col-form-label pull-right">Employee ID</label>
             <div class="col-sm-7" style="margin-left: -10%;">
-              <input type="text" id="empID" class="form-control" [ngModel]="employeeID" name="empID" #empID="ngModel" required>
+              <input type="text" id="empID" class="form-control" [ngModel]="getDetailsBtnClicked ? employeeID : attendanceDetails?.empID" name="empID" #empID="ngModel" required>
             </div>
             <span class="help-block" *ngIf="!empID.valid && empID.touched" style="color: red">Please enter
               Employee ID</span>
@@ -44,7 +44,7 @@
           <div class="form-group row" style="margin-left: 200px;">
             <label for="empDes" class="col-sm-3 col-form-label pull-right">Designation</label>
             <div class="col-sm-7" style="margin-left: -10%;">
-              <select #empDes="ngModel" name="empDes" [class.is-invalid]= "empDes.invalid && empDes.touched" [ngModel]="empDesignation" class="form-control" id="empDes" required>
+              <select #empDes="ngModel" name="empDes" [class.is-invalid]= "empDes.invalid && empDes.touched" [ngModel]="getDetailsBtnClicked ? empDesignation : attendanceDetails?.designation" class="form-control" id="empDes" required>
                 <option value="choose" disabled>Choose...</option>
                 <option value="manager">Manager</option>
                 <option value="engineer">Engineer</option>
@@ -61,13 +61,13 @@
           <div class="form-group row" style="margin-left: 200px;">
             <label for="arriveTime" class="col-sm-3 col-form-label pull-right">Arrival time</label>
             <div class="col-sm-7" style="margin-left: -10%;">
-              <input type="time" id="arriveTime" class="form-control" ngModel name="arriveTime" #arriveTime="ngModel" required>
+              <input type="time" id="arriveTime" class="form-control" [ngModel]="attendanceDetails?.arriveTime" name="arriveTime" #arriveTime="ngModel" required>
             </div>
           </div>
           <div class="form-group row" style="margin-left: 200px;">
             <label for="leaveTime" class="col-sm-3 col-form-label pull-right">Leave time</label>
             <div class="col-sm-7" style="margin-left: -10%;">
-              <input type="time" id="leaveTime" class="form-control" ngModel name="leaveTime" #leaveTime="ngModel" required>
+              <input type="time" id="leaveTime" class="form-control" [ngModel]="attendanceDetails?.leaveTime" name="leaveTime" #leaveTime="ngModel" required>
             </div>
           </div>
           <div class="text-center pt-4">

@@ -49,6 +49,7 @@ import { AnnouncementReportComponent } from './admin-profile/announcements/annou
 import { SalaryReportComponent } from './admin-profile/payroll/salary-report/salary-report.component';
 import { TrainingProgramReportComponent } from './admin-profile/training-programs/training-program-report/training-program-report.component';
 import { EmpReportComponent } from './admin-profile/employees/emp-report/emp-report.component';
+import { AttendanceReportComponent } from './admin-profile/attendance/attendance-report/attendance-report.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -134,11 +135,15 @@ const appRoutes: Routes = [
         ],
       },
 
-      { path: 'attendance', component: AttendanceComponent },
+      { path: 'attendance', component: AttendanceComponent},
 
       { path: 'attendance/add-attendance', component: AddAttendanceComponent },
 
       { path: 'attendance/view-leaves', component: ViewLeavesComponent },
+
+      { path: 'attendance/edit/:attid', component: AddAttendanceComponent},
+
+      { path: 'attendance/report', component: AttendanceReportComponent },
     ],
   },
 

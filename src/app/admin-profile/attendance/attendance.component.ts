@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Attendance } from 'models/attendance.model';
 import { LongLeave } from 'models/longLeave.model';
 import { QuickLeave } from 'models/quickLeave.model';
@@ -12,9 +12,12 @@ import { QuickLeavesService } from 'service/quickLeaves.service';
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.css']
 })
-export class AttendanceComponent implements OnInit {
+export class AttendanceComponent implements OnInit, OnDestroy {
   attendanceDetails : Attendance[] = [];
   longLeaveDetails: LongLeave[] = [];
+  arriveTime: string;
+  leaveTime: string;
+  search: string;
   private subscription: Subscription;
 
 
@@ -26,6 +29,15 @@ export class AttendanceComponent implements OnInit {
     this.subscription = this.attendanceService.attendanceChanged.subscribe(
       (attendance: Attendance[]) => {
         this.attendanceDetails = attendance;
+        setTimeout(() => {
+          for(let i of this.attendanceDetails){
+            this.arriveTime = new Date(i.arriveTime).getUTCHours().toString() + ":" + new Date(i.arriveTime).getUTCMinutes().toString();
+            this.leaveTime = new Date(i.leaveTime).getUTCHours().toString() + ":" + new Date(i.arriveTime).getUTCMinutes().toString();
+            i.arriveTime = this.arriveTime
+            i.leaveTime = this.leaveTime
+          }
+        },300)
+
       }
     );
 
@@ -38,7 +50,14 @@ export class AttendanceComponent implements OnInit {
   }
 
   onDelete(id: string){
+    this.attendanceService.deleteAttendance(id);
+    window.location.reload();
 
+  }
+
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }
