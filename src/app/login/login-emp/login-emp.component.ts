@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 // import { EmployeeService } from 'service/employees.service';
 // import { EmpLoginService } from 'service/empLogin.service';
@@ -30,7 +31,11 @@ export class LoginEmpComponent implements OnInit {
   // }
 
   @ViewChild('f', { static: false }) empLoginForm: NgForm;
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private toastr: ToastrService
+  ) {}
   nic: string;
   password: string;
   user: any;
@@ -67,9 +72,13 @@ export class LoginEmpComponent implements OnInit {
         console.log(res),
           localStorage.setItem('token', res.token),
           localStorage.setItem('nic', res.userNic);
+        this.toastr.success('Logged in succesfully');
         this.router.navigate(['empProfile/dashboard']);
       },
-      (err) => console.log(err)
+      (err) => {
+        console.log(err);
+        this.toastr.error('Invalid Credentials');
+      }
     );
   }
 }

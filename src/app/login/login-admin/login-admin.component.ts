@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../_services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-admin',
@@ -10,7 +11,11 @@ import { AuthService } from '../../_services/auth.service';
 })
 export class LoginAdminComponent implements OnInit {
   @ViewChild('f', { static: false }) adminLoginForm: NgForm;
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private toastr: ToastrService
+  ) {}
   nic: string;
   password: string;
   user: any;
@@ -25,9 +30,13 @@ export class LoginAdminComponent implements OnInit {
       (res) => {
         localStorage.setItem('token', res.token),
           localStorage.setItem('nic', res.userNic);
+        this.toastr.success('Logged in succesfully');
         this.router.navigate(['admin/dashboard']);
       },
-      (err) => console.log(err)
+      (err) => {
+        console.log(err);
+        this.toastr.error('Invalid credentials');
+      }
     );
   }
 }
