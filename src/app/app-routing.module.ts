@@ -59,6 +59,7 @@ const appRoutes: Routes = [
   { path: 'login/registerLogin', component: RegisterEmpComponent },
   {
     path: 'admin',
+    canActivate: [AuthGuard],
     component: AdminProfileComponent,
     children: [
       { path: 'dashboard', component: AdminDashboardComponent },
