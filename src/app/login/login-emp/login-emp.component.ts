@@ -28,7 +28,7 @@ export class LoginEmpComponent implements OnInit {
         console.log(res),
           localStorage.setItem('token', res.token),
           localStorage.setItem('nic', res.userNic);
-        this.router.navigate(['empProfile/']);
+        this.router.navigate(['empProfile/dashboard']);
       },
       (err) => console.log(err)
     );
