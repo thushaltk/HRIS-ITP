@@ -87,7 +87,7 @@ import { SalaryReportComponent } from './admin-profile/payroll/salary-report/sal
 import { SortDirective } from './directive/sort.directive';
 import { EmpReportComponent } from './admin-profile/employees/emp-report/emp-report.component';
 import { AuthGuard } from './auth.guard';
-// import { TokenInterceptorService } from './_services/token-interceptor.service';
+import { TokenInterceptorService } from './_services/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -188,11 +188,11 @@ import { AuthGuard } from './auth.guard';
     TrainingProgramsService,
     AttendanceService,
     AuthGuard,
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: TokenInterceptorService,
-    //   multi: true,
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })
