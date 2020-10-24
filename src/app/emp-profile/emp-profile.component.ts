@@ -4,6 +4,9 @@ import { Subscription } from 'rxjs';
 import { EmployeeService } from 'service/employees.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
+import { ConfirmService } from '../shared/confirm.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-emp-profile',
@@ -20,7 +23,10 @@ export class EmpProfileComponent implements OnInit, OnDestroy {
   constructor(
     private employeeService: EmployeeService,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private confirmService: ConfirmService,
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -43,7 +49,15 @@ export class EmpProfileComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    this.authService.logout();
+    this.confirmService.confirm(`Are you sure you want to logged out?`).then(
+      (confirm) => {
+        this.authService.logout();
+        this.router.navigate(['']);
+
+        this.toastr.success(`Logged out succesfully`);
+      },
+      (reject) => {}
+    );
   }
 
   ngOnDestroy() {
