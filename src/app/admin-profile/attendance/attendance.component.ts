@@ -49,8 +49,9 @@ export class AttendanceComponent implements OnInit, OnDestroy {
     );
   }
 
+  //attendnace delete
   onDelete(id: string){
-    this.attendanceService.deleteAttendance(id);
+    this.attendanceService.deleteAttendance(id); //this method call in the service fill and request a delete
     window.location.reload();
 
   }

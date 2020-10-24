@@ -39,6 +39,7 @@ export class AttendanceService {
     return {...this.attendanceArr.find(attID => attID.id === id)};
   }
 
+  //Add Attendnace details to the DB
   addAttendance(attendance: Attendance) {
     const attendanceArray: Attendance = {
       id: attendance.id,
@@ -59,6 +60,8 @@ export class AttendanceService {
 
   }
 
+  //Below functions is used to update attendance records.
+  //It takes "attendance" object and assigns to "attendanceArray",
   updateAttendance(attendance: Attendance) {
     const attendanceArray: Attendance = {
       id: attendance.id,
@@ -70,6 +73,7 @@ export class AttendanceService {
       arriveTime: attendance.arriveTime,
       leaveTime: attendance.leaveTime
     };
+    //Then we send a "put" request to the server with the attendanceID and the attendanceArray
     this.http.put('http://localhost:3000/api/attendance/' + attendance.id, attendanceArray)
       .subscribe(response => {
         const updatedAttendances = [...this.attendanceArr];
@@ -80,6 +84,7 @@ export class AttendanceService {
       });
   }
 
+  //attendnace delete by DB ID
   deleteAttendance(attendanceID: string) {
     this.http.delete("http://localhost:3000/api/attendance/" + attendanceID)
       .subscribe(() => {

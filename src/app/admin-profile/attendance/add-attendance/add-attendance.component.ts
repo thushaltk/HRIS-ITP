@@ -24,6 +24,8 @@ export class AddAttendanceComponent implements OnInit {
   private subscription: Subscription;
   employeeDetails : Employees[] = [];
   attendanceDetails: Attendance;
+  //In Attendance object varibales assigmnt to null values
+  //attendnace object import from the Attendnace modele
   attendances: Attendance = {
     id: '',
     fullName: '',
@@ -41,6 +43,8 @@ export class AddAttendanceComponent implements OnInit {
               private attendanceService: AttendanceService,
               private route: ActivatedRoute) { }
 
+
+   //when the update
   ngOnInit(): void {
     //get all employee names -> from employee collection
     //get all designations -> from employee collection
@@ -50,10 +54,12 @@ export class AddAttendanceComponent implements OnInit {
     this.dateToday = year+"-"+(month+1)+"-"+day;
     console.log(this.dateToday);
     this.route.paramMap.subscribe(((paramMap: ParamMap) => {
+
+      //In this if condition, it checks whether the URL has an attendance ID...
       if (paramMap.has("attid")) {
-        this.mode = "edit";
-        this.attendanceID = paramMap.get("attid");
-        this.attendanceDetails = this.attendanceService.getAttendanceByID(this.attendanceID);
+        this.mode = "edit"; //If it has an ID, mode = "edit"
+        this.attendanceID = paramMap.get("attid"); //take attid and it assgint to attendanceID variable
+        this.attendanceDetails = this.attendanceService.getAttendanceByID(this.attendanceID); //take the details from method
       } else {
         this.mode = "create";
         this.attendanceID = null;
@@ -62,6 +68,8 @@ export class AddAttendanceComponent implements OnInit {
     }))
   }
 
+  //When the submit button is clicked,
+  //it runs the below function which takes data from form data and assigns to the "attendances" object
   onSubmit(){
     this.attendances.id = this.attendanceID;
     this.attendances.fullName = this.addAttendanceForm.value.empName;
@@ -72,6 +80,7 @@ export class AddAttendanceComponent implements OnInit {
     this.attendances.leaveTime = this.addAttendanceForm.value.leaveTime;
     this.attendances.nic = this.addAttendanceForm.value.nic;
 
+    //check the mode is it create if not it is edit
     if (this.mode === "create") {
       this.attendanceService.addAttendance(this.attendances);
       this.router.navigate(['../../attendance'], { relativeTo: this.route });
@@ -82,13 +91,16 @@ export class AddAttendanceComponent implements OnInit {
 
   }
 
+  //getEmpDetails button
   getEmpDetails(nic: string){
-    this.getDetailsBtnClicked = true;
+    this.getDetailsBtnClicked = true; // check the get details button clicked
+    //get emp details from employee service
     this.employeeDetails = this.employeeDetailsService.getEmployee();
     this.subscription = this.employeeDetailsService.employeesChanged.subscribe(
       (employees: Employees[]) => {
         this.employeeDetails = employees;
         for(let emp of this.employeeDetails){
+          //checks whether the "nic" is equals to the nic in the employee details
           if(emp.nic === nic){
             this.employeeName = emp.fullName;
             this.empDesignation = emp.empDes;

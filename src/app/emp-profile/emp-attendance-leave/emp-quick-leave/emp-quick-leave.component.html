@@ -2,7 +2,7 @@
   <div class="content container-fluid" style="overflow-y: scroll; overflow-x: hidden; height:700px; width: 700px;">
     <br>
     <h1>Apply a Quick Leave</h1>
-    <button type="button" class="btn btn-primary" [routerLink]="['../../longLeave/', this.nic]">REQUEST A LONG TERM LEAVE</button><br><br>
+    <button type="button" class="btn btn-primary" [routerLink]="['../longLeave/', this.nic]">REQUEST A LONG TERM LEAVE</button><br><br>
     <div class="card text-center" style="border-color: #6d7fcc; border-radius: 10px 10px 10px 10px; box-shadow: 5px 5px 5px #888888;">
       <div class="card-header">
         APPLY QUICK LEAVE
@@ -41,7 +41,7 @@
         </form>
       </div>
       <div class="card-footer text-muted">
-        2 days ago
+        ***
       </div>
     </div>
     <br><br><br>
@@ -49,13 +49,12 @@
     <div class="card text-center" style="border-color: #6d7fcc; border-radius: 10px 10px 10px 10px; box-shadow: 5px 5px 5px #888888;">
       <h1>View applied leaves</h1>
       <div class="card-header">
-        Featured
+        ***
       </div>
       <div class="card-body">
         <table class="table">
           <thead class="thead-dark">
             <tr>
-              <th scope="col" class="text-center">#</th>
               <th scope="col" class="text-center">Date</th>
               <th scope="col" class="text-center">Time</th>
               <th scope="col" class="text-center">Reason</th>
@@ -64,12 +63,11 @@
           </thead>
           <tbody>
             <tr *ngFor="let quickLeave of getquickLeave">
-              <th scope="row">1</th>
               <td>{{quickLeave.date}}</td>
               <td>{{quickLeave.time}}</td>
               <td>{{quickLeave.reason}}</td>
               <td>
-                <a class="btn btn-danger pull-right" (click)="onDelete(quickLeave.id)">DELETE</a>
+                <a class="btn btn-danger" (click)="onDelete(quickLeave.id)">DELETE</a>
               </td>
             </tr>
 
@@ -81,7 +79,7 @@
         </table>
       </div>
       <div class="card-footer text-muted">
-        2 days ago
+        ***
       </div>
     </div>
     <br><br><br><br><br><br><br><br>

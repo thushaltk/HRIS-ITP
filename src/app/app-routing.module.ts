@@ -169,7 +169,7 @@ const appRoutes: Routes = [
         component: EmpAttendanceLeaveComponent,
         children: [
           { path: 'quickLeave', component: EmpQuickLeaveComponent },
-          { path: 'longLeave', component: EmpLongLeaveComponent },
+          { path: 'longLeave/:nic', component: EmpLongLeaveComponent },
         ],
       },
     ],

@@ -27,7 +27,7 @@ router.post("", (req, res, next) => {
     arriveTime: at,
     leaveTime: lt,
   });
-  attendance.save();
+  attendance.save(); //data save to the DB in BE
   res.status(201).json({
     message: "Attendance Record added successfully",
   });

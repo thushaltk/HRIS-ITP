@@ -12,6 +12,7 @@
               <input type="text" id="nic" class="form-control" [ngModel]="attendanceDetails?.nic" name="nic" #nic="ngModel" required>
             </div>
             <div class="col-sm-3" *ngIf="mode === 'create' ? true : false">
+              <!-- get the nic by user -->
               <button class="btn btn-primary" type="button" (click)="getEmpDetails(nic.value)">GET DETAILS</button>
             </div>
             <span class="help-block" *ngIf="!nic.valid && nic.touched" style="color: red">Please enter
@@ -19,7 +20,7 @@
           </div>
           <div class="form-group row" style="margin-left: 200px;">
             <label for="empName" class="col-sm-3 col-form-label pull-right">Employee Name</label>
-            <div class="col-sm-7" style="margin-left: -10%;">
+            <div class="col-sm-7" style="margin-left: -10%;"> <!-- check the get details button clicked or not using if condition-->
               <input type="text" id="empName" class="form-control" [ngModel]="getDetailsBtnClicked ? employeeName : attendanceDetails?.fullName" name="empName" #empName="ngModel" required>
             </div>
             <span class="help-block" *ngIf="!empName.valid && empName.touched" style="color: red">Please enter

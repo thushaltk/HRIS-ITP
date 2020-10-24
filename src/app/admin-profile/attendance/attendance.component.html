@@ -7,6 +7,7 @@
     <div class="card">
         <div class="card-header">
           <div class="md-form active-pink-2 mb-3 pull-left" style="width:300px; margin-right: 10px;">
+            <!--search-->
             <input class="form-control" [(ngModel)]="search" type="text" placeholder="Search" aria-label="Search">
           </div>
           <div class="pull-left">
@@ -28,6 +29,7 @@
               </tr>
             </thead>
             <tbody>
+              <!-- "filter" is used to filter data according to the "search" result-->
               <tr *ngFor="let atd of attendanceDetails | filter:search">
                 <th scope="row">{{atd.empID}}</th>
                 <td>{{atd.fullName}}</td>
@@ -36,7 +38,7 @@
                 <td>{{atd.designation}}</td>
                 <td>{{atd.arriveTime}}</td>
                 <td>{{atd.leaveTime}}</td>
-                <td>
+                <td>     <!--when user click delete button then call onDelete fun , using DB id-->
                   <a class="btn btn-danger pull-right" (click)="onDelete(atd.id)">DELETE</a>
                   <a [routerLink]="['edit', atd.id]" class="btn btn-warning pull-right" style="margin-right: 10px;">EDIT</a>
                 </td>
