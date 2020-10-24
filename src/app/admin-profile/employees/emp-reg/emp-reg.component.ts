@@ -106,12 +106,12 @@ export class EmpRegComponent implements OnInit {
 
 
   fillDate(){
-    this.employees.fullName = "Kishen Deemud";
-    this.employees.dob = "1998-05-23";
-    this.employees.nic = "981441525V";
-    this.employees.address = "260/A/1, Horagolla, Ganemulla.";
-    this.employees.cnumber = "0773580635";
-    this.employees.email = "deemu@gmail.com";
+    this.employees.fullName = "Eishan Weerasinghe";
+    this.employees.dob = "1997-06-12";
+    this.employees.nic = "978884563V";
+    this.employees.address = "35/A, Temple Road, Matara.";
+    this.employees.cnumber = "0765788756";
+    this.employees.email = "eish@gmail.com";
     this.employees.empDes = "manager";
     this.employees.doj = "2020-06-26";
     this.employees.comment = "None";
