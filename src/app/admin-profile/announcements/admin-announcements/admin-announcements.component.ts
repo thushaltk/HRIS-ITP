@@ -14,6 +14,7 @@ import html2canvas from 'html2canvas';
 export class AdminAnnouncementsComponent implements OnInit, OnDestroy {
   announcements: Announcements[] = [];
   disable: boolean = true;
+  search: string;
   private subscription: Subscription;
   isLoading = false;
 
