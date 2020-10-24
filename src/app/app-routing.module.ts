@@ -49,6 +49,7 @@ import { AnnouncementReportComponent } from './admin-profile/announcements/annou
 import { SalaryReportComponent } from './admin-profile/payroll/salary-report/salary-report.component';
 import { TrainingProgramReportComponent } from './admin-profile/training-programs/training-program-report/training-program-report.component';
 import { EmpReportComponent } from './admin-profile/employees/emp-report/emp-report.component';
+import { AuthGuard } from './auth.guard';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -127,10 +128,10 @@ const appRoutes: Routes = [
         children: [
           { path: 'create', component: EmpRegComponent },
           { path: 'view', component: EmpSelectComponent },
-          { path: 'reportAll', component: EmpReportComponent},
+          { path: 'reportAll', component: EmpReportComponent },
           { path: ':designation', component: EmpRegistryComponent },
-          { path: 'edit/:id', component: EmpRegComponent},
-          { path: 'report/:designation', component: EmpReportComponent}
+          { path: 'edit/:id', component: EmpRegComponent },
+          { path: 'report/:designation', component: EmpReportComponent },
         ],
       },
 
@@ -145,6 +146,7 @@ const appRoutes: Routes = [
   {
     path: 'empProfile',
     component: EmpProfileComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: ':nic',

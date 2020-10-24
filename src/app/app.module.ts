@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -86,6 +86,8 @@ import { TrainingProgramReportComponent } from './admin-profile/training-program
 import { SalaryReportComponent } from './admin-profile/payroll/salary-report/salary-report.component';
 import { SortDirective } from './directive/sort.directive';
 import { EmpReportComponent } from './admin-profile/employees/emp-report/emp-report.component';
+import { AuthGuard } from './auth.guard';
+// import { TokenInterceptorService } from './_services/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -185,6 +187,12 @@ import { EmpReportComponent } from './admin-profile/employees/emp-report/emp-rep
     LongLeavesService,
     TrainingProgramsService,
     AttendanceService,
+    AuthGuard,
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: TokenInterceptorService,
+    //   multi: true,
+    // },
   ],
   bootstrap: [AppComponent],
 })
