@@ -24,6 +24,7 @@ export class EmpRegistryComponent implements OnInit, OnDestroy {
   ngOnInit(){
     this.isLoading=true;
     this.route.params.subscribe((params: Params) => {
+      //We take designation from the URL and assign it to a variable
       this.designation = params['designation'];
       if(this.designation == 'manager'){
         this.title="Managers";

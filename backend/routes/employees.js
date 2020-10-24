@@ -6,6 +6,8 @@ const UtilObj = require("../util/util");
 
 const Employee = require("../models/employee");
 
+
+
 //Add Employees
 router.post("", async (req, res, next) => {
   const employee = new Employee({
@@ -28,6 +30,7 @@ router.post("", async (req, res, next) => {
   });
 });
 
+
 //Update Employees
 router.put("/:id", (req, res, next) => {
   const employee = new Employee({
@@ -49,6 +52,10 @@ router.put("/:id", (req, res, next) => {
     res.status(200).json({ message: "Update successful" });
   });
 });
+
+
+
+
 
 router.post("/resetPassword/:nic", async (req, res) => {
   const nic = req.params.nic;
@@ -127,6 +134,10 @@ router.patch("/updatePassword", auth, async (req, res, next) => {
   });
 });
 
+
+
+
+
 //Reteive Employees
 router.get("", (req, res, next) => {
   Employee.find().then((documents) => {
@@ -136,6 +147,7 @@ router.get("", (req, res, next) => {
     });
   });
 });
+
 
 //Reteive Employees by designation
 router.get("/:empDes", (req, res, next) => {
@@ -147,16 +159,6 @@ router.get("/:empDes", (req, res, next) => {
   });
 });
 
-//Retrieve Employees by NIC
-// router.get("/:nic", (req, res, next) => {
-//   Employee.find({ nic: req.params.nic })
-//     .then(documents => {
-//       res.status(200).json({
-//         message: 'Employees fetched successfully by nic',
-//         employees: documents
-//       });
-//     });
-// });
 
 //Delete Employees
 router.delete("/:id", (req, res, next) => {

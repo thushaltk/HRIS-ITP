@@ -40,8 +40,12 @@ export class EmpRegComponent implements OnInit {
               private employeeService: EmployeeService,
               private route: ActivatedRoute) { }
 
+
+
   ngOnInit(): void {
+    //Below condition checks whether the URL has an ID
     this.route.paramMap.subscribe(((paramMap: ParamMap) => {
+      //Checks whether the ID is in the URL
       if (paramMap.has("id")) {
         this.mode = "edit";
         this.employeeID = paramMap.get("id");
@@ -66,6 +70,7 @@ export class EmpRegComponent implements OnInit {
 
   }
 
+  //NIC validation method
   nicValidate(nic: string){
     if(nic.endsWith("V") && nic.length == 10){
       this.nicInvalid = false;
@@ -77,7 +82,8 @@ export class EmpRegComponent implements OnInit {
   }
 
 
-
+  //When the "submit" is clicked, it runs the below function which takes data from form
+  //and assign data to the "employees" object.
   onSubmit(){
     console.log(this.addEmployee);
     this.submitted = true;
@@ -105,6 +111,7 @@ export class EmpRegComponent implements OnInit {
   }
 
 
+  //DEMO button function
   fillDate(){
     this.employees.fullName = "Eishan Weerasinghe";
     this.employees.dob = "1997-06-12";

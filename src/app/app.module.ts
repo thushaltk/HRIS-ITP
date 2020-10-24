@@ -27,7 +27,6 @@ import { EmployeesComponent } from './admin-profile/employees/employees.componen
 import { EmpRegComponent } from './admin-profile/employees/emp-reg/emp-reg.component';
 import { EmpRegistryComponent } from './admin-profile/employees/emp-registry/emp-registry.component';
 import { EmpSelectComponent } from './admin-profile/employees/emp-select/emp-select.component';
-import { EmpUpdateComponent } from './admin-profile/employees/emp-update/emp-update.component';
 import { PayrollComponent } from './admin-profile/payroll/payroll.component';
 import { AnnouncementService } from 'service/announcements.service';
 import { EmployeeService } from 'service/employees.service';
@@ -115,7 +114,6 @@ import { ResetPasswordComponent } from './login/reset-password/reset-password.co
     EmpRegComponent,
     EmpRegistryComponent,
     EmpSelectComponent,
-    EmpUpdateComponent,
     PayrollComponent,
     EmpProfileComponent,
     EmpDashboardComponent,

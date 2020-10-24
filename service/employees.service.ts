@@ -11,6 +11,8 @@ export class EmployeeService{
 
   constructor(private http: HttpClient){}
 
+
+  //Get All Employees
   getEmployee(){
     this.http.get<{message: string, employees: any}>('http://localhost:3000/api/employees')
       .pipe(map((employeeData) => {
@@ -38,6 +40,7 @@ export class EmployeeService{
     return this.employeesArr.slice();
   }
 
+  //Get Employee By Designation
   getEmployeeByDesignation(employeeDesignation: string){
     this.http.get<{message: string, employees: any}>('http://localhost:3000/api/employees/' + employeeDesignation)
       .pipe(map((employeeData) => {
@@ -65,33 +68,8 @@ export class EmployeeService{
     return this.employeesArr.slice();
   }
 
-  // getEmployeeByNIC(employeeNIC: string){
-  //   this.http.get<{message: string, employees: any}>('http://localhost:3000/api/employees/' + employeeNIC)
-  //     .pipe(map((employeeData) => {
-  //         return employeeData.employees.map(employee => {
-  //           return{
-  //             fullName: employee.fullName,
-  //             dob: employee.dob,
-  //             nic: employee.nic,
-  //             gender: employee.gender,
-  //             address: employee.address,
-  //             cnumber: employee.cnumber,
-  //             email: employee.email,
-  //             empDes: employee.empDes,
-  //             doj: employee.doj,
-  //             comment: employee.comment,
-  //             id: employee._id
-  //           };
-  //         });
-  //     }))
-  //     .subscribe((transformedEmployees) => {
-  //       this.employeesArr = transformedEmployees;
-  //       this.employeesChanged.next(this.employeesArr.slice());
-  //     });
-  //   console.log(this.employeesArr.length);
-  //   return this.employeesArr.slice();
-  // }
 
+  //Add Employee details to the database
   addEmployee(employee: Employees){
     const employeeArray: Employees = {
       id: employee.id,
@@ -116,6 +94,7 @@ export class EmployeeService{
 
   }
 
+  //Update Employee Details
   updateEmployees(employee: Employees) {
     const employeeArray: Employees = {
       id: employee.id,

@@ -9,6 +9,7 @@
       <div class ="card text-center"  style="border-color: #6d7fcc; border-radius: 10px 10px 10px 10px; width: fit-content;">
         <div class="card-header">
           <div class="md-form active-pink-2 mb-3 pull-left" style="width:300px; margin-right: 10px;">
+            <!-- SEARCH -->
             <input class="form-control" [(ngModel)]="term" type="text" placeholder="Search Employee" aria-label="Search" >
           </div>
           <div class="pull-left">
@@ -36,6 +37,7 @@
             <mat-spinner *ngIf = "isLoading"></mat-spinner>
             <tbody *ngIf = "!isLoading">
 
+              <!-- Filters value according to the search result-->
               <tr *ngFor="let employee of employees  | filter:term">
                 <td>{{ employee.empID}}</td>
                 <td>{{ employee.fullName}}</td>

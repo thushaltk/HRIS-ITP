@@ -53,7 +53,7 @@ export class EmpReportComponent implements OnInit, OnDestroy {
         this.employees = this.employeeService.getEmployeeByDesignation(this.designation);
         this.subscription = this.employeeService.employeesChanged.subscribe(
           (employees: Employees[]) => {
-            this.employees = employees;
+            this.employees = employees; //1997-05-10 //[1997,05,10]   //1997/05/10
             for(let emp of employees){
               this.newdob = emp.dob.split("-")[0] + "/" + emp.dob.split("-")[1] + "/" + emp.dob.split("-")[2];
               emp.dob = this.newdob;
@@ -83,6 +83,7 @@ export class EmpReportComponent implements OnInit, OnDestroy {
 
   }
 
+  //Generate PDF
   generateReport() {
     if(this.title != "All Employees"){
       var desig = this.title;
@@ -97,8 +98,8 @@ export class EmpReportComponent implements OnInit, OnDestroy {
         image.src = 'assets/images/logo.png';
         var imgHeight = canvas.height * 210 / canvas.width;
         var text = desig + " Report";
-        doc.text(text, 40, 15);
-        doc.addImage(image, 10, 5, 20, 20);
+        doc.text(text, 55, 15);
+        doc.addImage(image, 10, 5, 40, 20);
         doc.addImage(img, 0, 30, 210, imgHeight);
         doc.save('EmployeesReport.pdf');
       });
