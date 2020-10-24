@@ -88,6 +88,7 @@ import { SortDirective } from './directive/sort.directive';
 import { EmpReportComponent } from './admin-profile/employees/emp-report/emp-report.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './_services/token-interceptor.service';
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -155,6 +156,7 @@ import { TokenInterceptorService } from './_services/token-interceptor.service';
     SalaryReportComponent,
     SortDirective,
     EmpReportComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

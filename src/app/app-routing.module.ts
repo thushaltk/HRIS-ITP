@@ -50,6 +50,7 @@ import { SalaryReportComponent } from './admin-profile/payroll/salary-report/sal
 import { TrainingProgramReportComponent } from './admin-profile/training-programs/training-program-report/training-program-report.component';
 import { EmpReportComponent } from './admin-profile/employees/emp-report/emp-report.component';
 import { AuthGuard } from './auth.guard';
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -57,6 +58,7 @@ const appRoutes: Routes = [
   { path: 'login/emp', component: LoginEmpComponent },
   { path: 'login/admin', component: LoginAdminComponent },
   { path: 'login/registerLogin', component: RegisterEmpComponent },
+  { path: 'login/emp/resetPassword', component: ResetPasswordComponent },
   {
     path: 'admin',
     canActivate: [AuthGuard],

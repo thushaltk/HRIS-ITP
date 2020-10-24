@@ -50,8 +50,9 @@ router.put("/:id", (req, res, next) => {
   });
 });
 
-router.post("/resetPassword", async (req, res) => {
-  const nic = req.body.nic;
+router.post("/resetPassword/:nic", async (req, res) => {
+  const nic = req.params.nic;
+  console.log(req.body);
 
   let password = "";
   let characters =
@@ -69,27 +70,27 @@ router.post("/resetPassword", async (req, res) => {
 
   await Employee.findOne({ nic }, (err, found_user) => {
     if (err) {
-      return res.send(err).status(400);
+      return res.status(400).send(err);
     }
 
     console.log("User Details: ", found_user);
 
     if (!found_user) {
-      return res.send("User not found").status(401);
+      return res.status(401).send("User not found");
     }
 
     found_user.password = enPwd;
 
     found_user.save((err, updated_user) => {
       if (err) {
-        return res.send(err).status(400);
+        return res.status(400).send(err);
       }
 
       UtilObj.sendPasswordResetMail(found_user.email, password).catch((err) => {
         console.log(err);
       });
 
-      return res.send("Password reset Success").status(200);
+      return res.status(200).send("Password reset Success");
     });
   });
 
