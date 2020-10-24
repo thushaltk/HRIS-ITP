@@ -51,7 +51,7 @@ router.put("/:id", (req, res, next) => {
 });
 
 router.post("/resetPassword", async (req, res) => {
-  const email = req.body.email;
+  const nic = req.body.nic;
 
   let password = "";
   let characters =
@@ -67,7 +67,7 @@ router.post("/resetPassword", async (req, res) => {
 
   console.log("Random Generated Password: ", password);
 
-  await Employee.findOne({ email: email }, (err, found_user) => {
+  await Employee.findOne({ nic }, (err, found_user) => {
     if (err) {
       return res.send(err).status(400);
     }
@@ -85,7 +85,7 @@ router.post("/resetPassword", async (req, res) => {
         return res.send(err).status(400);
       }
 
-      UtilObj.sendPasswordResetMail(email, password).catch((err) => {
+      UtilObj.sendPasswordResetMail(found_user.email, password).catch((err) => {
         console.log(err);
       });
 

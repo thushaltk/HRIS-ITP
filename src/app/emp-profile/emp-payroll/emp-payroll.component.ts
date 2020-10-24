@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Salary } from '../../_models/salary.model';
-import { ConfirmService } from '../../shared/confirm.service';
-import { ToastrService } from 'ngx-toastr';
 import { SalaryService } from '../../_services/salary.service';
 import { AuthService } from '../../_services/auth.service';
 

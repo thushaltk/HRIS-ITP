@@ -148,23 +148,17 @@ const appRoutes: Routes = [
     component: EmpProfileComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: 'dashboard', component: EmpDashboardComponent },
+      { path: 'payroll', component: EmpPayrollComponent },
+      { path: 'advancePayment', component: AdvancePaymentComponent },
+      { path: 'advancePayment/add', component: AddAdvancePaymentComponent },
+      // { path: 'dashboard', component: EmpDashboardComponent },
       {
-        path: ':nic',
-        component: EmpProfileComponent,
+        path: 'attendanceLeave',
+        component: EmpAttendanceLeaveComponent,
         children: [
-          { path: 'dashboard', component: EmpDashboardComponent },
-          { path: 'payroll', component: EmpPayrollComponent },
-          { path: 'advancePayment', component: AdvancePaymentComponent },
-          { path: 'advancePayment/add', component: AddAdvancePaymentComponent },
-          { path: 'dashboard/:nic', component: EmpDashboardComponent },
-          {
-            path: 'attendanceLeave',
-            component: EmpAttendanceLeaveComponent,
-            children: [
-              { path: 'quickLeave/:nic', component: EmpQuickLeaveComponent },
-              { path: 'longLeave/:nic', component: EmpLongLeaveComponent },
-            ],
-          },
+          { path: 'quickLeave', component: EmpQuickLeaveComponent },
+          { path: 'longLeave', component: EmpLongLeaveComponent },
         ],
       },
     ],
