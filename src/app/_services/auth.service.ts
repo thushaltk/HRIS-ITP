@@ -19,4 +19,8 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('token');
   }
+
+  getNic() {
+    return localStorage.getItem('nic');
+  }
 }

@@ -25,7 +25,9 @@ export class LoginEmpComponent implements OnInit {
 
     this.authService.loginUser(this.user).subscribe(
       (res) => {
-        console.log(res), localStorage.setItem('token', res.token);
+        console.log(res),
+          localStorage.setItem('token', res.token),
+          localStorage.setItem('nic', res.userNic);
         this.router.navigate(['empProfile/']);
       },
       (err) => console.log(err)
