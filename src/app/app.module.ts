@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -89,6 +89,9 @@ import { EmpReportComponent } from './admin-profile/employees/emp-report/emp-rep
 import { AttendanceReportComponent } from './admin-profile/attendance/attendance-report/attendance-report.component';
 import { VehicleReportComponent } from './admin-profile/vehicles/vehicle-report/vehicle-report.component';
 import { EmpLoginService } from '../../service/empLogin.service';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './_services/token-interceptor.service';
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -158,6 +161,7 @@ import { EmpLoginService } from '../../service/empLogin.service';
     EmpReportComponent,
     AttendanceReportComponent,
     VehicleReportComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -190,7 +194,13 @@ import { EmpLoginService } from '../../service/empLogin.service';
     LongLeavesService,
     TrainingProgramsService,
     AttendanceService,
-    EmpLoginService
+    EmpLoginService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

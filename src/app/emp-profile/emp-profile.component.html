@@ -55,13 +55,13 @@
 
       <ul class="list-unstyled components">
           <li>
-            <a [routerLink]="['']">Home</a>
+            <a [routerLink]="['empProfile']">Home</a>
           </li>
           <li>
-            <a [routerLink]="['dashboard', nic]">Dashboard</a>
+            <a [routerLink]="['dashboard']">Dashboard</a>
           </li>
           <li>
-            <a [routerLink]="['payroll']">Your Details</a>
+            <a [routerLink]="['empProfile']">Your Details</a>
           </li>
           <li>
             <a [routerLink]="['payroll']">Payroll Information</a>
@@ -84,7 +84,10 @@
           
 
           <li>
-            <a [routerLink]="['attendanceLeave/quickLeave/', this.nic]">Apply Leave</a>
+            <a [routerLink]="['attendanceLeave/quickLeave/']">Apply Leave</a>
+          </li>
+          <li>
+            <a (click)="logout()" style="cursor: pointer;">Logout</a>
           </li>
       </ul>
 

@@ -14,7 +14,10 @@ const trainingProgramsRoute = require("./routes/trainingPrograms");
 const vehicleRoute = require("./routes/vehicle");
 const attendanceRoutes = require("./routes/attendance");
 const advancePayment = require("./routes/advancePayment");
-const empLoginRoute = require("./routes/empLogin");
+
+// const empLoginRoute = require("./routes/empLogin");
+
+const login = require("./routes/auth");
 
 const app = express();
 
@@ -39,8 +42,9 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-width, Content-Type, Accept"
+    "Origin, X-Requested-width, Content-Type, Accept, Authorization"
   );
+  res.setHeader("Access-Control-Allow-Credentials", "true");
 
   res.setHeader(
     "Access-Control-Allow-Methods",
@@ -61,5 +65,9 @@ app.use("/api/trainingPrograms", trainingProgramsRoute);
 app.use("/api/vehicles", vehicleRoute);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/advancePayment", advancePayment);
-app.use("/api/empLogin", empLoginRoute);
+
+// app.use("/api/empLogin", empLoginRoute);
+
+app.use("/api/login", login);
+
 module.exports = app;

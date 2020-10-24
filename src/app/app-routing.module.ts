@@ -51,6 +51,8 @@ import { TrainingProgramReportComponent } from './admin-profile/training-program
 import { EmpReportComponent } from './admin-profile/employees/emp-report/emp-report.component';
 import { AttendanceReportComponent } from './admin-profile/attendance/attendance-report/attendance-report.component';
 import { VehicleReportComponent } from './admin-profile/vehicles/vehicle-report/vehicle-report.component';
+import { AuthGuard } from './auth.guard';
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -58,8 +60,10 @@ const appRoutes: Routes = [
   { path: 'login/emp', component: LoginEmpComponent },
   { path: 'login/admin', component: LoginAdminComponent },
   { path: 'login/registerLogin', component: RegisterEmpComponent },
+  { path: 'login/emp/resetPassword', component: ResetPasswordComponent },
   {
     path: 'admin',
+    canActivate: [AuthGuard],
     component: AdminProfileComponent,
     children: [
       { path: 'dashboard', component: AdminDashboardComponent },
@@ -121,9 +125,8 @@ const appRoutes: Routes = [
               { path: 'unallocated', component: VehicleUnallocatedComponent },
             ],
           },
-          { path: 'edit/:vehicleid', component: AddVehicleComponent},
-          { path: 'report', component: VehicleReportComponent}
-
+          { path: 'edit/:vehicleid', component: AddVehicleComponent },
+          { path: 'report', component: VehicleReportComponent },
         ],
       },
       {
@@ -132,20 +135,20 @@ const appRoutes: Routes = [
         children: [
           { path: 'create', component: EmpRegComponent },
           { path: 'view', component: EmpSelectComponent },
-          { path: 'reportAll', component: EmpReportComponent},
+          { path: 'reportAll', component: EmpReportComponent },
           { path: ':designation', component: EmpRegistryComponent },
-          { path: 'edit/:id', component: EmpRegComponent},
-          { path: 'report/:designation', component: EmpReportComponent}
+          { path: 'edit/:id', component: EmpRegComponent },
+          { path: 'report/:designation', component: EmpReportComponent },
         ],
       },
 
-      { path: 'attendance', component: AttendanceComponent},
+      { path: 'attendance', component: AttendanceComponent },
 
       { path: 'attendance/add-attendance', component: AddAttendanceComponent },
 
       { path: 'attendance/view-leaves', component: ViewLeavesComponent },
 
-      { path: 'attendance/edit/:attid', component: AddAttendanceComponent},
+      { path: 'attendance/edit/:attid', component: AddAttendanceComponent },
 
       { path: 'attendance/report', component: AttendanceReportComponent },
     ],
@@ -154,24 +157,19 @@ const appRoutes: Routes = [
   {
     path: 'empProfile',
     component: EmpProfileComponent,
+    canActivate: [AuthGuard],
     children: [
+      { path: 'dashboard', component: EmpDashboardComponent },
+      { path: 'payroll', component: EmpPayrollComponent },
+      { path: 'advancePayment', component: AdvancePaymentComponent },
+      { path: 'advancePayment/add', component: AddAdvancePaymentComponent },
+      // { path: 'dashboard', component: EmpDashboardComponent },
       {
-        path: ':nic',
-        component: EmpProfileComponent,
+        path: 'attendanceLeave',
+        component: EmpAttendanceLeaveComponent,
         children: [
-          { path: 'dashboard', component: EmpDashboardComponent },
-          { path: 'payroll', component: EmpPayrollComponent },
-          { path: 'advancePayment', component: AdvancePaymentComponent },
-          { path: 'advancePayment/add', component: AddAdvancePaymentComponent },
-          { path: 'dashboard/:nic', component: EmpDashboardComponent },
-          {
-            path: 'attendanceLeave',
-            component: EmpAttendanceLeaveComponent,
-            children: [
-              { path: 'quickLeave/:nic', component: EmpQuickLeaveComponent },
-              { path: 'longLeave/:nic', component: EmpLongLeaveComponent },
-            ],
-          },
+          { path: 'quickLeave', component: EmpQuickLeaveComponent },
+          { path: 'longLeave', component: EmpLongLeaveComponent },
         ],
       },
     ],

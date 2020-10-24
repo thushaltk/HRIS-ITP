@@ -3,6 +3,7 @@ const Salary = require("../models/Salary");
 const Payroll = require("../models/payroll");
 const Employee = require("../models/employee");
 const Attendance = require("../models/attendance");
+const auth = require("../middleware/auth");
 
 router.get("/", async (req, res) => {
   try {

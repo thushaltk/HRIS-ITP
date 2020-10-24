@@ -21,15 +21,21 @@
             </div>
           </div>
           <br>
-          <button class="btn btn-success pull-right" type="submit" [disabled]="!f.valid">LOGIN</button>
+
+          <!-- <button class="btn btn-success pull-right" type="submit" [disabled]="!f.valid">LOGIN</button>
           <button [routerLink]="['../registerLogin']" class="btn btn-warning pull-right" style="margin-right: 20px;" type="button">CREATE NEW LOGIN</button>
           <br><br><br><br><br>
         </form>
         <div style="background-color: #fffdd0;" *ngIf="!success">
           <p style="font-size: 25px; color: red;" class="text-center">NIC or Password is incorrect</p>
-        </div>
+        </div> -->
 
-      <br><br><br><br><br><br>
+          <button class="btn btn-success pull-right" type="submit" [disabled]="!f.valid" (click)="showEmpProfile()">LOGIN</button>
+        </form>
+        <br><br>
+        <button [routerLink]="['../emp/resetPassword']" class="btn btn-warning pull-right" type="button">Reset Password</button>
+
+
     </div>
 
   </div>
