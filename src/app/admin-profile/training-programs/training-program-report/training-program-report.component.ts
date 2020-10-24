@@ -45,8 +45,8 @@ export class TrainingProgramReportComponent implements OnInit, OnDestroy {
         let image = new Image();
         image.src = 'assets/images/logo.png';
         var imgHeight = canvas.height * 210 / canvas.width;
-        doc.text("Training Prorams Report", 40, 15);
-        doc.addImage(image, 10, 5, 20, 20);
+        doc.text("Training Prorams Report", 55, 15);
+        doc.addImage(image, 10, 5, 40, 20);
         doc.addImage(img, 0, 30, 210, imgHeight);
         doc.save('training-programs-report.pdf');
         });

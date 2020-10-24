@@ -10,6 +10,7 @@
     <div class="container-fluid">
       <form (ngSubmit)="onSubmit()" #trpro="ngForm" style="margin-left: -15%;">
         <div class="form-group row" style="margin-left: 200px;">
+        <!--Title field-->
           <label for="programTitle" class="col-sm-3 col-form-label pull-right">Program Title</label>
           <div class="col-sm-5" >
             <input class="form-control" type="text" [ngModel]="demoBtnClicked ? trainingPrograms.title : tpDetails?.title" name="programTitle" #programTitle="ngModel" id="programTitle"
@@ -29,7 +30,7 @@
           <span class="help-block" *ngIf="!programDate.valid && programDate.touched" style="color: red">Please select a date.</span>
           </div>
         </div>
-
+        <!--Description field-->
         <div class="form-group row" style="margin-left: 200px;">
           <label for="programDescription" class="col-sm-3 col-form-label pull-right">Program Description</label>
           <div class="col-sm-5">
@@ -46,7 +47,7 @@
           <span class="help-block" *ngIf="!programDescription.valid && programDescription.touched" style="color: red">Please enter a Description.</span>
           </div>
         </div>
-
+        <!--Location field-->
         <div class="form-group row" style="margin-left: 200px;">
           <label for="programLocation" class="col-sm-3 col-form-label pull-right">Program Location</label>
           <div class="col-sm-5">
@@ -57,7 +58,7 @@
           <span class="help-block" *ngIf="!programLocation.valid && programLocation.touched" style="color: red">Please enter a Location.</span>
             </div>
         </div>
-
+        <!--Availability boxes-->
         <div class="form-group row" style="margin-left: 200px;">
           <label for="availability" class="col-sm-3 col-form-label pull-right">Availability</label>
           <div class="col-sm-5">
@@ -69,7 +70,7 @@
             </ul>
           </div>
         </div>
-
+        <!--Email field-->
         <div class="form-group row" style="margin-left: 200px;">
           <label for="programEmail" class="col-sm-3 col-form-label pull-right">Trainer Email</label>
           <div class="col-sm-5">
@@ -80,7 +81,7 @@
           <span class="help-block" *ngIf="!programEmail.valid && programEmail.touched" style="color: red">Please enter a valid Email.</span>
             </div>
         </div>
-
+        <!--Buttons-->
         <div class="text-center pt-4">
           <button type="submit" style="margin-right: 10px;" class="btn btn-success" [disabled]="!trpro.valid">SUBMIT</button>
           <button type="button" (click)="fillData()" class="btn btn-primary" >DEMO</button>

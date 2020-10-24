@@ -10,6 +10,7 @@ import { TrainingProgramsService } from 'service/trainingPrograms.service';
   styleUrls: ['./training-view.component.css']
 })
 export class TrainingViewComponent implements OnInit, OnDestroy {
+  //variebles and objects
   trainingPrograms: TrainingPrograms[] = [];
   private subscription: Subscription;
   term: string;

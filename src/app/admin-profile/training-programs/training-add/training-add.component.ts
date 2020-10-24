@@ -12,10 +12,13 @@ import { TrainingProgramsService } from 'service/trainingPrograms.service';
 })
 export class TrainingAddComponent implements OnInit {
   @ViewChild('trpro', { static: false }) addTrainingProgramsForm: NgForm;
+  //variables
   mode = "create";
   dateToday: string;
   demoBtnClicked: boolean = false;
   private trainingProgramID: string;
+  selectedList = [];
+  //objects
   tpDetails: TrainingPrograms;
   trainingPrograms: TrainingPrograms = {
     id: '',
@@ -26,7 +29,7 @@ export class TrainingAddComponent implements OnInit {
     location: '',
     email: ''
   };
-  selectedList = [];
+
 
   checkboxesDataList = [
     {
@@ -77,10 +80,12 @@ export class TrainingAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchSelectedItems();
+    //getting todate data
     let day = new Date().getDate();
     let month = new Date().getMonth();
     let year = new Date().getFullYear();
     this.dateToday = year + "-" + (month + 1) + "-" + day;
+    //checking URL for ID
     this.route.paramMap.subscribe(((paramMap: ParamMap) => {
       if (paramMap.has("trpID")) {
         this.mode = "edit";
@@ -106,6 +111,7 @@ export class TrainingAddComponent implements OnInit {
     this.trainingPrograms.availability = this.selectedList;
     this.trainingPrograms.email = this.addTrainingProgramsForm.value.programEmail;
 
+    //checks wheather update or new
     if (this.mode === "create") {
       this.trainingProgramsService.addTrainingProgram(this.trainingPrograms);
       this.router.navigate(['../view'], { relativeTo: this.route });
