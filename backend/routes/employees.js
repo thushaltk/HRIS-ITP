@@ -20,11 +20,7 @@ router.post("", async (req, res, next) => {
     empDes: req.body.empDes,
     doj: req.body.doj,
     comment: req.body.comment,
-    password: req.body.password,
   });
-
-  const salt = await bcrypt.genSalt(10);
-  employee.password = await bcrypt.hash(req.body.password, salt);
 
   await employee.save();
   res.status(201).json({
