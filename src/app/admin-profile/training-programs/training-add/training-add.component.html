@@ -3,7 +3,8 @@
   <div class="container-fluid" style="background-color: #FEFEFE;">
     <br><br><br>
     <div>
-      <h2 class="text-center">Create New Training Program</h2>
+      <h2 class="text-center" *ngIf="mode == 'create'">Create New Training Program</h2>
+      <h2 class="text-center" *ngIf="mode == 'edit'">Update Training Program</h2>
     </div>
     <br><br><br>
     <div class="container-fluid">
@@ -18,7 +19,7 @@
           <span class="help-block" *ngIf="!programTitle.valid && programTitle.touched" style="color: red">Please enter a title.</span>
           </div>
         </div>
-
+        <!--Date field-->
         <div class="form-group row" style="margin-left: 200px;">
           <label for="programDate" class="col-sm-3 col-form-label pull-right">Date</label>
           <div class="col-sm-5" >

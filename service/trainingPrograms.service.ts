@@ -37,6 +37,7 @@ export class TrainingProgramsService{
     return {...this.trainingProgramsArr.find(trpID => trpID.id === id)};
   }
 
+  //add new training program
   addTrainingProgram(trainingProgram: TrainingPrograms){
     const trainingProgramsArray: TrainingPrograms = {
       id: trainingProgram.id,
@@ -56,6 +57,7 @@ export class TrainingProgramsService{
 
   }
 
+  //update training program
   updateTrainingProgram(trainingProgram: TrainingPrograms) {
     const tpArray: TrainingPrograms = {
       id: trainingProgram.id,

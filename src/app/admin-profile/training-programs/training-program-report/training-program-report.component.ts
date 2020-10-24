@@ -42,10 +42,13 @@ export class TrainingProgramReportComponent implements OnInit, OnDestroy {
       html2canvas(document.getElementById("tbl")).then(function(canvas) {
         var img = canvas.toDataURL("image/png");
         var doc = new jsPDF.jsPDF();
+        let image = new Image();
+        image.src = 'assets/images/logo.png';
         var imgHeight = canvas.height * 210 / canvas.width;
-        doc.text("Training Prorams Report", 15, 15);
-        doc.addImage(img,0, 20, 210, imgHeight);
-        doc.save('testCanvas.pdf');
+        doc.text("Training Prorams Report", 40, 15);
+        doc.addImage(image, 10, 5, 20, 20);
+        doc.addImage(img, 0, 30, 210, imgHeight);
+        doc.save('training-programs-report.pdf');
         });
     },1500)
   }

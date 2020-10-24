@@ -12,7 +12,7 @@ import { TrainingProgramsService } from 'service/trainingPrograms.service';
 })
 export class TrainingAddComponent implements OnInit {
   @ViewChild('trpro', { static: false }) addTrainingProgramsForm: NgForm;
-  private mode = "create";
+  mode = "create";
   dateToday: string;
   demoBtnClicked: boolean = false;
   private trainingProgramID: string;
@@ -95,6 +95,7 @@ export class TrainingAddComponent implements OnInit {
 
   }
 
+  //Code for submit button(by assigning into an object)
   onSubmit() {
     this.demoBtnClicked = false;
     this.trainingPrograms.id = this.trainingProgramID;
