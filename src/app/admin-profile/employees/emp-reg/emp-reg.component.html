@@ -1,7 +1,9 @@
 <div style="overflow-y: scroll; overflow-x: scroll; height: 100vh; width:1000px; max-width: 1300px;"  class ="container-fluid" >
   <div class="container-fluid" >
     <div>
-      <p class="h1" style="text-align:center" >Add New Employee</p><br>
+      <p class="h1" style="text-align:center" *ngIf="mode == 'create'">Add New Employee</p><br>
+      <p class="h1" style="text-align:center" *ngIf="mode == 'edit'">Update Employee</p><br>
+
     </div>
     <div class="container-fluid" style="border:1px Solid;border-color: #6d7fcc; border-radius: 10px 10px 10px 10px">
       <br>
@@ -9,20 +11,20 @@
       <form (ngSubmit)="onSubmit()" #empreg="ngForm">
         <div class="form-group">
           <label for="fullName">Full Name</label>
-          <input type="text" [ngModel]="empDetails?.fullName" name="fullName" #fullName="ngModel" [class.is-invalid]= "fullName.invalid && fullName.touched" class="form-control" id="fullName" required>
+          <input type="text" [ngModel]="demoBtnClicked ? employees.fullName : empDetails?.fullName" name="fullName" #fullName="ngModel" [class.is-invalid]= "fullName.invalid && fullName.touched" class="form-control" id="fullName" required>
           <small class="text-danger" [class.d-none]= "fullName.valid || fullName.untouched">Please enter a name</small>
         </div>
 
         <div class="form-row">
           <div class="col-md-3 mb-1">
             <label for="dob">Date of birth</label>
-            <input type="date" [ngModel]="empDetails?.dob" name="dob" #dob="ngModel" [class.is-invalid]= "dob.invalid && dob.touched" class="form-control" id="dob" placeholder="DD/MM/YYYY" required>
+            <input type="date" [ngModel]="demoBtnClicked ? employees.dob : empDetails?.dob" name="dob" #dob="ngModel" [class.is-invalid]= "dob.invalid && dob.touched" class="form-control" id="dob" placeholder="DD/MM/YYYY" required>
             <small class="text-danger" [class.d-none]= "dob.valid || dob.untouched">Please select a date</small>
           </div>
 
           <div class="col-md-3 mb-1">
             <label for="nic">NIC Number</label>
-            <input type="text" [ngModel]="empDetails?.nic" name="nic" #nic="ngModel" (change)="nicValidate(nic.value)" [class.is-invalid]= "nic.touched && nicInvalid" class="form-control" id="nic" placeholder="123456789V" required>
+            <input type="text" [ngModel]="demoBtnClicked ? employees.nic : empDetails?.nic" name="nic" #nic="ngModel" (change)="nicValidate(nic.value)" [class.is-invalid]= "nic.touched && nicInvalid" class="form-control" id="nic" placeholder="123456789V" required>
             <small class="text-danger" [class.d-none]= " nic.untouched || !nicInvalid">Please enter a valid NIC number</small>
           </div>
 
@@ -41,18 +43,18 @@
 
         <div class="form-group">
           <label for="address">Address</label>
-          <input type="text" #address="ngModel" [ngModel]="empDetails?.address" name="address" [class.is-invalid]= "address.invalid && address.touched" class="form-control" id="address" placeholder="1234 Main St" required>
+          <input type="text" #address="ngModel" [ngModel]="demoBtnClicked ? employees.address : empDetails?.address" name="address" [class.is-invalid]= "address.invalid && address.touched" class="form-control" id="address" placeholder="1234 Main St" required>
           <small class="text-danger" [class.d-none]= "address.valid || address.untouched">Please enter an address</small>
         </div>
         <div class="form-row">
           <div class="col-md-6 mb-3">
             <label for="cnumber">Contact Number</label>
-            <input type="text" #cnumber="ngModel" pattern="^\d{10}$" [ngModel]="empDetails?.cnumber" name="cnumber" [class.is-invalid]= "cnumber.invalid && cnumber.touched" class="form-control" id="cnumber" placeholder="0123456789" required>
+            <input type="text" #cnumber="ngModel" pattern="^\d{10}$" [ngModel]="demoBtnClicked ? employees.cnumber : empDetails?.cnumber" name="cnumber" [class.is-invalid]= "cnumber.invalid && cnumber.touched" class="form-control" id="cnumber" placeholder="0123456789" required>
             <small class="text-danger" [class.d-none]= "cnumber.valid || cnumber.untouched">Please enter a valid contact number</small>
           </div>
           <div class="col-md-6 mb-3">
             <label for="email">Email address</label>
-            <input type="email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [ngModel]="empDetails?.email" name="email" [class.is-invalid]= "email.invalid && email.touched" email class="form-control" id="email" placeholder="name@example.com" required>
+            <input type="email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [ngModel]="demoBtnClicked ? employees.email : empDetails?.email" name="email" [class.is-invalid]= "email.invalid && email.touched" email class="form-control" id="email" placeholder="name@example.com" required>
             <small class="text-danger" [class.d-none]= "email.valid || email.untouched">Please enter a valid email address</small>
           </div>
         </div>
@@ -62,7 +64,7 @@
 
         <div class="form-group">
           <label for="empDes">Employee Designation</label>
-          <select #empDes="ngModel" name="empDes" [class.is-invalid]= "empDes.invalid && empDes.touched" [ngModel]="empDetails?.empDes" class="form-control" id="empDes" required>
+          <select #empDes="ngModel" name="empDes" [class.is-invalid]= "empDes.invalid && empDes.touched" [ngModel]="demoBtnClicked ? employees.empDes : empDetails?.empDes" class="form-control" id="empDes" required>
             <option value="choose" disabled>Choose...</option>
             <option value="manager">Manager</option>
             <option value="engineer">Engineer</option>
@@ -80,18 +82,19 @@
         <div class="form-row">
           <div class="col-md-3 mb-1">
             <label for="doj">Date of Joining</label>
-            <input type= "date" #doj="ngModel" [ngModel]="empDetails?.doj" name="doj" [class.is-invalid]= "doj.invalid && doj.touched" class="form-control" id="doj" placeholder="DD/MM/YYYY" required>
+            <input type= "date" #doj="ngModel" [ngModel]="demoBtnClicked ? employees.doj : empDetails?.doj" name="doj" [class.is-invalid]= "doj.invalid && doj.touched" class="form-control" id="doj" placeholder="DD/MM/YYYY" required>
             <small class="text-danger" [class.d-none]= "doj.valid || doj.untouched">Please select a date</small>
           </div>
         </div>
 
         <div class="form-group">
           <label for="comment">If the employee has a special medical illness or other issue, mention it here</label>
-          <textarea [ngModel]="empDetails?.comment" name="comment" #comment="ngModel" id="comment" cols="30" rows="3" class="form-control"></textarea>
+          <textarea [ngModel]="demoBtnClicked ? employees.comment : empDetails?.comment" name="comment" #comment="ngModel" id="comment" cols="30" rows="3" class="form-control"></textarea>
         </div>
 
         <div class="col-auto my-1" align="center">
-        <button type="submit"  [disabled]="!empreg.valid" class="btn btn-success btn-lg ">Submit</button>
+        <button type="submit"  [disabled]="!empreg.valid" class="btn btn-success btn-lg" style="margin-right: 10px;">Submit</button>
+        <button type="button" (click)="fillDate()" class="btn btn-primary btn-lg ">DEMO</button>
         </div>
         <br><br>
       </form>

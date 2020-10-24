@@ -12,8 +12,9 @@ import { EmployeeService } from 'service/employees.service';
 export class EmpRegComponent implements OnInit {
   @ViewChild('empreg', {static: false}) addEmployee: NgForm;
   empID: string;
-  private mode : string = "create";
+  mode : string = "create";
   employeeID: string;
+  demoBtnClicked: boolean = false;
   nicInvalid: boolean = true;
   nic : string;
   employeeDetails: Employees[] = [];
@@ -98,9 +99,23 @@ export class EmpRegComponent implements OnInit {
       this.router.navigate(['../view'], {relativeTo: this.route});
     } else {
       this.employeeService.updateEmployees(this.employees);
-      this.router.navigate(['../../view'], {relativeTo: this.route});
+      this.router.navigate(['../../', this.employees.empDes], {relativeTo: this.route});
     }
 
+  }
+
+
+  fillDate(){
+    this.employees.fullName = "Kishen Deemud";
+    this.employees.dob = "1998-05-23";
+    this.employees.nic = "981441525V";
+    this.employees.address = "260/A/1, Horagolla, Ganemulla.";
+    this.employees.cnumber = "0773580635";
+    this.employees.email = "deemu@gmail.com";
+    this.employees.empDes = "manager";
+    this.employees.doj = "2020-06-26";
+    this.employees.comment = "None";
+    this.demoBtnClicked = true;
   }
 
 }
