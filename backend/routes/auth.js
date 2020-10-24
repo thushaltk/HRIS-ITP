@@ -14,11 +14,11 @@ router.post("/", async (req, res) => {
   try {
     let employee = await Employee.findOne({ nic });
 
-    if (!employee) return res.status(400).send("Invalid Credentials");
+    if (!employee) return res.status(401).send("Invalid Credentials");
 
     const isMatch = await bcrypt.compare(password, employee.password);
 
-    if (!isMatch) return res.status(400).send("Invalid Credentials");
+    if (!isMatch) return res.status(401).send("Invalid Credentials");
 
     const payload = {
       user: {
