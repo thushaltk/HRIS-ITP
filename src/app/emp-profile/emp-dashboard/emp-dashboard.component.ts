@@ -11,6 +11,8 @@ import { Payroll } from 'src/app/_models/payroll.model';
 import { PayrollService } from 'src/app/_services/payroll.service';
 import { Salary } from 'src/app/_models/salary.model';
 import { AuthService } from '../../_services/auth.service';
+import { TrainingPrograms } from 'models/trainingPrograms.model';
+import { TrainingProgramsService } from 'service/trainingPrograms.service';
 
 @Component({
   selector: 'app-emp-dashboard',
@@ -20,6 +22,7 @@ import { AuthService } from '../../_services/auth.service';
 export class EmpDashboardComponent implements OnInit {
   payrolls: Payroll[];
   baseSal: any;
+  trainingPrograms: TrainingPrograms[] = [];
   announcements: Announcements[] = [];
   attendances: Attendance[] = [];
   nic: string;
@@ -35,7 +38,8 @@ export class EmpDashboardComponent implements OnInit {
     private route: ActivatedRoute,
     private announcementService: AnnouncementService,
     private attendanceService: AttendanceService,
-    private payrollService: PayrollService
+    private payrollService: PayrollService,
+    private trainingProgramService: TrainingProgramsService
   ) {}
 
   ngOnInit() {
@@ -75,6 +79,14 @@ export class EmpDashboardComponent implements OnInit {
         }
       }
     });
+
+    this.trainingPrograms = this.trainingProgramService.getTrainingPrograms();
+    this.subscription = this.trainingProgramService.trainingProgamsChanged.subscribe(
+      (trainingPrograms: TrainingPrograms[]) => {
+        this.trainingPrograms = trainingPrograms;
+
+      }
+    )
   }
 
   onDelete(announcementID: string) {

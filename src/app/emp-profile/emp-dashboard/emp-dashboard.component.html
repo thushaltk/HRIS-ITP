@@ -43,6 +43,31 @@
       </div>
     </div>
   </div>
+  <br><br><br>
+  <h1>Training Programs</h1>
+  <div  style="overflow-y: scroll; height:400px; width: fit-content;">
+
+    <div class="container" *ngFor="let trainingProgram of trainingPrograms" style="background-color: #E6E9E5; width: 1000px; height: fit-content;">
+      <div class="card">
+        <div class="card-header">
+          ***
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">{{trainingProgram.title}} ({{trainingProgram.date}}) </h4>
+          <p>--------------------------------------------------------------------------------------</p>
+          <p class="card-text">{{trainingProgram.description}}</p>
+          <p class="card-text">Available for
+            <span style="font-weight: 500; text-transform: uppercase;" *ngFor="let ele of trainingProgram.availability.values()">
+              {{ele.label}},
+            </span>
+          </p>
+          <p class="card-text">Located at <span style="font-weight: 500; text-transform: uppercase;">{{trainingProgram.location}}</span></p>
+        </div>
+      </div>
+    </div>
+    <br><br><br><br>
+  </div>
+
 
 </div>
 
