@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { toArray } from 'rxjs/operators';
 
 import { Payroll } from '../../../_models/payroll.model';
 import { PayrollService } from '../../../_services/payroll.service';
@@ -39,6 +40,16 @@ export class AddPayrollComponent implements OnInit {
     this.payroll.payForOTHour = this.addPayroll.value.payForOTHour;
     this.payroll.penaltyForLeaves = this.addPayroll.value.penaltyForLeaves;
 
+    if (
+      !this.nic ||
+      !this.payroll.baseSalary ||
+      !this.payroll.maxLeaves ||
+      !this.payroll.payForOTHour ||
+      !this.payroll.penaltyForLeaves
+    ) {
+      return this.toastr.error('Please fill the form');
+    }
+
     this.payrollService.addPayroll(this.payroll, this.nic).subscribe(
       (res) => {
         console.log(res);
@@ -50,5 +61,9 @@ export class AddPayrollComponent implements OnInit {
         this.toastr.error(`${err.error}`);
       }
     );
+  }
+
+  demo() {
+    this.payroll.baseSalary = 7500;
   }
 }

@@ -27,9 +27,6 @@
             id="nicNo"
             readonly
           />
-          <!-- <small class="text-danger" [class.d-none]="nic.valid || nic.untouched"
-            >Please enter a NIC number</small
-          > -->
         </div>
         <div class="form-group">
           <label for="fullName">Full Name</label>
@@ -42,9 +39,6 @@
             id="fullNames"
             readonly
           />
-          <!-- <small class="text-danger" [class.d-none]="nic.valid || nic.untouched"
-              >Please enter a NIC number</small
-            > -->
         </div>
 
         <div class="form-row">
@@ -59,11 +53,7 @@
               id="baseSalaryAmount"
               readonly
             />
-            <!-- <small
-              class="text-danger"
-              [class.d-none]="baseSalary.valid || baseSalary.untouched"
-              >Please enter a valid salary amount</small
-            > -->
+
           </div>
           <div class="col-md-6 mb-3">
             <label for="maxLeaves">Max Leaves</label>
@@ -77,13 +67,7 @@
               id="noMaxLeaves"
               readonly
             />
-            <!-- <small
-              class="text-danger"
-              [class.d-none]="email.valid || email.untouched"
-              >Please enter a valid email address</small
-            > -->
           </div>
-          <!-- </div> -->
           <div class="col-md-6 mb-3">
             <label for="payForOTHour">Pay for OT Hour</label>
             <input
@@ -96,13 +80,8 @@
               id="payForOTHourAmount"
               readonly
             />
-            <!-- <small
-              class="text-danger"
-              [class.d-none]="email.valid || email.untouched"
-              >Please enter a valid email address</small
-            > -->
+
           </div>
-          <!-- </div> -->
 
           <div class="col-md-6 mb-3">
             <label for="penaltyForLeaves">Penalty for Leaves</label>
@@ -116,15 +95,7 @@
               id="penaltyForLeavesAmount"
               readonly
             />
-            <!-- <small
-              class="text-danger"
-              [class.d-none]="email.valid || email.untouched"
-              >Please enter a valid email address</small
-            > -->
           </div>
-
-
-
 
           <div class="col-md-6 mb-3">
             <label for="date">Date</label>
@@ -139,14 +110,12 @@
             />
             <!-- <small
               class="text-danger"
-              [class.d-none]="email.valid || email.untouched"
-              >Please enter a valid email address</small
+              [class.d-none]="date.valid || date.untouched"
+              >Please Select a date</small
             > -->
           </div>
-          <!-- </div> -->
-
           <div class="col-md-6 mb-3">
-            <label for="otStart">No of Working hours</label>
+            <label for="otStart">No of Working hours per Day</label>
             <input
               type="number"
               name="otStart"
@@ -158,8 +127,8 @@
             />
             <!-- <small
               class="text-danger"
-              [class.d-none]="email.valid || email.untouched"
-              >Please enter a valid email address</small
+              [class.d-none]="otStart.valid || otStart.untouched"
+              >Please enter valid working hours per daya</small
             > -->
           </div>
 

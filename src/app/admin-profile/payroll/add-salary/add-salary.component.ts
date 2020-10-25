@@ -41,6 +41,10 @@ export class AddSalaryComponent implements OnInit {
     this.salary.date = this.addSalary.value.date;
     this.salary.otStart = this.addSalary.value.otStart;
 
+    if (!this.nic || !this.salary.date || !this.salary.otStart) {
+      return this.toastr.error('Fill the form');
+    }
+
     console.log(this.salary.employee);
 
     this.salaryService.addSalary(this.salary, this.nic).subscribe(

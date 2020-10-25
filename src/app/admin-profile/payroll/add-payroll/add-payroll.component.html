@@ -13,6 +13,7 @@
       <br />
       <p class="h1" style="text-align: center">Add Payroll for an Employee</p>
       <br />
+      <button class="btn btn-primary ml-3" (click)="demo()">Demo</button>
     </div>
     <div class="container-fluid" style="background-color: #ffffff">
       <form (ngSubmit)="onSubmit()" #addPay="ngForm">
@@ -47,11 +48,11 @@
               placeholder="10000"
               required
             />
-            <!-- <small
+            <small
               class="text-danger"
               [class.d-none]="baseSalary.valid || baseSalary.untouched"
               >Please enter a valid salary amount</small
-            > -->
+            >
           </div>
           <div class="col-md-6 mb-3">
             <label for="maxLeaves">Max Leaves</label>
@@ -66,11 +67,11 @@
               placeholder="4"
               required
             />
-            <!-- <small
+            <small
               class="text-danger"
-              [class.d-none]="email.valid || email.untouched"
-              >Please enter a valid email address</small
-            > -->
+              [class.d-none]="maxLeaves.valid || maxLeaves.untouched"
+              >Please enter a valid number for max leaves</small
+            >
           </div>
           <!-- </div> -->
           <div class="col-md-6 mb-3">
@@ -86,11 +87,11 @@
               placeholder="400"
               required
             />
-            <!-- <small
+            <small
               class="text-danger"
-              [class.d-none]="email.valid || email.untouched"
-              >Please enter a valid email address</small
-            > -->
+              [class.d-none]="payForOTHour.valid || payForOTHour.untouched"
+              >Please enter valid Amount</small
+            >
           </div>
           <!-- </div> -->
 
@@ -107,11 +108,11 @@
               placeholder="250"
               required
             />
-            <!-- <small
+            <small
               class="text-danger"
-              [class.d-none]="email.valid || email.untouched"
-              >Please enter a valid email address</small
-            > -->
+              [class.d-none]="penaltyForLeaves.valid || penaltyForLeaves.untouched"
+              >Please enter a valid Amount</small
+            >
           </div>
         </div>
 

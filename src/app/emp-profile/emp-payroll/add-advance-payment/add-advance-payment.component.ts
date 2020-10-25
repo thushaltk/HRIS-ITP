@@ -40,6 +40,14 @@ export class AddAdvancePaymentComponent implements OnInit {
     this.advancePayment.amount = this.addAdvancePayment.value.amount;
     this.advancePayment.reason = this.addAdvancePayment.value.reason;
 
+    if (
+      !this.advancePayment.requestingDate ||
+      !this.advancePayment.amount ||
+      !this.advancePayment.reason
+    ) {
+      return this.toastr.error('Fill the form');
+    }
+
     this.advancePaymentService
       .addAdPay(this.advancePayment, this.nic)
       .subscribe(
