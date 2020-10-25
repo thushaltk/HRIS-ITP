@@ -6,8 +6,6 @@ const UtilObj = require("../util/util");
 
 const Employee = require("../models/employee");
 
-
-
 //Add Employees
 router.post("", async (req, res, next) => {
   const employee = new Employee({
@@ -30,7 +28,6 @@ router.post("", async (req, res, next) => {
   });
 });
 
-
 //Update Employees
 router.put("/:id", (req, res, next) => {
   const employee = new Employee({
@@ -52,10 +49,6 @@ router.put("/:id", (req, res, next) => {
     res.status(200).json({ message: "Update successful" });
   });
 });
-
-
-
-
 
 router.post("/resetPassword/:nic", async (req, res) => {
   const nic = req.params.nic;
@@ -104,16 +97,19 @@ router.post("/resetPassword/:nic", async (req, res) => {
   //return res.status(200).send(enPwd);
 });
 
-router.patch("/updatePassword", auth, async (req, res, next) => {
-  const email = req.body.email;
+router.patch("/updatePassword", async (req, res, next) => {
+  const nic = req.body.nic;
   const oldPass = req.body.oldPass;
   const newPass = req.body.newPass;
 
-  Employee.findOne({ email }, async (err, found_user) => {
-    if (err) return res.status(500).send(err);
-  });
+  // Employee.findOne({ nic }, async (err, found_user) => {
+  //   if (err) return res.status(500).send(err);
 
-  if (!found_user) return res.status(404).send("Invalid Email");
+  //   if (!found_user) return res.status(404).send("Invalid Nic");
+  // });
+
+  const found_user = await Employee.findOne({ nic });
+  if (!found_user) return res.status(404).send("Invalid Nic");
 
   const isMatch = await bcrypt.compare(oldPass, found_user.password);
 
@@ -127,16 +123,12 @@ router.patch("/updatePassword", auth, async (req, res, next) => {
 
   found_user.save((err, updated_user) => {
     if (err) {
-      return res.send(err).status(400);
+      return res.status(400).send(err);
     }
 
-    return res.send("Password Update Success").status(200);
+    return res.status(200).send("Password Update Success");
   });
 });
-
-
-
-
 
 //Reteive Employees
 router.get("", (req, res, next) => {
@@ -148,7 +140,6 @@ router.get("", (req, res, next) => {
   });
 });
 
-
 //Reteive Employees by designation
 router.get("/:empDes", (req, res, next) => {
   Employee.find({ empDes: req.params.empDes }).then((documents) => {
@@ -158,7 +149,6 @@ router.get("/:empDes", (req, res, next) => {
     });
   });
 });
-
 
 //Delete Employees
 router.delete("/:id", (req, res, next) => {

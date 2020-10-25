@@ -1,9 +1,9 @@
-import { importExpr } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../_services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-reset-password',
@@ -28,13 +28,17 @@ export class ResetPasswordComponent implements OnInit {
     console.log(this.nic);
 
     this.authService.resetPass(this.nic).subscribe(
-      (err) => {
-        console.log(err);
-        this.toastr.success('You will recieve a email with the password');
-      },
       (res) => {
         console.log(res);
-        this.toastr.success('You will recieve a email with the password');
+      },
+      (err) => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 200) {
+            this.toastr.success('You will recieve a email with the password');
+          } else {
+            this.toastr.error('User does not exits');
+          }
+        }
       }
     );
   }

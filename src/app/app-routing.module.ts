@@ -53,6 +53,7 @@ import { AttendanceReportComponent } from './admin-profile/attendance/attendance
 import { VehicleReportComponent } from './admin-profile/vehicles/vehicle-report/vehicle-report.component';
 import { AuthGuard } from './auth.guard';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+import { ChangePasswordComponent } from './login/change-password/change-password.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -98,6 +99,7 @@ const appRoutes: Routes = [
         path: 'payroll/advancePayment',
         component: AdminAdvancePaymentComponent,
       },
+      { path: 'updatePassword', component: ChangePasswordComponent },
 
       { path: 'salaryList', component: SalaryListComponent },
       { path: 'salaryList/addSalary', component: AddSalaryComponent },
@@ -163,6 +165,7 @@ const appRoutes: Routes = [
       { path: 'payroll', component: EmpPayrollComponent },
       { path: 'advancePayment', component: AdvancePaymentComponent },
       { path: 'advancePayment/add', component: AddAdvancePaymentComponent },
+      { path: 'password/updatePassword', component: ChangePasswordComponent },
       // { path: 'dashboard', component: EmpDashboardComponent },
       {
         path: 'attendanceLeave',

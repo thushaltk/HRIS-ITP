@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
   }),
 };
 
@@ -41,6 +42,13 @@ export class AuthService {
     return this.http.post<any>(
       `${environment.apiUrl}employees/resetPassword/${nic}`,
       nic
+    );
+  }
+
+  updatePass(pass) {
+    return this.http.patch<any>(
+      `${environment.apiUrl}employees/updatePassword`,
+      pass
     );
   }
 }

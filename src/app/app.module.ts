@@ -91,6 +91,7 @@ import { EmpLoginService } from '../../service/empLogin.service';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './_services/token-interceptor.service';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+import { ChangePasswordComponent } from './login/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -160,6 +161,7 @@ import { ResetPasswordComponent } from './login/reset-password/reset-password.co
     AttendanceReportComponent,
     VehicleReportComponent,
     ResetPasswordComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,
