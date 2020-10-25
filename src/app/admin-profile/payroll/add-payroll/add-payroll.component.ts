@@ -24,7 +24,8 @@ export class AddPayrollComponent implements OnInit {
     paymentHistory: null,
   };
 
-  nic: string;
+  userNic: string;
+
   constructor(
     private payrollService: PayrollService,
     private router: Router,
@@ -34,14 +35,14 @@ export class AddPayrollComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    this.nic = this.addPayroll.value.nic;
+    this.userNic = this.addPayroll.value.nic;
     this.payroll.baseSalary = this.addPayroll.value.baseSalary;
     this.payroll.maxLeaves = this.addPayroll.value.maxLeaves;
     this.payroll.payForOTHour = this.addPayroll.value.payForOTHour;
     this.payroll.penaltyForLeaves = this.addPayroll.value.penaltyForLeaves;
 
     if (
-      !this.nic ||
+      !this.userNic ||
       !this.payroll.baseSalary ||
       !this.payroll.maxLeaves ||
       !this.payroll.payForOTHour ||
@@ -50,10 +51,10 @@ export class AddPayrollComponent implements OnInit {
       return this.toastr.error('Please fill the form');
     }
 
-    this.payrollService.addPayroll(this.payroll, this.nic).subscribe(
+    this.payrollService.addPayroll(this.payroll, this.userNic).subscribe(
       (res) => {
         console.log(res);
-        this.toastr.success(`Payroll Added for ${this.nic}`);
+        this.toastr.success(`Payroll Added for ${this.userNic}`);
         this.router.navigate(['admin/payroll']);
       },
       (err) => {
@@ -64,6 +65,48 @@ export class AddPayrollComponent implements OnInit {
   }
 
   demo() {
-    this.payroll.baseSalary = 7500;
+    let nicList: string[];
+    let salaryList: number[] = [];
+    let leavesList: number[] = [];
+    let otPayList: number[] = [];
+    let penaltyList: number[] = [];
+    // let i;
+
+    nicList = [
+      '971361913V',
+      '873456345V',
+      '862324444V',
+      '701232485V',
+      '983456789V',
+      '981457557V',
+      '993056235V',
+      '981441524V',
+      '997160797V',
+      '972141844V',
+    ];
+
+    for (let i = 0; i < 10; i++) {
+      leavesList[i] = Math.floor(Math.random() * 10) + 1;
+    }
+
+    for (let i = 0; i < 10; i++) {
+      salaryList[i] = Math.floor(Math.random() * 100000) + 1;
+    }
+
+    for (let i = 0; i < 10; i++) {
+      otPayList[i] = Math.floor(Math.random() * 1000) + 1;
+    }
+
+    for (let i = 0; i < 10; i++) {
+      penaltyList[i] = Math.floor(Math.random() * 1000) + 1;
+    }
+
+    let random = Math.floor(Math.random() * 10);
+
+    this.userNic = nicList[random];
+    this.payroll.baseSalary = salaryList[random];
+    this.payroll.maxLeaves = leavesList[random];
+    this.payroll.payForOTHour = otPayList[random];
+    this.payroll.penaltyForLeaves = penaltyList[random];
   }
 }

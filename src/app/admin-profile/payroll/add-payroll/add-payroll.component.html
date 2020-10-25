@@ -25,6 +25,7 @@
             name="nic"
             #nic="ngModel"
             [class.is-invalid]="nic.invalid && nic.touched"
+            [(ngModel)]="userNic"
             class="form-control"
             id="nic"
             placeholder="123456789V"
@@ -43,8 +44,8 @@
               #baseSalary="ngModel"
               ngModel
               name="baseSalary"
+              [(ngModel)]="payroll.baseSalary"
               class="form-control"
-              id="baseSalary"
               placeholder="10000"
               required
             />
@@ -61,6 +62,7 @@
               #maxLeaves="ngModel"
               ngModel
               name="maxLeaves"
+              [(ngModel)]="payroll.maxLeaves"
               maxLeaves
               class="form-control"
               id="maxLeaves"
@@ -81,6 +83,7 @@
               #payForOTHour="ngModel"
               ngModel
               name="payForOTHour"
+              [(ngModel)]="payroll.payForOTHour"
               payForOTHour
               class="form-control"
               id="payForOTHour"
@@ -102,6 +105,7 @@
               #penaltyForLeaves="ngModel"
               ngModel
               name="penaltyForLeaves"
+              [(ngModel)]="payroll.penaltyForLeaves"
               penaltyForLeaves
               class="form-control"
               id="penaltyForLeaves"
