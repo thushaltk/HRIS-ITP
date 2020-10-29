@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Vehicles } from 'models/vehicles.model';
+import { Vehicle } from '../../../_models/vehicle.model';
 import { Subscription } from 'rxjs';
-import { VehiclesServices } from 'service/vehicle.service';
+import { VehiclesServices } from 'src/app/_services/vehicle.service';
 
 @Component({
   selector: 'app-vehicle-list-all',
@@ -10,19 +10,19 @@ import { VehiclesServices } from 'service/vehicle.service';
   styleUrls: ['./vehicle-list-all.component.css']
 })
 export class VehicleListAllComponent implements OnInit, OnDestroy {
-  vehicles: Vehicles[] = [];
+  vehicles: Vehicle[] = [];
   private subscription: Subscription;
   constructor(private router: Router, private vehicleService: VehiclesServices) { }
 
 
   ngOnInit(): void {
-    this.vehicles = this.vehicleService.getVehicles();
-    this.subscription = this.vehicleService.vehicleChanged.subscribe(
-      (vehicles: Vehicles[]) => {
-        this.vehicles = vehicles;
-      }
-    );
-    console.log(this.vehicles);
+    // this.vehicles = this.vehicleService.getVehicles();
+    // this.subscription = this.vehicleService.vehicleChanged.subscribe(
+    //   (vehicles: Vehicles[]) => {
+    //     this.vehicles = vehicles;
+    //   }
+    // );
+    // console.log(this.vehicles);
 
 
   }
@@ -34,9 +34,9 @@ export class VehicleListAllComponent implements OnInit, OnDestroy {
 
 
 
-  onDelete(id: string){
-    this.vehicleService.deleteVehicle(id);
-    window.location.reload();
+  // onDelete(id: string){
+  //   this.vehicleService.deleteVehicle(id);
+  //   window.location.reload();
 
-  }
+  // }
 }

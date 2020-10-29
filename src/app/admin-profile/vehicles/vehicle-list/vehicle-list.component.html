@@ -1,23 +1,176 @@
-<div style="overflow-y: scroll; overflow-x: scroll; height: 100vh; width:fit-content; max-width: min-content;">
-  <h1>View Vehicles</h1>
-  <div>
-    <select class="form-control" [(ngModel)]="selectValue" name="vehicleRegisteredDistrict" (click)="navigate($event)">
-      <option value="All Vehicles">All Vehicles</option>
-      <option value="Allocated Vehicles" >Allocated Vehicles</option>
-      <option value="Unallocated Vehicles">Unallocated Vehicles</option>
-    </select>
-  </div>
-  <br>
-    <div  style="overflow-y: scroll; height:400px; width: fit-content;">
-    <div class="container pull-left" style="background-color: #fffdd0; width: 1000px; height: fit-content;">
-      <div class="card" style="width: fit-content">
-        <div class="card-header">
-          {{selectValue}}
+
+<div>
+  <div class="row content-wrapper">
+    <p class="h2" style="text-align: center">Vehicle Management</p>
+    <br>
+    <!-- <div class="col-md-12 pt-20">
+      <button class="btn btn-sm btn-primary" (click)="openModal()">New Vehicle</button>
+    </div> -->
+
+    <div class="col-md-12 pt-10">
+      <div class="row">
+        <div class="col-md-3">
+          <select class="form-control form-control-sm" (change)="filter($event.target.value)">
+            <option value="all"> All </option>
+            <option value="1"> Allocated Vehicle </option>
+            <option value="0"> Un-Allocated Vehicle </option>
+          </select>
         </div>
-          <router-outlet></router-outlet>
+        <div class="col-md-3">
+          <input class="form-control form-control-sm" (keyup)="search($event)" [(ngModel)]="keyword" type="text"
+            placeholder="Search">
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-sm btn-warning" (click)="setUpdate();"> Update </button> &nbsp;
+          <button class="btn btn-sm btn-danger" (click)="deleteVehicle()"> Delete </button> &nbsp;
+          <button class="btn btn-sm btn-success" (click)="report()">Report</button>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field appearance="fill">
+            <mat-label>Column Visibility</mat-label>
+            <mat-select [formControl]="columnsFilter" multiple>
+              <mat-option *ngFor="let column of columns;let index = index" [disabled]="index == 0 || index == 1"
+                [value]="column">{{column}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
       </div>
     </div>
 
+    <div class="col-md-12 pt-10 example-container " style="max-height:50vh;overflow-x: hidden;overflow-y: auto;">
+
+      <div>
+        <div class="example-loading-shade" *ngIf="loading">
+          <div class="spinner-border text-dark" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%;">
+
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
+              [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox color="primary" (click)="$event.stopPropagation()"
+              (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+              [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vehicleNumber">
+          <th mat-header-cell *matHeaderCellDef> Vehicle Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.vehicleNumber}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vehicleType">
+          <th mat-header-cell *matHeaderCellDef> Type </th>
+          <td mat-cell *matCellDef="let element"> {{element.vehicleType}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vehicleChaseNumber">
+          <th mat-header-cell *matHeaderCellDef> Chase Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.vehicleChaseNumber}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vehicleEngineNumber">
+          <th mat-header-cell *matHeaderCellDef> Engine Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.vehicleEngineNumber}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="manufactureDate">
+          <th mat-header-cell *matHeaderCellDef> Manufacture Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.manufactureDate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vehicleColor">
+          <th mat-header-cell *matHeaderCellDef> Vehicle Color </th>
+          <td mat-cell *matCellDef="let element"> {{element.vehicleColor}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vehiclePurchaseDate">
+          <th mat-header-cell *matHeaderCellDef> Purchase Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.vehiclePurchaseDate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vehicleOpenMileage">
+          <th mat-header-cell *matHeaderCellDef> Open Mileage </th>
+          <td mat-cell *matCellDef="let element"> {{element.vehicleOpenMileage}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="insuranceType">
+          <th mat-header-cell *matHeaderCellDef> Insurance Type </th>
+          <td mat-cell *matCellDef="let element"> {{element.insuranceType}} </td>
+        </ng-container>
+
+        
+        <ng-container matColumnDef="vehicleRegisteredDistrict">
+          <th mat-header-cell *matHeaderCellDef> Registered District </th>
+          <td mat-cell *matCellDef="let element"> {{element.vehicleRegisteredDistrict}} </td>
+        </ng-container>
+
+        
+        <ng-container matColumnDef="nextLicenseRenewalDate">
+          <th mat-header-cell *matHeaderCellDef> License Renewal Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.nextLicenseRenewalDate}} </td>
+        </ng-container>
+
+        
+        <ng-container matColumnDef="vehiclePreviousOwner">
+          <th mat-header-cell *matHeaderCellDef> Previous Owner Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.vehiclePreviousOwner}} </td>
+        </ng-container>
+
+        
+        <ng-container matColumnDef="NIC">
+          <th mat-header-cell *matHeaderCellDef> Previous Owner NIC </th>
+          <td mat-cell *matCellDef="let element"> {{element.NIC}} </td>
+        </ng-container>
+
+        
+        <ng-container matColumnDef="contactNumber">
+          <th mat-header-cell *matHeaderCellDef> Previous Owner Contact Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.contactNumber}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef> Previous Owner Address</th>
+          <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="employees">
+          <th mat-header-cell *matHeaderCellDef> Employee</th>
+          <td mat-cell *matCellDef="let element"> {{element?.employee?.fullName || '-'}} </td>
+        </ng-container>
+
+<ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let element">
+            <button class="btn btn-sm btn-warning" (click)="setUpdate(element);"> Update </button> &nbsp;
+            <button class="btn btn-sm btn-danger" (click)="deleteEquipment(element)"> Delete </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+    </div>
   </div>
 </div>
+
+<ng-template #callAPIDialog>
+  <div mat-dialog-content>
+    <app-update-vehicle (listComponent)="pushNewVehicle($event)" (update)="updateVehicle($event)"
+      [vehicle]="vehicle" #newEquipment></app-update-vehicle>
+  </div>
+
+</ng-template>
 

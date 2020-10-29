@@ -35,8 +35,6 @@ import { EmpLongLeaveComponent } from './emp-profile/emp-attendance-leave/emp-lo
 import { ViewLeavesComponent } from './admin-profile/attendance/view-leaves/view-leaves.component';
 import { VehicleListComponent } from './admin-profile/vehicles/vehicle-list/vehicle-list.component';
 import { VehicleListAllComponent } from './admin-profile/vehicles/vehicle-list-all/vehicle-list-all.component';
-import { VehicleAllocatedComponent } from './admin-profile/vehicles/vehicle-allocated/vehicle-allocated.component';
-import { VehicleUnallocatedComponent } from './admin-profile/vehicles/vehicle-unallocated/vehicle-unallocated.component';
 import { TrainingViewComponent } from './admin-profile/training-programs/training-view/training-view.component';
 import { RegisterEmpComponent } from './login/login-emp/register-emp/register-emp.component';
 import { SalaryListComponent } from './admin-profile/payroll/salary-list/salary-list.component';
@@ -50,10 +48,10 @@ import { SalaryReportComponent } from './admin-profile/payroll/salary-report/sal
 import { TrainingProgramReportComponent } from './admin-profile/training-programs/training-program-report/training-program-report.component';
 import { EmpReportComponent } from './admin-profile/employees/emp-report/emp-report.component';
 import { AttendanceReportComponent } from './admin-profile/attendance/attendance-report/attendance-report.component';
-import { VehicleReportComponent } from './admin-profile/vehicles/vehicle-report/vehicle-report.component';
 import { AuthGuard } from './auth.guard';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 import { ChangePasswordComponent } from './login/change-password/change-password.component';
+import { UpdateVehicleComponent } from '../app/admin-profile/vehicles/update-vehicle/update-vehicle.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -113,24 +111,13 @@ const appRoutes: Routes = [
           { path: 'new', component: NewEquipmentComponent },
         ],
       },
-      {
-        path: 'vehicles',
-        component: VehiclesComponent,
-        children: [
-          { path: 'new', component: AddVehicleComponent },
-          {
-            path: 'view',
-            component: VehicleListComponent,
-            children: [
-              { path: 'all', component: VehicleListAllComponent },
-              { path: 'allocated', component: VehicleAllocatedComponent },
-              { path: 'unallocated', component: VehicleUnallocatedComponent },
-            ],
-          },
-          { path: 'edit/:vehicleid', component: AddVehicleComponent },
-          { path: 'report', component: VehicleReportComponent },
-        ],
-      },
+      { path: 'vehicles', component: VehiclesComponent, children:[
+        { path: 'new', component: AddVehicleComponent},
+        { path: 'update', component: UpdateVehicleComponent},
+        { path: 'view', component: VehicleListComponent, children:[
+          { path: 'all', component: VehicleListAllComponent},
+        ]}
+      ]},
       {
         path: 'employees',
         component: EmployeesComponent,

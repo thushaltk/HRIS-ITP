@@ -60,11 +60,8 @@ import { EmpQuickLeaveComponent } from './emp-profile/emp-attendance-leave/emp-q
 import { QuickLeavesService } from '../../service/quickLeaves.service';
 import { AddAttendanceComponent } from './admin-profile/attendance/add-attendance/add-attendance.component';
 import { AddVehicleComponent } from './admin-profile/vehicles/add-vehicle/add-vehicle.component';
-import { VehicleListAllComponent } from './admin-profile/vehicles/vehicle-list-all/vehicle-list-all.component';
 import { VehicleListComponent } from './admin-profile/vehicles/vehicle-list/vehicle-list.component';
-import { VehicleUnallocatedComponent } from './admin-profile/vehicles/vehicle-unallocated/vehicle-unallocated.component';
-import { VehicleAllocatedComponent } from './admin-profile/vehicles/vehicle-allocated/vehicle-allocated.component';
-import { VehiclesServices } from '../../service/vehicle.service';
+import { VehiclesServices } from '../../../HRIS-ITP/src/app/_services/vehicle.service';
 import { LongLeavesService } from '../../service/longLeaves.service';
 import { AddPayrollComponent } from './admin-profile/payroll/add-payroll/add-payroll.component';
 import { UpdatePayrollComponent } from './admin-profile/payroll/update-payroll/update-payroll.component';
@@ -86,12 +83,12 @@ import { SalaryReportComponent } from './admin-profile/payroll/salary-report/sal
 import { SortDirective } from './directive/sort.directive';
 import { EmpReportComponent } from './admin-profile/employees/emp-report/emp-report.component';
 import { AttendanceReportComponent } from './admin-profile/attendance/attendance-report/attendance-report.component';
-import { VehicleReportComponent } from './admin-profile/vehicles/vehicle-report/vehicle-report.component';
 import { EmpLoginService } from '../../service/empLogin.service';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './_services/token-interceptor.service';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 import { ChangePasswordComponent } from './login/change-password/change-password.component';
+import { UpdateVehicleComponent } from './admin-profile/vehicles/update-vehicle/update-vehicle.component';
 
 @NgModule({
   declarations: [
@@ -127,7 +124,6 @@ import { ChangePasswordComponent } from './login/change-password/change-password
     EmpVehiclesComponent,
     AttendanceComponent,
     PayrollListComponent,
-
     EquipmentListComponent,
     NewEquipmentComponent,
     ConfirmDialogComponent,
@@ -137,10 +133,7 @@ import { ChangePasswordComponent } from './login/change-password/change-password
     EmpQuickLeaveComponent,
     AddAttendanceComponent,
     AddVehicleComponent,
-    VehicleListAllComponent,
     VehicleListComponent,
-    VehicleUnallocatedComponent,
-    VehicleAllocatedComponent,
     AddPayrollComponent,
     UpdatePayrollComponent,
     TrainingAddComponent,
@@ -159,9 +152,9 @@ import { ChangePasswordComponent } from './login/change-password/change-password
     SortDirective,
     EmpReportComponent,
     AttendanceReportComponent,
-    VehicleReportComponent,
     ResetPasswordComponent,
     ChangePasswordComponent,
+    UpdateVehicleComponent,
   ],
   imports: [
     BrowserModule,

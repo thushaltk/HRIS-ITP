@@ -1,49 +1,34 @@
-<div
-   style="
-    overflow-y: scroll;
-    overflow-x: scroll;
-    height: 100vh;
-    width: 1000px;
-    max-width: 1300px;
-  "
-  class="container-fluid"
->
-  <!-- for topic -->
-  <div class="container-fluid" style="background-color: #fefefe">
-    <div style="background-color: #ffffff">
-      <br>
-      <p class="h1" style="text-align: center">New Vehicle</p>
-      <br>
-      <hr size="30" />
+<div>
+  <div class="row">
+    <div class="col-md-12 title">
+        Update Veehicle
+        <a *ngIf="!isUpdate" class="btn btn-sm btn-outline-primary float-right" (click)="demo()"> Demo </a>
     </div>
-    <div class="container-fluid" style="background-color: #ffffff">
-      <p class="h4" style="text-align: center">Vehicle details</p>
-      <a class="btn btn-sm btn-outline-danger float-right" (click)="demo()"> Demo</a>
+    <div class="col-md-12 pt-10 form-wrapper" style="min-width: 400px;">
       <form [formGroup]="form">
-
         <!-- vehicle number -->
         <div class="form-group">
           <label>Vehicle Number</label>
-          <input [ngClass]="{'is-invalid': submitted && validator.vehicleNumber.errors}" formControlName="vehicleNumber"
-            type="text" class="form-control" placeholder="Enter Vehicle Number">
+            <input [ngClass]="{'is-invalid': submitted && validator.vehicleNumber.errors}" formControlName="vehicleNumber"
+              type="text" class="form-control" placeholder="Enter Vehicle Number">
         </div>
-       
+
         <!-- vehicle type -->
         <div class="form-group">
           <label>Vehicle type</label>
-          <select [ngClass]="{'is-invalid': submitted && validator.vehicleType.errors}" formControlName="vehicleType"
-            type="text" class="form-control" >
-              <option value="choose" disabled>Choose...</option>
-              <option value="Car">Car</option>
-              <option value="Motorcycle">Motorcycle</option>
-              <option value="Van">Van</option>
-              <option value="Cab">Cab</option>
-              <option value="Double Cab">Double Cab</option>
-              <option value="Lory">Lory</option>
-              <option value="Doser">Doser</option>
-              <option value="Bhoom Truck">Bhoom Truck</option>
-              <option value="Industrial Vehicle">Industrial Vehicle</option>
-          </select>
+            <select [ngClass]="{'is-invalid': submitted && validator.vehicleType.errors}" formControlName="vehicleType"
+              type="text" class="form-control" >
+                <option value="choose" disabled>Choose...</option>
+                <option value="Car">Car</option>
+                <option value="Motorcycle">Motorcycle</option>
+                <option value="Van">Van</option>
+                <option value="Cab">Cab</option>
+                <option value="Double Cab">Double Cab</option>
+                <option value="Lory">Lory</option>
+                <option value="Doser">Doser</option>
+                <option value="Bhoom Truck">Bhoom Truck</option>
+                <option value="Industrial Vehicle">Industrial Vehicle</option>
+            </select>
         </div>
 
         <!-- vehicle chase number -->
@@ -57,7 +42,7 @@
         <div class="form-group">
           <label>Vehicle Engine Number</label>
           <input [ngClass]="{'is-invalid': submitted && validator.vehicleEngineNumber.errors}" formControlName="vehicleEngineNumber"
-            type="text" class="form-control" placeholder="Enter Vehicle Engine Number">
+              type="text" class="form-control" placeholder="Enter Vehicle Engine Number">
         </div>
 
         <!-- manufacture date  -->
@@ -66,6 +51,7 @@
           <input [ngClass]="{'is-invalid': submitted && validator.manufactureDate.errors}" formControlName="manufactureDate"
             type="date" class="form-control" placeholder="Enter Vehicle Manufacture Date">
         </div>
+
 
           <!-- vehicle color -->
         <div class="form-group">
@@ -86,7 +72,7 @@
           <label>Vehicle Open Mileage</label>
           <input [ngClass]="{'is-invalid': submitted && validator.vehicleOpenMileage.errors}" formControlName="vehicleOpenMileage"
             type="text" class="form-control" placeholder="Enter Open Mileage">
-      
+
         </div>
 
         <!-- document details  -->
@@ -97,52 +83,56 @@
         <div class="form-group">
           <label>Vehicle Insurance Type</label>
           <select [ngClass]="{'is-invalid': submitted && validator.insuranceType.errors}" formControlName="insuranceType"
-            type="text" class="form-control" placeholder="Enter Insurance Type">
-            <option value="choose" disabled>Choose...</option>
-            <option value="Full option">Full option</option>
-            <option value="3rd party">3rd party</option>
-          </select>
-        </div>
+              type="text" class="form-control" placeholder="Enter Insurance Type">
+              <option value="choose" disabled>Choose...</option>
+              <option value="Full option">Full option</option>
+              <option value="3rd party">3rd party</option>
+            </select>
+
+          </div>
 
         <!-- vehicle registed district -->
         <div class="form-group">
           <label>Vehicle Registered District</label>
           <select [ngClass]="{'is-invalid': submitted && validator.vehicleRegisteredDistrict.errors}" formControlName="vehicleRegisteredDistrict"
-            type="text" class="form-control" placeholder="Enter Vehicle Registered District">
-            <option value="choose" disabled>Choose...</option>
-            <option value="Jaffna">Jaffna</option>
-            <option value="Kilinochchi">Kilinochchi</option>
-            <option value="Mannar">Mannar</option>
-            <option value="Mullaitivu">Mullaitivu</option>
-            <option value="Vavuniya">Vavuniya</option>
-            <option value="Puttalam">Puttalam</option>
-            <option value="Kurunegala">Kurunegala</option>
-            <option value="Gampaha">Gampaha</option>
-            <option value="Colombo">Colombo</option>
-            <option value="Kalutara">Kalutara</option>
-            <option value="Anuradhapura">Anuradhapura</option>
-            <option value="Polonnaruwa">Polonnaruwa</option>
-            <option value="Matale">Matale</option>
-            <option value="Kandy">Kandy</option>
-            <option value="Nuwara Eliya">Nuwara Eliya</option>
-            <option value="Kegalle">Kegalle</option>
-            <option value="Ratnapura">Ratnapura</option>
-            <option value="Trincomalee">Trincomalee</option>
-            <option value="Batticaloa">Batticaloa</option>
-            <option value="Ampara">Ampara</option>
-            <option value="Badulla">Badulla</option>
-            <option value="Monaragala">Monaragala</option>
-            <option value="Hambantota">Hambantota</option>
-            <option value="Matara">Matara</option>
-            <option value="Galle">Galle</option>
-          </select>     
+              type="text" class="form-control" placeholder="Enter Vehicle Registered District">
+
+              <option value="choose" disabled>Choose...</option>
+              <option value="Jaffna">Jaffna</option>
+              <option value="Kilinochchi">Kilinochchi</option>
+              <option value="Mannar">Mannar</option>
+              <option value="Mullaitivu">Mullaitivu</option>
+              <option value="Vavuniya">Vavuniya</option>
+              <option value="Puttalam">Puttalam</option>
+              <option value="Kurunegala">Kurunegala</option>
+              <option value="Gampaha">Gampaha</option>
+              <option value="Colombo">Colombo</option>
+              <option value="Kalutara">Kalutara</option>
+              <option value="Anuradhapura">Anuradhapura</option>
+              <option value="Polonnaruwa">Polonnaruwa</option>
+              <option value="Matale">Matale</option>
+              <option value="Kandy">Kandy</option>
+              <option value="Nuwara Eliya">Nuwara Eliya</option>
+              <option value="Kegalle">Kegalle</option>
+              <option value="Ratnapura">Ratnapura</option>
+              <option value="Trincomalee">Trincomalee</option>
+              <option value="Batticaloa">Batticaloa</option>
+              <option value="Ampara">Ampara</option>
+              <option value="Badulla">Badulla</option>
+              <option value="Monaragala">Monaragala</option>
+              <option value="Hambantota">Hambantota</option>
+              <option value="Matara">Matara</option>
+              <option value="Galle">Galle</option>
+            </select>
+              
         </div>
 
         <!-- next licence renuewal date  -->
         <div class="form-group">
           <label>Vehicle Next License Renewal Date</label>
           <input [ngClass]="{'is-invalid': submitted && validator.nextLicenseRenewalDate.errors}" formControlName="nextLicenseRenewalDate"
-              type="date" class="form-control" placeholder="Enter Next License Renewal Date">     
+              type="date" class="form-control" placeholder="Enter Next License Renewal Date">
+              
         </div>
 
         <!-- previous owner details -->
@@ -153,52 +143,57 @@
         <div class="form-group">
           <label>Previous Owner Name</label>
           <input [ngClass]="{'is-invalid': submitted && validator.vehiclePreviousOwner.errors}" formControlName="vehiclePreviousOwner"
-              type="text" class="form-control" placeholder="Enter Previous Owner Name">      
+              type="text" class="form-control" placeholder="Enter Previous Owner Name">
+              
         </div>
 
         <!-- previous owner nic -->
         <div class="form-group">
           <label>Previous Owner NIC</label>
           <input [ngClass]="{'is-invalid': submitted && validator.NIC.errors}" formControlName="NIC"
-            type="text" class="form-control" placeholder="Enter NIC">     
+              type="text" class="form-control" placeholder="Enter NIC">
+              
         </div>
 
         <!-- previous owner contact number -->
         <div class="form-group">
           <label>Previous Owner Contact Number</label>
           <input [ngClass]="{'is-invalid': submitted && validator.contactNumber.errors}" formControlName="contactNumber"
-              type="text" class="form-control" placeholder="Enter Contact Number">     
+              type="text" class="form-control" placeholder="Enter Contact Number">
+              
         </div>
 
         <!-- previous owner address -->
         <div class="form-group">
           <label>Previous Owner Address</label>
           <input [ngClass]="{'is-invalid': submitted && validator.address.errors}" formControlName="address"
-              type="text" class="form-control" placeholder="Enter Address">    
+              type="text" class="form-control" placeholder="Enter Address">
+              
         </div>
 
         <!-- allocation -->
         <div class="form-group">
-          <mat-checkbox color="primary" class="example-margin" formControlName="allocation">Allocation
-          </mat-checkbox>
+          <mat-checkbox color="primary" class="example-margin" formControlName="allocation">Allocation</mat-checkbox>
         </div>
+
+        
         <div class="row" *ngIf="this.form.value.allocation">
           <div class="col-md-12">
             <div class="form-group">
-             <label>Employee</label>
+              <label>Employee</label>
               <select formControlName="employees" class="form-control form-control-lg"
                 [ngClass]="{'is-invalid': submitted && validator.employees.errors}">
-              <option *ngFor="let employee of employees" [ngValue]="employee._id">
-                {{employee.fullName}}</option>
+                  <option *ngFor="let employee of employees" [ngValue]="employee._id">{{employee.fullName}}</option>
               </select>
             </div>
           </div>
         </div>
-    
-        <button type="button" class="btn btn-sm btn-success"
-          (click)="submit()">Create</button>
+
+        <button type="button" class="btn btn-sm btn-success" [ngClass]="{'btn-warning': isUpdate }"
+            (click)="submit()">Update</button>
+        &nbsp;
+        &nbsp;
       </form>
     </div>
   </div>
 </div>
-
