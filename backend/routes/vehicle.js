@@ -1,27 +1,22 @@
-const router = require("express").Router();
+// const router = require("express").Router();
 const Vehicle = require("../models/vehicle");
+const { response } = require("express");
+const express = require("express");
+const router = express.Router();
+const mongoose = require("mongoose");
 
-
-// router.get("", async (req, res) => {
-//   try {
-//     await Vehicle.find({}, (error, result) => {
-//       if (error) return res.status(500).send(error);
-//       if (!result) return res.status(404).send("No results");
-//       return res.status(200).send(result);
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     return res.status(500).send(error);
-//   }
-// });
 
 //Get all the vehicle details
-router.get("", (req, res, next) => {
+router.get("/", (req, res, next) => {
   Vehicle.find()
-    .then(documents => {
-      res.status(200).json({
-        message: 'Vehicles fetched successfully',
-        vehicles: documents
+    .populate("employee")
+    .exec()
+    .then((docs) => {
+      res.status(200).json(docs);
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err,
       });
     });
 });
@@ -29,10 +24,21 @@ router.get("", (req, res, next) => {
 //Search and get vehicle details
 router.get("/:id", async (req, res) => {
   try {
-    await Vehicle.findById({ _id: req.params.id }, (error, result) => {
-      if (error) return res.status(500).send(error);
-      if (!result) return res.status(400).send("No results");
-      return res.status(200).send(result);
+    // await Vehicle.findById({ _id: req.params.id }, (error, result) => {
+    //   if (error) return res.status(500).send(error);
+    //   if (!result) return res.status(400).send("No results");
+    //   return res.status(200).send(result);
+    // });
+    Vehicle.findById({_id: req.params.id})
+    .populate("employee")
+    .exec()
+    .then((docs) => {
+      res.status(200).json(docs);
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err,
+      });
     });
   } catch (error) {
     console.log(error);
@@ -41,161 +47,78 @@ router.get("/:id", async (req, res) => {
 });
 
 //Add new vehicle
-router.post("/", async (req, res) => {
+router.post("/", async (req, res, next) => {
   try {
-    const {
-      vehicleNumber,
-      vehicleType,
-      vehicleChaseNumber,
-      vehicleEngineNumber,
-      manufactureDate,
-      vehicleColor,
-      vehiclePurchaseDate,
-      vehicleOpenMileage,
-      insuranceType,
-      vehicleRegisteredDistrict,
-      nextLicenseRenewalDate,
-      vehiclePreviousOwner,
-      NIC,
-      contactNumber,
-      address,
-    } = req.body;
-
+    delete req.body._id;
     const vehicle = new Vehicle({
-      vehicleNumber,
-      vehicleType,
-      vehicleChaseNumber,
-      vehicleEngineNumber,
-      manufactureDate,
-      vehicleColor,
-      vehiclePurchaseDate,
-      vehicleOpenMileage,
-      insuranceType,
-      vehicleRegisteredDistrict,
-      nextLicenseRenewalDate,
-      vehiclePreviousOwner,
-      NIC,
-      contactNumber,
-      address,
+      _id: mongoose.Types.ObjectId(),
+      ...req.body,
     });
+    const result = await vehicle.save();
+    Vehicle.findById(result._id)
+      .populate("employee")
+      .exec()
+      .then((docs) => {
+        res.status(201).json(docs);
+      })
+      .catch((err) => {
+        res.status(500).json({
+          error: err,
+        });
+      });
 
-    await vehicle.save();
-    return res.status(201).send(vehicle);
   } catch (error) {
-    console.log(error);
-    return res.status(500).send(error);
+    res.status(500).json(error);
   }
 });
 
-//Update Announcements
-router.put("/:id", (req, res, next) => {
-  const vehicle = new Vehicle({
-      _id: req.body.id,
-      vehicleNumber: req.body.vehicleNumber,
-      vehicleType: req.body.vehicleType,
-      vehicleChaseNumber: req.body.vehicleChaseNumber,
-      vehicleEngineNumber: req.body.vehicleEngineNumber,
-      manufactureDate: req.body.manufactureDate,
-      vehicleColor: req.body.vehicleColor,
-      vehiclePurchaseDate: req.body.vehiclePurchaseDate,
-      vehicleOpenMileage: req.body.vehicleOpenMileage,
-      insuranceType: req.body.insuranceType,
-      vehicleRegisteredDistrict: req.body.vehicleRegisteredDistrict,
-      nextLicenseRenewalDate: req.body.nextLicenseRenewalDate,
-      vehiclePreviousOwner: req.body.vehiclePreviousOwner,
-      NIC: req.body.NIC,
-      contactNumber: req.body.contactNumber,
-      address: req.body.address
-  });
-  Vehicle.updateOne({_id: req.params.id}, vehicle).then(result => {
-    console.log(result);
-    res.status(200).json({message: "Update successful"})
-  })
+//update vehicle details
+router.patch("/", (req, res, next) => {
+  console.log(req.body);
+  Vehicle.updateOne({ _id: req.body._id }, req.body)
+    .exec()
+    .then((response) => {
+
+      Vehicle.findById(req.body._id)
+        .populate("employees")
+        .exec()
+        .then((docs) => {
+          res.status(201).json({
+            vehicle: docs,
+            res: response,
+          });
+        })
+        .catch((err) => {
+          res.status(500).json({
+            error: err,
+          });
+        });
+
+
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: err,
+      });
+    });
 });
 
 
-//update vehicle details
-// router.put("/:id", async (req, res) => {
-//   try {
-//     await Vehicle.findById({ _id: req.params.id }, async (error, vehicle) => {
-//       if (error) return res.status(500).send(error);
-//       if (!vehicle) return res.status(404).send("User not found");
-
-//       const {
-//         vehicleNumber,
-//         vehicleType,
-//         vehicleChaseNumber,
-//         vehicleEngineNumber,
-//         manufactureDate,
-//         vehicleColor,
-//         vehiclePurchaseDate,
-//         vehicleOpenMileage,
-//         insuranceType,
-//         vehicleRegistedDistrict,
-//         nextLicenceRenewalDate,
-//         vehiclePreviousOwner,
-//         NIC,
-//         contactNumber,
-//         address,
-//       } = req.body;
-//       if (vehicleNumber) vehicle.vehicleNumber = vehicleNumber;
-//       if (vehicleType) vehicle.vehicleType = vehicleType;
-//       if (vehicleChaseNumber) vehicle.vehicleChaseNumber = vehicleChaseNumber;
-//       if (vehicleEngineNumber)
-//         vehicle.vehicleEngineNumber = vehicleEngineNumber;
-//       if (manufactureDate) vehicle.manufactureDate = manufactureDate;
-//       if (vehicleColor) vehicle.vehicleColor = vehicleColor;
-//       if (vehiclePurchaseDate)
-//         vehicle.vehiclePurchaseDate = vehiclePurchaseDate;
-//       if (vehicleOpenMileage) vehicle.vehicleOpenMileage = vehicleOpenMileage;
-//       if (insuranceType) vehicle.insuranceType = insuranceType;
-//       if (vehicleRegistedDistrict)
-//         vehicle.vehicleRegistedDistrict = vehicleRegistedDistrict;
-//       if (nextLicenceRenewalDate)
-//         vehicle.nextLicenceRenewalDate = nextLicenceRenewalDate;
-//       if (vehiclePreviousOwner)
-//         vehicle.vehiclePreviousOwner = vehiclePreviousOwner;
-//       if (NIC) vehicle.NIC = NIC;
-//       if (contactNumber) vehicle.contactNumber = contactNumber;
-//       if (address) vehicle.address = address;
-
-//       await vehicle.save((error, savedVehicle) => {
-//         if (error) return res.status(500).send(error);
-//         return res.status(201).send(savedVehicle);
-//       });
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     return res.status(500).send(error);
-//   }
-// });
-
-
-// router.delete("/:id", async (req, res) => {
-//   try {
-//     await Vehicle.findById({ _id: req.params.id }, async (error, vehicle) => {
-//       if (error) return res.status(500).send(error);
-//       if (!vehicle) return res.status(404).send("User not found!");
-//       await vehicle.remove((error, removedVehicle) => {
-//         if (error) return res.status(500).send(error);
-//         return res.status(200).send(removedVehicle);
-//       });
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     return res.status(500).send(error);
-//   }
-// });
-
 //Delete vehicle
-router.delete("/:id", (req, res, next) => {
-  Vehicle.deleteOne({ _id: req.params.id }).then(result => {
-    console.log(result);
-    res.status(200).json({
-      message: "Vehicle Deleted"
-    });
-  });
+router.delete("/", (req, res, next) => {
+  console.log(req.body);
+  Vehicle.deleteMany({
+    _id: {
+      $in: req.body
+    }
+  }, function (err, result) {
+    if (err) {
+      res.status(500).json({ message: err })
 
+    } else {
+      res.status(200).json(result)
+    }
+  })
 });
 
 module.exports = router;
