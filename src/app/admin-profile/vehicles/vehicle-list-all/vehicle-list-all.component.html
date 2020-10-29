@@ -1,5 +1,4 @@
 <div class="card-body">
-  <button [routerLink]="['../../report']" type="button" class="btn btn-primary">GENERATE REPORT</button>
   <table class="table table-bordered">
     <thead class="thead-dark">
       <tr>
@@ -34,7 +33,7 @@
         <td>{{vehicle.NIC}}</td>
         <td>{{vehicle.vehicleColor}}</td>
         <td colspan="2">
-          <a [routerLink]="['../../edit', vehicle.id]" class="btn btn-warning pull-right" style="width:75px; margin-bottom: 8px;">EDIT</a>
+          <a class="btn btn-warning pull-right" style="width:75px; margin-bottom: 8px;">EDIT</a>
           <a class="btn btn-danger pull-right" (click)="onDelete(vehicle.id)">DELETE</a>
         </td>
       </tr>
